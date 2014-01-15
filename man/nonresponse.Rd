@@ -1,0 +1,21 @@
+\docType{data}
+\name{nonresponse}
+\alias{nonresponse}
+\title{Non-Response to Surveys}
+\format{A data frame with 4229 observations on the following 3 variables.
+\describe{ \item{residence}{where the subject resides:  either in Copenhagen, a city outside of Copenhagen, or
+in the countryside}
+\item{gender}{sex of the subject}
+\item{response}{Whether or not eh subject responded to the mail survey}}}
+\source{
+  Rebuilt from a contingency table in E. B. Andersen
+  (1991), The Statistical Analysis of Categorical Data. 2nd
+  edition. Springer-Verlag, Berlin.  Table found in package
+  \code{vcd}.
+}
+\description{
+  Results of a study on non-response to a mail survey.
+  Subjects were residents of Denmark.
+}
+\keyword{datasets}
+

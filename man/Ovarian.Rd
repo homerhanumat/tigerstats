@@ -1,0 +1,22 @@
+\docType{data}
+\name{Ovarian}
+\alias{Ovarian}
+\title{Ovarian Cancer Study}
+\format{A data frame with 299 observations on the following 4 variables.
+\describe{ \item{stage}{factor indicating the stage of the cancer at the time of operation (early, advanced)}
+\item{operation}{factor indicating the amount of tissue removed during surgery (radical,limited)}
+\item{survival}{whether or not the subject was still alive after ten years (yes,no)}
+\item{xray}{factor indicating whether or not the subject also received x-ray treatments (yes,no)}}}
+\source{
+  Rebuilt from a contingency table in E. B. Andersen
+  (1991), The Statistical Analysis of Categorical Data. 2nd
+  edition. Springer-Verlag, Berlin.  Table found in package
+  \code{vcd}.
+}
+\description{
+  Results of a retrospective study, conducted in 1973, on
+  299 women who been surgically treated for ovarian cancer
+  10 years before.
+}
+\keyword{datasets}
+

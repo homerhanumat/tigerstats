@@ -1,0 +1,26 @@
+\name{UnderShade}
+\alias{UnderShade}
+\title{Shade Under Density Curves}
+\usage{
+  UnderShade(low,high,func,...)
+}
+\arguments{
+  \item{low}{lower bound}
+
+  \item{high}{upper bound}
+
+  \item{func}{density function}
+
+  \item{\ldots}{other arguments passed (to modify func)}
+}
+\value{
+  graphical side effect only
+}
+\description{
+  Utility function for ptGC, pnormGC, pchisqGC, possibly
+  others
+}
+\author{
+  Homer White \email{hwhite0@georgetowncollege.edu}
+}
+

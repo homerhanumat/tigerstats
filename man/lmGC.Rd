@@ -1,0 +1,33 @@
+\name{lmGC}
+\alias{lmGC}
+\title{Linear Regression}
+\usage{
+  lmGC(form,data,graph=FALSE,diag=FALSE)
+}
+\arguments{
+  \item{form}{formula of form y~x, both variables numeric}
+
+  \item{data}{dataframe supplying y and x above}
+
+  \item{graph}{produce scatterplot with regression line}
+
+  \item{diag}{produces diagnostic plots: density plot of
+  residuals, and residuals vs. fits}
+}
+\value{
+  A list of class "GClm".  Elements that may be queried
+  include "slope", "intercept", "s" (residual standard
+  error), "R^2" (unadjusted).
+}
+\description{
+  Regression analysis (one numerical predictor variable)
+  with simplified output.  Wrapper function for \code{lm}
+  in package \code{stats}.
+}
+\examples{
+lmGC(fastest~GPA,data=m111survey,graph=TRUE)
+}
+\author{
+  Homer White \email{hwhite0@georgetowncollege.edu}
+}
+

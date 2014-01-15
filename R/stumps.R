@@ -1,0 +1,18 @@
+#' Larvae on Stumps
+#' 
+#' Biologists were interested in whether beetles prefer areas where beavers have cut down cottonwood trees.
+#' (The tree-stumps produce tender green shoots that beetles are thought to like.)  23 circular plots, all of equal area,
+#' were studied.  For each plot the researchers counted the number of cottonwood stumps, and also the number of
+#' clusters of beetle larvae found in the plot.
+#' 
+#' 
+#' @name stumps
+#' @docType data
+#' @format A data frame with 23 observations on the following 2 variables.
+#' \describe{
+#' \item{stumps}{number of stumps in the plot}
+#' \item{larvae}{number of larvae clusters in the plot}
+#' }
+#' @source Basic Practice of Statistics, by Moore and McCabe.
+#' @keywords datasets
+NULL

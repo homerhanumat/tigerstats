@@ -1,0 +1,31 @@
+\name{VaryCorrelation}
+\alias{VaryCorrelation}
+\title{Vary Correlation}
+\usage{
+  VaryCorrelation(n=300)
+}
+\arguments{
+  \item{n}{number of randomly generated-points in the
+  scatterplot.}
+}
+\value{
+  Graphical output.
+}
+\description{
+  An app to illustrate the effectiveness of the correlation
+  coefficient as a measure of the strength of a linear
+  relationship.
+}
+\note{
+  Uses \code{manipulate} in RStudio, and \code{mvrnorm}
+  from package \code{MASS}.
+}
+\examples{
+\dontrun{
+if(require(manipulate)) VaryCorrelation(n=500)
+}
+}
+\author{
+  Homer White \email{hwhite0@georgetowncollege.edu}
+}
+

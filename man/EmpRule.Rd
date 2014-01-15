@@ -1,0 +1,29 @@
+\name{EmpRule}
+\alias{EmpRule}
+\title{Empirical Rule}
+\usage{
+  EmpRule()
+}
+\value{
+  Graphical and numerical output
+}
+\description{
+  An app to investigate how the Empirical Rule applies to
+  symmetric data and skewed data.  The user can select is
+  they want to view a histogram of symmetric data or skewed
+  data.  Vertical bars are also plotted to signify one,
+  two, and three standard deviations from the mean.
+  Summary data is output to the console giving the
+  proportion of the histogram that falls within one, two,
+  and three standard deviations of the mean.
+}
+\examples{
+\dontrun{
+if (require(manipulate)) EmpRule()
+}
+}
+\author{
+  Rebekah Robinson
+  \email{rebekah_robinson@georgetowncollege.edu}
+}
+

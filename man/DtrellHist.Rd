@@ -1,0 +1,32 @@
+\name{DtrellHist}
+\alias{DtrellHist}
+\title{Dynamic Trellising (Histogram)}
+\usage{
+  DtrellHist(form,data)
+}
+\arguments{
+  \item{form}{a formula of the form \code{~var|cond}.
+  \code{var} must be numeric; \code{cond} may be either
+  numeric or factor.}
+
+  \item{data}{A data frame fromm \code{var} and \code{cond}
+  are drawn.}
+}
+\value{
+  Graphical output.
+}
+\description{
+  A manipulative app that facilitates exploration of the
+  distribution of a single numerical variable, conditoned
+  upon the values of either a numerical variable or a
+  factor.
+}
+\examples{
+\dontrun{
+if (require(manipulate)) DtrellHist(~dist|speed,data=cars)
+}
+}
+\author{
+  Homer White \email{hwhite0@georgetowncollege.edu}
+}
+

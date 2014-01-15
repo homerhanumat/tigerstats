@@ -1,0 +1,20 @@
+#' @title Music and Reading Comprehension
+#' 
+#' @description An experiment performed by a student at Georgetown College.  Forty-four subjects were randomized into four
+#' groups.  All subjects read an article; one group read in a silent environment, while the other three groups
+#' heard each three different genres of music.  Each subject took a reading comprehension test afterward.
+#' 
+#' \itemize{
+#' \item{\code{sex}} {a factor with levels \code{Female} \code{Male}}
+#' \item{\code{year}} {class rank of subject}
+#' \item{\code{computer}} {a numeric vector}
+#' \item{\code{type}} {type of music subject listened to while reading}
+#' \item{\code{score}} {number of questions correct on reading comprehension test}
+#' }
+#' 
+#' @docType data
+#' @keywords datasets
+#' @source Matt Doolin, MAT 111 at Georgetown College
+#' @format A data frame with 44 observations on 4 variables.
+#' @name music
+NULL

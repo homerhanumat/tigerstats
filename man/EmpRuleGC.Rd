@@ -1,0 +1,32 @@
+\name{EmpRuleGC}
+\alias{EmpRuleGC}
+\title{Graphical Calculator for the Empirical Rule}
+\usage{
+  EmpRuleGC(mean=0,sd=1,xlab="x")
+}
+\arguments{
+  \item{mean}{Mean of the distribution}
+
+  \item{sd}{Standard deviation of the distribution}
+
+  \item{xlab}{x-axis label}
+}
+\value{
+  Returns no value.  Used for the plotting side-effects.
+}
+\description{
+  An app to facilitate visual understanding of Empirical
+  Rule approximations of probabilities, percentages.
+}
+\note{
+  Uses \code{manipulate} in RStudio
+}
+\examples{
+\dontrun{
+if(require(manipulate)) EmpRuleGC(mean=70,sd=3,xlab="Height (inches)")
+}
+}
+\author{
+  Homer White \email{hwhite0@georgetowncollege.edu}
+}
+

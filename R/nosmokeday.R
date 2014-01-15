@@ -1,0 +1,18 @@
+#' Nicotine Withdrawal and Accidents
+#' 
+#' Results of study conducted in Great Britain to see if nicotine withdrawal increases the risk of an accident.
+#' 
+#' 
+#' @name nosmokeday
+#' @docType data
+#' @format A data frame with 10 observations on the following 3 variables.
+#' \describe{ \item{year}{calendar year}
+#' \item{Injuries.before.NSD}{number of injury accidents on the day one week prior to 
+#' National No Smoke Day in the United Kingdom} 
+#' \item{Injuries.on.NSD}{number of injury accidents on  
+#' National No Smoke Day in the United Kingdom}}
+#' @source J. Knwles, "Nicotine withdrawal and road accidents", Science, 400, 128, (8 July 1999).
+#' Found in Whitlock and Schluter, The Analysis of Biological Data.
+#' @keywords datasets
+#' 
+NULL

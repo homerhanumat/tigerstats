@@ -1,0 +1,21 @@
+\name{BinomNorm}
+\alias{BinomNorm}
+\title{Binomial Distributions With Normal Approximation}
+\usage{
+  BinomNorm()
+}
+\value{
+  no value.  Graphical side-effects only.
+}
+\description{
+  An app to investigate the binomial family.
+}
+\examples{
+\dontrun{
+if (require(manipulate)) BinomNorm()
+}
+}
+\author{
+  Homer White (hwhite0@georgetowncollege.edu)
+}
+

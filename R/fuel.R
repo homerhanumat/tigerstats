@@ -1,0 +1,17 @@
+#' Speed and Fuel Efficiency (British Ford Escort)
+#' 
+#' A British Ford Escort was driven along a prescribed course.  Each drive was
+#' done at a different speed, and the fuel efficiency was recorded for each
+#' drive.
+#' 
+#' 
+#' @name fuel
+#' @docType data
+#' @format A data frame with 15 observations on the following 2 variables.
+#' \describe{
+#' \item{speed}{in kilometers per hour.}
+#' \item{efficiency}{fuel efficiency, measured in liters of fuel required to travel 100 kilometers. }
+#' }
+#' @source The Basic Practice of Statistics, by Moore and McCabe.
+#' @keywords datasets
+NULL

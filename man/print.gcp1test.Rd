@@ -1,0 +1,21 @@
+\name{print.gcp1test}
+\alias{print.gcp1test}
+\title{Print Function for GC Proportion Test (One-Sample)}
+\usage{
+  \S3method{print}{gcp1test}(x,...)
+}
+\arguments{
+  \item{x}{An object of class gcp1test.}
+
+  \item{\ldots}{ignored}
+}
+\value{
+  Output to the console.
+}
+\description{
+  Utility print function
+}
+\author{
+  Homer White \email{hwhite0@georgetowncollege.edu}
+}
+

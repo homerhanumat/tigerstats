@@ -1,0 +1,37 @@
+\name{pnormGC}
+\alias{pnormGC}
+\title{Graphical Calculator for Normal Curve Probabilities}
+\usage{
+  pnormGC(bound,region="below",mean=0,sd=1,graph=FALSE)
+}
+\arguments{
+  \item{bound}{A numerical vector of length 1 or 2,
+  indicating boundary(ies) of shaded region on horizontal
+  axis}
+
+  \item{region}{A character string.  Default is "below".
+  Possible values are "between" (when boundary consists of
+  two numbers), "below", "above", and "outside" (again when
+  boundary consists of two numbers)}
+
+  \item{mean}{Mean of the distribution}
+
+  \item{sd}{Standard deviation of the distribution}
+
+  \item{graph}{Will produce graph of the probability}
+}
+\value{
+  Numerical value of area under curve over region.
+}
+\description{
+  Shades desired areas under a specified normal curve,
+  returns numerical value of the area.
+}
+\examples{
+pnormGC(c(-1,1),region="outside")  #returns about 0.32
+pnormGC(75,region="below",mean=70,sd=3)
+}
+\author{
+  Homer White \email{hwhite0@georgetowncollege.edu}
+}
+
