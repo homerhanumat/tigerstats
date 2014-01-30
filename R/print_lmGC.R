@@ -15,15 +15,16 @@ print.GClm <-function(x,...)  {
          GClm <- x
          cat("\n") 
          cat("\t\t\tSimple Linear Regression\n\n")
-         cat("Correlation coefficient r = ",cor(GClm$exp,GClm$resp,use="na.or.complete"),"\n\n")
+         cat("Correlation coefficient r = ",round(cor(GClm$exp,GClm$resp,use="na.or.complete"),4),"\n\n")
          cat("Equation of Regression Line:\n\n")
-         cat("\t",GClm$respname,"=",GClm$intercept,"+",GClm$slope,"*",GClm$expname,"\n")
+         cat("\t",GClm$respname,"=",round(GClm$intercept,4),"+",round(GClm$slope,4),"*",
+             GClm$expname,"\n")
          cat("\n")
-         cat("Residual Standard Error:\ts   =",GClm$resid.sterr,"\n")
-         cat("R^2 (unadjusted):\t\tR^2 =",GClm$r.squared,"\n")
+         cat("Residual Standard Error:\ts   =",round(GClm$resid.sterr,4),"\n")
+         cat("R^2 (unadjusted):\t\tR^2 =",round(GClm$r.squared,4),"\n")
          
-         if (GClm$graph) print(xyplot(GClm$resp~GClm$exp,type=c("p","r"),xlab=GClm$respname,pch=19,
-                           ylab=GClm$expname))
+         if (GClm$graph) print(xyplot(GClm$resp~GClm$exp,type=c("p","r"),xlab=GClm$expname,pch=19,
+                           ylab=GClm$respname))
          if (GClm$diag) {
            p1 <- densityplot(~GClm$residuals,xlab="residuals",main="Residuals")
            p2 <- xyplot(GClm$residuals~GClm$fitted.values,xlab="predicted y values",
