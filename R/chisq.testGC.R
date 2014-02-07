@@ -75,7 +75,8 @@ chisq.testGC <-
       chisq.calc <- function(x) {
         exp.counts <- function(x) (rowSums(x) %*% t(colSums(x)))/sum(x)
         expected <- exp.counts(x)
-        return(sum((x - expected)^2/expected))
+        contributions <- (x - expected)^2/expected
+        return(sum(contributions[!is.nan(contributions)]))
       }
       nullDist <- apply(TableResampler(x, n, effects = effects), 
                         3, chisq.calc)
