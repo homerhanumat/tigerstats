@@ -11,7 +11,7 @@
 #' \item{o2.feeding}{Oxygen consumption during recovery time after a dive during which
 #'  plankton was consumed, in ml of O2 per kilogram of weight}}
 #' @source Williams, T. M., L. A. Fuiman, M. Horning, and R. W. Davis. 2004. 
-#' The Journal of Experimental Biology 207: 973–982.  \url{http://jeb.biologists.org/content/207/6/973.full}
+#' The Journal of Experimental Biology 207: 973 to 982.  \url{http://jeb.biologists.org/content/207/6/973.full}
 #' @keywords datasets
 #' 
 NULL
