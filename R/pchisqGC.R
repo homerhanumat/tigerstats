@@ -3,7 +3,7 @@
 #' @description Shades desired areas under a specified chi-square curve, returns numerical value of the area.
 #' 
 #' @rdname pchisqGC
-#' @usage pchisqGC(bound,region="above",df=NA,xlab="chi-square statistic",graph=FALSE)
+#' @usage pchisqGC(bound,region="above",df=NA,xlab="chi_square_statistic",graph=FALSE)
 #' @param bound A numerical vector of length 1, indicating boundary of shaded region on horizontal axis
 #' @param region A character string.  Possible values are "below" and "above"
 #' @param df Degrees of freedom of the chi-square distribution
@@ -14,7 +14,7 @@
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
 #' @examples
 #' pchisqGC(6.8,df=3,region="below")
-pchisqGC <- function(bound,region="above",df=NA,xlab="chi-square statistic",graph=FALSE) {
+pchisqGC <- function(bound,region="above",df=NA,xlab="chi_square_statistic",graph=FALSE) {
   if (!is.numeric(bound)) stop("Specify a numerical boundary")
   if (bound < 0)  stop("The chi-square statistic must be at least 0")
   if (is.na(df)) stop("Specify the degrees of freedom using the argument df")

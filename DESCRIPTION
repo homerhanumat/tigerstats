@@ -1,8 +1,8 @@
 Package: tigerstats
 Type: Package
 Title: R for Statistics at Georgetown College
-Version: 0.1.1
-Date: 2014-01-30
+Version: 0.1.2
+Date: 2014-02-11
 Author: Rebekah Robinson <rebekah_robinson@georgetowncollege.edu> and Homer
     White <hwhite0@georgetowncollege.edu>
 Maintainer: Homer White <hwhite0@georgetowncollege.edu>
@@ -12,8 +12,12 @@ License: GPL (>=3)
 Depends:
     lattice,
     MASS
+Imports:
+    lattice,
+    MASS
 Suggests:
-    mosaic
+    mosaic,
+    manipulate
 LazyLoad: yes
 LazyData: yes
 Collate:
