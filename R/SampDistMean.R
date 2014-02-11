@@ -74,3 +74,5 @@ SampDistMean <- function(pop,max.samp.size=50,sim.reps=1000) {
 }
   )
 }  #end of SampDistMeans
+
+if(getRversion() >= "2.15.1")  utils::globalVariables(c("picker", "variable","curvetype"))

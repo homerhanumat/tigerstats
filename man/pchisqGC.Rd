@@ -2,8 +2,7 @@
 \alias{pchisqGC}
 \title{Graphical Calculator for Chi-Square Probabilities}
 \usage{
-  pchisqGC(bound,region="above",df=NA,xlab="chi-square
-    statistic",graph=FALSE)
+  pchisqGC(bound,region="above",df=NA,xlab="chi-square statistic",graph=FALSE)
 }
 \arguments{
   \item{bound}{A numerical vector of length 1, indicating

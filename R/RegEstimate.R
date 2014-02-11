@@ -43,3 +43,5 @@ function(x=1:10)  {
   }
     )
 }
+
+if(getRversion() >= "2.15.1")  utils::globalVariables(c("a","b","s","coefs"))

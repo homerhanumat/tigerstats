@@ -125,3 +125,5 @@ function()  {
     )#end of manip
   
 }
+
+if(getRversion() >= "2.15.1")  utils::globalVariables(c("picker", "row","SelectPoint","ylevel"))

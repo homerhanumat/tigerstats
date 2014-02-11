@@ -107,3 +107,5 @@ function(form,data,max.sample.sizes=100,sim.reps=1000) {
   )
   
 }
+
+if(getRversion() >= "2.15.1")  utils::globalVariables(c("picker", "curvetype","n1","n2"))

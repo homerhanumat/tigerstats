@@ -83,3 +83,5 @@ function(n=900,rho=0.5)  {
     
     )#end manipulate  
 }
+
+if(getRversion() >= "2.15.1")  utils::globalVariables(c("showlines","showslice","slice","showmeans"))

@@ -30,3 +30,5 @@ Variability=function(){
   print(p2,split=(c(2,1,2,1)))
 }) 
 }
+
+if(getRversion() >= "2.15.1")  utils::globalVariables(c("stdev"))

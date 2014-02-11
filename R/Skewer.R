@@ -62,3 +62,5 @@ Skewer <- function ()
 }#end manip body
   )#end manip
 }#end Skewer
+
+if(getRversion() >= "2.15.1")  utils::globalVariables(c("alpha","showpop"))

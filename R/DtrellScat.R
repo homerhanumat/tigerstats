@@ -88,3 +88,5 @@ function(form,data)  {
   }
   
 }
+
+if(getRversion() >= "2.15.1")  utils::globalVariables(c("picker", "level","band","reg","lev","analysis"))

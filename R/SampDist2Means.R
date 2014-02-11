@@ -100,3 +100,5 @@ SampDist2Means <- function(pop,max.samp.sizes=50,sim.reps=1000) {
 }
   )
 }  #end of SampDist2Means
+
+if(getRversion() >= "2.15.1")  utils::globalVariables(c("picker", "numvar","facvar","n1","n2"))

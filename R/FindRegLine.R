@@ -127,3 +127,5 @@ function()  {
 }#end manipulate actions
   )#end manipulate
 }
+
+if(getRversion() >= "2.15.1")  utils::globalVariables(c("displayscore","enditall"))

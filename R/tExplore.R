@@ -24,3 +24,5 @@ tExplore <- function() {
 }    
     ) #end manipulate
 } #end tExplore
+
+if(getRversion() >= "2.15.1")  utils::globalVariables(c("ShowNorm"))
