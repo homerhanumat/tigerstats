@@ -25,9 +25,9 @@ CIProp=function(){
   tally=c(0,0)
   results=matrix(0,2,2,dimnames=list(c("Count","Proportion"),c("Covers","Misses")))
   manipulate(
-    n=slider(1,500,init=50,label="Number of Trials"),
-    p=slider(0,1,init=0.5,step=0.01,label="Value of p"),
-    conf.level=slider(60,99,init=95,label="Confidence Level"),
+    n=slider(1,500,initial=50,label="Number of Trials"),
+    p=slider(0,1,initial=0.5,step=0.01,label="Value of p"),
+    conf.level=slider(60,99,initial=95,label="Confidence Level"),
     sim.reps=picker("One at a time","20 at a time", "100 at a time",label="Number of Repititions"),  
 {
   current.sliders=list(n,p,conf.level)

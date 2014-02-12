@@ -22,7 +22,7 @@ Skewer <- function ()
   
   ymax <- max(beta.100(0:100,alpha=1,beta=10))  #set upper limit for histogram graph
   
-  manipulate(alpha = slider(0, 1, init = 0, label = "Population Skew:  0 = Symmetric, 1=Fairly Skewy "),
+  manipulate(alpha = slider(0, 1, initial = 0, label = "Population Skew:  0 = Symmetric, 1=Fairly Skewy "),
              showpop=checkbox(FALSE,"Show Population Density Curve"),
 {
   a <- 10 * (0.1)^alpha

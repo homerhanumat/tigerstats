@@ -39,8 +39,8 @@ SampDist2Means <- function(pop,max.samp.sizes=50,sim.reps=1000) {
   
   
   manipulate(
-    n1=slider(1,max.samp.sizes,init=1,label="Sample Size n1"),
-    n2=slider(1,max.samp.sizes,init=1,label="Sample Size n2"),
+    n1=slider(1,max.samp.sizes,initial=1,label="Sample Size n1"),
+    n2=slider(1,max.samp.sizes,initial=1,label="Sample Size n2"),
     numvar=picker(as.list(names(npop))),
     facvar=picker(as.list(names(f2pop))),
 {popvals <- pop[,numvar]

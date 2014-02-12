@@ -17,7 +17,7 @@ BinomSkew <- function(){
   #Number of trials fixed.  You can vary p.  x-axis scale stays same.
   
   manipulate(
-    p=slider(0.01,0.99,step=0.01,init=0.01,label="Success Chance p"),
+    p=slider(0.01,0.99,step=0.01,initial=0.01,label="Success Chance p"),
     norm=checkbox(FALSE,"Show Normal Curve"),
 {
   n <- 50 #fixed number of trials

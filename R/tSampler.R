@@ -41,14 +41,14 @@ function(form,data,
                    "Groovy,\nMan!",
                    "Yippee!",
                    "Far Out ...",
-                   "I'm a Bit Odd\n(Like Dr. White)")
+                   "I'm Unusual")
   t.stats <- NULL
   nprev <- NULL
   beginning <- TRUE
   dpop <- NULL
   
   manipulate(
-    n=slider(2,max.sample.size,step=1,init=2,
+    n=slider(2,max.sample.size,step=1,initial=2,
                 label="Sample Size n"),
     SurpriseLines=checkbox(label="Show Rough Surprise Lines"),
     tcurve=checkbox(label="Show t-Curve"),

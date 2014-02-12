@@ -40,7 +40,7 @@ function(form,data,
   dpop <- NULL
   
   manipulate(
-    n=slider(1,max.sample.size,step=1,init=1,
+    n=slider(1,max.sample.size,step=1,initial=1,
                 label="Sample Size n"),
     {OurSample <- sample(numvar,n,replace=FALSE)
     samp.mean <- mean(OurSample)

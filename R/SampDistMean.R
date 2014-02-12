@@ -30,7 +30,7 @@ SampDistMean <- function(pop,max.samp.size=50,sim.reps=1000) {
   pop <- pop[,which(numvars)]
   
   manipulate(
-    n=slider(1,max.samp.size,init=1,label="Sample Size n"),
+    n=slider(1,max.samp.size,initial=1,label="Sample Size n"),
     variable=picker(as.list(names(pop))),
     curvetype=picker("None","Density Estimate","Theoretical Normal"),
 {varname <- as.character(variable)

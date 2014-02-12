@@ -18,7 +18,7 @@ VaryCorrelation <-
 function (n=300)  {
   #n is number of points on scatterplot
   manipulate(
-    rho=slider(-1,1,step=0.01,init=0,
+    rho=slider(-1,1,step=0.01,initial=0,
                label="Target Correlation"),
     reg=checkbox(FALSE,"Show Regression Line"),
     {varcovar <- cbind(c(1,rho),c(rho,1))

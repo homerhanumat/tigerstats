@@ -17,9 +17,9 @@ function(x=1:10)  {
   #x gives the set of fixed x-values in the model
   
   manipulate(
-    a=slider(-1,1,step=0.1,init=0,label="True Intercept a"),
-    b=slider(-3,3,step=0.1,init=1,label="True Slope b"),
-    s=slider(0,4,step=0.1,init=2,label="Likely Error Size"),
+    a=slider(-1,1,step=0.1,initial=0,label="True Intercept a"),
+    b=slider(-3,3,step=0.1,initial=1,label="True Slope b"),
+    s=slider(0,4,step=0.1,initial=2,label="Likely Error Size"),
     coefs=checkbox(FALSE,"Print Coefficient Information"),
   {n <- length(x)
     y=a+b*x+rnorm(n,mean=0,sd=s)

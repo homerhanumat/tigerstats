@@ -16,8 +16,8 @@
 #' }
 Variability=function(){
   manipulate(
-    n=slider(10,1000,init=100,label="Sample Size n"),
-    stdev=slider(1,5,init=3,step=0.1,label="Standard deviation"),
+    n=slider(10,1000,initial=100,label="Sample Size n"),
+    stdev=slider(1,5,initial=3,step=0.1,label="Standard deviation"),
 {
   data=rnorm(n,mean=20,sd=stdev)
   print(summary(data))

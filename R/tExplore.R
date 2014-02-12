@@ -14,7 +14,7 @@
 #' }
 tExplore <- function() {
   manipulate(
-    df=slider(1,100,step=1,init=1,label="Degrees of Freedom"),
+    df=slider(1,100,step=1,initial=1,label="Degrees of Freedom"),
     ShowNorm=checkbox(FALSE,"Show Standard Normal Curve"),
 {
   curve(dt(x,df=df),from=-4,to=4,ylab="density",n=1001,xlab="t",ylim=c(0,dnorm(0,0,1)),

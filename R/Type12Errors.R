@@ -24,9 +24,9 @@ function(){
   beginning <- TRUE
   ymax <- 0.04
   manipulate( 
-    true=slider(165,175,init=170,step=1,label="True Population Mean mu"),
-    sig.level=slider(0.01,0.10,step=0.01,init=0.05,label="Level of Significance alpha"),
-    n=slider(2,50,init=10,label="Sample Size n"),
+    true=slider(165,175,initial=170,step=1,label="True Population Mean mu"),
+    sig.level=slider(0.01,0.10,step=0.01,initial=0.05,label="Level of Significance alpha"),
+    n=slider(2,50,initial=10,label="Sample Size n"),
     sim.reps=picker("One at a time","100 at a time","1000 at a time",label="Number of Repetitions"),
 {
   conf <- (1-sig.level)/100

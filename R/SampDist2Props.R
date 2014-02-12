@@ -56,8 +56,8 @@ function(form,data,max.sample.sizes=100,sim.reps=1000) {
   
   
   manipulate(
-    n1=slider(1,max.sample.sizes,init=1,label="Sample Size n1"),
-    n2=slider(1,max.sample.sizes,init=1,label="Sample Size n2"),
+    n1=slider(1,max.sample.sizes,initial=1,label="Sample Size n1"),
+    n2=slider(1,max.sample.sizes,initial=1,label="Sample Size n2"),
     curvetype=picker("None","Density Estimate","Theoretical Normal"),
 {#Will need these later on:
  

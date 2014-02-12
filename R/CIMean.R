@@ -41,8 +41,8 @@ CIMean <- function (form, data)
   ymax = 1.4 * max.dens
   mu = mean(pop)
   stdev = sd(pop)
-  manipulate(n = slider(min.samp.size, max.samp.size, step = 1, init = 5, label = "Sample Size n"),
-             conf.level = slider(60, 99, init = 95, label = "Confidence Level"),
+  manipulate(n = slider(min.samp.size, max.samp.size, step = 1, initial = 5, label = "Sample Size n"),
+             conf.level = slider(60, 99, initial = 95, label = "Confidence Level"),
              sim.reps = picker("One at a time", "100 at a time", "1000 at a time", label = "Number of Repititions"), 
 {
   current.sliders = list(n, conf.level)

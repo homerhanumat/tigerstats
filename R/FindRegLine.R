@@ -74,8 +74,8 @@ function()  {
   require(manipulate)
   
   manipulate(
-    a=slider(lowa.slider,higha.slider,step=0.01,init=y.mean,label="Intercept"),
-    b=slider(2*lowb,2*highb,step=0.01,init=0,label="Slope"),
+    a=slider(lowa.slider,higha.slider,step=0.01,initial=y.mean,label="Intercept"),
+    b=slider(2*lowb,2*highb,step=0.01,initial=0,label="Slope"),
     displayscore=checkbox(FALSE,"Show my score"),
     enditall=checkbox(FALSE,"I quit -- show the reg line!"),
 {

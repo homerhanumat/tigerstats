@@ -40,8 +40,8 @@ function(form,data)  {
   
   if (class(cond)=="numeric" || class(cond)=="integer")  {
     manipulate(
-      level=slider(0,1,init=0.1,label=paste(varnames[2]," Center")),
-      band=slider(0.05,0.4,init=0.10,step=0.01,label=paste(varnames[2]," Bandwidth")),
+      level=slider(0,1,initial=0.1,label=paste(varnames[2]," Center")),
+      band=slider(0.05,0.4,initial=0.10,step=0.01,label=paste(varnames[2]," Bandwidth")),
 {subx <- pullband(orig,cond,level=level,width=band)
  subcond <- pullband(cond,cond,level=level,width=band)
  clow <- min(subcond)

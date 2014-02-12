@@ -23,7 +23,7 @@
 #' }
 SimpleRandom<-function(){
   manipulate(
-    n=slider(5,10000,init=100,label="Sample Size n"),
+    n=slider(5,10000,initial=100,label="Sample Size n"),
     type=picker("sex", "math", "cappun", "income", "height", "idealheight", "diff", "kkardashtemp",label="Variable"),
 {
   data=popsamp(n,imagpop)

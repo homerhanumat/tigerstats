@@ -41,9 +41,9 @@ function()  {
   
   manipulate(
     
-    n=slider(10,200,step=10,init=30,label="Number of points in cloud"),
-    rho=slider(-1,1,step=0.01,init=0,label="Target correlation for cloud"),
-    ylevel=slider(ymin,ymax,init=0,label="y-coordinate of selected point"),
+    n=slider(10,200,step=10,initial=30,label="Number of points in cloud"),
+    rho=slider(-1,1,step=0.01,initial=0,label="Target correlation for cloud"),
+    ylevel=slider(ymin,ymax,initial=0,label="y-coordinate of selected point"),
     SelectPoint=picker("red","blue"),
     
     {

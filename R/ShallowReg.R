@@ -37,7 +37,7 @@ function(n=900,rho=0.5)  {
 
   manipulate::manipulate(
     
-    slice=manipulate::slider(1,10,step=1,init=4,label="Slice of Cloud"),
+    slice=manipulate::slider(1,10,step=1,initial=4,label="Slice of Cloud"),
     showslice=manipulate::checkbox(FALSE,"Show Slice of Cloud"),
     showlines=manipulate::checkbox(FALSE,"Show SD and Regression Lines"),
     showmeans=manipulate::checkbox(FALSE,"Show All Means of Slices"),

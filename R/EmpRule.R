@@ -29,7 +29,7 @@ EmpRule <- function ()
   
   results = matrix(0, 1, 3, dimnames = list("Proportion", 
                                             c("One SD", "Two SD", "Three SD")))
-  manipulate(n = slider(5, 1000, init = 50, label = "Sample Size n"), 
+  manipulate(n = slider(5, 1000, initial = 50, label = "Sample Size n"), 
              type = picker("Symmetric", "Skewed", "Super-Skewy", label = "Target Data Shape"),
              showpop=checkbox(FALSE,"Show Population Density Curve"),
 {

@@ -15,8 +15,8 @@ BinomNorm <- function()  {
   #Normal approx to binomial.  Can vary n, but x-axis scale will change.
   
   manipulate(
-    p=slider(0.01,0.99,step=0.01,init=0.20,label="Success Chance p"),
-    n=slider(1,1000,init=5,label="Number of Trials n"),
+    p=slider(0.01,0.99,step=0.01,initial=0.20,label="Success Chance p"),
+    n=slider(1,1000,initial=5,label="Number of Trials n"),
     norm=checkbox(FALSE,"Show Normal Curve"),
 {
   lower.lim <- min(qbinom(0.0001,size=n,prob=p),qnorm(0.0001,mean=n*p,sd=sqrt(n*p*(1-p))))

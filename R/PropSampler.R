@@ -40,7 +40,7 @@ function(form,data,
   beginning <- TRUE
   
   manipulate(
-    n=slider(10,max.sample.size,step=10,init=10,
+    n=slider(10,max.sample.size,step=10,initial=10,
                 label="Sample Size n"),
     {OurSample <- sample(facvar,n,replace=FALSE)
     samp.results <- table(OurSample)
