@@ -105,8 +105,8 @@ se.phat <- sqrt(p.hat*(1-p.hat)/trials)
       
      if (graph)   {  
         switch(alternative,
-               less=invisible(pbinomGC(successes,size=trials,p=p,region="below",graph=T)),
-               greater=invisible(pbinomGC(successes-1,size=trials,p=p,region="above",graph=T)),
+               less=invisible(pbinomGC(successes,size=trials,prob=p,region="below",graph=T)),
+               greater=invisible(pbinomGC(successes-1,size=trials,prob=p,region="above",graph=T)),
                two.sided=warning("No graph is provided for two-sided test")
         )
       }
