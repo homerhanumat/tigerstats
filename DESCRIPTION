@@ -10,8 +10,7 @@ Description: Datasets and functions useful for teaching statistics at
     Georgetown College.
 License: GPL (>=3)
 Depends:
-    lattice,
-    MASS
+    lattice
 Imports:
     lattice,
     MASS
