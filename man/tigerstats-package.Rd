@@ -13,8 +13,8 @@ Datasets and functions useful for teaching statistics at
 \tabular{ll}{
 Package: \tab tigerstats\cr
 Type: \tab Package\cr
-Version: \tab 0.1.2-1\cr
-Date: \tab 2014-02-11\cr
+Version: \tab 0.1.2-2\cr
+Date: \tab 2014-02-12\cr
 License: \tab GPL (>=3)\cr
 }
 
