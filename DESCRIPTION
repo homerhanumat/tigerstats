@@ -112,3 +112,5 @@ Collate:
     'Variability.R'
     'VaryCorrelation.R'
     'youthrisk03.R'
+    'chisqtestGC.R'
+    'themerpres.R'

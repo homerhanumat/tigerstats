@@ -1,8 +1,9 @@
-\name{chisq.testGC}
-\alias{chisq.testGC}
+\name{chisqtestGC}
+\alias{chisqtestGC}
 \title{Chi-Square Test (GC version)}
 \usage{
-  chisq.testGC(x,data=NULL,p=NULL,graph=FALSE,simulate.p.value=FALSE,B=2000,verbose=TRUE)
+  chisqtestGC(x, data = NULL, p = NULL, graph = FALSE,
+    simulate.p.value = FALSE, B = 2000, verbose = TRUE)
 }
 \arguments{
   \item{x}{Could be a formula.  If so, either ~var (for
@@ -51,11 +52,11 @@
   removed eventually.
 }
 \examples{
-chisq.testGC(~seat,data=m111survey,p=c(1/3,1/3,1/3))
-chisq.testGC(~sex+seat,data=m111survey)
+chisqtestGC(~seat,data=m111survey,p=c(1/3,1/3,1/3))
+chisqtestGC(~sex+seat,data=m111survey)
 
 WeBe <- xtabs(~weather+crowd.behavior,data=ledgejump)
-chisq.testGC(WeBe,simulate.p.value="fixed",B=2500)
+chisqtestGC(WeBe,simulate.p.value="fixed",B=2500)
 }
 \author{
   Homer White \email{hwhite0@georgetowncollege.edu}

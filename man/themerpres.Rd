@@ -1,8 +1,8 @@
-\name{theme.rpres}
-\alias{theme.rpres}
+\name{themerpres}
+\alias{themerpres}
 \title{Lattice Theme or R Presentations}
 \usage{
-  theme.rpres()
+  themerpres()
 }
 \value{
   Returns a list to be supplied as the \code{theme} to the
@@ -14,7 +14,7 @@
   axis lables and axis numbers, thickens sone lines, etc.
 }
 \examples{
-trellis.par.set(theme=theme.rpres())
+trellis.par.set(theme=themerpres())
 }
 \seealso{
   \code{\link{trellis.par.set}},

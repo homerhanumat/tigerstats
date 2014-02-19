@@ -3,8 +3,7 @@
 #' @description Perform chi-square test, either goodness of fit or test for association.  Enter either
 #' formula-data input or a summary table.  Simulation is optional.
 #' 
-#' @rdname chisq.testGC
-#' @usage chisq.testGC(x,data=NULL,p=NULL,graph=FALSE,simulate.p.value=FALSE,B=2000,verbose=TRUE)
+#' @rdname chisqtestGC
 #' @param x Could be a formula.  If so, either ~var (for goodness of fit) or ~var1+var2 (for test for association).
 #' Otherwise either a table, matrix or vector of summary data.
 #' @param data dataframe supplying variables for formula x.
@@ -24,12 +23,12 @@
 #' @export
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
 #' @examples
-#' chisq.testGC(~seat,data=m111survey,p=c(1/3,1/3,1/3))
-#' chisq.testGC(~sex+seat,data=m111survey)
+#' chisqtestGC(~seat,data=m111survey,p=c(1/3,1/3,1/3))
+#' chisqtestGC(~sex+seat,data=m111survey)
 #' 
 #' WeBe <- xtabs(~weather+crowd.behavior,data=ledgejump)
-#' chisq.testGC(WeBe,simulate.p.value="fixed",B=2500)
-chisq.testGC <- 
+#' chisqtestGC(WeBe,simulate.p.value="fixed",B=2500)
+chisqtestGC <- 
   function (x,data=NULL,p=NULL,graph=FALSE,simulate.p.value=FALSE,B=2000,verbose=TRUE) 
   {
     
@@ -283,4 +282,4 @@ chisq.testGC <-
       invisible(pchisqGC(res$stat,region="above",df=df,graph=T))
     }
     
-  }#end chisq.testGC
+  }#end chisqtestGC
