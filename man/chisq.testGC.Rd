@@ -1,4 +1,5 @@
 \name{chisq.testGC}
+\alias{chisqtestGC}
 \alias{chisq.testGC}
 \title{Chi-Square Test (GC version)}
 \usage{

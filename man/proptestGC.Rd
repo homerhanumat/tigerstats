@@ -1,8 +1,8 @@
-\name{prop.testGC}
-\alias{prop.testGC}
+\name{proptestGC}
+\alias{proptestGC}
 \title{Proportions Procedures}
 \usage{
-  prop.testGC(x,n=numeric(),p=NULL,data,alternative="two.sided",
+  proptestGC(x,n=numeric(),p=NULL,data,alternative="two.sided",
     success="yes",first=NULL,conf.level=0.95,correct=TRUE,graph=FALSE)
 }
 \arguments{
@@ -60,18 +60,18 @@
 \examples{
 data(m111survey)
 #2-proportions, formula-data input:
-prop.testGC(~sex+seat,data=m111survey,success="1_front")
+proptestGC(~sex+seat,data=m111survey,success="1_front")
 
 #one proportion, formula-data input:
-prop.testGC(~seat,data=m111survey,success="1_front",p=0.33)
+proptestGC(~seat,data=m111survey,success="1_front",p=0.33)
 
 #Summary data:
 #In first sample, 23 success out of 100 trials.  In second sample, 33 out of 110.
-prop.testGC(x=c(23,33),n=c(100,110))
+proptestGC(x=c(23,33),n=c(100,110))
 
 #Summary data:
 #In one sample, 40 successes in 100 trials.  Testing whether p = 0.45.
-prop.testGC(40,100,p=0.45,correct=TRUE)
+proptestGC(40,100,p=0.45,correct=TRUE)
 }
 \author{
   Homer White \email{hwhite0@georgetowncollege.edu}

@@ -1,4 +1,5 @@
 \name{theme.rpres}
+\alias{themerpres}
 \alias{theme.rpres}
 \title{Lattice Theme or R Presentations}
 \usage{

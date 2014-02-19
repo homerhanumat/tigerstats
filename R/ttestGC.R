@@ -2,8 +2,8 @@
 
 #' @description t-tests and confidence intervals for one and two samples.
 #' 
-#' @rdname t.testGC
-#' @usage t.testGC(x=NULL,mean=numeric(),sd=numeric(),n=numeric(),
+#' @rdname ttestGC
+#' @usage ttestGC(x=NULL,mean=numeric(),sd=numeric(),n=numeric(),
 #'  mu=NULL,data=NULL,alternative="two.sided",var.equal=FALSE,
 #'  conf.level=0.95,graph=FALSE,first=NULL)
 #' @param x If not NULL, then must be a formula.  If a formula, then data must be a dataframe.
@@ -29,20 +29,20 @@
 #' for matched pairs.
 #' @examples
 #' # One-sample t:
-#' t.testGC(~fastest,data=m111survey,mu=100)
+#' ttestGC(~fastest,data=m111survey,mu=100)
 #' 
 #' #Two-sample t, with graph:
-#' t.testGC(fastest~sex,data=m111survey)
+#' ttestGC(fastest~sex,data=m111survey)
 #' 
 #' # Matched pairs:
-#' t.testGC(~ideal_ht-height,data=m111survey)
+#' ttestGC(~ideal_ht-height,data=m111survey)
 #' 
 #' #Summary data, one sample, with graph:
-#' t.testGC(mean=55,sd=4,n=16,mu=52.5,alternative="greater")
+#' ttestGC(mean=55,sd=4,n=16,mu=52.5,alternative="greater")
 #' 
 #' #Summary data, two samples:
-#' t.testGC(mean=c(50,55),sd=c(3,4),n=c(25,40),mu=0)
-t.testGC <-
+#' ttestGC(mean=c(50,55),sd=c(3,4),n=c(25,40),mu=0)
+ttestGC <-
   function(x=NULL,mean=numeric(),sd=numeric(),n=numeric(),
            mu=NULL,data=NULL,alternative="two.sided", var.equal=FALSE,
            conf.level=0.95,graph=FALSE,first=NULL)  {
@@ -368,4 +368,4 @@ t.testGC <-
     class(res) <- "GCttest"
     return(res)
     
-    } #end t.testGC
+    } #end ttestGC

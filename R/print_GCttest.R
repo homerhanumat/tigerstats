@@ -1,4 +1,4 @@
-#' @title Print Function for t.testGC
+#' @title Print Function for ttestGC
 
 #' @description Utility print function
 #' 

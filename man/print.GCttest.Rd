@@ -1,6 +1,6 @@
 \name{print.GCttest}
 \alias{print.GCttest}
-\title{Print Function for t.testGC}
+\title{Print Function for ttestGC}
 \usage{
   \S3method{print}{GCttest}(x,...)
 }

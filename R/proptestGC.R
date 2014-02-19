@@ -2,8 +2,8 @@
 
 #' @description Employs the normal approximation to perform test for one or two proportions.
 #' 
-#' @rdname prop.testGC
-#' @usage prop.testGC(x,n=numeric(),p=NULL,data,alternative="two.sided",
+#' @rdname proptestGC
+#' @usage proptestGC(x,n=numeric(),p=NULL,data,alternative="two.sided",
 #'                          success="yes",first=NULL,conf.level=0.95,correct=TRUE,graph=FALSE)
 #' @param x Either a formula or a numeric vector.  If formula, it must be of the form ~x
 #' indicating the single variable under study, or of the form ~x+y, in which case x is the explanatory grouping variable
@@ -30,19 +30,19 @@
 #' @examples
 #' data(m111survey)
 #' #2-proportions, formula-data input:
-#' prop.testGC(~sex+seat,data=m111survey,success="1_front")
+#' proptestGC(~sex+seat,data=m111survey,success="1_front")
 #' 
 #' #one proportion, formula-data input:
-#' prop.testGC(~seat,data=m111survey,success="1_front",p=0.33)
+#' proptestGC(~seat,data=m111survey,success="1_front",p=0.33)
 #' 
 #' #Summary data:
 #' #In first sample, 23 success out of 100 trials.  In second sample, 33 out of 110.
-#' prop.testGC(x=c(23,33),n=c(100,110))
+#' proptestGC(x=c(23,33),n=c(100,110))
 #' 
 #' #Summary data:
 #' #In one sample, 40 successes in 100 trials.  Testing whether p = 0.45.
-#' prop.testGC(40,100,p=0.45,correct=TRUE)
-prop.testGC <-
+#' proptestGC(40,100,p=0.45,correct=TRUE)
+proptestGC <-
   function(x,n=numeric(),
            p=NULL,data,
            alternative="two.sided",
@@ -82,7 +82,7 @@ prop.testGC <-
     }
     
     #This function handles formula-data input:
-    prop.testGC.form <- function(form,data,success="yes",
+    proptestGC.form <- function(form,data,success="yes",
                                  alternative="two.sided",
                                  conf.level=0.95,
                                  correct=TRUE )  {
@@ -212,7 +212,7 @@ prop.testGC <-
     
     
     if (is(x,"formula"))  {
-      return(prop.testGC.form(x,data,alternative=alternative,
+      return(proptestGC.form(x,data,alternative=alternative,
                               conf.level=conf.level,
                               success=success,
                               correct=correct))
@@ -289,4 +289,4 @@ prop.testGC <-
       
     }#end summary data treatment
     
-  }#end prop.testGC
+  }#end proptestGC

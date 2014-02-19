@@ -12,6 +12,7 @@
 #' @seealso \code{\link{trellis.par.set}}, \code{\link{show.settings}} 
 #' 
 #' @rdname theme.rpres
+#' @aliases themerpres
 #'
 #' @export
 #' @examples
@@ -19,7 +20,7 @@
 #' 
 #' @keywords graphics 
 #' 
-theme.rpres <-function () {
+theme.rpres <- themerpres <- function () {
   my.theme <- trellis.par.get() #Would like to be able to pick up the default theme
   my.theme$add.text[[2]] <- 2.5
   my.theme$box.rectangle[[5]] <- 3

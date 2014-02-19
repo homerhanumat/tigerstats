@@ -4,6 +4,7 @@
 #' formula-data input or a summary table.  Simulation is optional.
 #' 
 #' @rdname chisq.testGC
+#' @aliases chisqtestGC
 #' @usage chisq.testGC(x,data=NULL,p=NULL,graph=FALSE,simulate.p.value=FALSE,B=2000,verbose=TRUE)
 #' @param x Could be a formula.  If so, either ~var (for goodness of fit) or ~var1+var2 (for test for association).
 #' Otherwise either a table, matrix or vector of summary data.
@@ -28,7 +29,7 @@
 #' 
 #' WeBe <- xtabs(~weather+crowd.behavior,data=ledgejump)
 #' chisq.testGC(WeBe,simulate.p.value="fixed",B=2500)
-chisq.testGC <-
+chisq.testGC <- chisqtestGC <- 
   function (x,data=NULL,p=NULL,graph=FALSE,simulate.p.value=FALSE,B=2000,verbose=TRUE) 
   {
     

@@ -1,8 +1,8 @@
-\name{binom.testGC}
-\alias{binom.testGC}
+\name{binomtestGC}
+\alias{binomtestGC}
 \title{Exact Procedures for a Single Proportion}
 \usage{
-  binom.testGC(x,n=numeric(),p=NULL,data,alternative="two.sided",
+  binomtestGC(x,n=numeric(),p=NULL,data,alternative="two.sided",
     success="yes",conf.level=0.95,graph=FALSE)
 }
 \arguments{
@@ -46,13 +46,13 @@
 }
 \examples{
 data(m111survey)
-binom.testGC(~sex,data=m111survey,success="female") #confidence interval only
+binomtestGC(~sex,data=m111survey,success="female") #confidence interval only
 
-binom.testGC(~sex,data=m111survey,success="female",p=0.5) #test included
+binomtestGC(~sex,data=m111survey,success="female",p=0.5) #test included
 
 #Summary data:
 #In one sample, 40 successes in 100 trials.  Testing whether p = 0.45.
-binom.testGC(40,100,p=0.45)
+binomtestGC(40,100,p=0.45)
 }
 \author{
   Homer White \email{hwhite0@georgetowncollege.edu}

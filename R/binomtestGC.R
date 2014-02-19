@@ -3,8 +3,8 @@
 #' @description Wrapper for binom.test in package \code{stats}.  Employs the binomial distribution 
 #' in inferential procedures for a single proportion.
 #' 
-#' @rdname binom.testGC
-#' @usage binom.testGC(x,n=numeric(),p=NULL,data,alternative="two.sided",
+#' @rdname binomtestGC
+#' @usage binomtestGC(x,n=numeric(),p=NULL,data,alternative="two.sided",
 #'                          success="yes",conf.level=0.95,graph=FALSE)
 #' @param x Either a formula or a numeric vector.  If formula, it must be of the form ~x
 #' indicating the single variable under study.  When summary data are provided, x is a numeric vector of 
@@ -24,14 +24,14 @@
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
 #' @examples
 #' data(m111survey)
-#' binom.testGC(~sex,data=m111survey,success="female") #confidence interval only
+#' binomtestGC(~sex,data=m111survey,success="female") #confidence interval only
 #' 
-#' binom.testGC(~sex,data=m111survey,success="female",p=0.5) #test included
+#' binomtestGC(~sex,data=m111survey,success="female",p=0.5) #test included
 #' 
 #' #Summary data:
 #' #In one sample, 40 successes in 100 trials.  Testing whether p = 0.45.
-#' binom.testGC(40,100,p=0.45)
-binom.testGC <-
+#' binomtestGC(40,100,p=0.45)
+binomtestGC <-
   function(x,n=numeric(),
            p=NULL,data,
            alternative="two.sided",
@@ -113,4 +113,4 @@ se.phat <- sqrt(p.hat*(1-p.hat)/trials)
       
     }
     
-  }#end binom.testGC
+  }#end binomtestGC
