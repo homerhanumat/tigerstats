@@ -15,6 +15,11 @@ print.GCttest <- function(x,...)  {
   GCttest <- x
   subm <- GCttest$subm
   mu <- GCttest$mu
+  verbose <- GCttest$verbose
+  
+  odigits <- getOption("digits")
+  options(digits=4)
+  
   if (subm %in% c("f2e","f2u","s2e","s2u")) {
   cat("\n\nInferential Procedures for the Difference of Two Means mu1-mu2:\n")
   if (subm %in% c("f2u","s2u")) cat("\t(Welch's Approximation Used for Degrees of Freedom)\n")
@@ -37,28 +42,30 @@ print.GCttest <- function(x,...)  {
   }
   
   if (subm %in% c("s2e","s2u")) cat("\tResults from summary data.\n")
-      
-  cat("\n\n")
-  cat("Descriptive Results:\n\n")
+  if (verbose) {    
+    cat("\n\n")
+    cat("Descriptive Results:\n\n")
   
-  tab <- GCttest$SummTab
-  print(tab,row.names=FALSE)
+    tab <- GCttest$SummTab
+    print(tab,row.names=FALSE)
   
-  cat("\n")
-  cat("\n")
+    cat("\n")
+    cat("\n")
   
-  
-  cat("Inferential Results:\n\n")
-      
-  if (subm %in% c("s2e","s2u","f2e","f2u")) {   
-  cat("Estimate of mu1-mu2:\t",GCttest$estimate,"\n")
-  cat("SE(mu1.hat - mu2.hat):\t",GCttest$se,"\n\n")
+    cat("Inferential Results:\n\n")
+  }   
+  if (subm %in% c("s2e","s2u","f2e","f2u")) {
+    if (verbose) {
+      cat("Estimate of mu1-mu2:\t",GCttest$estimate,"\n")
+      cat("SE(mu1.hat - mu2.hat):\t",GCttest$se,"\n\n")
+    }
   cat(GCttest$conf.level*100,"% Confidence Interval for mu1-mu2:\n\n",sep="")
   int <- GCttest$interval
   cat(sprintf("%-10s%-20s%-20s","","lower.bound","upper.bound"),"\n")
   cat(sprintf("%-10s%-20f%-20f","",int[1],int[2]),"\n\n")
   
   if (GCttest$p.value) {
+  if (verbose) {
   cat("Test of Significance:\n\n")
   symbol <- switch(GCttest$alternative,
                    less="<",
@@ -66,20 +73,24 @@ print.GCttest <- function(x,...)  {
                    two.sided="!=")
   cat("\tH_0:  mu1-mu2 =",GCttest$mu,"\n")
   cat("\tH_a:  mu1-mu2",symbol,mu,"\n\n")
+  }
   cat("\tTest Statistic:\t\tt =",GCttest$statistic,"\n")
   cat("\tDegrees of Freedom:\t ",GCttest$df,"\n")
   cat("\tP-value:\t\tP =",GCttest$p.value,"\n")
   }
   }
       
-  if (subm %in% c("s1","f1")) {   
+  if (subm %in% c("s1","f1")) {
+    if (verbose) {
         cat("Estimate of mu:\t",GCttest$estimate,"\n")
         cat("SE(x.bar):\t",GCttest$se,"\n\n")
+    }
         cat(GCttest$conf.level*100,"% Confidence Interval for mu:\n\n",sep="")
         int <- GCttest$interval
         cat(sprintf("%-10s%-20s%-20s","","lower.bound","upper.bound"),"\n")
         cat(sprintf("%-10s%-20f%-20f","",int[1],int[2]),"\n\n")
         if (GCttest$p.value) {
+        if (verbose) {
         cat("Test of Significance:\n\n")
         symbol <- switch(GCttest$alternative,
                          less="<",
@@ -87,6 +98,7 @@ print.GCttest <- function(x,...)  {
                          two.sided="!=")
         cat("\tH_0:  mu =",GCttest$mu,"\n")
         cat("\tH_a:  mu",symbol,mu,"\n\n")
+        }
         cat("\tTest Statistic:\t\tt =",GCttest$statistic,"\n")
         cat("\tDegrees of Freedom:\t ",GCttest$df,"\n")
         cat("\tP-value:\t\tP =",GCttest$p.value,"\n")
@@ -94,13 +106,16 @@ print.GCttest <- function(x,...)  {
   }
       
       if (subm %in% c("fm")) { 
-        cat("Estimate of mu-d:\t",GCttest$estimate,"\n")
-        cat("SE(d.bar):\t",GCttest$se,"\n\n")
+        if (verbose)  {
+          cat("Estimate of mu-d:\t",GCttest$estimate,"\n")
+          cat("SE(d.bar):\t",GCttest$se,"\n\n")
+        }
         cat(GCttest$conf.level*100,"% Confidence Interval for mu-d:\n\n",sep="")
         int <- GCttest$interval
         cat(sprintf("%-10s%-20s%-20s","","lower.bound","upper.bound"),"\n")
         cat(sprintf("%-10s%-20f%-20f","",int[1],int[2]),"\n\n")
         if (GCttest$p.value) {
+        if (verbose) {
         cat("Test of Significance:\n\n")
         symbol <- switch(GCttest$alternative,
                          less="<",
@@ -108,6 +123,7 @@ print.GCttest <- function(x,...)  {
                          two.sided="!=")
         cat("\tH_0:  mu-d =",GCttest$mu,"\n")
         cat("\tH_a:  mu-d",symbol,mu,"\n\n")
+        }
         cat("\tTest Statistic:\t\tt =",GCttest$statistic,"\n")
         cat("\tDegrees of Freedom:\t ",GCttest$df,"\n")
         cat("\tP-value:\t\tP =",GCttest$p.value,"\n")
@@ -127,5 +143,6 @@ print.GCttest <- function(x,...)  {
     Grapher(stat=GCttest$statistic,alt=GCttest$alternative,df=GCttest$df)
   }
   
+  options(digits=odigits)
 
   }

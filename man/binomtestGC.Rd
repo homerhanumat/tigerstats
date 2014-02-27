@@ -3,7 +3,7 @@
 \title{Exact Procedures for a Single Proportion}
 \usage{
   binomtestGC(x,n=numeric(),p=NULL,data,alternative="two.sided",
-    success="yes",conf.level=0.95,graph=FALSE)
+    success="yes",conf.level=0.95,graph=FALSE,verbose=TRUE)
 }
 \arguments{
   \item{x}{Either a formula or a numeric vector.  If
@@ -34,6 +34,9 @@
 
   \item{graph}{If TRUE, plot graph of P-value.  Ignored if
   no test is performed.}
+
+  \item{verbose}{Determines whether to return lots of
+  information or only the basics}
 }
 \value{
   Output to console.  Future versions may return an object,

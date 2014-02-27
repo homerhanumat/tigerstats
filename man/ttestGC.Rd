@@ -4,7 +4,7 @@
 \usage{
   ttestGC(x=NULL,mean=numeric(),sd=numeric(),n=numeric(),
     mu=NULL,data=NULL,alternative="two.sided",var.equal=FALSE,
-    conf.level=0.95,graph=FALSE,first=NULL)
+    conf.level=0.95,graph=FALSE,first=NULL,verbose=TRUE)
 }
 \arguments{
   \item{x}{If not NULL, then must be a formula.  If a
@@ -44,6 +44,8 @@
   \item{first}{If assigned, gives the value of the
   explanatory variable that is to count as the first
   sample.}
+
+  \item{verbose}{Indicate how much output goes to console}
 }
 \value{
   A list of class "GCttest" Components of the list that may
@@ -63,7 +65,7 @@ ttestGC(fastest~sex,data=m111survey)
 # Matched pairs:
 ttestGC(~ideal_ht-height,data=m111survey)
 
-#Summary data, one sample, with graph:
+#Summary data, one sample:
 ttestGC(mean=55,sd=4,n=16,mu=52.5,alternative="greater")
 
 #Summary data, two samples:

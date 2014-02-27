@@ -5,7 +5,7 @@
 #' @rdname ttestGC
 #' @usage ttestGC(x=NULL,mean=numeric(),sd=numeric(),n=numeric(),
 #'  mu=NULL,data=NULL,alternative="two.sided",var.equal=FALSE,
-#'  conf.level=0.95,graph=FALSE,first=NULL)
+#'  conf.level=0.95,graph=FALSE,first=NULL,verbose=TRUE)
 #' @param x If not NULL, then must be a formula.  If a formula, then data must be a dataframe.
 #' For one sample t-procedures, x is of the form ~var.  For two-sample procedures,
 #' x is of the form resp~exp, where exp is factor with two values.  If x is of form ~var1-var2,
@@ -22,6 +22,7 @@
 #' @param graph If TRUE, plot graph of P-value.
 #' @param first  If assigned, gives the value of the explanatory variable that is to count
 #' as the first sample.
+#' @param verbose Indicate how much output goes to console
 #' @return A list of class "GCttest" Components of the list that may be usefully 
 #' queried include:  "statistic", "p.value", and "interval".
 #' @export
@@ -37,7 +38,7 @@
 #' # Matched pairs:
 #' ttestGC(~ideal_ht-height,data=m111survey)
 #' 
-#' #Summary data, one sample, with graph:
+#' #Summary data, one sample:
 #' ttestGC(mean=55,sd=4,n=16,mu=52.5,alternative="greater")
 #' 
 #' #Summary data, two samples:
@@ -45,7 +46,7 @@
 ttestGC <-
   function(x=NULL,mean=numeric(),sd=numeric(),n=numeric(),
            mu=NULL,data=NULL,alternative="two.sided", var.equal=FALSE,
-           conf.level=0.95,graph=FALSE,first=NULL)  {
+           conf.level=0.95,graph=FALSE,first=NULL,verbose=TRUE)  {
     
     stat <- FALSE
     p.value <- FALSE  #These will get numerical values if a test is performed
@@ -105,7 +106,8 @@ ttestGC <-
                       interval=interval,
                       alternative=alternative,mu=mu,
                       conf.level=conf.level,
-                      graph=graph,df=n-1,subm="f1",varnames=varname)
+                      graph=graph,df=n-1,subm="f1",varnames=varname,
+                      verbose=verbose)
       #subm helps print function format results
       return(results)
     }
@@ -195,7 +197,8 @@ ttestGC <-
                       interval=interval,
                       alternative=alternative,mu=mu,
                       conf.level=conf.level,
-                      graph=graph,df=df,subm=subm,varnames=c(expname,respname))
+                      graph=graph,df=df,subm=subm,varnames=c(expname,respname),
+                      verbose=verbose)
       return(results)
     }
     
@@ -252,7 +255,8 @@ ttestGC <-
                       interval=interval,
                       alternative=alternative,mu=mu,
                       conf.level=conf.level,
-                      graph=graph,df=df,subm="fm",varnames=c(var1name,var2name))
+                      graph=graph,df=df,subm="fm",varnames=c(var1name,var2name),
+                      verbose=verbose)
       return(results)
     }
     
@@ -276,7 +280,8 @@ ttestGC <-
                       interval=interval,
                       alternative=alternative,mu=mu,
                       conf.level=conf.level,
-                      graph=graph,df=n-1,subm="s1",varnames=NA)
+                      graph=graph,df=n-1,subm="s1",varnames=NA,
+                      verbose=verbose)
       return(results)
     }
     
@@ -321,7 +326,8 @@ ttestGC <-
                       interval=interval,
                       alternative=alternative,mu=mu,
                       conf.level=conf.level,
-                      graph=graph,df=df,subm=subm,varnames=NA)
+                      graph=graph,df=df,subm=subm,varnames=NA,
+                      verbose=verbose)
       return(results)
     }
     

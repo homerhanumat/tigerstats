@@ -254,11 +254,11 @@ chisqtestGC <-
     }#end of verbose table printing
     
     #next, statistic, degrees of freedom and P-value
-    cat("Chi-Square Statistic =",res$statistic,"\n")
+    cat("Chi-Square Statistic =",round(res$statistic,4),"\n")
     tab <- res$observed
     if (length(dim(tab))==1)  {df <- nrow(tab)-1} else {df <- (nrow(tab)-1)*(ncol(tab)-1)}
     cat("Degrees of Freedom of the table =",df,"\n")
-    cat("P-Value =",res$p.value,"\n\n")
+    cat("P-Value =",round(res$p.value,4),"\n\n")
     
     #warn if no simulation and any expected cell counts are below 5
     if (min(res$expected) <5 && simulate.p.value==FALSE){

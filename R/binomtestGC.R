@@ -5,7 +5,7 @@
 #' 
 #' @rdname binomtestGC
 #' @usage binomtestGC(x,n=numeric(),p=NULL,data,alternative="two.sided",
-#'                          success="yes",conf.level=0.95,graph=FALSE)
+#'                          success="yes",conf.level=0.95,graph=FALSE,verbose=TRUE)
 #' @param x Either a formula or a numeric vector.  If formula, it must be of the form ~x
 #' indicating the single variable under study.  When summary data are provided, x is a numeric vector of 
 #' success counts.
@@ -19,6 +19,7 @@
 #' two values.
 #' @param conf.level Number between 0 and 1 indicating the confidence-level of the interval supplied.
 #' @param graph If TRUE, plot graph of P-value.  Ignored if no test is performed.
+#' @param verbose Determines whether to return lots of information or only the basics
 #' @return Output to console.  Future versions may return an object, and include a print method.
 #' @export
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
@@ -37,7 +38,7 @@ binomtestGC <-
            alternative="two.sided",
            success="yes",
            conf.level=0.95,
-           graph=FALSE)  { 
+           graph=FALSE,verbose=TRUE)  { 
     
     if (is(x,"formula"))  {
       
@@ -77,31 +78,35 @@ binomtestGC <-
     if (is(x,"formula")) {
       cat("\tVariable under study is",varname,"\n")
     } else cat("\tResults based on Summary Data\n")
-        
-    cat("\n\n")
-    cat("Descriptive Results: ",successes,"successes in",trials,"trials\n\n")
+    if (verbose==TRUE) {   
+      cat("\n\n")
+      cat("Descriptive Results: ",successes,"successes in",trials,"trials\n\n")
+    }
     
 p.hat <- successes/trials
 se.phat <- sqrt(p.hat*(1-p.hat)/trials)
-        
+    
+if (verbose==TRUE) {
     cat("Inferential Results:\n\n")
-    cat("Estimate of p:\t",p.hat,"\n")
-    cat("SE(p.hat):\t",se.phat,"\n\n")
+    cat("Estimate of p:\t",round(p.hat,4),"\n")
+    cat("SE(p.hat):\t",round(se.phat,4),"\n\n")
+}
     cat(conf.level*100,"% Confidence Interval for p:\n\n",sep="")
     int <- res$conf.int
     cat(sprintf("%-10s%-20s%-20s","","lower.bound","upper.bound"),"\n")
     cat(sprintf("%-10s%-20f%-20f","",int[1],int[2]),"\n\n")
     
     if (!is.null(p)) {
-      
-      cat("Test of Significance:\n\n")
-      symbol <- switch(alternative,
+      if (verbose==TRUE) {
+        cat("Test of Significance:\n\n")
+        symbol <- switch(alternative,
                        less="<",
                        greater=">",
                        two.sided="!=")
-      cat("\tH_0:  p =",p,"\n")
-      cat("\tH_a:  p",symbol,p,"\n\n")
-      cat("\tP-value:\t\tP =",res$p.value,"\n")
+        cat("\tH_0:  p =",p,"\n")
+        cat("\tH_a:  p",symbol,p,"\n\n")
+      }
+      cat("\tP-value:\t\tP =",round(res$p.value,4),"\n")
       
      if (graph)   {  
         switch(alternative,
