@@ -4,7 +4,7 @@
 #' 
 #' @rdname proptestGC
 #' @usage proptestGC(x,n=numeric(),p=NULL,data,alternative="two.sided",
-#'                          success="yes",first=NULL,conf.level=0.95,correct=TRUE,graph=FALSE)
+#'                          success="yes",first=NULL,conf.level=0.95,correct=TRUE,graph=FALSE,verbose=TRUE)
 #' @param x Either a formula or a numeric vector.  If formula, it must be of the form ~x
 #' indicating the single variable under study, or of the form ~x+y, in which case x is the explanatory grouping variable
 #' (categorical with two values) and y is the response categorical variable with two values.
@@ -23,6 +23,7 @@
 #' @param correct Applies continuity correction for one-proportion procedures.  It is ignored when
 #' when 2-proportions are performed.
 #' @param graph If TRUE, plot graph of P-value.
+#' @param verbose Indicates how much output goes to the console
 #' @return A list, either of class "gcp1test" (one-proportion) or "gcp2test" (two proportions).  
 #' Components of this list that may be usefully queried include:  "statistic", "p.value", and "interval".
 #' @export
@@ -48,7 +49,7 @@ proptestGC <-
            alternative="two.sided",
            success="yes",first=NULL,
            conf.level=0.95,
-           correct=TRUE,graph=FALSE)  {
+           correct=TRUE,graph=FALSE,verbose=TRUE)  {
     
     statistic <- FALSE
     p.value <- FALSE #these will get numerical values if a test is to be performed
@@ -161,7 +162,7 @@ proptestGC <-
         
         results <- list(SummTab=SummTab,statistic=statistic,p.value=p.value,interval=interval,graph=graph,
                         explanatory=expname,response=respname,se=SE,conf.level=conf.level,
-                        alternative=alternative)
+                        alternative=alternative,verbose=verbose)
         class(results)  <- "gcp2test"
         return(results)
       }
@@ -204,7 +205,7 @@ proptestGC <-
         
         results <- list(SummTab=SummTab,statistic=statistic,p.value=p.value,interval=interval,graph=graph,
                         variable=varname,se=SE,conf.level=conf.level,
-                        alternative=alternative,correct=correct,p=p)
+                        alternative=alternative,correct=correct,p=p,verbose=verbose)
         class(results)  <- "gcp1test"
         return(results)
       }
@@ -252,7 +253,7 @@ proptestGC <-
         
         results <- list(SummTab=SummTab,statistic=statistic,p.value=p.value,interval=interval,graph=graph,
                         variable=NA,se=SE,conf.level=conf.level,
-                        alternative=alternative,correct=correct,p=p)
+                        alternative=alternative,correct=correct,p=p,verbose=verbose)
         class(results)  <- "gcp1test"
         return(results)
       }
@@ -282,7 +283,7 @@ proptestGC <-
         
         results <- list(SummTab=SummTab,statistic=statistic,p.value=p.value,interval=interval,graph=graph,
                         explanatory=NA,response=NA,se=SE,conf.level=conf.level,
-                        alternative=alternative)
+                        alternative=alternative,verbose=verbose)
         class(results)  <- "gcp2test"
         return(results)
       }

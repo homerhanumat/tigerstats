@@ -13,18 +13,27 @@
 #' @export
 print.gcp2test <- function(x,...)  {
   gcp2test <- x
+  verbose <- gcp2test$verbose
+  
+  odigits <- getOption("digits")
+  options(digits=4)
+  
   cat("\n\nInferential Procedures for the Difference of Two Proportions p1-p2:\n")
   if (!is.na(gcp2test$explanatory)) {
   cat("\t",gcp2test$response,"grouped by",gcp2test$explanatory,"\n")
     } else cat("\tResults taken from summary data.\n")
-  cat("\n\n")
-  cat("Descriptive Results:\n\n")
   
   tab <- gcp2test$SummTab
-  print(tab)
   
-  cat("\n")
-  cat("\n")
+  if (verbose) {
+    cat("\n\n")
+    cat("Descriptive Results:\n\n")
+  
+    print(tab)
+  
+    cat("\n")
+    cat("\n")
+  }
   
   checker <- min(tab[1,1],tab[2,1],tab[1,2]-tab[1,1],tab[2,2]-tab[2,1])
   if (checker < 10) {
@@ -34,17 +43,18 @@ print.gcp2test <- function(x,...)  {
       "and P-value may be unreliable.\n\n",sep="")
   }
   
-  
+  if (verbose) {
   cat("Inferential Results:\n\n")
   cat("Estimate of p1-p2:\t",tab[1,3]-tab[2,3],"\n")
   cat("SE(p1.hat - p2.hat):\t",gcp2test$se,"\n\n")
+  }
   cat(gcp2test$conf.level*100,"% Confidence Interval for p1-p2:\n\n",sep="")
   int <- gcp2test$interval
   cat(sprintf("%-10s%-20s%-20s","","lower.bound","upper.bound"),"\n")
   cat(sprintf("%-10s%-20f%-20f","",int[1],int[2]),"\n\n")
   
   if(gcp2test$p.value) {
-    
+   if (verbose) { 
   cat("Test of Significance:\n\n")
   symbol <- switch(gcp2test$alternative,
                    less="<",
@@ -52,6 +62,7 @@ print.gcp2test <- function(x,...)  {
                    two.sided="!=")
   cat("\tH_0:  p1-p2 = 0\n")
   cat("\tH_a:  p1-p2",symbol,"0\n\n")
+   }
   cat("\tTest Statistic:\t\tz =",gcp2test$statistic,"\n")
   cat("\tP-value:\t\tP =",gcp2test$p.value,"\n")
   
@@ -69,5 +80,5 @@ print.gcp2test <- function(x,...)  {
   }
   
   }
-  
+  options(digits=odigits)
   }

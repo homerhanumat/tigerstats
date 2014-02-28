@@ -3,7 +3,7 @@
 \title{Proportions Procedures}
 \usage{
   proptestGC(x,n=numeric(),p=NULL,data,alternative="two.sided",
-    success="yes",first=NULL,conf.level=0.95,correct=TRUE,graph=FALSE)
+    success="yes",first=NULL,conf.level=0.95,correct=TRUE,graph=FALSE,verbose=TRUE)
 }
 \arguments{
   \item{x}{Either a formula or a numeric vector.  If
@@ -46,6 +46,9 @@
   2-proportions are performed.}
 
   \item{graph}{If TRUE, plot graph of P-value.}
+
+  \item{verbose}{Indicates how much output goes to the
+  console}
 }
 \value{
   A list, either of class "gcp1test" (one-proportion) or

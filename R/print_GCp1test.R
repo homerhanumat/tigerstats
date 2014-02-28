@@ -13,6 +13,11 @@
 #' @export 
 print.gcp1test <- function(x,...)  {
   gcp1test <- x
+  verbose <- gcp1test$verbose
+  
+  odigits <- getOption("digits")
+  options(digits=4)
+  
   cat("\n\nInferential Procedures for a Single Proportion p:\n")
   if (!is.na(gcp1test$variable)) {
   cat("\tVariable under study is",gcp1test$variable,"\n")
@@ -20,32 +25,36 @@ print.gcp1test <- function(x,...)  {
   if (gcp1test$correct==TRUE) {
     cat("\tContinuity Correction Applied to Test Statistic\n")
   }
-  cat("\n\n")
-  cat("Descriptive Results:\n\n")
   
   tab <- gcp1test$SummTab
-  print(tab)
   
-  cat("\n")
-  cat("\n")
+  if (verbose) {
+    cat("\n\n")
+    cat("Descriptive Results:\n\n")
   
+    print(tab)
+  
+    cat("\n")
+    cat("\n")
+  }
   checker <- min(tab[1,1],tab[1,2]-tab[1,1])
   if (checker < 10) {
     cat("WARNING:  Either the number of successes or \nthe number of failures is below 10.\nThe normal approximation for confidence intervals\nand P-value may be unreliable\n\n\n")
   }
   
   
-    
-  cat("Inferential Results:\n\n")
-  cat("Estimate of p:\t",tab[1,3],"\n")
-  cat("SE(p.hat):\t",gcp1test$se,"\n\n")
+  if (verbose) {  
+    cat("Inferential Results:\n\n")
+    cat("Estimate of p:\t",tab[1,3],"\n")
+    cat("SE(p.hat):\t",gcp1test$se,"\n\n")
+  }
   cat(gcp1test$conf.level*100,"% Confidence Interval for p:\n\n",sep="")
   int <- gcp1test$interval
   cat(sprintf("%-10s%-20s%-20s","","lower.bound","upper.bound"),"\n")
   cat(sprintf("%-10s%-20f%-20f","",int[1],int[2]),"\n\n")
   
   if (gcp1test$p.value) {
-  
+  if (verbose) {
   cat("Test of Significance:\n\n")
   symbol <- switch(gcp1test$alternative,
                    less="<",
@@ -53,6 +62,7 @@ print.gcp1test <- function(x,...)  {
                    two.sided="!=")
   cat("\tH_0:  p =",gcp1test$p,"\n")
   cat("\tH_a:  p",symbol,gcp1test$p,"\n\n")
+  }
   cat("\tTest Statistic:\t\tz =",gcp1test$statistic,"\n")
   cat("\tP-value:\t\tP =",gcp1test$p.value,"\n")
   
@@ -71,4 +81,5 @@ print.gcp1test <- function(x,...)  {
   
   }
   
+  options(digits=odigits)
 }
