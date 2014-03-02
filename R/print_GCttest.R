@@ -57,7 +57,7 @@ print.GCttest <- function(x,...)  {
   if (subm %in% c("s2e","s2u","f2e","f2u")) {
     if (verbose) {
       cat("Estimate of mu1-mu2:\t",GCttest$estimate,"\n")
-      cat("SE(mu1.hat - mu2.hat):\t",GCttest$se,"\n\n")
+      cat("SE(x1.bar - x2.bar):\t",GCttest$se,"\n\n")
     }
   cat(GCttest$conf.level*100,"% Confidence Interval for mu1-mu2:\n\n",sep="")
   int <- GCttest$interval
