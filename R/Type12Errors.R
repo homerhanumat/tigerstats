@@ -71,6 +71,7 @@ function(){
     nprev<<-n
     tprev <<- true
     if (!beginning){
+    null.rejected <- ifelse(null.rejected,"yes","no")
     output <- data.frame(null.rejected,rejected.so.far=tally[1],
                          total.samples=sum(tally),
                          proportion.rejected=round(tally[1]/sum(tally),3))
