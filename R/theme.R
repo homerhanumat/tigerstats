@@ -12,7 +12,7 @@
 #' @seealso \code{\link{trellis.par.set}}, \code{\link{show.settings}} 
 #' 
 #' @rdname theme.rpres
-#'
+#' @note Deprecated in favor of \code{themerpres()}.  May not appear in future versions.
 #' @export
 #' @examples
 #' trellis.par.set(theme=theme.rpres())

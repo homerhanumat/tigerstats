@@ -11,7 +11,6 @@
 #' @export
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
 #' @examples
-#' data(ledgejump)
 #' MyTable <- xtabs(~weather+crowd.behavior,data=ledgejump)
 #' colPerc(MyTable)
 colPerc <- function (tab) 

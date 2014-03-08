@@ -13,8 +13,14 @@
 #' @export
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
 #' @examples
-#' ptGC(c(-1,1),region="outside",df=1)
+#' #This gives P(-2 < t < 2) for a t-random variable with 1 degree of freedom:
+#' ptGC(c(-2,2),region="between",df=1)
+#' 
+#' #This gives P(t < -1) for a t-random variable with 5 degrees of freedom:
 #' ptGC(-1,region="below",df=5)
+#' 
+#' #This gives P( t < -2 OR t >2), for a t-random variable with 5 degrees of freedom:
+#' ptGC(c(-2,2),region="outside",df=5)
 ptGC <- function(bound,region="between",df=1,graph=FALSE) {
   if (!is.numeric(bound)) stop("Specify one or two numerical boundaries")
   if (length(bound)==1 & !(region %in% c("below","above"))) stop("Specify region=\"below\" or

@@ -23,11 +23,21 @@
 #' @export
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
 #' @examples
+#' #Goodness of fit test for one factor variable:
 #' chisqtestGC(~seat,data=m111survey,p=c(1/3,1/3,1/3))
+#' 
+#' #Test for relationship between two factor variables:
 #' chisqtestGC(~sex+seat,data=m111survey)
 #' 
-#' WeBe <- xtabs(~weather+crowd.behavior,data=ledgejump)
-#' chisqtestGC(WeBe,simulate.p.value="fixed",B=2500)
+#' #You can input a two-way table directly into chisqtestGC():
+#' SexSeat <- xtabs(~sex+seat,data=m111survey)
+#' chisqtestGC(SexSeat)
+#' 
+#' #For small datasets, severa ltypes of simulation are possible, e.g.:
+#' chisqtestGC(~weather+crowd.behavior,data=ledgejump,simulate.p.value="fixed",B=2500)
+#' 
+#' #For less ouptut, set argument verbose to FALSE:
+#' chisqtestGC(~sex+seat,data=m111survey,verbose=FALSE)
 chisqtestGC <- 
   function (x,data=NULL,p=NULL,graph=FALSE,simulate.p.value=FALSE,B=2000,verbose=TRUE) 
   {

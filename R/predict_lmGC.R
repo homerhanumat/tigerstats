@@ -12,6 +12,10 @@
 #' @return numeric prediction
 #' @export
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
+#' @examples
+#' #predict fastest speed driven, for person with GPA=3.0:
+#' SpeedModel <- lmGC(fastest~GPA,data=m111survey)
+#' predict(SpeedModel,x=3.0)
 predict.GClm<-function(object,x,...)  {
     model <- object
     return(model$intercept+model$slope*x)      

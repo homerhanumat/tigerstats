@@ -14,8 +14,17 @@
 #' @export
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
 #' @examples
-#' pnormGC(c(-1,1),region="outside")  #returns about 0.32
-#' pnormGC(75,region="below",mean=70,sd=3)
+#' #This gives P(X < 75) for X normal with mean=70 and sd=4:
+#' pnormGC(75,region="below",mean=70,sd=4)
+#' 
+#' #This gives P(X > 71) for X normal with mean=70 and sd=4:
+#' pnormGC(71,region="above",mean=70,sd=4)
+#' 
+#' #This gives P(-1 < X < 1), for standard normal X:
+#' pnormGC(c(-1,1),region="between")
+#' 
+#' #This gives P(X < 68 or X > 71), for X normal with mean =70 and sd=4:
+#' pnormGC(c(68,71),region="outside",mean=70,sd=4)
 pnormGC <- function(bound,region="below",mean=0,sd=1,graph=FALSE) {
   if (!is.numeric(bound)) stop("Specify one or two numerical boundaries")
   if (length(bound)==1 & !(region %in% c("below","above"))) stop("Specify region=\"below\" or

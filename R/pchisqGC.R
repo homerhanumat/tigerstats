@@ -13,7 +13,11 @@
 #' @export
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
 #' @examples
+#' #This gives P(X < 6.8) where X is chisq with 3 degrees of freedom:
 #' pchisqGC(6.8,df=3,region="below")
+#' 
+#' #This gives P(X >= 6.8), where X is chisq with 3 degrees of freedom
+#' pchisqGC(6.8,df=3,region="above")
 pchisqGC <- function(bound,region="above",df=NA,xlab="chi_square_statistic",graph=FALSE) {
   if (!is.numeric(bound)) stop("Specify a numerical boundary")
   if (bound < 0)  stop("The chi-square statistic must be at least 0")

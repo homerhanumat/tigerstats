@@ -14,6 +14,7 @@
 #' @export
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
 #' @examples
+#' #To study the relationship between two numerical variables:
 #' lmGC(fastest~GPA,data=m111survey,graph=TRUE)
 lmGC <-function(form,data,graph=FALSE,diag=FALSE)  {
   

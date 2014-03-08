@@ -13,10 +13,17 @@
 #' @export
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
 #' @examples
-#' data(m111survey)
+#' #barchart of counts for one factor variable:
 #' barchartGC(~sex,data=m111survey)
 #' 
-#' #percentage barchart:
+#' #barchart with percentages:
+#' barchartGC(~sex,data=m111survey,main="Distribution of Sex")
+#' 
+#' #barchart of counts, to study the relationship between
+#' #two factor variables:
+#' barchartGC(~sex+seat,data=m111survey)
+#' 
+#' #percentage barchart, two factor variables:
 #' barchartGC(~sex+seat,data=m111survey,type="percent")
 #' 
 #' #From tabulated data:

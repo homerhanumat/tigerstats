@@ -24,10 +24,17 @@
 #' @export
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
 #' @examples
-#' data(m111survey)
-#' binomtestGC(~sex,data=m111survey,success="female") #confidence interval only
+#' #Confidence interval only:
+#' binomtestGC(~sex,data=m111survey,success="female")
 #' 
-#' binomtestGC(~sex,data=m111survey,success="female",p=0.5) #test included
+#' #Confidence interval and two-sided test, Null Hypothesis p = 0.5:
+#' binomtestGC(~sex,data=m111survey,success="female",p=0.5)
+#' 
+#' #For confidence level other than 95%, use conf.level argument.  For 90% interval:
+#' binomtextGC(~sex,data=m111survey,success="female",conf.level=0.90)
+#' 
+#' #For one-sided test, set alternative argument as desired:
+#' binomtestGC(~sex,data=m111survey,p=0.50,success="female",alternative="greater")
 #' 
 #' #Summary data:
 #' #In one sample, 40 successes in 100 trials.  Testing whether p = 0.45.
