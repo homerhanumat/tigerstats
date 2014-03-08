@@ -63,7 +63,7 @@ two proportions.
 \examples{
 data(m111survey)
 #2-proportions, formula-data input, 95\%-confidence interval only:
-proptestGC(~sex+seat,data=m111survey,success="1_front")
+proptestGC(~sex+seat,data=m111survey,success="2_middle")
 
 #For other confidence levels, use argument conf.level.  For 90\%-interval for one proportion p:
 proptestGC(~sex,data=m111survey,success="male",conf.level=0.90)
@@ -80,7 +80,7 @@ proptestGC(x=c(23,33),n=c(100,110))
 proptestGC(40,100,p=0.45,correct=TRUE)
 
 #Want less output?  Set argument verbose to FALSE:
-proptestGC(~sex+seat,data=m111survey,success="1_front",p=0.33,verbose=FALSE)
+proptestGC(~sex+seat,data=m111survey,success="2_middle",p=0.33,verbose=FALSE)
 }
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}

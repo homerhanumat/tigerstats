@@ -72,7 +72,7 @@ ttestGC(fastest~sex,data=m111survey)
 ttestGC(fastest~sex,data=m111survey,first="male")
 
 # Matched pairs, confidence interval with one-sided test, H_0: mu-d = 0:
-ttestGC(~ideal_ht-height,data=m111survey,alternative="less")
+ttestGC(~ideal_ht-height,data=m111survey,mu=0,alternative="greater")
 
 #Summary data, one sample, one-sided test with H_0:  mu = 52.5:
 ttestGC(mean=55,sd=4,n=16,mu=52.5,alternative="greater")
