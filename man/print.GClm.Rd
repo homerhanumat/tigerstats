@@ -2,7 +2,7 @@
 \alias{print.GClm}
 \title{Print Function for GC Linear Regression}
 \usage{
-  \S3method{print}{GClm}(x,...)
+\S3method{print}{GClm}(x,...)
 }
 \arguments{
   \item{x}{an object of class GClm}
@@ -10,12 +10,12 @@
   \item{\ldots}{ignored}
 }
 \value{
-  graphical output and output to console
+graphical output and output to console
 }
 \description{
-  Utility print function
+Utility print function
 }
 \author{
-  Homer White \email{hwhite0@georgetowncollege.edu}
+Homer White \email{hwhite0@georgetowncollege.edu}
 }
 

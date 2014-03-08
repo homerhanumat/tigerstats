@@ -2,7 +2,7 @@
 \alias{SlowGoodness}
 \title{Chi Square Resampler (One at a Time) for Goodness-of-Fit}
 \usage{
-  SlowGoodness(x,p)
+SlowGoodness(x,p)
 }
 \arguments{
   \item{x}{a one-dimensional table, or a vector of observed
@@ -11,15 +11,15 @@
   \item{p}{vector of null probabilities}
 }
 \value{
-  Graphical and numerical output
+Graphical and numerical output
 }
 \description{
-  An app to illustrate use of the chi-square statistic to
-  test for goodness of fit.  The P-value is computed by
-  resampling, and the resamples are done one at a time.  A
-  histogram of resampled chi-square statistics is displayed
-  after each resample, and summary information is output to
-  the console.
+An app to illustrate use of the chi-square statistic to
+test for goodness of fit.  The P-value is computed by
+resampling, and the resamples are done one at a time.  A
+histogram of resampled chi-square statistics is displayed
+after each resample, and summary information is output to
+the console.
 }
 \examples{
 \dontrun{
@@ -28,6 +28,6 @@ if (require(manipulate)) SlowGoodness(throws,p=rep(1/6,6))
 }
 }
 \author{
-  Homer White \email{hwhite0@georgetowncollege.edu}
+Homer White \email{hwhite0@georgetowncollege.edu}
 }
 

@@ -2,7 +2,7 @@
 \alias{ptGC}
 \title{Graphical Calculator for t-Curve Probabilities}
 \usage{
-  ptGC(bound,region="between",df=1,graph=FALSE)
+ptGC(bound,region="between",df=1,graph=FALSE)
 }
 \arguments{
   \item{bound}{A numerical vector of length 1 or 2,
@@ -19,18 +19,24 @@
   \item{graph}{produce graph?}
 }
 \value{
-  Numerical value of area under curve over region.  Also
-  plots the t-curve with the shaded area.
+Numerical value of area under curve over region.  Also
+plots the t-curve with the shaded area.
 }
 \description{
-  Shades desired areas under a specified t-curve, returns
-  numerical value of the area.
+Shades desired areas under a specified t-curve, returns
+numerical value of the area.
 }
 \examples{
-ptGC(c(-1,1),region="outside",df=1)
+#This gives P(-2 < t < 2) for a t-random variable with 1 degree of freedom:
+ptGC(c(-2,2),region="between",df=1)
+
+#This gives P(t < -1) for a t-random variable with 5 degrees of freedom:
 ptGC(-1,region="below",df=5)
+
+#This gives P( t < -2 OR t >2), for a t-random variable with 5 degrees of freedom:
+ptGC(c(-2,2),region="outside",df=5)
 }
 \author{
-  Homer White \email{hwhite0@georgetowncollege.edu}
+Homer White \email{hwhite0@georgetowncollege.edu}
 }
 

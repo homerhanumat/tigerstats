@@ -34,7 +34,7 @@
 #' proptestGC(~sex+seat,data=m111survey,success="1_front")
 #' 
 #' #For other confidence levels, use argument conf.level.  For 90%-interval for one proportion p:
-#' proptestGC(~sex,data=m111survey,success="1_front",conf.level=0.90)
+#' proptestGC(~sex,data=m111survey,success="male",conf.level=0.90)
 #' 
 #' #one proportion, formula-data input, confidence interval and two-sided test with H_0:  p = 0.33:
 #' proptestGC(~seat,data=m111survey,success="1_front",p=0.33)

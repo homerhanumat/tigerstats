@@ -9,7 +9,7 @@
 \item{GPA}{grade poitn average}
 \item{Honors}{whether or not he student is in the Honors Program} }}
 \description{
-  Hypothetical school, used for illustrative purposes
+Hypothetical school, used for illustrative purposes
 }
 \keyword{datasets}
 

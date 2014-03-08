@@ -2,7 +2,7 @@
 \alias{CIMean}
 \title{Confidence Intervals (for one population mean)}
 \usage{
-  CIMean(form,data)
+CIMean(form,data)
 }
 \arguments{
   \item{form}{a formula of the form ~var.}
@@ -10,20 +10,19 @@
   \item{data}{A data frame from which var is drawn.}
 }
 \value{
-  Graphical and numerical output
+Graphical and numerical output
 }
 \description{
-  An app to investigate how sample size and confidence
-  level affect the width of a confidence interval. A sample
-  is drawn from the input population and a confidence
-  interval for the population mean is calculated.  The
-  kernel density plot for the population and the histogram
-  for each new sample are plotted, along with the
-  confidence interval.  Summary information is output to
-  the console to tally the number of times the computed
-  confidence interval covers the true population mean and
-  how many times it misses.  There is an option to draw 100
-  or 1000 samples at a time.
+An app to investigate how sample size and confidence level
+affect the width of a confidence interval. A sample is
+drawn from the input population and a confidence interval
+for the population mean is calculated.  The kernel density
+plot for the population and the histogram for each new
+sample are plotted, along with the confidence interval.
+Summary information is output to the console to tally the
+number of times the computed confidence interval covers the
+true population mean and how many times it misses.  There
+is an option to draw 100 or 1000 samples at a time.
 }
 \examples{
 \dontrun{
@@ -31,7 +30,7 @@ if (require(manipulate)) CIMean(~height,data=imagpop)
 }
 }
 \author{
-  Rebekah Robinson
-  \email{rebekah_robinson@georgetowncollege.edu}
+Rebekah Robinson
+\email{rebekah_robinson@georgetowncollege.edu}
 }
 

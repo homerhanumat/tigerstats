@@ -8,8 +8,8 @@
 \item{sheight}{Height of the son, in inches.}
 }}
 \description{
-  Data on father-son pairs.  Collected in 1885 by Francis
-  Galton.
+Data on father-son pairs.  Collected in 1885 by Francis
+Galton.
 }
 \keyword{datasets}
 

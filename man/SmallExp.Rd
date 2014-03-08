@@ -7,7 +7,7 @@
 \item{sex}{sex of the subject}
 \item{athlete}{whether or not the subject is an athlete} }}
 \description{
-  Subjects in a hypothetical experiment
+Subjects in a hypothetical experiment
 }
 \keyword{datasets}
 

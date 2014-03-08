@@ -36,11 +36,11 @@ XXX is YYY million.  About what is the population of Canada, in millions?"  XXX 
 \item{diff.ih.ah.}{Your ideal height minus your actual height.}
 }}
 \source{
-  MAT 111 at Georgetown College
+MAT 111 at Georgetown College
 }
 \description{
-  Results of a survey given at beginning of semester, to
-  all students in MAT 111.
+Results of a survey given at beginning of semester, to all
+students in MAT 111.
 }
 \keyword{datasets}
 

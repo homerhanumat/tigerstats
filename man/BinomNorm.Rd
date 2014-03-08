@@ -2,13 +2,13 @@
 \alias{BinomNorm}
 \title{Binomial Distributions With Normal Approximation}
 \usage{
-  BinomNorm()
+BinomNorm()
 }
 \value{
-  no value.  Graphical side-effects only.
+no value.  Graphical side-effects only.
 }
 \description{
-  An app to investigate the binomial family.
+An app to investigate the binomial family.
 }
 \examples{
 \dontrun{
@@ -16,6 +16,6 @@ if (require(manipulate)) BinomNorm()
 }
 }
 \author{
-  Homer White (hwhite0@georgetowncollege.edu)
+Homer White (hwhite0@georgetowncollege.edu)
 }
 

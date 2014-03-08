@@ -2,7 +2,7 @@
 \alias{SampDist2Means}
 \title{Distribution of the Difference of Sample Means}
 \usage{
-  SampDist2Means(pop,max.samp.sizes=50,sim.reps=1000)
+SampDist2Means(pop,max.samp.sizes=50,sim.reps=1000)
 }
 \arguments{
   \item{pop}{A data frame representing the population from
@@ -16,15 +16,15 @@
   means.}
 }
 \value{
-  Graphical and numerical output.
+Graphical and numerical output.
 }
 \description{
-  An app to explore the Central Limit Theorem in the
-  context of the difference of sample means.
+An app to explore the Central Limit Theorem in the context
+of the difference of sample means.
 }
 \note{
-  Uses \code{manipulate} in RStudio.  Also requires package
-  \code{lattice}.
+Uses \code{manipulate} in RStudio.  Also requires package
+\code{lattice}.
 }
 \examples{
 \dontrun{
@@ -33,6 +33,6 @@ if (require(manipulate)) SampDist2Means(imagpop)
 }
 }
 \author{
-  Homer White \email{hwhite0@georgetowncollege.edu}
+Homer White \email{hwhite0@georgetowncollege.edu}
 }
 

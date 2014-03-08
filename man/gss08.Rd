@@ -18,15 +18,15 @@ numeric vector} \item{marijuan}{a factor with levels \code{Legal}
 \code{Oppose}} \item{age}{a numeric vector}
 \item{chldidel}{a numeric vector} }}
 \source{
-  National Opinion Research Center:
-  \url{http://www3.norc.org/gss+website/}. Found in Uts and
-  Heckard: Mind on Statistics, 4th Edition.
+National Opinion Research Center:
+\url{http://www3.norc.org/gss+website/}. Found in Uts and
+Heckard: Mind on Statistics, 4th Edition.
 }
 \description{
-  General Social Survey, 2008
+General Social Survey, 2008
 }
 \references{
-  For more information see \code{gss02}
+For more information see \code{gss02}
 }
 \keyword{datasets}
 

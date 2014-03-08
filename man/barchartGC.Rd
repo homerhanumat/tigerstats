@@ -2,7 +2,7 @@
 \alias{barchartGC}
 \title{Easy barcharts from raw and tabular data}
 \usage{
-  barchartGC(x,data=NULL,type="frequency",main=NULL)
+barchartGC(x,data=NULL,type="frequency",main=NULL)
 }
 \arguments{
   \item{x}{Either a formula or a table.  If formula, it
@@ -17,19 +17,26 @@
   \item{main}{An optional title}
 }
 \value{
-  A trellis object describing the barchart.
+A trellis object describing the barchart.
 }
 \description{
-  Wrapper for \code{\link[lattice]{barchart}} in package
-  \code{lattice}.  Creates a barchart from raw data, using
-  formula-data syntax similar to that of
-  \code{\link{xtabs}}.  There are very few options.
+Wrapper for \code{\link[lattice]{barchart}} in package
+\code{lattice}.  Creates a barchart from raw data, using
+formula-data syntax similar to that of \code{\link{xtabs}}.
+There are very few options.
 }
 \examples{
-data(m111survey)
+#barchart of counts for one factor variable:
 barchartGC(~sex,data=m111survey)
 
-#percentage barchart:
+#barchart with percentages:
+barchartGC(~sex,data=m111survey,main="Distribution of Sex")
+
+#barchart of counts, to study the relationship between
+#two factor variables:
+barchartGC(~sex+seat,data=m111survey)
+
+#percentage barchart, two factor variables:
 barchartGC(~sex+seat,data=m111survey,type="percent")
 
 #From tabulated data:
@@ -37,6 +44,6 @@ sexseat <- xtabs(~sex+seat,data=m111survey)
 barchartGC(sexseat,type="percent",main="Sex and Seating Preference")
 }
 \author{
-  Homer White \email{hwhite0@georgetowncollege.edu}
+Homer White \email{hwhite0@georgetowncollege.edu}
 }
 

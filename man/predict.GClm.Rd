@@ -2,7 +2,7 @@
 \alias{predict.GClm}
 \title{Prediction Function for GC Linear Regression}
 \usage{
-  \S3method{predict}{GClm}(object,x,...)
+\S3method{predict}{GClm}(object,x,...)
 }
 \arguments{
   \item{object}{An object of class GClm}
@@ -12,12 +12,17 @@
   \item{\ldots}{ignored}
 }
 \value{
-  numeric prediction
+numeric prediction
 }
 \description{
-  Used by generic predict function
+Used by generic predict function
+}
+\examples{
+#predict fastest speed driven, for person with GPA=3.0:
+SpeedModel <- lmGC(fastest~GPA,data=m111survey)
+predict(SpeedModel,x=3.0)
 }
 \author{
-  Homer White \email{hwhite0@georgetowncollege.edu}
+Homer White \email{hwhite0@georgetowncollege.edu}
 }
 

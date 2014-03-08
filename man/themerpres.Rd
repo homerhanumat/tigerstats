@@ -2,23 +2,22 @@
 \alias{themerpres}
 \title{Lattice Theme or R Presentations}
 \usage{
-  themerpres()
+themerpres()
 }
 \value{
-  Returns a list to be supplied as the \code{theme} to the
-  \code{lattice} function \code{\link{trellis.par.set}()}.
+Returns a list to be supplied as the \code{theme} to the
+\code{lattice} function \code{\link{trellis.par.set}()}.
 }
 \description{
-  Modifies the current theme for use with lattice graphics
-  in R Presentation dicuments. Increases size of title,
-  axis lables and axis numbers, thickens sone lines, etc.
+Modifies the current theme for use with lattice graphics in
+R Presentation dicuments. Increases size of title, axis
+lables and axis numbers, thickens sone lines, etc.
 }
 \examples{
 trellis.par.set(theme=themerpres())
 }
 \seealso{
-  \code{\link{trellis.par.set}},
-  \code{\link{show.settings}}
+\code{\link{trellis.par.set}}, \code{\link{show.settings}}
 }
 \keyword{graphics}
 

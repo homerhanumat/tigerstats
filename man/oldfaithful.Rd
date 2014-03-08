@@ -8,10 +8,10 @@
 \item{TimeNext}{time until the next eruption, in minutes}
 }}
 \source{
-  Unknown
+Unknown
 }
 \description{
-  Old faithful geyser at Yellowstone Park.
+Old faithful geyser at Yellowstone Park.
 }
 \keyword{datasets}
 

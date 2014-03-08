@@ -2,7 +2,7 @@
 \alias{lmGC}
 \title{Linear Regression}
 \usage{
-  lmGC(form,data,graph=FALSE,diag=FALSE)
+lmGC(form,data,graph=FALSE,diag=FALSE)
 }
 \arguments{
   \item{form}{formula of form y~x, both variables numeric}
@@ -15,19 +15,20 @@
   residuals, and residuals vs. fits}
 }
 \value{
-  A list of class "GClm".  Elements that may be queried
-  include "slope", "intercept", "s" (residual standard
-  error), "R^2" (unadjusted).
+A list of class "GClm".  Elements that may be queried
+include "slope", "intercept", "s" (residual standard
+error), "R^2" (unadjusted).
 }
 \description{
-  Regression analysis (one numerical predictor variable)
-  with simplified output.  Wrapper function for \code{lm}
-  in package \code{stats}.
+Regression analysis (one numerical predictor variable) with
+simplified output.  Wrapper function for \code{lm} in
+package \code{stats}.
 }
 \examples{
+#To study the relationship between two numerical variables:
 lmGC(fastest~GPA,data=m111survey,graph=TRUE)
 }
 \author{
-  Homer White \email{hwhite0@georgetowncollege.edu}
+Homer White \email{hwhite0@georgetowncollege.edu}
 }
 

@@ -2,8 +2,8 @@
 \alias{chisqtestGC}
 \title{Chi-Square Test (GC version)}
 \usage{
-  chisqtestGC(x, data = NULL, p = NULL, graph = FALSE,
-    simulate.p.value = FALSE, B = 2000, verbose = TRUE)
+chisqtestGC(x, data = NULL, p = NULL, graph = FALSE,
+  simulate.p.value = FALSE, B = 2000, verbose = TRUE)
 }
 \arguments{
   \item{x}{Could be a formula.  If so, either ~var (for
@@ -39,26 +39,36 @@
   the output.}
 }
 \value{
-  No value, just side effects.  Future versions may define
-  an S3 object, with print method.
+No value, just side effects.  Future versions may define an
+S3 object, with print method.
 }
 \description{
-  Perform chi-square test, either goodness of fit or test
-  for association.  Enter either formula-data input or a
-  summary table.  Simulation is optional.
+Perform chi-square test, either goodness of fit or test for
+association.  Enter either formula-data input or a summary
+table.  Simulation is optional.
 }
 \note{
-  Deprecated in favor of \code{chisqtestGC}.  Will be
-  removed eventually.
+Deprecated in favor of \code{chisqtestGC}.  Will be removed
+eventually.
 }
 \examples{
+#Goodness of fit test for one factor variable:
 chisqtestGC(~seat,data=m111survey,p=c(1/3,1/3,1/3))
+
+#Test for relationship between two factor variables:
 chisqtestGC(~sex+seat,data=m111survey)
 
-WeBe <- xtabs(~weather+crowd.behavior,data=ledgejump)
-chisqtestGC(WeBe,simulate.p.value="fixed",B=2500)
+#You can input a two-way table directly into chisqtestGC():
+SexSeat <- xtabs(~sex+seat,data=m111survey)
+chisqtestGC(SexSeat)
+
+#For small datasets, severa ltypes of simulation are possible, e.g.:
+chisqtestGC(~weather+crowd.behavior,data=ledgejump,simulate.p.value="fixed",B=2500)
+
+#For less ouptut, set argument verbose to FALSE:
+chisqtestGC(~sex+seat,data=m111survey,verbose=FALSE)
 }
 \author{
-  Homer White \email{hwhite0@georgetowncollege.edu}
+Homer White \email{hwhite0@georgetowncollege.edu}
 }
 

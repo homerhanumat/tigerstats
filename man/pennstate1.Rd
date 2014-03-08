@@ -24,10 +24,10 @@ subject varied from one survey form to another.  This variable indicates
 which letter was presented first on the form.}
 }}
 \source{
-  Uts and Heckard, Mind on Statistics, 4th Edition.
+Uts and Heckard, Mind on Statistics, 4th Edition.
 }
 \description{
-  A study of students at Penn State University.
+A study of students at Penn State University.
 }
 \keyword{datasets}
 

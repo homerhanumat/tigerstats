@@ -2,7 +2,7 @@
 \alias{RandomExp}
 \title{Randomized Experimental Designs}
 \usage{
-  RandomExp(data,sizes=NULL,groups=NULL,block=NULL,seed=NULL)
+RandomExp(data,sizes=NULL,groups=NULL,block=NULL,seed=NULL)
 }
 \arguments{
   \item{data}{A data frame containing the subjects to be
@@ -27,13 +27,13 @@
   results.}
 }
 \value{
-  A data frame: the input frame \code{data} augmented with
-  a variable \code{treat.grp} indicating the assignment of
-  subjects to groups.
+A data frame: the input frame \code{data} augmented with a
+variable \code{treat.grp} indicating the assignment of
+subjects to groups.
 }
 \description{
-  Randomizes subjects into treatment groups according to
-  specified criteria.
+Randomizes subjects into treatment groups according to
+specified criteria.
 }
 \examples{
 data(SmallExp) #small hypothetical list of subjects
@@ -48,6 +48,6 @@ RandomExp(SmallExp,sizes=c(8,8),groups=letters[1:2],block="sex")
 RandomExp(SmallExp,sizes=c(8,8),groups=letters[1:2],block=c("sex","athlete"))
 }
 \author{
-  Homer White \email{hwhite0@georgetowncollege.edu}
+Homer White \email{hwhite0@georgetowncollege.edu}
 }
 

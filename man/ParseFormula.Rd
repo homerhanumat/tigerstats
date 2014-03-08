@@ -2,7 +2,7 @@
 \alias{ParseFormula}
 \title{Parse formulas}
 \usage{
-  ParseFormula(formula,...)
+ParseFormula(formula,...)
 }
 \arguments{
   \item{formula,}{a formula}
@@ -11,14 +11,14 @@
   add them someday}
 }
 \value{
-  an object of class \code{parsedFormula}, used to compute
-  on the language
+an object of class \code{parsedFormula}, used to compute on
+the language
 }
 \description{
-  utility for extracting portions of formulas.
+utility for extracting portions of formulas.
 }
 \author{
-  Inspired by similar function in package \code{mosaic}.
-  Included in this package to reduce dependency.
+Inspired by similar function in package \code{mosaic}.
+Included in this package to reduce dependency.
 }
 

@@ -2,7 +2,7 @@
 \alias{chisq.testGC}
 \title{Chi-Square Test (GC version)}
 \usage{
-  chisq.testGC(x,data=NULL,p=NULL,graph=FALSE,simulate.p.value=FALSE,B=2000,verbose=TRUE)
+chisq.testGC(x,data=NULL,p=NULL,graph=FALSE,simulate.p.value=FALSE,B=2000,verbose=TRUE)
 }
 \arguments{
   \item{x}{Could be a formula.  If so, either ~var (for
@@ -38,17 +38,17 @@
   the output.}
 }
 \value{
-  No value, just side effects.  Future versions may define
-  an S3 object, with print method.
+No value, just side effects.  Future versions may define an
+S3 object, with print method.
 }
 \description{
-  Perform chi-square test, either goodness of fit or test
-  for association.  Enter either formula-data input or a
-  summary table.  Simulation is optional.
+Perform chi-square test, either goodness of fit or test for
+association.  Enter either formula-data input or a summary
+table.  Simulation is optional.
 }
 \note{
-  Deprecated in favor of \code{chisqtestGC}.  Will be
-  removed eventually.
+Deprecated in favor of \code{chisqtestGC}.  Will be removed
+eventually.
 }
 \examples{
 chisq.testGC(~seat,data=m111survey,p=c(1/3,1/3,1/3))
@@ -58,6 +58,6 @@ WeBe <- xtabs(~weather+crowd.behavior,data=ledgejump)
 chisq.testGC(WeBe,simulate.p.value="fixed",B=2500)
 }
 \author{
-  Homer White \email{hwhite0@georgetowncollege.edu}
+Homer White \email{hwhite0@georgetowncollege.edu}
 }
 

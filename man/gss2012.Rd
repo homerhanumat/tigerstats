@@ -4,23 +4,23 @@
 \title{General Social Survey, 2012}
 \format{A data frame with 1976 rows and 12 variables}
 \source{
-  \url{http://www3.norc.org/gss+website/}.
+\url{http://www3.norc.org/gss+website/}.
 }
 \description{
-  A selection of variables from the 2012 General Social
-  Survey.  The variables are as follows:
+A selection of variables from the 2012 General Social
+Survey.  The variables are as follows:
 
-  \itemize{ \item age. Age of the subject.  \item sex. Sex
-  of the subject.  \item race. Race of the subject.  \item
-  polviews. Subject's political views.  \item relig.
-  Religion of the subject.  \item cappun.  Opinion on
-  capital punishment.  \item owngun.  Whether or not one
-  owns a gun.  \item emailhr.  Number of hours per week
-  spent on email.  \item bigbang. Whether or not subject
-  believes the Big Bang theory is true.  \item premarsx.
-  Opinion on premarital sex.  \item pornlaw.  Should
-  pornography be legal?  \item zodiac.  Sign of the Zodiac
-  under which the subject was born. }
+\itemize{ \item age. Age of the subject.  \item sex. Sex of
+the subject.  \item race. Race of the subject.  \item
+polviews. Subject's political views.  \item relig. Religion
+of the subject.  \item cappun.  Opinion on capital
+punishment.  \item owngun.  Whether or not one owns a gun.
+\item emailhr.  Number of hours per week spent on email.
+\item bigbang. Whether or not subject believes the Big Bang
+theory is true.  \item premarsx.  Opinion on premarital
+sex.  \item pornlaw.  Should pornography be legal?  \item
+zodiac.  Sign of the Zodiac under which the subject was
+born. }
 }
 \keyword{datasets}
 

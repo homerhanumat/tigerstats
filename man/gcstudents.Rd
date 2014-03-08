@@ -9,10 +9,10 @@
 \item{sex}{sex of the survey participant}
 }}
 \source{
-  MAT 111 at Georgetown College
+MAT 111 at Georgetown College
 }
 \description{
-  Data collected by GC students.
+Data collected by GC students.
 }
 \keyword{datasets}
 

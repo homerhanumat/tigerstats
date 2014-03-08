@@ -2,7 +2,7 @@
 \alias{ChisqSimSlow}
 \title{Chi Square Resampler (One at a Time)}
 \usage{
-  ChisqSimSlow(form,data,effects="random")
+ChisqSimSlow(form,data,effects="random")
 }
 \arguments{
   \item{form}{a formula of the form ~x+y.  When using fixed
@@ -23,16 +23,15 @@
   for the original data.)}
 }
 \value{
-  Graphical and numerical output
+Graphical and numerical output
 }
 \description{
-  An app to illustrate use of the chi-square statistic to
-  test for a relationship between two categorical
-  variables.  The P-value is computed by resampling, and
-  the resamples are done one at a time.  A histogram of
-  resampled chi-square statistics is displayed after each
-  resample, and summary information is output to the
-  console.
+An app to illustrate use of the chi-square statistic to
+test for a relationship between two categorical variables.
+The P-value is computed by resampling, and the resamples
+are done one at a time.  A histogram of resampled
+chi-square statistics is displayed after each resample, and
+summary information is output to the console.
 }
 \examples{
 \dontrun{
@@ -40,6 +39,6 @@ if (require(manipulate)) ChisqSimSlow(~weather+crowd.behavior,data=ledgejump,eff
 }
 }
 \author{
-  Homer White \email{hwhite0@georgetowncollege.edu}
+Homer White \email{hwhite0@georgetowncollege.edu}
 }
 

@@ -10,18 +10,18 @@ of beans placed with the nondominant hand.}
 \item{Diff}{Difference in number of beans placed (dominant hand minus nondominant
 hand).} }}
 \source{
-  Uts and Heckard, Mind on Statistics, 4th Edition.
+Uts and Heckard, Mind on Statistics, 4th Edition.
 }
 \description{
-  Experiment performed at UC-Davis; fifteen students
-  participated.  Each student was asked to place as many
-  beans into a cup as he/she could, in 15 seconds.  Each
-  student performed this task once with the dominant hand,
-  and once with the nondominat hand, but the order of
-  performance was randomized. The purpose of the study was
-  to see whether manual dexterity was better for the
-  dominant hand.  Terminology: your dominant hand is the
-  hand you use the most.
+Experiment performed at UC-Davis; fifteen students
+participated.  Each student was asked to place as many
+beans into a cup as he/she could, in 15 seconds.  Each
+student performed this task once with the dominant hand,
+and once with the nondominat hand, but the order of
+performance was randomized. The purpose of the study was to
+see whether manual dexterity was better for the dominant
+hand.  Terminology: your dominant hand is the hand you use
+the most.
 }
 \keyword{datasets}
 

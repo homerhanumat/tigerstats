@@ -8,10 +8,10 @@
 \item{Second}{IQ of the younger sibling.}
 }}
 \source{
-  William Harris, Georgetown College
+William Harris, Georgetown College
 }
 \description{
-  IQs of pairs of siblings.
+IQs of pairs of siblings.
 }
 \keyword{datasets}
 

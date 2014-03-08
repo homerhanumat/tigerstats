@@ -17,73 +17,73 @@ ticket).}
 \code{social.sci} Type of major the subject intends.}
 }}
 \source{
-  Georgetown College
+Georgetown College
 }
 \description{
-  Study conducted in November 2001 by students in MAT 111.
-  Subjects were 267 Georgetown College students.  Not all
-  subjects got the same survey form.
+Study conducted in November 2001 by students in MAT 111.
+Subjects were 267 Georgetown College students.  Not all
+subjects got the same survey form.
 }
 \details{
-  Here is a sample survey form, with variants noted.
+Here is a sample survey form, with variants noted.
 
-  Attitudes Survey
+Attitudes Survey
 
-  Crime: You are on a jury for a manslaughter case in
-  Lewistown, PA.  The defendant has been found guilty, and
-  in Pennsylvania it is part of the job of the jury to
-  recommend a sentence to the judge.  The facts of the case
-  are as follows.  The defendant, Tyrone Marcus Watson, a
-  35-year old native of Lewistown, was driving under the
-  influence of alchohol on the evening of Tuesday July 17,
-  2001.  At approximately 11:00 PM Watson drove through a
-  red light, striking a pedestrian, Betsy Brockenheimer, a
-  20-year old resident of Lewistown.  Brockenheimer was
-  taken unconscious to the hospital and died of her
-  injuries about one hour later.  Watson did not flee the
-  scene, nor did he resist arrest.
+Crime: You are on a jury for a manslaughter case in
+Lewistown, PA.  The defendant has been found guilty, and in
+Pennsylvania it is part of the job of the jury to recommend
+a sentence to the judge.  The facts of the case are as
+follows.  The defendant, Tyrone Marcus Watson, a 35-year
+old native of Lewistown, was driving under the influence of
+alchohol on the evening of Tuesday July 17, 2001.  At
+approximately 11:00 PM Watson drove through a red light,
+striking a pedestrian, Betsy Brockenheimer, a 20-year old
+resident of Lewistown.  Brockenheimer was taken unconscious
+to the hospital and died of her injuries about one hour
+later.  Watson did not flee the scene, nor did he resist
+arrest.
 
-  The prior police record for Mr. Watson is as follows: two
-  minor traffic violations, and one previous arrest, five
-  years ago, for DUI.  No one was hurt in that incident.
+The prior police record for Mr. Watson is as follows: two
+minor traffic violations, and one previous arrest, five
+years ago, for DUI.  No one was hurt in that incident.
 
-  Watson has now been convicted of DUI and manslaughter.
-  The minimum jail term for this combination of offenses is
-  two years; the maximum term is fifty years.  In the blank
-  below, write a number from 2 to 50 as your recommended
-  length of sentence for Tyrone Marcus Watson.
-  _______________
+Watson has now been convicted of DUI and manslaughter.  The
+minimum jail term for this combination of offenses is two
+years; the maximum term is fifty years.  In the blank
+below, write a number from 2 to 50 as your recommended
+length of sentence for Tyrone Marcus Watson.
+_______________
 
-  [In the question above, name of defedant could vary:
-  either William Shane Winchester or Tyrone Marcus Watson.
-  The name of the victim could also vary: either Betsy
-  Brockenheimer or Latisha Dawes.]
+[In the question above, name of defedant could vary: either
+William Shane Winchester or Tyrone Marcus Watson.  The name
+of the victim could also vary: either Betsy Brockenheimer
+or Latisha Dawes.]
 
-  Spending Habits
+Spending Habits
 
-  You have purchased a $30 ticket to see a rock concert in
-  Rupp Arena.  When you arrive at the Arena on the night of
-  the performance, you find that you have lost the ticket.
-  You have no receipt, so it will not be possible to see
-  the concert unless you purchase another ticket.  Would
-  you purchase another ticket?  Circle below.
+You have purchased a $30 ticket to see a rock concert in
+Rupp Arena.  When you arrive at the Arena on the night of
+the performance, you find that you have lost the ticket.
+You have no receipt, so it will not be possible to see the
+concert unless you purchase another ticket.  Would you
+purchase another ticket?  Circle below.
 
-  YES NO
+YES NO
 
-  [In other forms, the question above could have been: You
-  plan to see a rock concert in Rupp Arena.  Tickets for
-  the performance are $30. When you arrive at the Arena on
-  the night of the performance, you find that you have lost
-  two bills from your purse or wallet: a ten and a twenty.
-  Would you buy the ticket anyway?]
+[In other forms, the question above could have been: You
+plan to see a rock concert in Rupp Arena.  Tickets for the
+performance are $30. When you arrive at the Arena on the
+night of the performance, you find that you have lost two
+bills from your purse or wallet: a ten and a twenty.  Would
+you buy the ticket anyway?]
 
-  Respondent Data
+Respondent Data
 
-  I am (circle one): freshman sophomore junior senior
+I am (circle one): freshman sophomore junior senior
 
-  I am (circle one) male female
+I am (circle one) male female
 
-  (Optional) My intended major is: _____________________
+(Optional) My intended major is: _____________________
 }
 \keyword{datasets}
 

@@ -2,7 +2,7 @@
 \alias{SampDist2Props}
 \title{Difference of Two Sample Proportions}
 \usage{
-  SampDist2Props(form,data,max.sample.sizes=100,sim.reps=1000)
+SampDist2Props(form,data,max.sample.sizes=100,sim.reps=1000)
 }
 \arguments{
   \item{form}{An object of class formula, of the form ~x+y
@@ -20,11 +20,11 @@
   empirical distribution.}
 }
 \value{
-  Graphical and numerical output.
+Graphical and numerical output.
 }
 \description{
-  An app to explore the sampling distribution of the
-  difference of two sample proportions.
+An app to explore the sampling distribution of the
+difference of two sample proportions.
 }
 \examples{
 \dontrun{
@@ -33,6 +33,6 @@ SampDist2Props(~sex+cappun,data=imagpop)
 }
 }
 \author{
-  Homer White \email{hwhite0@georgetowncollege.edu}
+Homer White \email{hwhite0@georgetowncollege.edu}
 }
 

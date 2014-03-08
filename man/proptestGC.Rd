@@ -2,8 +2,8 @@
 \alias{proptestGC}
 \title{Proportions Procedures}
 \usage{
-  proptestGC(x,n=numeric(),p=NULL,data,alternative="two.sided",
-    success="yes",first=NULL,conf.level=0.95,correct=TRUE,graph=FALSE,verbose=TRUE)
+proptestGC(x,n=numeric(),p=NULL,data,alternative="two.sided",
+                         success="yes",first=NULL,conf.level=0.95,correct=TRUE,graph=FALSE,verbose=TRUE)
 }
 \arguments{
   \item{x}{Either a formula or a numeric vector.  If
@@ -51,32 +51,38 @@
   console}
 }
 \value{
-  A list, either of class "gcp1test" (one-proportion) or
-  "gcp2test" (two proportions). Components of this list
-  that may be usefully queried include: "statistic",
-  "p.value", and "interval".
+A list, either of class "gcp1test" (one-proportion) or
+"gcp2test" (two proportions). Components of this list that
+may be usefully queried include: "statistic", "p.value",
+and "interval".
 }
 \description{
-  Employs the normal approximation to perform test for one
-  or two proportions.
+Employs the normal approximation to perform test for one or
+two proportions.
 }
 \examples{
 data(m111survey)
-#2-proportions, formula-data input:
+#2-proportions, formula-data input, 95\%-confidence interval only:
 proptestGC(~sex+seat,data=m111survey,success="1_front")
 
-#one proportion, formula-data input:
+#For other confidence levels, use argument conf.level.  For 90\%-interval for one proportion p:
+proptestGC(~sex,data=m111survey,success="male",conf.level=0.90)
+
+#one proportion, formula-data input, confidence interval and two-sided test with H_0:  p = 0.33:
 proptestGC(~seat,data=m111survey,success="1_front",p=0.33)
 
 #Summary data:
-#In first sample, 23 success out of 100 trials.  In second sample, 33 out of 110.
+#In first sample, 23 successes out of 100 trials.  In second sample, 33 out of 110.
 proptestGC(x=c(23,33),n=c(100,110))
 
 #Summary data:
 #In one sample, 40 successes in 100 trials.  Testing whether p = 0.45.
 proptestGC(40,100,p=0.45,correct=TRUE)
+
+#Want less output?  Set argument verbose to FALSE:
+proptestGC(~sex+seat,data=m111survey,success="1_front",p=0.33,verbose=FALSE)
 }
 \author{
-  Homer White \email{hwhite0@georgetowncollege.edu}
+Homer White \email{hwhite0@georgetowncollege.edu}
 }
 

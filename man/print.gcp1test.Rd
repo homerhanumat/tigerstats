@@ -2,7 +2,7 @@
 \alias{print.gcp1test}
 \title{Print Function for GC Proportion Test (One-Sample)}
 \usage{
-  \S3method{print}{gcp1test}(x,...)
+\S3method{print}{gcp1test}(x,...)
 }
 \arguments{
   \item{x}{An object of class gcp1test.}
@@ -10,12 +10,12 @@
   \item{\ldots}{ignored}
 }
 \value{
-  Output to the console.
+Output to the console.
 }
 \description{
-  Utility print function
+Utility print function
 }
 \author{
-  Homer White \email{hwhite0@georgetowncollege.edu}
+Homer White \email{hwhite0@georgetowncollege.edu}
 }
 

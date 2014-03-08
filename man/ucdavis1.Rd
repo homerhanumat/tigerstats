@@ -4,27 +4,27 @@
 \title{UC Davis #1}
 \format{A data frame with 173 observations on 12 variables..}
 \source{
-  Mind on Statistics, 4th edition, Uts and Heckard.
+Mind on Statistics, 4th edition, Uts and Heckard.
 }
 \description{
-  Results of a survey of students at UC-Davis.
+Results of a survey of students at UC-Davis.
 
-  \itemize{ \item{\code{Sex}}{ a factor with levels
-  \code{Female} \code{Male}} \item{\code{TV}}{ Number of
-  hours spent watching TV per week} \item{\code{computer}}{
-  number of hours spent on computer per week}
-  \item{\code{Sleep}}{ hours of sleep per night}
-  \item{\code{Seat}}{ a factor with levels \code{Back}
-  \code{Front} \code{Middle} Where do you prefer to sit in
-  class, when you have a choice?} \item{\code{alcohol}}{
-  number of alcoholic drinks consumed per week}
-  \item{\code{Height}}{ height in inches}
-  \item{\code{momheight}}{ height of mother, in inches}
-  \item{\code{dadheight}}{ height of father, in inches}
-  \item{\code{exercise}}{ number of hours of exercise per
-  week} \item{\code{GPA}}{ grade point average}
-  \item{\code{class}}{ a factor with levels \code{LibArts}
-  \code{NonLib} Student Category: liberal arts or not} }
+\itemize{ \item{\code{Sex}}{ a factor with levels
+\code{Female} \code{Male}} \item{\code{TV}}{ Number of
+hours spent watching TV per week} \item{\code{computer}}{
+number of hours spent on computer per week}
+\item{\code{Sleep}}{ hours of sleep per night}
+\item{\code{Seat}}{ a factor with levels \code{Back}
+\code{Front} \code{Middle} Where do you prefer to sit in
+class, when you have a choice?} \item{\code{alcohol}}{
+number of alcoholic drinks consumed per week}
+\item{\code{Height}}{ height in inches}
+\item{\code{momheight}}{ height of mother, in inches}
+\item{\code{dadheight}}{ height of father, in inches}
+\item{\code{exercise}}{ number of hours of exercise per
+week} \item{\code{GPA}}{ grade point average}
+\item{\code{class}}{ a factor with levels \code{LibArts}
+\code{NonLib} Student Category: liberal arts or not} }
 }
 \keyword{datasets}
 

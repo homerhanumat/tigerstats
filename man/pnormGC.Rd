@@ -2,7 +2,7 @@
 \alias{pnormGC}
 \title{Graphical Calculator for Normal Curve Probabilities}
 \usage{
-  pnormGC(bound,region="below",mean=0,sd=1,graph=FALSE)
+pnormGC(bound,region="below",mean=0,sd=1,graph=FALSE)
 }
 \arguments{
   \item{bound}{A numerical vector of length 1 or 2,
@@ -21,17 +21,26 @@
   \item{graph}{Will produce graph of the probability}
 }
 \value{
-  Numerical value of area under curve over region.
+Numerical value of area under curve over region.
 }
 \description{
-  Shades desired areas under a specified normal curve,
-  returns numerical value of the area.
+Shades desired areas under a specified normal curve,
+returns numerical value of the area.
 }
 \examples{
-pnormGC(c(-1,1),region="outside")  #returns about 0.32
-pnormGC(75,region="below",mean=70,sd=3)
+#This gives P(X < 75) for X normal with mean=70 and sd=4:
+pnormGC(75,region="below",mean=70,sd=4)
+
+#This gives P(X > 71) for X normal with mean=70 and sd=4:
+pnormGC(71,region="above",mean=70,sd=4)
+
+#This gives P(-1 < X < 1), for standard normal X:
+pnormGC(c(-1,1),region="between")
+
+#This gives P(X < 68 or X > 71), for X normal with mean =70 and sd=4:
+pnormGC(c(68,71),region="outside",mean=70,sd=4)
 }
 \author{
-  Homer White \email{hwhite0@georgetowncollege.edu}
+Homer White \email{hwhite0@georgetowncollege.edu}
 }
 

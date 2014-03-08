@@ -2,7 +2,7 @@
 \alias{pchisqGC}
 \title{Graphical Calculator for Chi-Square Probabilities}
 \usage{
-  pchisqGC(bound,region="above",df=NA,xlab="chi_square_statistic",graph=FALSE)
+pchisqGC(bound,region="above",df=NA,xlab="chi_square_statistic",graph=FALSE)
 }
 \arguments{
   \item{bound}{A numerical vector of length 1, indicating
@@ -19,17 +19,21 @@
   \item{graph}{produce graph?}
 }
 \value{
-  Numerical value of area under curve over region.  Also
-  plots the chi-square curve with the shaded area.
+Numerical value of area under curve over region.  Also
+plots the chi-square curve with the shaded area.
 }
 \description{
-  Shades desired areas under a specified chi-square curve,
-  returns numerical value of the area.
+Shades desired areas under a specified chi-square curve,
+returns numerical value of the area.
 }
 \examples{
+#This gives P(X < 6.8) where X is chisq with 3 degrees of freedom:
 pchisqGC(6.8,df=3,region="below")
+
+#This gives P(X >= 6.8), where X is chisq with 3 degrees of freedom
+pchisqGC(6.8,df=3,region="above")
 }
 \author{
-  Homer White \email{hwhite0@georgetowncollege.edu}
+Homer White \email{hwhite0@georgetowncollege.edu}
 }
 

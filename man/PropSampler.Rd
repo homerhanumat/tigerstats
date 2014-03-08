@@ -2,7 +2,7 @@
 \alias{PropSampler}
 \title{Repeated Sampling for a Proportion (Slow)}
 \usage{
-  PropSampler(form,data,max.sample.size=110,show.sample=FALSE)
+PropSampler(form,data,max.sample.size=110,show.sample=FALSE)
 }
 \arguments{
   \item{form}{An object of class formula, of the form ~x,
@@ -19,18 +19,17 @@
   information.}
 }
 \value{
-  Graphical and numerical output.
+Graphical and numerical output.
 }
 \description{
-  An app to explore the sampling distribution of the sample
-  proportion.  The user takes one sample at a time from a
-  given population.  Output to the console describes
-  relevant features of the sample, and graphical output
-  updates the empirical distribution of the sample
-  proportion.
+An app to explore the sampling distribution of the sample
+proportion.  The user takes one sample at a time from a
+given population.  Output to the console describes relevant
+features of the sample, and graphical output updates the
+empirical distribution of the sample proportion.
 }
 \note{
-  Uses \code{manipulate}.
+Uses \code{manipulate}.
 }
 \examples{
 \dontrun{
@@ -39,6 +38,6 @@ if (require(manipulate)) PropSampler(~cappun,data=imagpop)
 }
 }
 \author{
-  Homer White \email{hwhite0@georgetowncollege.edu}
+Homer White \email{hwhite0@georgetowncollege.edu}
 }
 

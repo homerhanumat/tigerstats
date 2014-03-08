@@ -2,9 +2,9 @@
 \alias{ttestGC}
 \title{t-Procedures}
 \usage{
-  ttestGC(x=NULL,mean=numeric(),sd=numeric(),n=numeric(),
-    mu=NULL,data=NULL,alternative="two.sided",var.equal=FALSE,
-    conf.level=0.95,graph=FALSE,first=NULL,verbose=TRUE)
+ttestGC(x=NULL,mean=numeric(),sd=numeric(),n=numeric(),
+ mu=NULL,data=NULL,alternative="two.sided",var.equal=FALSE,
+ conf.level=0.95,graph=FALSE,first=NULL,verbose=TRUE)
 }
 \arguments{
   \item{x}{If not NULL, then must be a formula.  If a
@@ -48,31 +48,40 @@
   \item{verbose}{Indicate how much output goes to console}
 }
 \value{
-  A list of class "GCttest" Components of the list that may
-  be usefully queried include: "statistic", "p.value", and
-  "interval".
+A list of class "GCttest" Components of the list that may
+be usefully queried include: "statistic", "p.value", and
+"interval".
 }
 \description{
-  t-tests and confidence intervals for one and two samples.
+t-tests and confidence intervals for one and two samples.
 }
 \examples{
-# One-sample t:
+#One-sample t, 95\%-confidence interval only:
+ttestGC(~fastest,data=m111survey)
+
+#For other confidence levels, set argument conf.level as desired.  For 90\%-interval:
+ttestGC(~fastest,data=m111survey,conf.level=0.90)
+
+# One-sample t, 95\%-confidence interval and two-sided test with H_0:  mu = 100:
 ttestGC(~fastest,data=m111survey,mu=100)
 
-#Two-sample t, with graph:
+#Two-sample t, 95\%-confidence interval only:
 ttestGC(fastest~sex,data=m111survey)
 
-# Matched pairs:
-ttestGC(~ideal_ht-height,data=m111survey)
+#control order of groups with argument first:
+ttestGC(fastest~sex,data=m111survey,first="male")
 
-#Summary data, one sample:
+# Matched pairs, confidence interval with one-sided test, H_0: mu-d = 0:
+ttestGC(~ideal_ht-height,data=m111survey,alternative="less")
+
+#Summary data, one sample, one-sided test with H_0:  mu = 52.5:
 ttestGC(mean=55,sd=4,n=16,mu=52.5,alternative="greater")
 
 #Summary data, two samples:
 ttestGC(mean=c(50,55),sd=c(3,4),n=c(25,40),mu=0)
 }
 \author{
-  Homer White \email{hwhite0@georgetowncollege.edu} for
-  matched pairs.
+Homer White \email{hwhite0@georgetowncollege.edu} for
+matched pairs.
 }
 

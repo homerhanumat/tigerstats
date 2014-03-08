@@ -8,14 +8,14 @@ in the countryside}
 \item{gender}{sex of the subject}
 \item{response}{Whether or not eh subject responded to the mail survey}}}
 \source{
-  Rebuilt from a contingency table in E. B. Andersen
-  (1991), The Statistical Analysis of Categorical Data. 2nd
-  edition. Springer-Verlag, Berlin.  Table found in package
-  \code{vcd}.
+Rebuilt from a contingency table in E. B. Andersen (1991),
+The Statistical Analysis of Categorical Data. 2nd edition.
+Springer-Verlag, Berlin.  Table found in package
+\code{vcd}.
 }
 \description{
-  Results of a study on non-response to a mail survey.
-  Subjects were residents of Denmark.
+Results of a study on non-response to a mail survey.
+Subjects were residents of Denmark.
 }
 \keyword{datasets}
 

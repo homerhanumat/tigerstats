@@ -9,11 +9,11 @@ year.}
 \item{writeups}{Number of write-ups for alcohol violations.}
 \item{writeups.per.100}{Number of writeups per 100 students.} }}
 \source{
-  Collected by MAT 111 students as a project.
+Collected by MAT 111 students as a project.
 }
 \description{
-  Alcohol policy violations on the Georgetown College
-  campus over several years.
+Alcohol policy violations on the Georgetown College campus
+over several years.
 }
 \keyword{datasets}
 

@@ -2,7 +2,7 @@
 \alias{plot.GClm}
 \title{Print Function for GC Linear Regression}
 \usage{
-  \S3method{plot}{GClm}(x,y,...)
+\S3method{plot}{GClm}(x,y,...)
 }
 \arguments{
   \item{x}{An object of class GCttest.}
@@ -14,12 +14,12 @@
   \item{GClm}{an object of class GClm}
 }
 \value{
-  graphical output
+graphical output
 }
 \description{
-  Utility diagnostic plot
+Utility diagnostic plot
 }
 \author{
-  Homer White \email{hwhite0@georgetowncollege.edu}
+Homer White \email{hwhite0@georgetowncollege.edu}
 }
 

@@ -31,7 +31,7 @@
 #' binomtestGC(~sex,data=m111survey,success="female",p=0.5)
 #' 
 #' #For confidence level other than 95%, use conf.level argument.  For 90% interval:
-#' binomtextGC(~sex,data=m111survey,success="female",conf.level=0.90)
+#' binomtestGC(~sex,data=m111survey,success="female",conf.level=0.90)
 #' 
 #' #For one-sided test, set alternative argument as desired:
 #' binomtestGC(~sex,data=m111survey,p=0.50,success="female",alternative="greater")

@@ -13,11 +13,11 @@ completed.}
 require high body mass, skill positions require a lot of running around.}
 }}
 \source{
-  MAT 111, Georgetown College
+MAT 111, Georgetown College
 }
 \description{
-  Two football players at GC asked their team-mates to do
-  as many pushups as they could in two minutes.
+Two football players at GC asked their team-mates to do as
+many pushups as they could in two minutes.
 }
 \keyword{datasets}
 

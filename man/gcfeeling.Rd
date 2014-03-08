@@ -12,11 +12,11 @@
 \item{happier}{whether or not subject feels happier now than as a first-year student}
 }}
 \source{
-  MAT 111 at Georgetown College
+MAT 111 at Georgetown College
 }
 \description{
-  Results of a survey conducted by Georgetown College
-  students on 47 Georgetown College upperclass students.
+Results of a survey conducted by Georgetown College
+students on 47 Georgetown College upperclass students.
 }
 \keyword{datasets}
 

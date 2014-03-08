@@ -9,10 +9,10 @@
 \item{HandSpan}{handspan of subject, in centimeters.}
 }}
 \source{
-  Uts and Heckard, Mind on Statistics, 4th Edition.
+Uts and Heckard, Mind on Statistics, 4th Edition.
 }
 \description{
-  Height and handspan of a few subjects.
+Height and handspan of a few subjects.
 }
 \keyword{datasets}
 

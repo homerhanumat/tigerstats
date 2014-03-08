@@ -2,7 +2,7 @@
 \alias{pbinomGC}
 \title{Graphical Calculator for Binomial Curve Probabilities}
 \usage{
-  pbinomGC(bound,region="below",size=100,prob=0.5,graph=FALSE)
+pbinomGC(bound,region="below",size=100,prob=0.5,graph=FALSE)
 }
 \arguments{
   \item{bound}{A numerical vector of length 1 or 2, range
@@ -20,18 +20,24 @@
   \item{graph}{produce graph?}
 }
 \value{
-  Numerical value of probability.
+Numerical value of probability.
 }
 \description{
-  Shades desired areas under rectangles of probability
-  histogram for binomial, returns numerical value of the
-  area.
+Shades desired areas under rectangles of probability
+histogram for binomial, returns numerical value of the
+area.
 }
 \examples{
+#This gives P(X <= 6) for binom X with 10 trials, chance of success 0.70 on each trial:
+pbinomGC(6,region="below",size=10,prob=0.70)
+
+#This gives P(45 <= X <= 55), where X is binom with 100 trials, chance of success on each trial p = 0.50:
 pbinomGC(c(45,55),region="between",size=100,prob=0.50)
+
+#This gives P(X >= 7) = P(X > 6), for binom X with 10 trials, 70\% chance of success on each trial
 pbinomGC(6,region="above",size=10,prob=0.7)
 }
 \author{
-  Homer White \email{hwhite0@georgetowncollege.edu}
+Homer White \email{hwhite0@georgetowncollege.edu}
 }
 

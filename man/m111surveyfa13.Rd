@@ -36,11 +36,11 @@ given.  If "a", the population of Australia was given.  If "b", the U.S. populat
 XXX is YYY million.  About what is the population of Canada, in millions?"  XXX was either the U.S. or Australia.}
 }}
 \source{
-  MAT 111 at Georgetown College
+MAT 111 at Georgetown College
 }
 \description{
-  Results of a survey given at beginning of semester, to
-  all students in MAT 111.
+Results of a survey given at beginning of semester, to all
+students in MAT 111.
 }
 \keyword{datasets}
 

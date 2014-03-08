@@ -2,15 +2,15 @@
 \alias{tExplore}
 \title{Exploration of the t-Distributions}
 \usage{
-  tExplore()
+tExplore()
 }
 \value{
-  Used only for graphical side effects.
+Used only for graphical side effects.
 }
 \description{
-  Plot the density curve of a t random variable at various
-  degrees of freedom.  Compare with the standard normal
-  curve.
+Plot the density curve of a t random variable at various
+degrees of freedom.  Compare with the standard normal
+curve.
 }
 \examples{
 \dontrun{
@@ -18,6 +18,6 @@ if (require(manipulate)) tExplore()
 }
 }
 \author{
-  Homer White \email{hwhite0@georgetowncollege.edu}
+Homer White \email{hwhite0@georgetowncollege.edu}
 }
 

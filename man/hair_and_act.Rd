@@ -10,11 +10,11 @@
 subject.}
 }}
 \source{
-  MAT 111 at Georgetown College
+MAT 111 at Georgetown College
 }
 \description{
-  A study performed by MAT 111 students at Georgetown
-  College.
+A study performed by MAT 111 students at Georgetown
+College.
 }
 \keyword{datasets}
 

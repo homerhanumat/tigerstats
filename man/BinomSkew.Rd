@@ -2,16 +2,16 @@
 \alias{BinomSkew}
 \title{Skewness in the Binomial Family of Distributions}
 \usage{
-  BinomSkew()
+BinomSkew()
 }
 \value{
-  no value.  Graphical side-effects only.
+no value.  Graphical side-effects only.
 }
 \description{
-  An app to investigate how skewness in a binomial
-  distribtution vanishes when np is large enough.  Sample
-  size is set at n = 50, but the user can vary p with a
-  slider.
+An app to investigate how skewness in a binomial
+distribtution vanishes when np is large enough.  Sample
+size is set at n = 50, but the user can vary p with a
+slider.
 }
 \examples{
 \dontrun{
@@ -19,6 +19,6 @@ if (require(manipulate)) BinomSkew()
 }
 }
 \author{
-  Homer White (hwhite0@georgetowncollege.edu)
+Homer White (hwhite0@georgetowncollege.edu)
 }
 

@@ -2,7 +2,7 @@
 \alias{SampDistMean}
 \title{Distribution of the Sample Mean}
 \usage{
-  SampDistMean(pop,max.samp.size=50,sim.reps=1000)
+SampDistMean(pop,max.samp.size=50,sim.reps=1000)
 }
 \arguments{
   \item{pop}{A data frame representing the population from
@@ -15,13 +15,13 @@
   construct empirical distribution of the sample mean.}
 }
 \value{
-  Graphical and numerical output.
+Graphical and numerical output.
 }
 \description{
-  An app to explore the Central Limit Theorem.
+An app to explore the Central Limit Theorem.
 }
 \note{
-  Uses \code{manipulate} in RStudio.
+Uses \code{manipulate} in RStudio.
 }
 \examples{
 \dontrun{
@@ -30,6 +30,6 @@ if (require(manipulate)) SampDistMean(imagpop)
 }
 }
 \author{
-  Homer White \email{hwhite0@georgetowncollege.edu}
+Homer White \email{hwhite0@georgetowncollege.edu}
 }
 

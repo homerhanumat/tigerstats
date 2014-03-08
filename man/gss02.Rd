@@ -33,15 +33,15 @@ gunlaws.}
 \item{emailtime}{estimated number of hours per week subject spends using email.}
 }}
 \source{
-  National Opinion Research Center:
-  \url{http://www3.norc.org/gss+website/}. Found in Uts and
-  Heckard: Mind on Statistics, 4th Edition.
+National Opinion Research Center:
+\url{http://www3.norc.org/gss+website/}. Found in Uts and
+Heckard: Mind on Statistics, 4th Edition.
 }
 \description{
-  The General Social Survey (GSS) is a nationwide poll that
-  has been conducted since 1972 (semiannually since 1994).
-  Most interviews are done face-to-face.  For further
-  information, see below.
+The General Social Survey (GSS) is a nationwide poll that
+has been conducted since 1972 (semiannually since 1994).
+Most interviews are done face-to-face.  For further
+information, see below.
 }
 \keyword{datasets}
 
