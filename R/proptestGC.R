@@ -4,7 +4,8 @@
 #' 
 #' @rdname proptestGC
 #' @usage proptestGC(x,n=numeric(),p=NULL,data,alternative="two.sided",
-#'                          success="yes",first=NULL,conf.level=0.95,correct=TRUE,graph=FALSE,verbose=TRUE)
+#'                          success="yes",first=NULL,conf.level=0.95,
+#'                          correct=TRUE,graph=FALSE,verbose=TRUE)
 #' @param x Either a formula or a numeric vector.  If formula, it must be of the form ~x
 #' indicating the single variable under study, or of the form ~x+y, in which case x is the explanatory grouping variable
 #' (categorical with two values) and y is the response categorical variable with two values.

@@ -3,7 +3,8 @@
 \title{Proportions Procedures}
 \usage{
 proptestGC(x,n=numeric(),p=NULL,data,alternative="two.sided",
-                         success="yes",first=NULL,conf.level=0.95,correct=TRUE,graph=FALSE,verbose=TRUE)
+                         success="yes",first=NULL,conf.level=0.95,
+                         correct=TRUE,graph=FALSE,verbose=TRUE)
 }
 \arguments{
   \item{x}{Either a formula or a numeric vector.  If
