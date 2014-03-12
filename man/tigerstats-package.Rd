@@ -3,7 +3,7 @@
 \alias{tigerstats}
 \docType{package}
 \title{
-R for Statistics at Georgetown College
+R for Elementary Statistics
 }
 \description{
 Datasets and functions useful for teaching elementary statistics.
