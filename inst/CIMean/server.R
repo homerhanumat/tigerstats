@@ -18,14 +18,16 @@ dpareto <- function(x,alpha,theta) {  #pdf for Pareto(alpha,theta) distribution
 ############################################
 muNorm <- 70
 sigmaNorm <- 5
-normalPop <- rnorm(10000,mean=muNorm,sd=sigmaNorm)
+#normalPop <- rnorm(10000,mean=muNorm,sd=sigmaNorm)
 shapeGamma <- 2
 scaleGamma <- 50
-skewPop <- rgamma(10000,shape=shapeGamma,scale=scaleGamma)
+#skewPop <- rgamma(10000,shape=shapeGamma,scale=scaleGamma)
 
 # for pareto:
 alphaPareto <- 5
 thetaPareto <- 100
+tailProb <- 0.02  #want to find a Value at risk of 1 - this
+valRisk <- thetaPareto*(tailProb^(-.5)-1)
 superSkewPop <- rpareto(10000,alpha=alphaPareto,theta=thetaPareto)
 
 # for pop with group of outliers
@@ -50,20 +52,35 @@ routlier <- function(n) {
 ######################################
 # Make population densities
 #####################################
+xNorm <- seq(muNorm-5*sigmaNorm,muNorm+5*sigmaNorm,length.out=600)
+yNorm <- dnorm(xNorm,mean=muNorm,sd=sigmaNorm)
+normalDen <- list(x=xNorm,y=yNorm)
+#normalDen <- density(normalPop,n=1024)
 
-normalDen <- density(normalPop,n=1024)
-skewDen <- density(skewPop,n=1024,from=0)
-superSkewDen <- density(superSkewPop,n=1024,from=0)
-outlierDen <- density(outlierPop,n=1024)
+xSkew <- seq(0,shapeGamma*scaleGamma+7.5*sqrt(shapeGamma)*scaleGamma,
+             length.out=600)
+ySkew <- dgamma(xSkew,shape=shapeGamma,scale=scaleGamma)
+skewDen <- list(x=xSkew,y=ySkew)
+#skewDen <- density(skewPop,n=1024,from=0)
+
+xSuperSkew <- seq(0,valRisk,length.out=600)
+ySuperSkew <- dpareto(xSuperSkew,alpha=alphaPareto,theta=thetaPareto)
+superSkewDen <- list(x=xSuperSkew,y=ySuperSkew)
+#superSkewDen <- density(superSkewPop,n=1024,from=0)
+
+xOut <- seq(0,meanOutliers+5*sdOutliers,length.out=600)
+yOut <- (1-propOutliers)*dnorm(xOut,mean=meanRegulars,sd=sdRegulars)+propOutliers*dnorm(xOut,mean=meanOutliers,sd=sdOutliers)
+outlierDen <- list(x=xOut,y=yOut)
+#outlierDen <- density(outlierPop,n=1024)
 
 #######################################
 # Get the population means
 ######################################
 
-normalMean <- mean(normalPop)
-skewMean <- mean(skewPop)
-superSkewMean <- mean(superSkewPop)
-outlierMean <- mean(outlierPop)
+normalMean <- muNorm
+skewMean <- shapeGamma*scaleGamma
+superSkewMean <- thetaPareto/(alphaPareto - 1)
+outlierMean <- (1-propOutliers)*meanRegulars+propOutliers*meanOutliers
 
 # Define server logic
 shinyServer(function(input, output) {
@@ -86,19 +103,19 @@ shinyServer(function(input, output) {
   
   popMax <- reactive({
     switch(input$popDist,
-           normal=max(normalPop),
-           skew=max(skewPop),
-           superskew=max(superSkewPop),
-           outliers=max(outlierPop)
+           normal=max(normalDen$x),
+           skew=max(skewDen$x),
+           superskew=max(superSkewDen$x),
+           outliers=max(outlierDen$x)
     )
   })
   
   popMin <- reactive({
     switch(input$popDist,
-           normal=min(normalPop),
-           skew=min(skewPop),
-           superskew=min(superSkewPop),
-           outliers=min(outlierPop)
+           normal=min(normalDen$x),
+           skew=min(skewDen$x),
+           superskew=min(superSkewDen$x),
+           outliers=min(outlierDen$y)
     )
   })
   
@@ -141,6 +158,20 @@ shinyServer(function(input, output) {
          ylab="density")
     #now add mean line:
     abline(v=popMean,lwd=2)
+    
+  })
+  
+  output$tstat <- renderPlot({
+    frame <- intervalFrame()
+    tstats <- frame$tstats
+    n <- isolate(input$n)
+    tstatDen <- density(tstats,n=1024,from=-6,to=6)
+    ymax <- max(tstatDen$y,dt(0,df=n-1))
+    plot(tstatDen$x,tstatDen$y,type="l",lwd=2,col="blue",
+         main="t-statistic vs. t-curve",cex.main=2,
+         xlab="t", ylim=c(0,ymax),
+         ylab="density")
+    curve(dt(x,df=n-1),-6,6,col="red",lwd=2,add=TRUE)
     
   })
   
@@ -227,7 +258,11 @@ shinyServer(function(input, output) {
       upper <- xbar + margin
       goodInterval <- ((popMean > lower) & (popMean < upper))
       goodInterval <- factor(ifelse(goodInterval,"yes","no"))
+      
+      tstats <- (xbar-popMean)/se
+      
       results <- data.frame(
+        tstats=tstats,
         LowerBound=lower,
         UpperBound=upper,
         PopulationMean=popMean,
@@ -247,7 +282,7 @@ shinyServer(function(input, output) {
   })
   
   output$intervalFrame = renderDataTable({
-      intervalFrame()}, options = list(aLengthMenu = c(5, 30, 50), iDisplayLength = 5)
+      intervalFrame()[,2:5]}, options = list(aLengthMenu = c(5, 30, 50), iDisplayLength = 5)
   )
 
   

@@ -24,10 +24,10 @@ shinyUI(pageWithSidebar(
     br(),
     
     helpText("How confident do you want to be that the population mean is contained",
-             "within the confidence interval?   Enter a number between 50 and 99 for",
+             "within the confidence interval?   Use the slider to select a desired",
              "percent-confidence level."),
     
-    numericInput(inputId="confLevel","Confidence Level",value=95,min=50,max=99,step=1),
+    sliderInput(inputId="confLevel","Confidence Level",value=95,min=50,max=99,step=1),
     br(),
     
     helpText("You can get just one sample, with a histogram of the sample and a picture",
@@ -35,7 +35,7 @@ shinyUI(pageWithSidebar(
              "of how many times the interval contained the population mean."),
     
     radioButtons(inputId="actionType","One at a Time or 5000 at Once?",
-                 list("Just One Sample, Please"="one",
+                 list("Just one sample, please"="one",
                       "Give me 5000 samples!"="fiveThousand")),
     br(),
     
@@ -68,11 +68,24 @@ shinyUI(pageWithSidebar(
     
     conditionalPanel(
       condition="(output.go > 0) && (output.actionType == 'fiveThousand')",
-      plotOutput("initialGraph2"),
-      tableOutput("summary"),
-      dataTableOutput("intervalFrame")
-    )
+      
+      tabsetPanel(
+        tabPanel("Interval Summary",
+                 plotOutput("initialGraph2"),
+                 tableOutput("summary"),
+                 dataTableOutput("intervalFrame")), 
+        tabPanel("t-statistic",
+                 plotOutput("tstat"),
+                 HTML(
+                   "<p>The plots above compare the actual distribution of the t-statistic to the t-curve with n-1 degrees of freedom.</p>
+                     <p></p>
+                     <ul>
+                        <li>The t-curve is in red.  If the population is exactly normal, then this curve represents the exact distribution of the t-statistic.</li>
+                        <li>The density plot of the 5000 t-statistics is in blue.  This plot gives a pretty good estimate of the actual distribution of the t-statistic, for the population and sample size that you have selected.</li>
+                    </ul>"))
+      ) # end tabset panel
+    ) # end conditonal panel
     
-  )
+  ) # end main panel
   
 ))
