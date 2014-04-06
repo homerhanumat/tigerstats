@@ -27,7 +27,7 @@ CIMean <- function (form, data)
   beginning = TRUE
   results = matrix(0, 2, 2, dimnames = list(c("Count", "Proportion"), 
                                             c("Covers", "Misses")))
-  prsd = with(data, parse.formula(form))
+  prsd = with(data, ParseFormula(form))
   varname = as.character(prsd$rhs)
   pop = data[, varname]
   N = length(pop)

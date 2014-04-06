@@ -83,8 +83,8 @@ function(form,data,
      }
      else {
        if(length(t.stats) >=2) {
-       dts <- density(t.stats,n=dcurven,from=-4,to=4)
-       plot(dts$x,dts$y,type="l",col="blue",
+       dts <- density(t.stats,n=dcurven)
+       plot(dts$x,dts$y,type="l",col="blue",xlim=c(-4,4),
               xlab="x-bar",ylab="Estimated Density",
               main="Distribution of t-Statistics")
        rug(t.stats)
