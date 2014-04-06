@@ -41,7 +41,7 @@ pnormGC <- function(bound,region="below",mean=0,sd=1,graph=FALSE) {
     upper <- max(qnorm(.9999,mean=mean,sd=sd),bound+0.1*sd)
     lower <- min(qnorm(0.0001,mean=mean,sd=sd),bound-0.1*sd)
     curve(dnorm(x,mean=mean,sd=sd),from=lower,to=upper,ylab="density",axes=FALSE,n=50,
-          main=paste("Normal Curve, mean = ",mean,", SD = ",sd,"\n Shaded Area = ",
+          main=paste("Normal Curve, mean = ",round(mean,2),", SD = ",round(sd,2),"\n Shaded Area = ",
                      round(area,4)))
     UnderShade(low=lower,high=bound,func=dnorm,mean=mean,sd=sd)
     axis(2)
@@ -56,7 +56,7 @@ pnormGC <- function(bound,region="below",mean=0,sd=1,graph=FALSE) {
     upper <- max(qnorm(.9999,mean=mean,sd=sd),bound+0.1*sd)
     lower <- min(qnorm(0.0001,mean=mean,sd=sd),bound-0.1*sd)
     curve(dnorm(x,mean=mean,sd=sd),from=lower,to=upper,ylab="density",axes=FALSE,n=50,
-          main=paste("Normal Curve, mean = ",mean,", SD = ",sd,"\n Shaded Area = ",
+          main=paste("Normal Curve, mean = ",round(mean,2),", SD = ",round(sd,2),"\n Shaded Area = ",
                      round(area,4)))
     UnderShade(low=bound,high=upper,func=dnorm,mean=mean,sd=sd)
     axis(2)
@@ -71,7 +71,7 @@ pnormGC <- function(bound,region="below",mean=0,sd=1,graph=FALSE) {
     upper <- max(qnorm(.9999,mean=mean,sd=sd),bound+0.1*sd)
     lower <- min(qnorm(0.0001,mean=mean,sd=sd),bound-0.1*sd)
     curve(dnorm(x,mean=mean,sd=sd),from=lower,to=upper,ylab="density",axes=FALSE,n=50,
-          main=paste("Normal Curve, mean = ",mean,", SD = ",sd,"\n Shaded Area = ",
+          main=paste("Normal Curve, mean = ",round(mean,2),", SD = ",round(sd,2),"\n Shaded Area = ",
                      round(area,4)))
     UnderShade(low=bound[1],high=bound[2],func=dnorm,mean=mean,sd=sd)
     axis(2)
@@ -86,7 +86,7 @@ pnormGC <- function(bound,region="below",mean=0,sd=1,graph=FALSE) {
     upper <- max(qnorm(.9999,mean=mean,sd=sd),bound+0.1*sd)
     lower <- min(qnorm(0.0001,mean=mean,sd=sd),bound-0.1*sd)
     curve(dnorm(x,mean=mean,sd=sd),from=lower,to=upper,ylab="density",axes=FALSE,n=50,
-          main=paste("Normal Curve, mean = ",mean,", SD = ",sd,"\n Shaded Area = ",
+          main=paste("Normal Curve, mean = ",round(mean,2),", SD = ",round(sd,2),"\n Shaded Area = ",
                      round(area,4)))
     UnderShade(low=lower,high=bound[1],func=dnorm,mean=mean,sd=sd)
     UnderShade(low=bound[2],high=upper,func=dnorm,mean=mean,sd=sd)
