@@ -252,7 +252,8 @@ shinyServer(function(input, output) {
       sampleMatrix <- matrix(sampleItems,ncol=n,nrow=5000)
       
       xbar <- rowSums(sampleMatrix)/n
-      se <- sqrt(diag(var(t(sampleMatrix))))/sqrt(n)
+      se <- sqrt((rowSums(sampleMatrix^2)-n*xbar^2)/(n^2-n))
+      #se <- sqrt(diag(var(t(sampleMatrix))))/sqrt(n)
       margin = tMultiplier * se
       lower <- xbar - margin
       upper <- xbar + margin
