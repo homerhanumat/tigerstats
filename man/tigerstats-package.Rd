@@ -13,7 +13,7 @@ Datasets and functions useful for teaching elementary statistics.
 Package: \tab tigerstats\cr
 Type: \tab Package\cr
 Version: \tab 0.1.4\cr
-Date: \tab 2014-04-03\cr
+Date: \tab 2014-04-05\cr
 License: \tab GPL (>=3)\cr
 }
 

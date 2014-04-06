@@ -4,7 +4,7 @@
 \section{Changes in version 0.1.4}{
 \itemize{
 
-\item Addition of new Shiny app, a version of the manipulate app (\code{CIMean}.  To run the Shiny app locally from an R session, install package \code{shiny} from CRAN and then at the console type \code{shiny::runApp(system.file('CIMean', package='tigerstats'))}
+\item Addition of two new Shiny apps, versions of the manipulate apps \code{CIMean} and \code{Type12Errors}.  To run the Shiny apps locally from an R session, install package \code{shiny} from CRAN and then at the console type commands like \code{shiny::runApp(system.file('CIMean', package='tigerstats'))}
 
 }
 }
