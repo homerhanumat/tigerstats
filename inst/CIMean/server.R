@@ -18,17 +18,14 @@ dpareto <- function(x,alpha,theta) {  #pdf for Pareto(alpha,theta) distribution
 ############################################
 muNorm <- 70
 sigmaNorm <- 5
-#normalPop <- rnorm(10000,mean=muNorm,sd=sigmaNorm)
 shapeGamma <- 2
 scaleGamma <- 50
-#skewPop <- rgamma(10000,shape=shapeGamma,scale=scaleGamma)
 
 # for pareto:
 alphaPareto <- 5
 thetaPareto <- 100
 tailProb <- 0.02  #want to find a Value at risk of 1 - this
 valRisk <- thetaPareto*(tailProb^(-.5)-1)
-superSkewPop <- rpareto(10000,alpha=alphaPareto,theta=thetaPareto)
 
 # for pop with group of outliers
 propOutliers <- 0.10
@@ -36,10 +33,6 @@ meanOutliers <- 200
 sdOutliers <- 5
 meanRegulars <- 50
 sdRegulars <- 5
-numbOutliers <- propOutliers*10000
-numbRegulars <- (1-propOutliers)*10000
-outlierPop <- c(rnorm(numbRegulars,mean=meanRegulars,sd=sdRegulars),
-                rnorm(numbOutliers,mean=meanOutliers,sd=sdOutliers))
 
 routlier <- function(n) {
   propNormals <- 1- propOutliers
@@ -55,23 +48,19 @@ routlier <- function(n) {
 xNorm <- seq(muNorm-5*sigmaNorm,muNorm+5*sigmaNorm,length.out=600)
 yNorm <- dnorm(xNorm,mean=muNorm,sd=sigmaNorm)
 normalDen <- list(x=xNorm,y=yNorm)
-#normalDen <- density(normalPop,n=1024)
 
 xSkew <- seq(0,shapeGamma*scaleGamma+7.5*sqrt(shapeGamma)*scaleGamma,
              length.out=600)
 ySkew <- dgamma(xSkew,shape=shapeGamma,scale=scaleGamma)
 skewDen <- list(x=xSkew,y=ySkew)
-#skewDen <- density(skewPop,n=1024,from=0)
 
 xSuperSkew <- seq(0,valRisk,length.out=600)
 ySuperSkew <- dpareto(xSuperSkew,alpha=alphaPareto,theta=thetaPareto)
 superSkewDen <- list(x=xSuperSkew,y=ySuperSkew)
-#superSkewDen <- density(superSkewPop,n=1024,from=0)
 
 xOut <- seq(0,meanOutliers+5*sdOutliers,length.out=600)
 yOut <- (1-propOutliers)*dnorm(xOut,mean=meanRegulars,sd=sdRegulars)+propOutliers*dnorm(xOut,mean=meanOutliers,sd=sdOutliers)
 outlierDen <- list(x=xOut,y=yOut)
-#outlierDen <- density(outlierPop,n=1024)
 
 #######################################
 # Get the population means
@@ -165,8 +154,9 @@ shinyServer(function(input, output) {
     frame <- intervalFrame()
     tstats <- frame$tstats
     n <- isolate(input$n)
-
-    tstatDen <- density(tstats,n=1024,bw="SJ")
+    if (n < 5) {
+      tstatDen <- density(tstats,n=1024,from=-10,to=10,bw=0.1)
+    } else tstatDen <- density(tstats,n=1024,bw="SJ")
     ymax <- max(tstatDen$y,dt(0,df=n-1))
     plot(tstatDen$x,tstatDen$y,type="l",lwd=2,col="blue",
          main="t-statistic vs. t-curve",cex.main=2,
@@ -174,10 +164,6 @@ shinyServer(function(input, output) {
          ylab="density")
     curve(dt(x,df=n-1),-6,6,col="red",lwd=2,add=TRUE)
     
-  })
-
-  output$console <- renderPrint({
-    input$n < 5
   })
   
   output$graphSample <- renderPlot({

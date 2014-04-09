@@ -20,7 +20,7 @@ shinyUI(pageWithSidebar(
     
     helpText("Choose the sample size."),
     
-    sliderInput(inputId="n","Sample Size n",value=4,min=4,max=50,step=1),
+    sliderInput(inputId="n","Sample Size n",value=2,min=2,max=50,step=1),
     br(),
     
     helpText("How confident do you want to be that the population mean is contained",
