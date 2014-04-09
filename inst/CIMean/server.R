@@ -165,14 +165,19 @@ shinyServer(function(input, output) {
     frame <- intervalFrame()
     tstats <- frame$tstats
     n <- isolate(input$n)
-    tstatDen <- density(tstats,n=1024,from=-6,to=6)
+
+    tstatDen <- density(tstats,n=1024,bw="SJ")
     ymax <- max(tstatDen$y,dt(0,df=n-1))
     plot(tstatDen$x,tstatDen$y,type="l",lwd=2,col="blue",
          main="t-statistic vs. t-curve",cex.main=2,
-         xlab="t", ylim=c(0,ymax),
+         xlab="t", ylim=c(0,ymax),xlim=c(-6,6),
          ylab="density")
     curve(dt(x,df=n-1),-6,6,col="red",lwd=2,add=TRUE)
     
+  })
+
+  output$console <- renderPrint({
+    input$n < 5
   })
   
   output$graphSample <- renderPlot({
