@@ -1,53 +1,58 @@
 library(shiny)
 
 
-turns <- -1
 
-lowa <- -5
-higha <- 5
-lowb <- -2
-highb <- 2
-sigma <- 3
-ta <- round(runif(1,min=lowa,max=higha),1)
-tb <- round(runif(1,min=lowb,max=highb),1)
-n <- 10  #number of points
-x <- 1:n
-y <- ta+tb*x+rnorm(n,mean=0,sd=sigma)
-
-#SS for the regression line:
-mod <- lm(y~x)
-ess <- sum((resid(mod))^2)
-
-#determine nice limits for plot (and a slider):
-reg.slope <- coef(mod)[2]
-reg.int <- coef(mod)[1]
-
-#Find range of y-intercepts of lines through
-#points on scatterplot having slope = reg.slope
-int.min <- min(y-reg.slope*x)
-int.max <- max(y-reg.slope*x)
-int.band <- (int.max-int.min)/2
-
-#Expand this range, and make sure it includes 0:
-int.mid <- (int.max+int.min)/2
-lowa.slider <- floor(min(c(int.mid-1.2*int.band,-1,min(y)-1)))
-higha.slider <- ceiling(max(c(int.mid+1.2*int.band,1,max(y)+1)))
-
-#plot limits reflect this range, too:
-ymin <- lowa.slider
-ymax <- higha.slider
-y.mean <- mean(y)
-
-
-#SS for the line initially placed (a=0,b=0):
-total.ss <- sum((y-mean(y))^2)
-your.ss <- total.ss
-#You start at line with slope 0, intercept = mean(y)
 
 
 # Define server logic for FindRegLine
 shinyServer(function(input, output) {
   
+  
+  turns <- -1
+  
+  lowa <- -5
+  higha <- 5
+  lowb <- -2
+  highb <- 2
+  sigma <- 3
+  ta <- round(runif(1,min=lowa,max=higha),1)
+  tb <- round(runif(1,min=lowb,max=highb),1)
+  n <- 10  #number of points
+  x <- 1:n
+  y <- ta+tb*x+rnorm(n,mean=0,sd=sigma)
+  
+  #SS for the regression line:
+  mod <- lm(y~x)
+  ess <- sum((resid(mod))^2)
+  
+  #determine nice limits for plot (and a slider):
+  reg.slope <- coef(mod)[2]
+  reg.int <- coef(mod)[1]
+  
+  #Find range of y-intercepts of lines through
+  #points on scatterplot having slope = reg.slope
+  int.min <- min(y-reg.slope*x)
+  int.max <- max(y-reg.slope*x)
+  int.band <- (int.max-int.min)/2
+  
+  #Expand this range, and make sure it includes 0:
+  int.mid <- (int.max+int.min)/2
+  lowa.slider <- floor(min(c(int.mid-1.2*int.band,-1,min(y)-1)))
+  higha.slider <- ceiling(max(c(int.mid+1.2*int.band,1,max(y)+1)))
+  
+  #plot limits reflect this range, too:
+  ymin <- lowa.slider
+  ymax <- higha.slider
+  y.mean <- mean(y)
+  
+  
+  #SS for the line initially placed (a=0,b=0):
+  total.ss <- sum((y-mean(y))^2)
+  your.ss <- total.ss
+  #You start at line with slope 0, intercept = mean(y)  
+
+
+
   
   #make the a and b sliders
   output$aslider <- renderUI({

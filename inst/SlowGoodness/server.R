@@ -1,12 +1,12 @@
 library(shiny)
 
-total <- 0
-chisqstats <- numeric()
+
 
 # Define server logic
-shinyServer(function(input, output,session) {
+shinyServer(function(input, output) {
 
-
+  total <- 0
+  chisqstats <- numeric()
   
   nullsInput <- reactive({
     probs <- as.numeric(unlist(strsplit(input$nulls,split=",")))
