@@ -138,7 +138,10 @@ ttestGC <-
       resp <- data[,respname]
       exp <- data[,expname]
       
-      if (length(unique(exp))!=2) {
+      expEntries <- unique(exp)
+      nonTrivial <- length(expEntries[!is.na(expEntries)])
+      
+      if (nonTrivial!=2) {
         stop("Explanatory variable must have exactly two values;",expname,
              "has",length(unique(exp)),"values.")
       }
