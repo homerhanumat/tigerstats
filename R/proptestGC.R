@@ -106,8 +106,11 @@ proptestGC <-
         respname <- as.character(prsd$rhs)[3]
         explanatory <- data[,expname]
         
+        expEntries <- unique(explanatory)
+        nonTrivial <- length(expEntries[!is.na(expEntries)])
+        
         #Check to see that explanatory variable has exactly two values:
-        if (length(unique(explanatory)) != 2) stop(paste(expname,"must have exactly two values."))
+        if (nontrivial != 2) stop(paste(expname,"must have exactly two values."))
         
         
         response <- data[,respname]
