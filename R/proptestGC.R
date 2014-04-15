@@ -110,7 +110,7 @@ proptestGC <-
         nonTrivial <- length(expEntries[!is.na(expEntries)])
         
         #Check to see that explanatory variable has exactly two values:
-        if (nontrivial != 2) stop(paste(expname,"must have exactly two values."))
+        if (nonTrivial != 2) stop(paste(expname,"must have exactly two values."))
         
         
         response <- data[,respname]
