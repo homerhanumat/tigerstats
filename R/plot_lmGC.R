@@ -3,6 +3,7 @@
 #' @description Utility diagnostic plot
 #' 
 #' @rdname plot.GClm
+#' @keywords internal
 #' @method plot GClm
 #' @usage 
 #' \S3method{plot}{GClm}(x,y,...)
