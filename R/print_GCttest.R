@@ -1,6 +1,7 @@
 #' @title Print Function for ttestGC
 
 #' @description Utility print function
+#' @keywords internal
 #' 
 #' @rdname print.GCttest
 #' @method print GCttest

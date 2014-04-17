@@ -12,8 +12,8 @@ Datasets and functions useful for teaching elementary statistics.
 \tabular{ll}{
 Package: \tab tigerstats\cr
 Type: \tab Package\cr
-Version: \tab 0.1.4-2\cr
-Date: \tab 2014-04-15\cr
+Version: \tab 0.1.4-3\cr
+Date: \tab 2014-04-17\cr
 License: \tab GPL (>=3)\cr
 }
 

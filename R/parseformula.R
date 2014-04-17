@@ -3,6 +3,7 @@
 #' utility for extracting portions of formulas.
 #'
 #' @rdname ParseFormula
+#' @keywords internal
 #' @usage ParseFormula(formula,...)
 #' @param formula, a formula
 #' @param \dots additional arguments, should folks decide to add them someday

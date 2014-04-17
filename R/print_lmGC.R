@@ -1,6 +1,7 @@
 #' @title Print Function for GC Linear Regression
 
 #' @description Utility print function
+#' @keywords internal
 #' 
 #' @rdname print.GClm
 #' @method print GClm

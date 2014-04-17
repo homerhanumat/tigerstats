@@ -21,4 +21,5 @@ utility for extracting portions of formulas.
 Inspired by similar function in package \code{mosaic}.
 Included in this package to reduce dependency.
 }
+\keyword{internal}
 

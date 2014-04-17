@@ -25,4 +25,5 @@ predict(SpeedModel,x=3.0)
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
+\keyword{internal}
 

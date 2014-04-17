@@ -1,6 +1,7 @@
 #' @title Print Function for GC Proportions Test (Two-Sample)
 
 #' @description Utility print function
+#' @keywords internal
 #' 
 #' @rdname print.gcp2test
 #' @method print gcp2test
