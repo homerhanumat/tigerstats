@@ -22,4 +22,5 @@ Utility diagnostic plot
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
+\keyword{internal}
 
