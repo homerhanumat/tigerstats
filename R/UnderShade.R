@@ -1,7 +1,7 @@
 #' @title Shade Under Density Curves
 
 #' @description Utility function for ptGC, pnormGC, pchisqGC, possibly others
-#' 
+#' @keywords internal
 #' @rdname UnderShade
 #' @usage UnderShade(low,high,func,...)
 #' @param low lower bound
