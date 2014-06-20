@@ -39,7 +39,7 @@ print.GCttest <- function(x,...)  {
     }
   
   if (subm %in% c("fm")) {
-    cat("\t",GCttest$varnames[2],"minus",GCttest$varnames[1],"\n")
+    cat("\t",GCttest$varnames[1],"minus",GCttest$varnames[2],"\n")
   }
   
   if (subm %in% c("s2e","s2u")) cat("\tResults from summary data.\n")
