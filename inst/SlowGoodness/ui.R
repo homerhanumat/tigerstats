@@ -28,7 +28,7 @@ shinyUI(pageWithSidebar(
              "the number of observed counts!"),
     helpText("One simulation means the machine will produce a one table of",
              "counts, using the Null probabilities.  How many simulations do",
-             "you want the machine to perform at once?  Enter the desired number."),
+             "you want the machine to perform at once?  (Limit is 10000.)"),
     numericInput("sims","Number of Simulations at Once",1,min=0,step=1),
     br(),
     actionButton("resample","Simulate Now"),

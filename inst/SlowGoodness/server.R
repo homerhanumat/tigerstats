@@ -4,6 +4,7 @@ source("chisqGraph.R")
 
 # Define server logic for SlowGoodness
 shinyServer(function(input, output) {
+  simLimit <- 10000
 
   #Keep track of num,ber of simulations in a given "set-up"
   numberSims <- 0
@@ -40,7 +41,7 @@ shinyServer(function(input, output) {
       nullProbs <- isolate(nullsInput())
       totalCounts <- isolate(sum(obsInput()))
       expCounts <- nullProbs*totalCounts
-      reps <- isolate(input$sims)
+      reps <- min(simLimit,isolate(input$sims))
       newSims <- rmultinom(n=reps,size=totalCounts,prob=nullProbs)
       chisqNew <- colSums(newSims^2/expCounts)-totalCounts
       chisqSims <<- c(chisqSims,chisqNew)
