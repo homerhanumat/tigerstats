@@ -26,41 +26,49 @@ shinyUI(pageWithSidebar(
     helpText("Before you begin resampling, make sure that the",
              "number of Null Probabilities that you entered matches",
              "the number of observed counts!"),
-    actionButton("resample","Resample Now"),
+    helpText("One simulation means the machine will produce a one table of",
+             "counts, using the Null probabilities.  How many simulations do",
+             "you want the machine to perform at once?  Enter the desired number."),
+    numericInput("sims","Number of Simulations at Once",1,min=0,step=1),
+    br(),
+    actionButton("resample","Simulate Now"),
     actionButton("reset","Start Over")
     ),
 
   
   # Here comes the main panel
   
+  # Here comes the main panel
+  
   mainPanel(
     
+    conditionalPanel(
+      condition="input.resample == 0 || output.totalPrev == output.total",
+      plotOutput("barGraphInitial"),
+      #      p(textOutput("remarksInitial")) weird bug here I think
+      tableOutput("obsTable")
+    ),
     
     conditionalPanel(
-      condition="output.resampcount == 0",
-      plotOutput("bargraphinit"),
-      h4(textOutput("remark0")),
-      tableOutput("obstable")
-      ),
-    
-    conditionalPanel(
-      condition="output.resampcount == 1",
-      plotOutput("bargraph1"),
-      h4(textOutput("remark1"))),
-    
-    conditionalPanel(
-      condition="output.resampcount > 1",
-    tabsetPanel(selected="Observed Results",
-      tabPanel("Observed Results",
-                 plotOutput("bargraph"),
-               h4(textOutput("remark2")),
-               tableOutput("resampstats")),
-      tabPanel("Density Plot (Resamples)",
-               plotOutput("constructden"),
-               tableOutput("tableden"),
-               tableOutput("summaryden")),
-      id="MyPanel"
-    )
+      condition="(input.resample > 0 && input.reset == 0) || output.total > output.totalPrev",
+      tabsetPanel(selected="Latest Simulation",
+                  tabPanel("Latest Simulation",
+                           verbatimTextOutput("fullSim"),
+                           plotOutput("barGraphLatest"),
+                           p(textOutput("remarksLatest1")),
+                           tableOutput("summary1"),
+                           p(textOutput("remarksProbBar"))),
+                  tabPanel("Density Plot of Simulations",
+                           plotOutput("densityplot"),
+                           p(textOutput("remarksLatest2")),
+                           tableOutput("summary2"),
+                           p(textOutput("remarksProbDensity"))),
+                  tabPanel("Probability Distribution",
+                           plotOutput("chisqCurve"),
+                           p(textOutput("remarksProb"))
+                  ),
+                  id="MyPanel"
+      )
     )
     
     
