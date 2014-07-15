@@ -3,7 +3,7 @@ Type: Package
 Title: R for Elementary Statistics
 Version: 0.1.4-5
 Date: 2014-07-11
-Author: Rebekah Robinson <rebekah_robinson@georgetowncollege.edu> and Homer
+Author: Rebekah Robinson <rrobinson20@humana.com> and Homer
     White <hwhite0@georgetowncollege.edu>
 Maintainer: Homer White <hwhite0@georgetowncollege.edu>
 Description: This package consists of datasets and functions that are useful

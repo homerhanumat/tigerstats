@@ -12,7 +12,7 @@ statistics.
 }
 \author{
 Rebekah Robinson
-(\email{Rebekah_Robinson@georgetowncollege.edu}), Homer
+(\email{rrobinson20@humana.com}), Homer
 White (\email{hwhite0@georgetowncollege.edu})
 }
 \references{

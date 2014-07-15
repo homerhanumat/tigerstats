@@ -7,7 +7,7 @@
 #' @aliases tigerstats tigerstats-package
 #' @docType package
 #' @title R for Elementary Statistics
-#' @author Rebekah Robinson (\email{Rebekah_Robinson@@georgetowncollege.edu}), Homer White (\email{hwhite0@@georgetowncollege.edu})
+#' @author Rebekah Robinson (\email{rrobinson20@@humana.com}), Homer White (\email{hwhite0@@georgetowncollege.edu})
 #' @references
 #' \url{http://statistics.georgetowncollege.edu}
 #'
