@@ -4,7 +4,7 @@
 \section{Changes in version 0.1.4}{
 \itemize{
 
-\item Addition of three new Shiny apps: versions of the manipulate apps \code{CIMean} and \code{Type12Errors}, and a third app \code{CoinFlip} that provides an early introduction to binomial random variables in an inferential context.  To run the Shiny apps locally from an R session, install package \code{shiny} from CRAN and then at the console type commands like \code{shiny::runApp(system.file('CIMean', package='tigerstats'))}
+\item Addition of four new Shiny apps: versions of the manipulate apps \code{CIMean} and \code{Type12Errors}, and and two new apps: \code{CoinFlip} that provides an early introduction to binomial random variables in an inferential context, and \code{RandomExpBinom} that explores experiments with two treatment groups in a completely randomized design in which the response variable is Bernoulli.  To run the Shiny apps locally from an R session, install package \code{shiny} from CRAN and then at the console type commands like \code{shiny::runApp(system.file('CIMean', package='tigerstats'))}
 
 }
 }
