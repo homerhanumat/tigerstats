@@ -11,7 +11,7 @@
 #' \describe{ \item{season}{The year of play}
 #' \item{gamedate}{Date of the game in which the pitch was thrown}
 #' \item{pitch_type}{Type of pitch thrown:  CH (Change-up), CU (Curveball), FF (Four-Seam Fastball),
-#' FT (Two-Seam Fastball).  Pitch type is determined by computer algorithm.}
+#' FT (Two-Seam Fastball), SL (Slider).  Pitch type is determined by computer algorithm.}
 #' \item{balls}{Current ball count}
 #' \item{strikes}{Current strike count}
 #' \item{pitches}{number of pitches previously thrown in the game}
