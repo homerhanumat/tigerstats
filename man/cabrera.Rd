@@ -2,7 +2,7 @@
 \docType{data}
 \name{cabrera}
 \alias{cabrera}
-\title{Justin Verlander}
+\title{Miguel Cabrera}
 \format{A data frame with 6265 observations on the following 12 variables.  Each observation
 is a pitch to Cabrera.
 \describe{ \item{season}{The year of play}

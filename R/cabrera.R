@@ -1,4 +1,4 @@
-#'Justin Verlander
+#'Miguel Cabrera
 #' 
 #' PITCHf/x data on nine-time All-Star Miguel Cabrera, who is thought to be one of the best
 #' pure hitters in baseball.  Covers seasons 2009 through 2012.
