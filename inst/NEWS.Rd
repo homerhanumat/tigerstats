@@ -1,6 +1,14 @@
 \name{NEWS}
 \title{NEWS file for the tigerstats package}
 
+\section{Changes in version 0.1.5}{
+\itemize{
+
+\item Addition of baseball dataset(s):  \code{hofbatting}.
+
+}
+}
+
 \section{Changes in version 0.1.4}{
 \itemize{
 
