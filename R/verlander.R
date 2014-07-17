@@ -9,7 +9,7 @@
 #' @format A data frame with 15307 observations on the following 12 variables.  Each observation
 #' is a single pitch.
 #' \describe{ \item{season}{The year of play}
-#' \item{gamedate}{Date of the game in withc the pitch was thrown}
+#' \item{gamedate}{Date of the game in which the pitch was thrown}
 #' \item{pitch_type}{Type of pitch thrown:  CH (Change-up), CU (Curveball), FF (Four-Seam Fastball),
 #' FT (Two-Seam Fastball).  Pitch type is determined by computer algorithm.}
 #' \item{balls}{Current ball count}
