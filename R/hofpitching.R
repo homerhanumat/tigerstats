@@ -17,7 +17,7 @@
 #' \item{Era}{Era of Baseball history in which the player was (for the most part) active.
 #' Values are:  19th century  (before 1900), Dead Ball (1900-1919), Lively Ball (1920-1940),
 #' Integration, (1941-1959), Expansion (1960-1975), Free Agency (1976-1992), Long Ball (1993 +).}
-#' \item{ASG}{Unknown}
+#' \item{ASG}{Number of All-Star games played}
 #' \item{WAR}{Wins above replacement}
 #' \item{W}{Games won}
 #' \item{L}{Games lost}
