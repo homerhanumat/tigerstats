@@ -4,7 +4,7 @@
 \section{Changes in version 0.1.5}{
 \itemize{
 
-\item Addition of baseball datasets:  \code{hofbatting}, \code{verlander}.
+\item Addition of baseball datasets:  \code{hofbatting}, \code{hofpitching}, \code{verlander} and \code{cabrera}.
 
 }
 }
