@@ -194,7 +194,7 @@ shinyServer(function(input, output) {
   })
   
   output$remarksProbBar <- renderText({
-    obs <- isolate(obschisqInput())
+    obs <- obschisqInput()
     paste0("The percentage in the table gives the approximate probability, based on our resamples so far, of getting a chi-square statistic of ",
            round(obs,2)," or more, if the probability of each outcome is as the Null probabilities state.",
            "  The more resamples you take the better this approximations will be!")
@@ -217,7 +217,7 @@ shinyServer(function(input, output) {
   })
   
   output$remarksProbDensity <- renderText({
-    obs <- isolate(obschisqInput())
+    obs <- obschisqInput()
     paste0("The curve above approximates the true probability distribution of the chi-square statistic.",
            " It is based on our resamples so far.  The percentage in the table gives the approximate probability, based on our resamples so far, of getting a chi-square statistic of ",
            round(obs,2)," or more, if the probability of each outcome is as the Null probabilities state.",
@@ -226,15 +226,15 @@ shinyServer(function(input, output) {
   
   
   output$chisqCurve <- renderPlot({
-      obs <- isolate(obschisqInput())
-      degFreedom <- isolate(dfInput())
+      obs <- obschisqInput()
+      degFreedom <- dfInput()
       chisqGraph(bound=obs,region="above",df=degFreedom,xlab="Chi-Square Values",
                  graph=TRUE)
     abline(v=obs)
   })
   
   output$remarksProb <- renderText({
-    obs <- isolate(obschisqInput())
+    obs <- obschisqInput()
     paste0("The curve above approximates the true probability distribution of the chi-square statistic.",
              " The shaded area gives the approximate probability of getting a chi-square statistic of ",
              round(obs,2)," or more, if the probability of each outcome is as the Null probabilities state.")
