@@ -113,17 +113,86 @@ shinyServer(function(input, output) {
     max(densities$y)*1.5
   })
   
+
+  simLimit <- 10000 #upper limit on number of sims at once
   
-  output$go <- reactive({
-    input$go
+  #Keep track of number of simulations in a given "set-up"
+  numberSims <- 0
+  intervalResults <- numeric()
+  tstats <- numeric()
+  latestSamp <- numeric()
+  
+  #we also want the ability to refresh the "set-up
+  total <- 0 #total number of sims over all set-ups including current one
+  totalPrev <- 0 #total number of sims over all set-ups excluding current one
+  
+  simsUpdate <- reactive({
+    if (input$resample > 0) {
+
+
+      reps <- min(simLimit,isolate(input$sims))
+      total <<- total + reps
+      numberSims <<- numberSims + reps
+      
+      popMean <- isolate(popMean())
+      n <- isolate(input$n)
+      conf = isolate(input$confLevel/100)
+      t.input = conf + ((1 - conf)/2)
+      tMultiplier = qt(t.input, df = n - 1)
+      
+      itemNumb <- reps*n
+      sampleItems <- isolate(
+        switch(input$popDist,
+               normal=rnorm(itemNumb,mean=muNorm,sd=sigmaNorm),
+               skew=rgamma(itemNumb,shape=shapeGamma,scale=scaleGamma),
+               superskew=rpareto(itemNumb,alpha=alphaPareto,theta=thetaPareto),
+               outliers=routlier(itemNumb)
+        ))
+      
+      sampleMatrix <- matrix(sampleItems,ncol=n,nrow=reps)
+      
+      latestSamp <<- sampleMatrix[reps,]
+      
+      xbar <- rowSums(sampleMatrix)/n
+      se <- sqrt((rowSums(sampleMatrix^2)-n*xbar^2)/(n^2-n))
+      margin = tMultiplier * se
+      lower <- xbar - margin
+      upper <- xbar + margin
+      goodInterval <- ((popMean > lower) & (popMean < upper))
+      intervalResults <<- c(intervalResults,goodInterval)
+      
+      tstats <<- c(tstats,(xbar-popMean)/se)
+      
+    } #end if resample
+      
   })
   
-  output$actionType <- reactive({
-    input$actionType
+  #this erases the simulation history and puts user back to initial graph
+  simsReset <- reactive({
+    input$reset
+    totalPrev <<- totalPrev + numberSims
+    numberSims <<- 0
+    intervalResults <<- numeric()
+    tstats <<- numeric()
+    latestSamp <<- numeric()
+    return(totalPrev)
   })
   
-  outputOptions(output, 'go', suspendWhenHidden=FALSE)
-  outputOptions(output, 'actionType', suspendWhenHidden=FALSE)
+  #help with conditonal panals
+  output$totalPrev <- reactive({
+    simsReset()
+  })
+  
+  # needed for the conditional panels to work
+  outputOptions(output, 'totalPrev', suspendWhenHidden=FALSE)
+  
+  output$total <- reactive({
+    simsUpdate() #for dependency
+    total
+  })
+  
+  # needed for the conditional panels to work
+  outputOptions(output, 'total', suspendWhenHidden=FALSE)
   
   
   output$initialGraph <- renderPlot({
@@ -150,36 +219,38 @@ shinyServer(function(input, output) {
     
   })
   
-  output$tstat <- renderPlot({
-    frame <- intervalFrame()
-    tstats <- frame$tstats
+  output$tstatistic <- renderPlot({
+    input$resample
     n <- isolate(input$n)
-    if (n < 5) {
+    if (numberSims == 1) {
+      tstatDen <- density(tstats,n=1024,from=-10,to=10,bw=1)
+    }
+    if (numberSims >= 2 && n < 5) {
       tstatDen <- density(tstats,n=1024,from=-10,to=10,bw=0.1)
-    } else tstatDen <- density(tstats,n=1024,bw="SJ")
+    }
+    if (numberSims >= 2 && n >= 5) {
+      tstatDen <- density(tstats,n=1024,from=-10,to=10,bw="SJ")
+    }
+    
+    if (numberSims > 0) {
     ymax <- max(tstatDen$y,dt(0,df=n-1))
     plot(tstatDen$x,tstatDen$y,type="l",lwd=2,col="blue",
          main="t-statistic vs. t-curve",cex.main=2,
          xlab="t", ylim=c(0,ymax),xlim=c(-6,6),
          ylab="density")
     curve(dt(x,df=n-1),-6,6,col="red",lwd=2,add=TRUE)
+    } #end check that there are samples
     
   })
   
   output$graphSample <- renderPlot({
-    input$go
+    input$resample #for the dependency
+    if(numberSims > 0) {
     popDen <- isolate(popDen())
     popMean <- isolate(popMean())
     n <- isolate(input$n)
     
-    
-    samp <- isolate(
-      switch(input$popDist,
-             normal=rnorm(n,mean=muNorm,sd=sigmaNorm),
-             skew=rgamma(n,shape=shapeGamma,scale=scaleGamma),
-             superskew=rpareto(n,alpha=alphaPareto,theta=thetaPareto),
-             outliers=routlier(n)
-        ))
+    samp <- latestSamp
     
     
     xmin <- isolate(popMin())
@@ -219,63 +290,22 @@ shinyServer(function(input, output) {
     text(x=ci[2],y=intLevel,labels=")")
     points(xbar, intLevel, col = "blue", pch = 20,cex=2)
     
+    } # end checking that we have a latest sample
+    
   })
   
-  intervalFrame <- reactive({
-    input$go
-    popMean <- isolate(popMean())
-    n <- isolate(input$n)
-    conf = isolate(input$confLevel/100)
-    t.input = conf + ((1 - conf)/2)
-    tMultiplier = qt(t.input, df = n - 1)
-    
-    action <- isolate(input$actionType)
-    if (action == "fiveThousand") {
-      itemNumb <- 5000*n
-      sampleItems <- isolate(
-        switch(input$popDist,
-               normal=rnorm(itemNumb,mean=muNorm,sd=sigmaNorm),
-               skew=rgamma(itemNumb,shape=shapeGamma,scale=scaleGamma),
-               superskew=rpareto(itemNumb,alpha=alphaPareto,theta=thetaPareto),
-               outliers=routlier(itemNumb)
-        ))
-      
-      sampleMatrix <- matrix(sampleItems,ncol=n,nrow=5000)
-      
-      xbar <- rowSums(sampleMatrix)/n
-      se <- sqrt((rowSums(sampleMatrix^2)-n*xbar^2)/(n^2-n))
-      #se <- sqrt(diag(var(t(sampleMatrix))))/sqrt(n)
-      margin = tMultiplier * se
-      lower <- xbar - margin
-      upper <- xbar + margin
-      goodInterval <- ((popMean > lower) & (popMean < upper))
-      goodInterval <- factor(ifelse(goodInterval,"yes","no"))
-      
-      tstats <- (xbar-popMean)/se
-      
-      results <- data.frame(
-        tstats=tstats,
-        LowerBound=lower,
-        UpperBound=upper,
-        PopulationMean=popMean,
-        ContainsMean=goodInterval)
-      results
-    }
-  })
+
   
   output$summary <- renderTable({
-    
-      frame <- intervalFrame()
-      goodCount <- length(frame$ContainsMean[frame$ContainsMean=="yes"])
-      tab <- data.frame("Good Intervals"=as.character(goodCount),
-                        "Bad Intervals"=as.character(5000-goodCount),
-                        "Estimated True Confidence Level"=paste((goodCount/50),"%",sep=""))
+      input$resample #for the dependency
+      goodCount <- sum(intervalResults)
+      tab <- data.frame(
+                "Good Intervals"=goodCount,
+                "Total Intervals"=numberSims,
+                "Estimated True Confidence Level"=paste(round(goodCount/numberSims*100,3),"%",sep="")
+                )
       tab
   })
-  
-  output$intervalFrame = renderDataTable({
-      intervalFrame()[,2:5]}, options = list(aLengthMenu = c(5, 30, 50), iDisplayLength = 5)
-  )
 
   
 })

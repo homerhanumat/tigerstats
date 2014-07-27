@@ -11,36 +11,35 @@ shinyUI(pageWithSidebar(
   
   # Sidebar
   sidebarPanel(
-    selectInput(inputId="popDist",label="Population Shape",
+    conditionalPanel(
+      condition="input.resample == 0 || output.totalPrev == output.total",
+      selectInput(inputId="popDist",label="Population Shape",
                 choices=list("Normal"="normal",
                              "Skewy"="skew",
                              "REALLY Skewed"="superskew",
                              "Way-Out Outlier Group"="outliers")),
-    br(),
+      br(),
     
-    helpText("Choose the sample size."),
+      helpText("Choose the sample size."),
     
-    sliderInput(inputId="n","Sample Size n",value=2,min=2,max=50,step=1),
-    br(),
+      sliderInput(inputId="n","Sample Size n",value=2,min=2,max=50,step=1),
+      br(),
     
-    helpText("How confident do you want to be that the population mean is contained",
+      helpText("How confident do you want to be that the population mean is contained",
              "within the confidence interval?   Use the slider to select a desired",
              "percent-confidence level."),
     
-    sliderInput(inputId="confLevel","Confidence Level",value=95,min=50,max=99,step=1),
-    br(),
+      sliderInput(inputId="confLevel","Confidence Level",value=80,min=50,max=99,step=1)
+        ),
+      helpText("How many samples would you like to take at one time?  Limit is 10000. With each ",
+             "sample, we'll make a confidence interval for the population mean."),
+      numericInput("sims","Number of Samples at Once",1,min=0,step=1),
+      actionButton("resample","Sample Now"),
+      conditionalPanel(
+        condition="(input.resample > 0 && input.reset == 0) || output.total > output.totalPrev",
+        actionButton("reset","Start Over")
+      )
     
-    helpText("You can get just one sample, with a histogram of the sample and a picture",
-             "of the confidence interval. or you can get 5000 samples, with a summary",
-             "of how many times the interval contained the population mean."),
-    
-    radioButtons(inputId="actionType","One at a Time or 5000 at Once?",
-                 list("Just one sample, please"="one",
-                      "Give me 5000 samples!"="fiveThousand")),
-    br(),
-    
-    helpText("When you are ready to go, push this button:"),
-    actionButton("go","Take the Sample(s)")
   ),
   
   
@@ -49,33 +48,30 @@ shinyUI(pageWithSidebar(
   mainPanel(
     
     conditionalPanel(
-      condition="output.go == 0",
+      condition="input.resample == 0 || output.totalPrev == output.total",
       plotOutput("initialGraph")
     ),
+
     
     conditionalPanel(
-      condition="(output.go > 0) && (output.actionType == 'one')",
-      plotOutput("graphSample"),
-      HTML("<p> </p>"),
-      HTML("<ul>
-                <li>The population density curve is in red.</li>
-                <li>The vertical line marks the population mean.</li>
-                <li>The histogram of the sample is in light blue.</li>
-                <li>The sample mean is the big blue dot.</li>
-                <li>The confidence interval is in green.</li>
-          </ul>")
-    ),
-    
-    conditionalPanel(
-      condition="(output.go > 0) && (output.actionType == 'fiveThousand')",
+      condition="(input.resample > 0 && input.reset == 0) || output.total > output.totalPrev",
       
       tabsetPanel(
-        tabPanel("Interval Summary",
+        tabPanel("Latest Interval",
+                 plotOutput("graphSample"),
+                 HTML("<p> </p>"),
+                 HTML("<ul>
+                        <li>The population density curve is in red.</li>
+                        <li>The vertical line marks the population mean.</li>
+                        <li>The histogram of the sample is in light blue.</li>
+                        <li>The sample mean is the big blue dot.</li>
+                        <li>The confidence interval is in green.</li>
+                      </ul>")),
+        tabPanel("Summary of Intervals",
                  plotOutput("initialGraph2"),
-                 tableOutput("summary"),
-                 dataTableOutput("intervalFrame")), 
+                 tableOutput("summary")), 
         tabPanel("t-statistic",
-                 plotOutput("tstat"),
+                 plotOutput("tstatistic"),
                  HTML(
                    "<p>The plots above compare the actual distribution of the t-statistic to the t-curve with n-1 degrees of freedom.</p>
                      <p></p>

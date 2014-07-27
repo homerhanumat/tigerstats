@@ -6,7 +6,7 @@ source("chisqGraph.R")
 shinyServer(function(input, output) {
   simLimit <- 10000
 
-  #Keep track of num,ber of simulations in a given "set-up"
+  #Keep track of number of simulations in a given "set-up"
   numberSims <- 0
   chisqSims <- numeric()
   latestSim <- NULL
@@ -18,7 +18,6 @@ shinyServer(function(input, output) {
   
   nullsInput <- reactive({
     probs <- as.numeric(unlist(strsplit(input$nulls,split=",")))
-    probs/sum(probs)
   })
   
   obsInput <- reactive({
@@ -30,15 +29,43 @@ shinyServer(function(input, output) {
     unlist(strsplit(input$names,split=","))  
   })
   
+  
+  goodNulls <- reactive({
+    nulls <- nullsInput()
+    goodNulls <- TRUE
+    if (length(nulls) <= 1) goodNulls <- FALSE
+    if (any(is.na(nulls))) goodNulls <- FALSE
+    if (any(nulls <= 0)) goodNulls <- FALSE
+    goodNulls     
+  })
+  
+  goodObs <- reactive({
+    obs <- obsInput()
+    goodObs <- TRUE
+    if (length(obs) <= 1) goodObs <- FALSE
+    if (any(is.na(obs))) goodObs <- FALSE
+    if (any(obs < 0)) goodObs <- FALSE
+    goodObs     
+  })
+  
+  goodNames <- reactive({
+    names <- namesInput()
+    goodNames <- TRUE
+    if (length(names) <= 1) goodNames <- FALSE
+    if (any(is.na(names))) goodNames <- FALSE
+    goodNames     
+  })
+  
   obschisqInput <- reactive({
+    nulls <- nullsInput()/sum(nullsInput())
     totalCounts <- sum(obsInput())
-    expected <- nullsInput()*totalCounts
+    expected <- nulls*totalCounts
     sum(obsInput()^2/expected)-totalCounts
   })
   
   simsUpdate <- reactive({
     if (input$resample > 0) {
-      nullProbs <- isolate(nullsInput())
+      nullProbs <- isolate(nullsInput()/sum(nullsInput()))
       totalCounts <- isolate(sum(obsInput()))
       expCounts <- nullProbs*totalCounts
       reps <- min(simLimit,isolate(input$sims))
@@ -95,29 +122,72 @@ shinyServer(function(input, output) {
   # needed for the conditional panels to work
   outputOptions(output, 'total', suspendWhenHidden=FALSE)
   
-  
   output$barGraphInitial <- renderPlot({
+    validate(
+      need(goodNulls(),"Enter at least two null probabilities.  They should all be positive numbers.")
+      )
+    validate(
+      need(goodObs(),"Enter at least two counts.  All counts should be non-negative integers.")
+      )
+    validate(
+      need(goodNames(),"Enter a name for each possible outcome being tallied.")
+      )
+    
     observed <- obsInput()
-    expected <- nullsInput()*sum(observed)
+    nulls <- nullsInput()/sum(nullsInput())
+    names <- namesInput()
+    
+    lengthCheck <- (length(nulls) == length(observed)) && (length(observed)==length(names))
+    
+    validate(
+      need(lengthCheck,
+        "Make sure that you enter the same number of null probabilities, counts and names.")
+      )
+    
+    observed <- obsInput()
+    expected <- nulls*sum(observed)
     tab <- rbind(observed,expected)
     rownames(tab) <-c("Observed","Expected")
-    colnames(tab) <- namesInput()
+    colnames(tab) <- names
     barplot(tab,beside=T,col=c("#ee7700","grey"),
             main="Bargraph of Observed and Expected Counts",xlab="",ylab="Counts",
             legend.text=TRUE)
   })
   
   output$remarksInitial <- renderText({
+    
+    observed <- obsInput()
+    nulls <- nullsInput()/sum(nullsInput())
+    names <- namesInput()
+    
+    allGood <- (goodNulls() && goodObs()) && goodNames()
+    lengthCheck <- (length(nulls) == length(observed)) && (length(observed)==length(names))
+    
+    validate(
+      need(allGood && lengthCheck,"")
+      )
+    
     chisq <- obschisqInput()
     rounded1 <- round(chisq,2)
     paste("Observed chi-square statistic =  ",as.character(rounded1),sep="")
   })
   
   output$obsTable <- renderTable({
+    
     observed <- obsInput()
-    expected <- nullsInput()*sum(observed)
+    nulls <- nullsInput()/sum(nullsInput())
+    names <- namesInput()
+    
+    allGood <- (goodNulls() && goodObs()) && goodNames()
+    lengthCheck <- (length(nulls) == length(observed)) && (length(observed)==length(names))
+    
+    validate(
+      need(allGood && lengthCheck,"")
+    )
+    
+    expected <- nulls*sum(observed)
     contribs <- (observed-expected)^2/expected
-    df <- data.frame(Levels=namesInput(),
+    df <- data.frame(Levels=names,
                      Observed=observed,
                      Expected=round(expected,2),
                      cont=round(contribs,2)
@@ -149,7 +219,8 @@ shinyServer(function(input, output) {
     input$resample
     if (length(chisqSims) > 0) {
       totalCounts <- isolate(sum(obsInput()))
-      expected <- isolate(totalCounts*nullsInput())
+      nulls <- isolate(nullsInput()/sum(nullsInput()))
+      expected <- totalCounts*nulls
       tab <- rbind(obsInput(),expected,latestSim)
       rownames(tab) <-c("Observed","Expected","Resampled")
       colnames(tab) <- isolate(namesInput())

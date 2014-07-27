@@ -5,7 +5,7 @@ source("binomGraphs.R")
 # Define server logic for CoinFlip
 shinyServer(function(input, output) {
   
-  simLimit <- 10000 #upper bounds on number of resamples at once
+  simLimit <- 10000 #upper limit on number of sims at once
 
   #Keep track of number of simulations in a given "set-up"
   numberSims <- 0
@@ -21,7 +21,7 @@ shinyServer(function(input, output) {
     if (input$resample > 0) {
     p <- isolate(input$p)
     n <- isolate(input$n)
-    reps <- min(simLimit,isolate(input$sims))
+    reps <- min(10000,isolate(input$sims))
     newSims <- rbinom(reps,size=n,prob=p)
     successSims <<- c(successSims,newSims)
     latestSim <<- newSims[reps]
@@ -29,7 +29,8 @@ shinyServer(function(input, output) {
     total <<- total+reps
     
     #now build fake list of outcomes for each trial, on last sim
-    full <- c(rep(input$success,latestSim),rep(input$failure,n-latestSim))
+    full <- c(rep(isolate(input$success),latestSim),
+              rep(isolate(input$failure),n-latestSim))
     full <- sample(full,size=n,replace=FALSE)
     fullSim <<- full
     list(numberSims,successSims,latestSim)
@@ -97,6 +98,18 @@ outputOptions(output, 'total', suspendWhenHidden=FALSE)
     x <- input$xObs
     n <- input$n
     p <- input$p
+    
+    validate(
+      need(input$success,"I'll wait until you enter a name for Success.")
+    )
+    validate(
+      need(input$failure,"I'll wait until you enter a name for Failure.")
+    )
+    
+    validate(
+      need(x <= n,"The number of successes should not exceed the number of trials.")
+      )
+    
     vals <- valueNames()
     observed <- c(x,n-x)
     expected <- c(n*p,n*(1-p))

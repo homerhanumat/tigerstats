@@ -17,36 +17,47 @@ shinyServer(function(input, output) {
   # get intial info (needed for random \reassignment)
   
   groupSizes <- reactive({
-    as.numeric(unlist(strsplit(input$groupSizes,split=",")))
+    as.integer(unlist(strsplit(input$groupSizes,split=",")))
   })
   
   successCounts <- reactive({
-    as.numeric(unlist(strsplit(input$successCounts,split=",")))
+    as.integer(unlist(strsplit(input$successCounts,split=",")))
   })
   
   groupNames <- reactive({
     unlist(strsplit(input$groupNames,split=","))
-  }) 
-  
-  safe <- reactive({
-    groupSizes <- groupSizes()
-    n1 <- groupSizes[1]
-    n2 <- groupSizes[2]
-    successCounts <- successCounts()
-    x1 <- successCounts[1]
-    x2 <- successCounts[2]
-    
-    n1ok <- !is.na(n1)
-    n2ok <- !is.na(n2)
-    x1ok <- !is.na(x1)
-    x2ok <- !is.na(x2)
-    if (n1ok && n2ok && x1ok && x2ok) return("safe") else return("danger")
   })
   
-  #for debugging
-  output$safety <- renderText({
-    paste(safe())
+  goodSizes <- reactive({
+    sizes <- as.integer(unlist(strsplit(input$groupSizes,split=",")))
+    goodSizes <- TRUE
+    if (any(is.na(sizes))) goodSizes <- FALSE
+    if (length(sizes) != 2) goodSizes <- FALSE
+    if (any(sizes < 1)) goodSizes <- FALSE
+    goodSizes
   })
+  
+  goodCounts <- reactive({
+    counts <- as.integer(unlist(strsplit(input$successCounts,split=",")))
+    goodCounts <- TRUE
+    if (any(is.na(counts))) goodCounts <- FALSE
+    if (length(counts) != 2) goodCounts <- FALSE
+    if (any(counts < 0)) goodCounts <- FALSE
+    goodCounts
+  })
+  
+  goodNames <- reactive({
+    names <- unlist(strsplit(input$groupNames,split=","))
+    goodNames <- TRUE
+    if (any(is.na(names))) goodNames <- FALSE
+    if (length(names) != 2) goodNames <- FALSE
+    goodNames
+  })
+  
+side <- reactive({
+  obsProps <- successCounts()/groupSizes()
+  if (obsProps[1] <= obsProps[2]) return("below") else return("above")
+})
   
   obsDiff <- reactive({
     groupSizes <- groupSizes()
@@ -129,26 +140,26 @@ output$total <- reactive({
 
 # needed for the conditional panels to work
 outputOptions(output, 'total', suspendWhenHidden=FALSE)
-
-  
-  # is our observed value above or below what was expected?
-  side <- reactive({
-    if (safe()=="safe") {
-    groupSizes <- isolate(groupSizes())
-    n1 <- groupSizes[1]
-    n2 <- groupSizes[2]
-    n <- n1+n2
-    successCounts <- isolate(successCounts())
-    x1 <- successCounts[1]
-    x2 <- successCounts[2]
-    if (x1/n1 < x2/n2) return("below") else return("above")
-    
-    } # end safety check
-    else return("below")
-  })
   
   
   output$barGraphInitial <- renderPlot({
+    
+    validate(
+      need(goodNames(),"")
+    )
+    
+    validate(
+      need(goodSizes(),"")
+    )
+    
+    validate(
+      need(goodCounts(),"")
+    )
+    
+    validate(
+      need(all(successCounts()<=groupSizes()),"")
+    )
+    
     groupSizes <- groupSizes()
     n1 <- groupSizes[1]
     n2 <- groupSizes[2]
@@ -178,13 +189,44 @@ outputOptions(output, 'total', suspendWhenHidden=FALSE)
   
   output$remarksInitial <- renderText({
     
+    validate(
+      need(goodNames(),"")
+    )
+    
+    validate(
+      need(goodSizes(),"")
+    )
+    
+    validate(
+      need(goodCounts(),"")
+    )
+    
+    validate(
+      need(all(successCounts()<=groupSizes()),"")
+    )
+    
     paste("The bar graph above compares the number of successes actually observed in each group",
           "with the numbers that you would expect if group makes no difference for the response.")
   })
 
 output$remarksInitialMore <- renderText({
   
-  if(safe()=="safe") {
+  validate(
+    need(goodNames(),"")
+  )
+  
+  validate(
+    need(goodSizes(),"")
+  )
+  
+  validate(
+    need(goodCounts(),"")
+  )
+  
+  validate(
+    need(all(successCounts()<=groupSizes()),"")
+    )
+  
     diff <- obsDiff()
     
     groupNames <- isolate(groupNames())
@@ -194,12 +236,31 @@ output$remarksInitialMore <- renderText({
     paste0("In this experiment, the difference in sample proportions (",
            group1," - ",group2,") = ",round(100*diff,2),
            " percent.")
-    
-  } # end if
   
 })
 
 output$initialTwoWay <- renderTable({
+  
+  
+  validate(
+    need(goodNames(),"Enter exactly two group names, separated by a comma.")
+  )
+  
+  validate(
+    need(goodSizes(),"Enter the group sizes as two positive whole numbers, separated by a comma.")
+  )
+  
+  validate(
+    need(goodCounts(),"Enter the success counts as two non-negative whole numbers, separated by a comma.")
+  )
+  
+  validate(
+    need(all(successCounts()<=groupSizes()),
+         paste0("One of the groups has more successes than it has members! ",
+                "Did you enter the number in the correct order?")
+    )
+  )
+  
   groupSizes <- groupSizes()
   n1 <- groupSizes[1]
   n2 <- groupSizes[2]
@@ -222,7 +283,7 @@ output$initialTwoWay <- renderTable({
 })
   
   output$remarksLatest1 <- renderText({
-    if (safe()=="safe") {
+
     diff <- diffProps()
     
     groupNames <- isolate(groupNames())
@@ -233,7 +294,7 @@ output$initialTwoWay <- renderTable({
       group1," - ",group2,") = ",round(100*diff,2),
       " percent.")
     
-    } #end if
+
   })
 
 output$latestTwoWayBar <- renderTable({
@@ -260,7 +321,7 @@ output$latestTwoWayBar <- renderTable({
   
   output$remarksLatest2 <- renderText({
     
-    if(safe()=="safe") {
+
     diff <- diffProps()
     
     groupNames <- isolate(groupNames())
@@ -271,7 +332,7 @@ output$latestTwoWayBar <- renderTable({
            group1," - ",group2,") = ",round(100*diff,2),
                                              " percent.")
     
-    } # end if
+
     
   })
 
@@ -366,7 +427,7 @@ output$latestTwoWayDen <- renderTable({
     
 output$summary1 <- renderTable({
   simsUpdate() #for the dependency
-  if (safe()=="safe") {
+
   observed <- isolate(obsDiff())
   number <- numberSims
   if (side() == "above") {
@@ -385,13 +446,13 @@ output$summary1 <- renderTable({
   }
   tab
   
-  } # end safety check
+
 })
 
 output$summary2 <- renderTable({
   simsUpdate() #for the dependency
   
-  if (safe()=="safe") {
+
   observed <- isolate(obsDiff())
   
   number <- numberSims
@@ -411,11 +472,11 @@ output$summary2 <- renderTable({
   }
   tab
   
-  } # end safety check
+
 })
  
 output$normalCurve <- renderPlot({
-  if (safe()=="safe") {
+
   groupSizes <- isolate(groupSizes())
   n1 <- groupSizes[1]
   n2 <- groupSizes[2]
@@ -437,7 +498,7 @@ output$normalCurve <- renderPlot({
     normGraph(bound=observed,region="below",mean=0,sd=sdDiff)
   }
   
-  } #end safety check if
+
 })
 
 output$remarksProb <- renderText({

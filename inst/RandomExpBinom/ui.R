@@ -8,27 +8,33 @@ shinyUI(pageWithSidebar(
   
   # Sidebar
   sidebarPanel(
-    helpText("You can use your own names for each of the two treatment, or",
+    conditionalPanel(
+      condition="input.resample == 0 || output.totalPrev == output.total",
+      helpText("You can use your own names for each of the two treatment, or",
              "stick with the default names below"),
-    textInput("groupNames","Enter group names (separated by a comma)",
+      textInput("groupNames","Enter group names (separated by a comma)",
               "GreeterYawns,Control"),
-    textInput("groupSizes","Enter group sizes (separated by a comma)",
+      textInput("groupSizes","Enter group sizes (separated by a comma)",
               "34,16"),
-    helpText("You can use your own names for the values of the response,",
+      helpText("You can use your own names for the values of the response,",
              "variable or stick with the default below"),
-    textInput("success","Name of a Success","yawns"),
-    textInput("failure","Name of a Failure","none"),
-    helpText("Enter the number of successes in each group",
+      textInput("success","Name of a Success","yawns"),
+      textInput("failure","Name of a Failure","none"),
+      helpText("Enter the number of successes in each group",
              "separated by a comma."),
-    textInput("successCounts","Enter success counts",
-              "10,4"),
+      textInput("successCounts","Enter success counts",
+              "10,4")
+    ),
     helpText("One simulation means the machine will randomly assign subjects",
              "to the two groups, with sizes as specified.  How many do",
              "you want to perform at once?  (Limit is 10000.)"),
     numericInput("sims","Number of Simulations at Once",1,min=0,step=1),
     br(),
     actionButton("resample","Simulate Now"),
-    actionButton("reset","Start Over")
+    conditionalPanel(
+      condition="(input.resample > 0 && input.reset == 0) || output.total > output.totalPrev",
+      actionButton("reset","Start Over")
+    )
     
     ),
 
