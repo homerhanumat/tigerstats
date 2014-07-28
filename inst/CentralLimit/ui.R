@@ -7,7 +7,7 @@ library(shiny)
 shinyUI(pageWithSidebar(
   
   #  Application title
-  headerPanel("Confidence Intervals for a Population Mean"),
+  headerPanel("The Central Limit Theorem"),
   
   # Sidebar
   sidebarPanel(
@@ -23,16 +23,10 @@ shinyUI(pageWithSidebar(
       helpText("Choose the sample size."),
     
       sliderInput(inputId="n","Sample Size n",value=2,min=2,max=50,step=1),
-      br(),
-    
-      helpText("How confident do you want to be that the population mean is contained",
-             "within the confidence interval?   Use the slider to select a desired",
-             "percent-confidence level."),
-    
-      sliderInput(inputId="confLevel","Confidence Level",value=80,min=50,max=99,step=1)
-        ),
-      helpText("How many samples would you like to take at one time?  Limit is 10000. With each ",
-             "sample, we'll make a confidence interval for the population mean."),
+      br()
+    ),
+      helpText("How many samples would you like to take at one time?  Limit is 10000. We will ",
+             "compute the mean of each sample."),
       numericInput("sims","Number of Samples at Once",1,min=0,step=1),
       actionButton("resample","Sample Now"),
       conditionalPanel(
@@ -65,19 +59,16 @@ shinyUI(pageWithSidebar(
                         <li>The vertical line marks the population mean.</li>
                         <li>The histogram of the sample is in light blue.</li>
                         <li>The sample mean is the big blue dot.</li>
-                        <li>The confidence interval is in green.</li>
                       </ul>")),
-        tabPanel("Summary of Intervals",
-                 plotOutput("initialGraph2"),
-                 tableOutput("summary")), 
-        tabPanel("t-statistic",
-                 plotOutput("tstatistic"),
+        tabPanel("Sample Mean Distribution",
+                 plotOutput("xbar"),
                  HTML(
-                   "<p>The plots above compare the actual distribution of the t-statistic to the t-curve with n-1 degrees of freedom.</p>
+                   "<p>The plots above compare the distribution of the sample means so far to a normal curve.</p>
                      <p></p>
                      <ul>
-                        <li>The t-curve is in red.  If the population is exactly normal, then this curve represents the exact distribution of the t-statistic.</li>
-                        <li>The density plot of the t-statistics found so far is shown in blue.  This plot gives a pretty good estimate of the actual distribution of the t-statistic, for the population and sample size that you have selected.</li>
+                        <li>The normal curve is in red.  If the population is exactly normal, then this curve represents the exact distribution of the sample mean.</li>
+                        <li>A density plot of the sample means is in blue.  This plot gives a pretty good estimate of the distribution of the sample mean, for the population and sample size that you have selected.</li>
+                        <li>The rug at the bottom of the plot gives individual sample means found so far (if there are no more than 50).  The latest one is marked with a large blue dot.</li>
                     </ul>"))
       ) # end tabset panel
     ) # end conditonal panel

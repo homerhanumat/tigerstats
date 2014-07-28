@@ -5,6 +5,7 @@
 \itemize{
 
 \item Addition of baseball datasets:  \code{hofbatting}, \code{hofpitching}, \code{verlander} and \code{cabrera}.
+\item Addition of Shiny app \code{CentralLimit}.
 
 }
 }
