@@ -3,7 +3,7 @@
 \alias{barchartGC}
 \title{Easy barcharts from raw and tabular data}
 \usage{
-barchartGC(x,data=NULL,type="frequency",main=NULL)
+barchartGC(x,data=parent.frame(),type="frequency",main=NULL)
 }
 \arguments{
 \item{x}{Either a formula or an object that can be coerced to a table.  If formula, it must be
@@ -26,8 +26,10 @@ using formula-data syntax similar to that of \code{\link{xtabs}}.  There are ver
 #barchart of counts for one factor variable:
 barchartGC(~sex,data=m111survey)
 
-#barchart with percentages:
-barchartGC(~sex,data=m111survey,main="Distribution of Sex")
+#barchart with percentages and title:
+barchartGC(~sex,data=m111survey,
+   type="percent",
+   main="Distribution of Sex")
 
 #barchart of counts, to study the relationship between
 #two factor variables:
@@ -39,6 +41,10 @@ barchartGC(~sex+seat,data=m111survey,type="percent")
 #From tabulated data:
 sexseat <- xtabs(~sex+seat,data=m111survey)
 barchartGC(sexseat,type="percent",main="Sex and Seating Preference")
+
+#from tabulated data:
+dieTosses <- c(one=8,two=18,three=11,four=7,five=9,six=7)
+barchartGC(dieTosses,main="60 Rolls of a Die")
 }
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
