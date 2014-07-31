@@ -4,7 +4,7 @@
 #' 
 #' @rdname ttestGC
 #' @usage ttestGC(x=NULL,mean=numeric(),sd=numeric(),n=numeric(),
-#'  mu=NULL,data=NULL,alternative="two.sided",var.equal=FALSE,
+#'  mu=NULL,data=parent.frame(),alternative="two.sided",var.equal=FALSE,
 #'  conf.level=0.95,graph=FALSE,first=NULL,verbose=TRUE)
 #' @param x If not NULL, then must be a formula.  If a formula, then data must be a dataframe.
 #' For one sample t-procedures, x is of the form ~var.  For two-sample procedures,
@@ -15,7 +15,8 @@
 #' @param sd When not NULL, contains sample standard deviation(s).
 #' @param n When not NULL, contains sample size(s).
 #' @param mu Contains the null value for the parameter of interest.  If not set, no test is performed.
-#' @param data A data frame containing variables in formula x.  Required when x is assigned..
+#' @param data A data frame containing variables in formula x.  If some variables are not in data,
+#' then they are searched for in the parent environment.
 #' @param alternative "two.sided" requests computation of a two-sided P-value;  other possible values are "less" and "greater".
 #' @param var.equal When FALSE, use Welch's approximation to the degrees of freedom.
 #' @param conf.level Number between 0 and 1 indicating the confidence-level of the interval supplied.
@@ -54,7 +55,7 @@
 #' ttestGC(mean=c(50,55),sd=c(3,4),n=c(25,40),mu=0)
 ttestGC <-
   function(x=NULL,mean=numeric(),sd=numeric(),n=numeric(),
-           mu=NULL,data=NULL,alternative="two.sided", var.equal=FALSE,
+           mu=NULL,data=parent.frame(),alternative="two.sided", var.equal=FALSE,
            conf.level=0.95,graph=FALSE,first=NULL,verbose=TRUE)  {
     
     stat <- FALSE
@@ -90,10 +91,10 @@ ttestGC <-
                           conf.level,graph)  {
       
       varname <- as.character(ParseFormula(x)$rhs)
-      if (!(varname %in% names(data))) {
-        stop(paste(varname,"is not a variable in",data))
-      }
-      var <- data[,varname]
+#       if (!(varname %in% names(data))) {
+#         stop(paste(varname,"is not a variable in",data))
+#       }
+      var <- simpleFind(varname,data)
       n <- length(var[!is.na(var)])
       xbar <- mean(var,na.rm=T)
       stdev <- sd(var,na.rm=T)
@@ -127,16 +128,16 @@ ttestGC <-
       prsd <- ParseFormula(x)
       respname <- as.character(prsd$lhs)
       expname <- as.character(prsd$rhs)
-      if (!(respname %in% names(data))) {
-        stop(paste(respname,"is not a variable in",data))
-      }
-      if (!(expname %in% names(data))) {
-        stop(paste(expname,"is not a variable in",data))
-      }
+#       if (!(respname %in% names(data))) {
+#         stop(paste(respname,"is not a variable in",data))
+#       }
+#       if (!(expname %in% names(data))) {
+#         stop(paste(expname,"is not a variable in",data))
+#       }
       
       
-      resp <- data[,respname]
-      exp <- data[,expname]
+      resp <- simpleFind(varName=respname,data=data)
+      exp <- simpleFind(varName=expname,data=data)
       
       expEntries <- unique(exp)
       nonTrivial <- length(expEntries[!is.na(expEntries)])
@@ -152,10 +153,10 @@ ttestGC <-
       }
       
       #now cut out missing values
-      data <- data[,c(expname,respname)]
+      data <- data.frame(exp,resp)
       data <- data[complete.cases(data),]
-      exp <- data[,expname]
-      resp <- data[,respname]
+      exp <- data[,1]
+      resp <- data[,2]
       
       if (length(unique(exp)) < 2) {
         print(table(exp))
@@ -220,18 +221,26 @@ ttestGC <-
       prsd <- ParseFormula(x)
       var1name <- as.character(prsd$rhs)[2] #weirdly, the - comes first!
       var2name <- as.character(prsd$rhs)[3]
-      if (!(var1name %in% names(data))) {
-        stop(paste(var1name,"is not a variable in the dataframe."))
-      }
-      if (!(var2name %in% names(data))) {
-        stop(paste(var2name,"is not a variable in the dataframe."))
-      }
+#       if (!(var1name %in% names(data))) {
+#         stop(paste(var1name,"is not a variable in the dataframe."))
+#       }
+#       if (!(var2name %in% names(data))) {
+#         stop(paste(var2name,"is not a variable in the dataframe."))
+#       }
+
+      var1 <- simpleFind(varName=var1name,data=data)
+      var2 <- simpleFind(varName=var2name,data=data)
       
       #now cut out missing values
-      data <- data[,c(var1name,var2name)]
-      data <- data[complete.cases(data),]
-      var1 <- data[,var1name]
-      var2 <- data[,var2name]
+#       data <- data[,c(var1name,var2name)]
+#       data <- data[complete.cases(data),]
+#       var1 <- data[,var1name]
+#       var2 <- data[,var2name]
+
+      dataTemp <- data.frame(var1,var2)
+      dataTemp <- dataTemp[complete.cases(dataTemp),]
+      var1 <- dataTemp[,1]
+      var2 <- dataTemp[,2]
       
       if (length(var1) < 2) {
         stop("Need two or more items with both measures recorded.")

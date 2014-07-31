@@ -9,7 +9,8 @@ barchartGC(x,data=parent.frame(),type="frequency",main=NULL)
 \item{x}{Either a formula or an object that can be coerced to a table.  If formula, it must be
 of the form ~var or ~var1+var2.}
 
-\item{data}{Usually a data frame that supplies the variables in \code{x}.}
+\item{data}{Usually a data frame that supplies the variables in \code{x}.  Variables not in the data
+argument are searched for in the parent environment.}
 
 \item{type}{Possible values are "frequency" and "percent".}
 

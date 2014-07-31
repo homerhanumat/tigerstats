@@ -19,7 +19,10 @@ simpleFind <- function(varName,data) {
   }, warning = function(w) {
     #warning-handler-code maybe someday
   }, error = function(e) {
-    get(varName,inherits=T)
+    tryCatch({
+      get(varName,inherits=T)
+    }, error=stop(paste0("I could not find the variable '",varName,"' in your formula.\nCheck the spelling."))
+    )
   }, finally = {
     #cleanup-code maybe someday
   }

@@ -4,7 +4,7 @@
 \title{t-Procedures}
 \usage{
 ttestGC(x=NULL,mean=numeric(),sd=numeric(),n=numeric(),
- mu=NULL,data=NULL,alternative="two.sided",var.equal=FALSE,
+ mu=NULL,data=parent.frame(),alternative="two.sided",var.equal=FALSE,
  conf.level=0.95,graph=FALSE,first=NULL,verbose=TRUE)
 }
 \arguments{
@@ -22,7 +22,8 @@ Length 2 for two-sample procedures.}
 
 \item{mu}{Contains the null value for the parameter of interest.  If not set, no test is performed.}
 
-\item{data}{A data frame containing variables in formula x.  Required when x is assigned..}
+\item{data}{A data frame containing variables in formula x.  If some variables are not in data,
+then they are searched for in the parent environment.}
 
 \item{alternative}{"two.sided" requests computation of a two-sided P-value;  other possible values are "less" and "greater".}
 
