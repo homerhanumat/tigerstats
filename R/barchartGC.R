@@ -64,7 +64,7 @@ barchartGC <-
         respname <- pullout[3]
         explanatory <- simpleFind(varName=expname,data=data)
         response <- simpleFind(varName=respname,data=data)
-        tab <- with(data,table(explanatory,response))
+        tab <- table(explanatory,response)
         if (type=="frequency") {
           return(barchart(tab,stack=F,horizontal=F,auto.key=T,main=main))
         }
