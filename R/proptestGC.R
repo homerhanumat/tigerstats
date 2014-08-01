@@ -3,7 +3,7 @@
 #' @description Employs the normal approximation to perform test for one or two proportions.
 #' 
 #' @rdname proptestGC
-#' @usage proptestGC(x,n=numeric(),p=NULL,data,alternative="two.sided",
+#' @usage proptestGC(x,n=numeric(),p=NULL,data=parent.frame(),alternative="two.sided",
 #'                          success="yes",first=NULL,conf.level=0.95,
 #'                          correct=TRUE,graph=FALSE,verbose=TRUE)
 #' @param x Either a formula or a numeric vector.  If formula, it must be of the form ~x
@@ -12,7 +12,8 @@
 #' When summary data are provided, x is a numeric vector of success counts.
 #' @param n When not empty, this is a numeric vector giving the size of each sample.
 #' @param p Specifies Null Hypothesis value for population proportion.  If not set, no test is performed.
-#' @param data Data frame that supplies the variables x and y.
+#' @param data Data frame that supplies the variables x and y.  If any are not in data, then they will be
+#' searched for in the parent environment.
 #' @param alternative "two.sided" requests computation of a two-sided P-value;  other possible values are "less" and "greater".
 #' @param success  When x is a formula, this argument indicates which value of variable x (in case of ~x) or y (in case of ~x+y)
 #' is being counted as a success.  When working
@@ -52,7 +53,7 @@
 #' proptestGC(~sex+seat,data=m111survey,success="2_middle",p=0.33,verbose=FALSE)
 proptestGC <-
   function(x,n=numeric(),
-           p=NULL,data,
+           p=NULL,data=parent.frame(),
            alternative="two.sided",
            success="yes",first=NULL,
            conf.level=0.95,
@@ -104,7 +105,8 @@ proptestGC <-
       if (length(pullout)==3) {#we have a bona fide formula
         expname <- as.character(prsd$rhs)[2]
         respname <- as.character(prsd$rhs)[3]
-        explanatory <- data[,expname]
+        
+        explanatory <- simpleFind(varName=expname,data=data)
         
         expEntries <- unique(explanatory)
         nonTrivial <- length(expEntries[!is.na(expEntries)])
@@ -113,7 +115,7 @@ proptestGC <-
         if (nonTrivial != 2) stop(paste(expname,"must have exactly two values."))
         
         
-        response <- data[,respname]
+        response <- simpleFind(varName=respname,data=data)
         
         if (!(success %in% unique(response))) {
           stop("No sucesses found.  Did you fail to specify success correctly?")
@@ -179,7 +181,7 @@ proptestGC <-
       
       if(length(pullout)==1)  {
         varname <- pullout[1]
-        variable <- data[,varname]
+        variable <- simpleFind(varName=varname,data=data)
         TallyTable <- xtabs(~variable)
         
         if (!(success %in% unique(variable))) {

@@ -3,7 +3,7 @@
 \alias{proptestGC}
 \title{Proportions Procedures}
 \usage{
-proptestGC(x,n=numeric(),p=NULL,data,alternative="two.sided",
+proptestGC(x,n=numeric(),p=NULL,data=parent.frame(),alternative="two.sided",
                          success="yes",first=NULL,conf.level=0.95,
                          correct=TRUE,graph=FALSE,verbose=TRUE)
 }
@@ -17,7 +17,8 @@ When summary data are provided, x is a numeric vector of success counts.}
 
 \item{p}{Specifies Null Hypothesis value for population proportion.  If not set, no test is performed.}
 
-\item{data}{Data frame that supplies the variables x and y.}
+\item{data}{Data frame that supplies the variables x and y.  If any are not in data, then they will be
+searched for in the parent environment.}
 
 \item{alternative}{"two.sided" requests computation of a two-sided P-value;  other possible values are "less" and "greater".}
 

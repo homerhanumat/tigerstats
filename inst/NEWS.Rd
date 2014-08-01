@@ -1,6 +1,17 @@
 \name{NEWS}
 \title{NEWS file for the tigerstats package}
 
+\section{Changes in version 0.1.6}{
+\itemize{
+
+\item Major statistical analysis functions that accept formula data input are now more responsive to the
+environment in which they are called.  If variables in the formula are not present in the data frame
+supplied by the data argument (or if no value is supplied by the user), then they will be searched for in the parent environment of the called function, and then up through the chain. This change afffects binomtestGC(), chisquaretestGC(), proptestGC() and ttestGC().  Instructional functions such as
+manipulate apps have not been thus re-written.
+
+}
+}
+
 \section{Changes in version 0.1.5}{
 \itemize{
 

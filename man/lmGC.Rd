@@ -3,12 +3,13 @@
 \alias{lmGC}
 \title{Linear Regression}
 \usage{
-lmGC(form,data,graph=FALSE,diag=FALSE)
+lmGC(form,data=parent.frame(),graph=FALSE,diag=FALSE)
 }
 \arguments{
 \item{form}{formula of form y~x, both variables numeric}
 
-\item{data}{dataframe supplying y and x above}
+\item{data}{dataframe supplying y and x above.  If one or more of the variables is not in data, then
+they will be searched for in the parent environment.}
 
 \item{graph}{produce scatterplot with regression line}
 

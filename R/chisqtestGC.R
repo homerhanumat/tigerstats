@@ -4,9 +4,12 @@
 #' formula-data input or a summary table.  Simulation is optional.
 #' 
 #' @rdname chisqtestGC
+#' @usage chisqtestGC(x, data = parent.frame(), p = NULL, graph = FALSE,
+#'              simulate.p.value = FALSE, B = 2000, verbose = TRUE)
 #' @param x Could be a formula.  If so, either ~var (for goodness of fit) or ~var1+var2 (for test for association).
 #' Otherwise either a table, matrix or vector of summary data.
-#' @param data dataframe supplying variables for formula x.
+#' @param data dataframe supplying variables for formula x.  If variables in x ar enot found in the data,
+#' then they will be searched for in the parent environment.
 #' @param p For goodness of fit, a vector of probabilities.  This will be automatically scaled so as to sum
 #' to 1.  Negative elements result in an error message.
 #' @param graph produce relevant graph for P-value (chi-square curve or histogram of simulation results).  Ignored if
@@ -39,7 +42,7 @@
 #' #For less ouptut, set argument verbose to FALSE:
 #' chisqtestGC(~sex+seat,data=m111survey,verbose=FALSE)
 chisqtestGC <- 
-  function (x,data=NULL,p=NULL,graph=FALSE,simulate.p.value=FALSE,B=2000,verbose=TRUE) 
+  function (x,data=parent.frame(),p=NULL,graph=FALSE,simulate.p.value=FALSE,B=2000,verbose=TRUE) 
   {
     
     #begin with utiltiy function for resampling in test for association:
@@ -122,30 +125,19 @@ chisqtestGC <-
     if (is(x,"formula")) #we have formula-data input
     {
     
-    if(is.null(data))  {
-      stop("Provide name of data frame")
-    }
-    
     prsd <- ParseFormula(x)
     pullout <- as.character(prsd$rhs)
     
     if (length(pullout)==3) #Test for association
+      
       {
+      type <- "association"
+      
       expname <- as.character(prsd$rhs)[2]
       respname <- as.character(prsd$rhs)[3]
       
-      
-      if (!(expname %in% names(data))) {
-        stop(paste("Cannot find",expname,"in the data frame.  Did you mispell it?"))
-      }
-      
-      if (!(respname %in% names(data))) {
-        stop(paste("Cannot find",respname,"in the data frame.  Did you mispell it?"))
-      }
-      
-      type <- "association"
-      explanatory <- data[,expname]
-      response <- data[,respname]
+      explanatory <- simpleFind(varName=expname,data=data)
+      response <- simpleFind(varName=respname,data=data)
       data2 <- data.frame(explanatory,response)
       names(data2) <- c(expname,respname)
       tab <- table(data2)
@@ -155,19 +147,16 @@ chisqtestGC <-
     
     if(length(pullout)==1)  #goodness of fit
       {
+      type <- "goodness"
       varname <- pullout[1]
       
-      if (!(varname %in% names(data))) {
-        stop(paste("Cannot find",varname,"in the data frame.  Did you mispell it?"))
-      }
-      
-      type <- "goodness"
-      variable <- data[,varname]
-      tab <- with(data,table(variable))
+
+      variable <- simpleFind(varName=varname,data=data)
+      tab <- table(variable)
       x <- tab  #provides proper input later if simulation is desired
       res <- suppressWarnings(chisq.test(tab,p=p,rescale.p=TRUE))
-      #Note:  if variable has inherited levels from a previous life that user no longer
-      #expects to see, then there will length of table will exceed length of p and there will be
+      #Note:  if variable has inherited levels (from a previous life) that user no longer
+      #expects to see, then length of table will exceed length of p and there will be
       #problems.
       
     } #end processing of goodness of fit test

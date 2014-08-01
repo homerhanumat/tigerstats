@@ -3,14 +3,15 @@
 \alias{chisqtestGC}
 \title{Chi-Square Test (GC version)}
 \usage{
-chisqtestGC(x, data = NULL, p = NULL, graph = FALSE,
-  simulate.p.value = FALSE, B = 2000, verbose = TRUE)
+chisqtestGC(x, data = parent.frame(), p = NULL, graph = FALSE,
+             simulate.p.value = FALSE, B = 2000, verbose = TRUE)
 }
 \arguments{
 \item{x}{Could be a formula.  If so, either ~var (for goodness of fit) or ~var1+var2 (for test for association).
 Otherwise either a table, matrix or vector of summary data.}
 
-\item{data}{dataframe supplying variables for formula x.}
+\item{data}{dataframe supplying variables for formula x.  If variables in x ar enot found in the data,
+then they will be searched for in the parent environment.}
 
 \item{p}{For goodness of fit, a vector of probabilities.  This will be automatically scaled so as to sum
 to 1.  Negative elements result in an error message.}
