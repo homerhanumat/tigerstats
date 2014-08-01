@@ -4,14 +4,15 @@
 #' in inferential procedures for a single proportion.
 #' 
 #' @rdname binomtestGC
-#' @usage binomtestGC(x,n=numeric(),p=NULL,data,alternative="two.sided",
+#' @usage binomtestGC(x,n=numeric(),p=NULL,data=parent.frame(),alternative="two.sided",
 #'                          success="yes",conf.level=0.95,graph=FALSE,verbose=TRUE)
 #' @param x Either a formula or a numeric vector.  If formula, it must be of the form ~x
 #' indicating the single variable under study.  When summary data are provided, x is a numeric vector of 
 #' success counts.
 #' @param n When not empty, this is a numeric vector giving the size of the sample.
 #' @param p Specifies Null Hypothesis value for population proportion.  If not set, no test is performed.
-#' @param data Data frame that supplies the variable x.
+#' @param data Data frame that supplies the variable x. If not found in data, the variable is searched
+#' for in the parent environment.
 #' @param alternative "two.sided" requests computation of a two-sided P-value;  
 #' other possible values are "less" and "greater".
 #' @param success  When x is a formula, this argument indicates which value of variable x is being counted as a success.  
@@ -43,7 +44,7 @@
 #' binomtestGC(40,100,p=0.45)
 binomtestGC <-
   function(x,n=numeric(),
-           p=NULL,data,
+           p=NULL,data=parent.frame(),
            alternative="two.sided",
            success="yes",
            conf.level=0.95,
@@ -57,7 +58,7 @@ binomtestGC <-
       if (length(pullout) > 1) stop("Incorrect formula")
       
       varname <- pullout[1]
-      variable <- data[,varname]
+      variable <- simpleFind(varName=varname,data=data)
       TallyTable <- xtabs(~variable)
       
       if (!(success %in% unique(variable))) {

@@ -7,6 +7,8 @@
 #' caller's environment (usually the Global Environment).  Functions that use formulas now are more flexible
 #' in an interactive context.
 #' 
+#' To do:  find a way to make gentler error messages.
+#' 
 #' @rdname simpleFind
 #' @usage simpleFind(varName,data)
 #' @param varName Character string giving the name of the variable to be searched for.
@@ -14,17 +16,10 @@
 #' that is has been passed to the calling function.
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
 simpleFind <- function(varName,data) {
-  tryCatch({
-    get(varName,envir=as.environment(data))
-  }, warning = function(w) {
-    #warning-handler-code maybe someday
-  }, error = function(e) {
-    tryCatch({
-      get(varName,inherits=T)
-    }, error=stop(paste0("I could not find the variable '",varName,"' in your formula.\nCheck the spelling."))
-    )
-  }, finally = {
-    #cleanup-code maybe someday
-  }
-  )
+  tryCatch({get(varName,envir=as.environment(data))},
+                  error=function(e) {
+                    get(varName,inherits=T)
+                  }
+                  )
+ 
 }

@@ -3,7 +3,7 @@
 \alias{binomtestGC}
 \title{Exact Procedures for a Single Proportion}
 \usage{
-binomtestGC(x,n=numeric(),p=NULL,data,alternative="two.sided",
+binomtestGC(x,n=numeric(),p=NULL,data=parent.frame(),alternative="two.sided",
                          success="yes",conf.level=0.95,graph=FALSE,verbose=TRUE)
 }
 \arguments{
@@ -15,7 +15,8 @@ success counts.}
 
 \item{p}{Specifies Null Hypothesis value for population proportion.  If not set, no test is performed.}
 
-\item{data}{Data frame that supplies the variable x.}
+\item{data}{Data frame that supplies the variable x. If not found in data, the variable is searched
+for in the parent environment.}
 
 \item{alternative}{"two.sided" requests computation of a two-sided P-value;
 other possible values are "less" and "greater".}
