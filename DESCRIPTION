@@ -26,4 +26,4 @@ Suggests:
     manipulate,
     shiny
 LazyLoad: yes
-LazyData: yes
+LazyData: true
