@@ -19,7 +19,8 @@ from names of variables that may not appear in the data frame of interest, but w
 caller's environment (usually the Global Environment).  Functions that use formulas now are more flexible
 in an interactive context.
 
-To do:  find a way to make gentler error messages.
+To do:  (1) find a way to make gentler error messages.  (2) as with earlier versions of mosaic, we get
+the scoping problem when supplied data frame is named 'labels'.
 }
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}

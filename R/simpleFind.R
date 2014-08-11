@@ -7,7 +7,8 @@
 #' caller's environment (usually the Global Environment).  Functions that use formulas now are more flexible
 #' in an interactive context.
 #' 
-#' To do:  find a way to make gentler error messages.
+#' To do:  (1) find a way to make gentler error messages.  (2) as with earlier versions of mosaic, we get
+#' the scoping problem when supplied data frame is named 'labels'.
 #' 
 #' @rdname simpleFind
 #' @usage simpleFind(varName,data)

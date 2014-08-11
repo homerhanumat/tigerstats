@@ -26,7 +26,7 @@ lmGC <-function(form,data=parent.frame(),graph=FALSE,diag=FALSE)  {
   if (length(expname)>1) stop("Only one predictor variable permitted")
   
   resp <- simpleFind(varName=respname,data=data)
-  exp <- simpleFind(varName=respname,data=data)
+  exp <- simpleFind(varName=exppname,data=data)
   
   if (!is(resp,"numeric")) stop("Response variable must be numerical")
   if (!is(exp,"numeric")) stop("Predictor variable must be numerical")
