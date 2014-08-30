@@ -4,6 +4,8 @@
 \section{Changes in version 0.1.6}{
 \itemize{
 
+\item Instructional function expCounts() computes expected cell counts from a two-way table of observed counts.
+
 \item Major statistical analysis functions that accept formula data input are now more responsive to the
 environment in which they are called.  If variables in the formula are not present in the data frame
 supplied by the data argument (or if no value is supplied by the user), then they will be searched for in the parent environment of the called function, and then up through the chain. This change afffects binomtestGC(), chisquaretestGC(), proptestGC() and ttestGC().  Instructional functions such as
