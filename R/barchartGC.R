@@ -56,6 +56,7 @@ barchartGC <-
         }
         if (type=="percent") {
         perctab <- 100*tab/sum(tab)
+        perctab[is.nan(perctab)] <- 0
         return(barchart(perctab,horizontal=F,ylab="Percent",main=main))
           }      
       }
@@ -71,6 +72,7 @@ barchartGC <-
         }
         if (type=="percent") {
           perctab <- 100*prop.table(tab,margin=1)
+          perctab[is.nan(perctab)] <- 0
           return(barchart(perctab,horizontal=F,stack=F,ylab="Percent",auto.key=T,main=main))
         }   
       }
@@ -87,6 +89,7 @@ barchartGC <-
         }
         if (type=="percent") {
           perctab <- 100*x/sum(x)
+          perctab[is.nan(perctab)] <- 0
           return(barchart(perctab,horizontal=F,ylab="Percent",main=main))
         }     
       }
@@ -96,6 +99,7 @@ barchartGC <-
         }
         if (type=="percent") {
           perctab <- 100*prop.table(x,margin=1)
+          perctab[is.nan(perctab)] <- 0
           return(barchart(perctab,horizontal=F,stack=F,ylab="Percent",auto.key=T,main=main))
         }
       }
