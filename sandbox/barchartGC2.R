@@ -149,23 +149,73 @@ barchartGC <-
         
         #make legend work well with orientation of chart, if possible.  If
         #there are lots of levels in exp variable, though, then put legend to the right
+        
+        
+        if (stack==FALSE && horizontal==TRUE && auto.key==TRUE) {
+          
+            space <- ifelse(ncol(tab) <= levelTol,"top","right")
+            key=simpleKeyRev(columns=1,space=space,
+                  text=colnames(tab),
+                  rectangles=TRUE,
+                  points=FALSE)
+            
+            otherArgs <- c(list(stack=stack,horizontal=horizontal,
+                                key=key),
+                           ellipses) 
+            
+            tab <- tab[,rev(colnames(tab))]
+            
+            if (type=="frequency") {
+              args <- c(list(x=tab),otherArgs)
+              return(do.call(barchart,args))
+            }
+            if (type=="percent") {
+              perctab <- 100*prop.table(tab,margin=1)
+              perctab[is.nan(perctab)] <- 0
+              args <- c(list(x=perctab),otherArgs)
+              return(do.call(barchart,args))
+            }   
+
+        }
+        
+        
+        if (stack==TRUE && horizontal==FALSE && auto.key==TRUE) {
+          
+          space <- ifelse(ncol(tab) <= levelTol,"top","right")
+          key=simpleKeyRev(columns=1,space=space,
+                           text=colnames(tab),
+                           rectangles=TRUE,
+                           points=FALSE)
+          
+          otherArgs <- c(list(stack=stack,horizontal=horizontal,
+                              key=key),
+                         ellipses) 
+          
+          tab <- tab[,rev(colnames(tab))]
+          
+          if (type=="frequency") {
+            args <- c(list(x=tab),otherArgs)
+            return(do.call(barchart,args))
+          }
+          if (type=="percent") {
+            perctab <- 100*prop.table(tab,margin=1)
+            perctab[is.nan(perctab)] <- 0
+            args <- c(list(x=perctab),otherArgs)
+            return(do.call(barchart,args))
+          }   
+          
+        }
+        
+        
         if (stack==FALSE && horizontal==FALSE && auto.key==TRUE) {
           if (ncol(tab) <= levelTol) {
-          auto.key=list(space="top",columns=ncol(tab))
+            auto.key=list(space="top",columns=ncol(tab))
           } else auto.key=list(space="right",columns=1)
         }
         
         if (stack==TRUE && horizontal==TRUE && auto.key==TRUE) {
           if (ncol(tab) <= levelTol) {
             auto.key=list(space="top",columns=ncol(tab))
-          } else auto.key=list(space="right",columns=1)
-        }
-        
-        if (stack==FALSE && horizontal==TRUE && auto.key==TRUE) {
-          if (ncol(tab) <= levelTol) {
-            key=simpleKeyRev(space="top",columns=ncol(tab),
-                  text=rev(levels(colnames(tab))),
-                  rectangles=TRUE)
           } else auto.key=list(space="right",columns=1)
         }
 
@@ -220,6 +270,63 @@ barchartGC <-
         
         #make legend work well with orientation of chart, if possible.  If
         #there are lots of levels in exp variable, though, then put legend to the right
+        
+        if (stack==FALSE && horizontal==TRUE && auto.key==TRUE) {
+          
+          space <- ifelse(ncol(x) <= levelTol,"top","right")
+          key=simpleKeyRev(columns=1,space=space,
+                           text=colnames(x),
+                           rectangles=TRUE,
+                           points=FALSE)
+          
+          otherArgs <- c(list(stack=stack,horizontal=horizontal,
+                              key=key),
+                         ellipses) 
+          
+          x <- x[,rev(colnames(x))]
+          
+          if (type=="frequency") {
+            args <- c(list(x=x),otherArgs)
+            return(do.call(barchart,args))
+          }
+          if (type=="percent") {
+            perctab <- 100*prop.table(x,margin=1)
+            perctab[is.nan(perctab)] <- 0
+            args <- c(list(x=perctab),otherArgs)
+            return(do.call(barchart,args))
+          }   
+          
+        }
+        
+        
+        if (stack==TRUE && horizontal==FALSE && auto.key==TRUE) {
+          
+          space <- ifelse(ncol(x) <= levelTol,"top","right")
+          key=simpleKeyRev(columns=1,space=space,
+                           text=colnames(x),
+                           rectangles=TRUE,
+                           points=FALSE)
+          
+          otherArgs <- c(list(stack=stack,horizontal=horizontal,
+                              key=key),
+                         ellipses) 
+          
+          x <- x[,rev(colnames(x))]
+          
+          if (type=="frequency") {
+            args <- c(list(x=x),otherArgs)
+            return(do.call(barchart,args))
+          }
+          if (type=="percent") {
+            perctab <- 100*prop.table(x,margin=1)
+            perctab[is.nan(perctab)] <- 0
+            args <- c(list(x=perctab),otherArgs)
+            return(do.call(barchart,args))
+          }   
+          
+        }
+        
+        
         if (stack==FALSE && horizontal==FALSE && auto.key==TRUE) {
           if (ncol(x) <= levelTol) {
             auto.key=list(space="top",columns=ncol(x))
