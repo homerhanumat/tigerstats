@@ -160,6 +160,14 @@ barchartGC <-
             auto.key=list(space="top",columns=ncol(tab))
           } else auto.key=list(space="right",columns=1)
         }
+        
+        if (stack==FALSE && horizontal==TRUE && auto.key==TRUE) {
+          if (ncol(tab) <= levelTol) {
+            key=simpleKeyRev(space="top",columns=ncol(tab),
+                  text=rev(levels(colnames(tab))),
+                  rectangles=TRUE)
+          } else auto.key=list(space="right",columns=1)
+        }
 
         
         #set up the "other arguments" to be passed to barchart
@@ -245,3 +253,49 @@ barchartGC <-
     } # end tabular processing
     
   } #end barchartGC
+
+# function from lattice source, to dig deeper into re-ordering legend colors
+simpleKeyRev <-
+  function(text, points = TRUE,
+           rectangles = FALSE,
+           lines = FALSE,
+           col = add.text$col,
+           cex = add.text$cex,
+           alpha = add.text$alpha,
+           font = add.text$font,
+           fontface = add.text$fontface,
+           fontfamily = add.text$fontfamily,
+           lineheight = add.text$lineheight,
+           ...)
+  {
+    add.text <- trellis.par.get("add.text")
+    foo <- seq_along(text)
+    ans <-
+      list(text = list(lab = text),
+           col = col, cex = cex, alpha = alpha,
+           font = font,
+           fontface = fontface,
+           fontfamily = fontfamily,
+           ...)
+    if (points) ans$points <-
+      Rows(trellis.par.get("superpose.symbol"), foo)
+    if (rectangles) {                               #modification is in here
+      temp <-Rows(trellis.par.get("superpose.polygon"), foo)
+      temp$col <- rev(temp$col)
+      ans$rectangle <- temp
+    }
+    if (lines) ans$lines <-
+      updateList(Rows(trellis.par.get("superpose.symbol"), foo), ## for pch
+                 Rows(trellis.par.get("superpose.line"), foo))
+    ans
+  }
+
+# for easy sourcing
+simpleFind <- function(varName,data) {
+  tryCatch({get(varName,envir=as.environment(data))},
+           error=function(e) {
+             get(varName,inherits=T)
+           }
+  )
+  
+}
