@@ -4,6 +4,8 @@
 \section{Changes in version 0.1.6}{
 \itemize{
 
+\item Addition of Shiny app \code{SamplingMethods} and manipulate app \code{SimpleRandom2}..
+
 \item Instructional function expCounts() computes expected cell counts from a two-way table of observed counts.
 
 \item Major statistical analysis functions that accept formula data input are now more responsive to the
