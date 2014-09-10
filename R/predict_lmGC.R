@@ -1,7 +1,6 @@
 #' @title Prediction Function for GC Linear Regression
 
 #' @description Used by generic predict function
-#' @keywords internal
 #' 
 #' @rdname predict.GClm
 #' @method predict GClm
