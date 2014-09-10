@@ -12,9 +12,9 @@ Description: This package consists of data sets and functions that are useful
     for elementary inferential procedures follow a uniform interface for user
     input. The package is typically used with package mosaic but runs
     independently of it.  Some of the functions are instructional applets that
-    can only be run on the R Studio integrated development environment with RStudio's package 
-    manipulate loaded. R Studio is freely available (www.rstudio.org), and includes
-    package manipulate.
+    can only be run on the R Studio integrated development environment with
+    RStudio's package manipulate loaded. R Studio is freely available
+    (www.rstudio.org), and includes package manipulate.
 License: GPL (>=3)
 Depends:
     R(>= 2.10),
