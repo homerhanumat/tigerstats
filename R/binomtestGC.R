@@ -118,11 +118,37 @@ if (verbose==TRUE) {
       }
       cat("\tP-value:\t\tP =",round(res$p.value,4),"\n")
       
+      #deal with graphing in two-sided tests:
+      twoSide <- function(count,n,p) {
+        x <- 0:n
+        p.x <- dbinom(x,size=n,prob=p)
+        ourProb <- dbinom(count,size=n,prob=p)
+        
+        smallOnes <- x[p.x <= ourProb]
+        
+        if (length(smallOnes) == (n+1)) {
+          return(invisible(pbinomGC(c(0,n),size=n,prob=p,region="between",graph=T)))
+        } else {
+          bigger <- x[p.x > ourProb]
+          if (length(bigger) ==1) {
+            return(invisible(pbinomGC(c(bigger,bigger),size=n,prob=p,region="outside",graph=T)))
+          }
+          
+          if (length(bigger) > 1) {
+            lower <- bigger[1]
+            upper <- bigger[length(bigger)]
+            return(invisible(pbinomGC(c(lower,upper),size=n,prob=p,region="outside",graph=T)))
+          }
+          
+        } # end else
+        
+      }  #end twoSide
+      
      if (graph)   {  
         switch(alternative,
                less=invisible(pbinomGC(successes,size=trials,prob=p,region="below",graph=T)),
                greater=invisible(pbinomGC(successes-1,size=trials,prob=p,region="above",graph=T)),
-               two.sided=warning("No graph is provided for two-sided test")
+               two.sided=twoSide(count=successes,n=trials,p=p)
         )
       }
       
