@@ -2,3 +2,5 @@ sandbox
 .gitignore
 .git
 Package_Build_Procedure.Rmd
+^.*\.Rproj$
+^\.Rproj\.user$
