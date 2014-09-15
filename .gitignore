@@ -1,6 +1,7 @@
-.Rbuildignore
 .Rhistory
 tigerstats.Rproj
 Read-and-delete-me
 .Rproj.user/
 .Rproj.user
+.RData
+.Rprofile
