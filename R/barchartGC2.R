@@ -422,6 +422,5 @@ simpleKeyRev <-
 #            error=function(e) {
 #              get(varName,inherits=T)
 #            }
-#   )
-  
-}
+#   ) 
+#}
