@@ -16,7 +16,7 @@
 #' @param flat If set to TRUE, will produce barchart that resembles the layout of \code{xtabs}
 #' @param auto.key Provides a simple key
 #' @param horizontal Determines orientation of the bars (overrriden by flat)
-#' @param stacked Determines whether bars for tallies are stacked on eac other or placed
+#' @param stack Determines whether bars for tallies are stacked on eac other or placed
 #' next to one another (overrriden by flat)
 #' @param ... other arguments passed to \code{barchart}:  these include main, sub, and
 #' xlab, which are likely to be familiar to students from other \code{lattice} graphical
@@ -31,31 +31,31 @@
 #' barchartGC2(~sex,data=m111survey)
 #' 
 #' #barchart with percentages and title:
-#' barchartGC(~sex,data=m111survey,
+#' barchartGC2(~sex,data=m111survey,
 #'    type="percent",
 #'    main="Distribution of Sex")
 #' 
 #' #barchart of counts, to study the relationship between
 #' #two factor variables:
-#' barchartGC(~sex+seat,data=m111survey)
+#' barchartGC2(~sex+seat,data=m111survey)
 #' 
 #' #percentage barchart, two factor variables:
-#' barchartGC(~sex+seat,data=m111survey,type="percent")
+#' barchartGC2(~sex+seat,data=m111survey,type="percent")
 #' 
 #' #From tabulated data:
 #' sexseat <- xtabs(~sex+seat,data=m111survey)
-#' barchartGC(sexseat,type="percent",main="Sex and Seating Preference")
+#' barchartGC2(sexseat,type="percent",main="Sex and Seating Preference")
 #' 
 #' #from tabulated data:
 #' dieTosses <- c(one=8,two=18,three=11,four=7,five=9,six=7)
-#' barchartGC(dieTosses,main="60 Rolls of a Die")
+#' barchartGC2(dieTosses,main="60 Rolls of a Die")
 #' 
 #' # a "flat" barchart, pictorial version of xtabs() 
-#' barchartGC(~sex+seat,data=m111survey,flat=TRUE,ylab="Sex")
+#' barchartGC2(~sex+seat,data=m111survey,flat=TRUE,ylab="Sex")
 #' 
 #' # a "flat" barchart, pictorial version of xtabs() 
-#' barchartGC(~sex+seat,data=m111survey,type="percent",flat=TRUE,ylab="Sex")
-barchartGC <-
+#' barchartGC2(~sex+seat,data=m111survey,type="percent",flat=TRUE,ylab="Sex")
+barchartGC2 <-
   function(x,data=parent.frame(),
            type="frequency",flat=FALSE,auto.key=TRUE,horizontal=FALSE,stack=FALSE,...)  {
     
@@ -361,7 +361,23 @@ barchartGC <-
     
   } #end barchartGC
 
-# function from lattice source, to dig deeper into re-ordering legend colors
+
+#' @rdname simpleKeyRev
+#' @usage simpleKeyRev(text, points = TRUE,
+#' rectangles = FALSE,
+#' lines = FALSE,
+#' col = add.text$col,
+#' cex = add.text$cex,
+#' alpha = add.text$alpha,
+#' font = add.text$font,
+#' fontface = add.text$fontface,
+#' fontfamily = add.text$fontfamily,
+#' lineheight = add.text$lineheight,
+#' ...)
+#' 
+
+
+#' @export
 simpleKeyRev <-
   function(text, points = TRUE,
            rectangles = FALSE,
@@ -391,9 +407,12 @@ simpleKeyRev <-
       temp$col <- rev(temp$col)
       ans$rectangle <- temp
     }
-    if (lines) ans$lines <-
-      updateList(Rows(trellis.par.get("superpose.symbol"), foo), ## for pch
-                 Rows(trellis.par.get("superpose.line"), foo))
+    
+# this bit not needed: (problem with updateList (where is it from?))
+#     if (lines) ans$lines <-
+#       updateList(Rows(trellis.par.get("superpose.symbol"), foo), ## for pch
+#                  Rows(trellis.par.get("superpose.line"), foo))
+
     ans
   }
 
@@ -404,5 +423,5 @@ simpleKeyRev <-
 #              get(varName,inherits=T)
 #            }
 #   )
-#   
-# }
+  
+}
