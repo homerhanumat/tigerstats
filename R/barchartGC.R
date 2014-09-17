@@ -361,7 +361,10 @@ barchartGC <-
     
   } #end barchartGC
 
-
+#' @title Reversed Simple Key Function
+#' 
+#' Utility function for barchartGC.
+#' 
 #' @rdname simpleKeyRev
 #' @usage simpleKeyRev(text, points = TRUE,
 #' rectangles = FALSE,
@@ -374,10 +377,8 @@ barchartGC <-
 #' fontfamily = add.text$fontfamily,
 #' lineheight = add.text$lineheight,
 #' ...)
-#' 
-
-
 #' @export
+#' @keywords internal
 simpleKeyRev <-
   function(text, points = TRUE,
            rectangles = FALSE,
@@ -414,7 +415,7 @@ simpleKeyRev <-
 #                  Rows(trellis.par.get("superpose.line"), foo))
 
     ans
-  }
+  } #end SimpleKeyRev
 
 # for easy sourcing during development process
 # simpleFind <- function(varName,data) {
