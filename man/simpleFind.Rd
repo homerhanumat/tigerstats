@@ -25,4 +25,5 @@ the scoping problem when supplied data frame is named 'labels'.
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
+\keyword{internal}
 

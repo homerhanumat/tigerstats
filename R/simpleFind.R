@@ -15,6 +15,7 @@
 #' @param varName Character string giving the name of the variable to be searched for.
 #' @param data Usually a data frame that supplies the some or all of the variables for a formula 
 #' that is has been passed to the calling function.
+#' @keywords internal
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
 simpleFind <- function(varName,data) {
   tryCatch({get(varName,envir=as.environment(data))},
