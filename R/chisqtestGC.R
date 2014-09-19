@@ -17,7 +17,7 @@
 #' values are "random" and "fixed" and TRUE.  Random effects are suitable for resampling when the data are a random
 #' sample from a poulation.  Fixed effects assume that the values of the explanatory variable (row variable for table,
 #' var1 in formula ~var1+var2) remain fixed in resampling, and values of response variable are random with null
-#' distribution estimated from the data.  When set to TRUE, we an equivalent to R's routine.  In our view is
+#' distribution estimated from the data.  When set to TRUE, we implement an equivalent to R's routine.  In our view is
 #' most suitable when the data come from a randomized experiment in which the treatment groups are
 #' the values of the explanatory variable.
 #' @param B number of resamples to take.
