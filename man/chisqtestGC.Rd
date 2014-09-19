@@ -16,14 +16,15 @@ then they will be searched for in the parent environment.}
 \item{p}{For goodness of fit, a vector of probabilities.  This will be automatically scaled so as to sum
 to 1.  Negative elements result in an error message.}
 
-\item{graph}{produce relevant graph for P-value (chi-square curve or histogram of simulation results).  Ignored if
-user requests R's resampling routines (see below).}
+\item{graph}{produce relevant graph for P-value (chi-square curve or histogram of simulation results).}
 
 \item{simulate.p.value}{If FALSE, use a chi-square distribution to estimate the P-value.  Other possible
 values are "random" and "fixed" and TRUE.  Random effects are suitable for resampling when the data are a random
 sample from a poulation.  Fixed effects assume that the values of the explanatory variable (row variable for table,
 var1 in formula ~var1+var2) remain fixed in resampling, and values of response variable are random with null
-distribution estimated from the data.  When set to TRUE, we use R's resampling routines.}
+distribution estimated from the data.  When set to TRUE, we an equivalent to R's routine.  In our view is
+most suitable when the data come from a randomized experiment in which the treatment groups are
+the values of the explanatory variable.}
 
 \item{B}{number of resamples to take.}
 
