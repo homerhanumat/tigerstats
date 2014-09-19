@@ -20,5 +20,6 @@ colPerc <- function (tab)
   cperc <- rbind(cperc, rep(100, ncol(tab)))
   colnames(cperc) <- colnames(tab)
   rownames(cperc) <- c(rownames(tab), "Total")
+  names(dimnames(cperc)) <- names(dimnames(tab))
   cperc
 }

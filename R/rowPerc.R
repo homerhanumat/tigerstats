@@ -21,7 +21,9 @@ function(tab)  {
   rperc <- cbind(rperc,rep(100,nrow(tab)))
   rownames(rperc) <- rownames(tab)
   colnames(rperc) <- c(colnames(tab),"Total")
-  return(rperc)
+  rperc2 <- as.table(rperc)
+  names(dimnames(rperc2)) <- names(dimnames(tab))
+  return(rperc2)
   } else {
     rperc <- round(100*tab/sum(tab),2)
     rperc <- as.matrix(rperc)
@@ -29,6 +31,7 @@ function(tab)  {
     rperc2 <- t(rperc2)
     colnames(rperc2) <- c(rownames(rperc),"Total")
     rownames(rperc2) <- ""
-    return(as.table(rperc2))
+    names(dimnames(rperc2)) <- c(names(dimnames(tab)),"")
+    return(rperc2)
   }
 }
