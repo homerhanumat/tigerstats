@@ -24,6 +24,8 @@ Imports:
 Suggests:
     mosaic,
     manipulate,
-    shiny
+    shiny,
+    knitr
 LazyLoad: yes
 LazyData: true
+VignetteBuilder: knitr
