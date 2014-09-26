@@ -1,6 +1,8 @@
 ---
 title: "Using qnorm()"
-output: rmarkdown::html_vignette
+output:
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Using qnorm()}
@@ -12,7 +14,7 @@ require(knitr)
 opts_chunk$set(tidy=FALSE,fig.width=5.5,fig.height=3.5)
 ```
 
-## Comparison of `qnorm()` with `pnorm()`
+# Comparison of `qnorm()` with `pnorm()`
 
 The function `prnorm()` in regular `R`, as well as the function `pnormGC() in the `tigerstats` package, compute probabilities from known bounding values.  For example, suppose that $X$ is a normally distributed random variable with mean 70 and standard deviation 3, and that you want to know:
 
@@ -50,9 +52,9 @@ pnormGC(73.1093,region="below",mean=70,
 
 Sure enough, the area under the curve before 73.1093 is 0.85.
 
-## A Few More Examples
+# A Few More Examples
 
-### Making the Top Ten Percent (An Area Above)
+## Making the Top Ten Percent (An Area Above)
 
   >Suppose that SAT scores are normally distributed, and that the mean SAT score is 1000, and the standard deviation of all SAT scores is 100.  *How high must you score so that only 10% of the population scores higher than you?*
 
@@ -81,7 +83,7 @@ But really it seems easier just to do the math:
 
 $1 - 0.10 = 0.90.$
 
-### An Area Between
+## An Area Between
 
   >Find a positive number $z$ so that the area under the standard normal curve between $-z$ and $z$ is 0.95.
   

@@ -1,13 +1,15 @@
 ---
 title: "Using xtabs() and rowPerc()"
-output: rmarkdown::html_vignette
+output:
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Using xtabs() and rowPerc()}
   %\usepackage[utf8]{inputenc}
 ---
 
-## Preliminaries
+# Preliminaries
 
 `xtabs()` is the numerical version of `barchartGC()`.  You use it when you want to study
 
@@ -20,7 +22,7 @@ The function `xtabs()` comes with the `stats` package, which is always loaded in
 require(tigerstats)
 ```
 
-## One Factor Variable
+# One Factor Variable
 
 To see a table of the tallies for the factor variable **seat** (from the `mat111survey` data frame in the `tigerstats` package):
 
@@ -47,7 +49,7 @@ rowPerc(Seat)
 ```
 
 
-## Two Factor Variables
+# Two Factor Variables
 
 You can also use `xtabs()` to study the relationship between two factor variables.  For example, if you want to see whether males and females differ in their seating preferences, then you might try formula-data input as follows:
 
@@ -79,7 +81,7 @@ rowPerc(SexSeat)
 ```
 
 
-## Column Percents, Too!
+# Column Percents, Too!
 
 We don't use column percents very often, but you can get them:
 

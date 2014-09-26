@@ -1,6 +1,8 @@
 ---
 title: "Using lattice's histogram()"
-output: rmarkdown::html_vignette
+output:
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Using lattice's histogram()}
@@ -12,7 +14,7 @@ require(knitr)
 opts_chunk$set(tidy=FALSE,fig.width=4.5,fig.height=3.5)
 ```
 
-## Preliminaries
+# Preliminaries
 
 The function `histogram()` is used to study the distribution of a numerical variable.  It comes from the `lattice` package for statistical graphics, which is pre-installed with every distribution of R.  Also, package `tigerstats` depends on lattice, so if you load `tigerstats`:
 
@@ -41,7 +43,7 @@ require(mosaic)
 ```
 
 
-## One Numerical Variable
+# One Numerical Variable
 
 In the `m11survey` data frame from the `tigerstats` package, suppose that you want to study the distribution of **fastest**, the fastest speed one has ever driven.  You can do so with the following command:
 
@@ -101,7 +103,7 @@ histogram(~fastest,data=m111survey,
 
 
 
-## Numerical and Factor Variable
+# Numerical and Factor Variable
 
 Suppose you want to know:
 

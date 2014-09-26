@@ -1,6 +1,8 @@
 ---
 title: "Using barchartGC()"
-output: rmarkdown::html_vignette
+output:
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Using barchartGC()}
@@ -13,7 +15,7 @@ opts_chunk$set(tidy=FALSE,fig.width=5.5,fig.height=3.5)
 ```
 
 
-## Preliminaries
+# Preliminaries
 
 `barchartGC()` provides quick-and-easy bar charts for the graphical exploration of factor variables.  The function comes from the `tigerstats` package and we will use some data from the `tigerstats` as well, so make sure that `tigerstats` is loaded:
 
@@ -30,7 +32,7 @@ help(m111survey)
 ```
 
 
-## One Factor Variable
+# One Factor Variable
 
 To look see a bar chart for the tallies of the factor variable **seat**:
 
@@ -63,7 +65,7 @@ barchartGC(Seat,type="percent",
 ```
 
 
-## Two Factor Variables
+# Two Factor Variables
 
 You can also use `barchartGC()` to study the relationship between two factor variables.  For example, if you want to see whether males and females differ in their seating preferences, then you might try formula-data input as follows:
 
@@ -91,7 +93,7 @@ barchartGC(SexSeat,type="percent",
            sub="Bar color shows seating preference")
 ```
 
-## Flat Bar Charts
+# Flat Bar Charts
 
 To study the relationship between tow factor variables through numericla summaries, you might make a table of row percentages, as follows:
 
@@ -112,7 +114,31 @@ barchartGC(SexSeat,type="percent",
 
 Note that you might want a label for the y-axis, now.
 
-## Warning
+# Other Options
+
+You can make vertical stacked bars:
+
+```{r}
+barchartGC(SexSeat,type="freq",
+           main="Sex and Seating Preference\nat Georgetown",
+           xlab="Sex of student",
+           sub="Bar color shows seating preference",
+           stack=TRUE)
+```
+
+You can also make horizontal, unstacked ones:
+
+```{r}
+barchartGC(SexSeat,type="freq",
+           main="Sex and Seating Preference\nat Georgetown",
+           ylab="Sex of student",
+           sub="Bar color shows seating preference",
+           stack=FALSE,
+           horizontal=TRUE)
+```
+
+
+# Warning
 
 Bar charts are for factor variables, not for numerical variables.  Look what happens when you ask for a bar chart of **fastest**:
 

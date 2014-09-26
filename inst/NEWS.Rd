@@ -1,6 +1,18 @@
 \name{NEWS}
 \title{NEWS file for the tigerstats package}
 
+\section{Changes in version 0.1.7}{
+\itemize{
+
+\item Addition of package vignettes:  tutorials on all major functions, a summary of descriptive functions and a summary of inferential functions.
+
+\item chisqtestGC() now provides a graph of resampled chi-square statistics when simulate.p.value is set to TRUE.
+
+\item barchartGC() accepts more arguments, and adds a FLat" argument."
+
+}
+}
+
 \section{Changes in version 0.1.6}{
 \itemize{
 

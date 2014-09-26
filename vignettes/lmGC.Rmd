@@ -1,6 +1,8 @@
 ---
 title: "Using lmGC() and predict()"
-output: rmarkdown::html_vignette
+output:
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Using lmGC() and predict()}
@@ -12,7 +14,7 @@ require(knitr)
 opts_chunk$set(tidy=FALSE,fig.width=5.5,fig.height=3.5)
 ```
  
-## Preliminaries
+# Preliminaries
  
 The `lmGC()` is a starter-tool for simple linear regression, when you are studying the relationship between two numerical variables, one of which you consider to be an explanatory or predictor variable and the other of which you think of as the response.  It's only a starter-tool:  by the end of the course, or in later statistics courses, you will move on to R's function `lm()`, which allows you to work with more than one explanatory variable and which provides additional useful information in its output.  Also, in `lm()` the explanatory variable(s) can even be factors!
  
@@ -41,7 +43,7 @@ help(fuel)
 ```
  
  
-## Formula-Data Input
+# Formula-Data Input
  
 Like many R functions, `lmGC()` accepts formula-data input.  The general command looks like:
  
@@ -61,7 +63,7 @@ The output to the console is rather minimal.  You get:
 * the residual standard error $s$.  As a rough rule of thumb, we figure that when we use the regression equation to predict the fuel efficiency of a car from its weight, that prediction is liable to be off by about $s$ miles per gallon, or so.
 * the unadjusted $R^2$.  We see here that about 75% of the variation in the fuel efficiency of the cars in the data set is accounted for by the variation in their weights.  since $R^2$ is fairly high, it seems that weight is a fairly decent predictor of fuel efficiency.
  
-## Prediction
+# Prediction
  
 When the value of the explanatory variable for an individual is known and you wish to predict the value of the response variable for that individual, you can use the `predict()` function.  Its arguments are the linear model that is created by `lmGC()`, and the value `x` of the explanatory variable.
  
@@ -80,7 +82,7 @@ Then if you want to predict the fuel efficiency of a car that weights 3000 pound
  
 We predict that a 3000 pound car (from the time of the Motor Trend study that produced this data) would have a fuel efficiency of 21.25 mpg, give or take about 3.046 mpg or so.  (Note how we used $s$ as a rough give-or-take figure.)
  
-## Plotting
+# Plotting
  
 But we are getting ahead of ourselves!  In order to use linear models at all, we need to make sure that our data really do show a linear relationship.  The single best way to check this is to look at a scatterplot, so `lmGC()` comes equipped with a option to produce one:  just set the argument `graph` to `TRUE`, as follows:
  

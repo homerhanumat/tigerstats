@@ -1,6 +1,8 @@
 ---
 title: "Using lattice's bwplot()"
-output: rmarkdown::html_vignette
+output:
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Using lattice's bwplot()}
@@ -12,7 +14,7 @@ require(knitr)
 opts_chunk$set(tidy=FALSE,fig.width=4.5,fig.height=3.5)
 ```
 
-## Preliminaries
+# Preliminaries
 
 The function `bwplot()` makes box-and-whisker plots for numerical variables.  It comes from the `lattice` package for statistical graphics, which is pre-installed with every distribution of R.  Also, package `tigerstats` depends on lattice, so if you load `tigerstats`:
 
@@ -23,7 +25,7 @@ require(tigerstats)
 then `lattice` will be loaded as well.
 
 
-## One Numerical Variable
+# One Numerical Variable
 
 For a box-and-whisker plot of the fastest speeds ever driven by students in the `m111survey` data frame, use the command:
 
@@ -38,7 +40,7 @@ Note the use of:
 * the `xlab` argument to label the horizontal axis, complete with units (miles per hour);
 * the `main` argument to provide a brief but descriptive title for the graph.
 
-## Numerical and Factor Variable
+# Numerical and Factor Variable
 
 Say you want to know:
 
@@ -62,7 +64,7 @@ bwplot(sex~fastest,data=m111survey,
        main="Fastest Speed Ever Driven,\nby Sex of Subject")
 ```
 
-## Warning
+# Warning
 
 Box-and-Whisker plots are great for studying:
 

@@ -1,6 +1,8 @@
 ---
 title: "Using lattice's xyplot()"
-output: rmarkdown::html_vignette
+output:
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Using lattice's xyplot()}
@@ -12,7 +14,7 @@ require(knitr)
 opts_chunk$set(tidy=FALSE,fig.width=5.5,fig.height=3.5)
 ```
 
-## Preliminaries
+# Preliminaries
 
 The function `xyplot()` makes scatterplots to indicate the relationship between two numerical variables.  It comes from the `lattice` package for statistical graphics, which is pre-installed with every distribution of R.  Also, package `tigerstats` depends on lattice, so if you load `tigerstats`:
 
@@ -22,7 +24,7 @@ require(tigerstats)
 
 then `lattice` will be loaded as well.
 
-## Basic Scatterplot
+# Basic Scatterplot
 
 Suppose you want to know:
 
@@ -48,7 +50,7 @@ When we think of one variable as explanatory and the other as the response, it i
 
 $$response \sim explanatory$$
 
-## Including a Regression Line
+# Including a Regression Line
 
 If you want desire a regression line along with your scatterplot, use the argument `type`, as follows:
 
@@ -62,7 +64,7 @@ xyplot(fastest~GPA,data=m111survey,
 
 The list given by `c("p","r")` tells `xyplot()` that we want both the points ("p") and a regression line ("r").
 
-## Playing With Points
+# Playing With Points
 
 You can vary the type of point using the `pch` argument, and the color of the points with the `col` argument.  For example:
 

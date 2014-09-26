@@ -1,6 +1,8 @@
 ---
 title: "Using pnormGC()"
-output: rmarkdown::html_vignette
+output:
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Using pnormGC()}
@@ -13,7 +15,7 @@ opts_chunk$set(tidy=FALSE,fig.width=5.5,fig.height=3.5)
 ```
 
 
-## Preliminaries
+# Preliminaries
 
 `pnormGC()` provides a direct way to compute probabilities for normal random variables, along with graphs for the probabilities, if you want them.  The function comes from the `tigerstats` package, so make sure that `tigerstats` is loaded:
 
@@ -22,7 +24,7 @@ require(tigerstats)
 ```
 
 
-## Finding P(X < x)
+# Finding P(X < x)
 
 Suppose that you have a normal random variable $X$ with mean $\mu=70$ and standard deviation $\sigma=3$, and you would like to find the chance that $X$ will turn out to be less than 66.  In other words, you are looking for:
 
@@ -50,7 +52,7 @@ pnormGC(bound=66,region="below",
 
 You should ask for a graph until you are confident of being able to use `pnormGC()` to get exactly the probability that you want.
 
-## Find P(X > x)
+# Find P(X > x)
 
 For the same random variable $X \sim norm(70,3)$, suppose we want the probability that $X$ is greater than 69, i.e.:
 
@@ -65,7 +67,7 @@ pnormGC(bound=69,region="above",
 
 
 
-## Finding P(a < X < b)
+# Finding P(a < X < b)
 
 For the same random variable $X \sim norm(70,3)$, suppose we want the probability that $X$ is between 68 and 72, i.e.:
 
@@ -80,7 +82,7 @@ pnormGC(bound=c(68,72),region="between",
 
 Observe that since there are two numbers---68 and 72---that are boundaries, we have to specify both of them for `pnormGC()` in the form of a list `c(68,72)`.
 
-## "Outside" Probabilities
+# "Outside" Probabilities
 
 For the same random variable $X \sim norm(70,3)$, suppose we want the probability that either $X$ is less than 66 OR that $X$ is more than 73.  Then we are looking for:
 
@@ -95,7 +97,7 @@ pnormGC(bound=c(66,73),region="outside",
 ```
 Again observe that there are two numbers---66 and 73---that make the boundaries, so supply both of them to the `bound` argument as a list:  `c(66,72)`.
 
-## Non-Strict Inequalities
+# Non-Strict Inequalities
 
 Suppose that for the same random variable $X \sim norm(70,3)$, you want the probability that $X$ will turn out to be *no more than* 66, i.e., you want:
 

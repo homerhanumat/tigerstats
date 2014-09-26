@@ -1,6 +1,8 @@
 ---
 title: "Using mosaic's favstats()"
-output: rmarkdown::html_vignette
+output:
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Using mosaic's favstats()}
@@ -8,7 +10,7 @@ vignette: >
 ---
 
 
-## Preliminaries
+# Preliminaries
 
 `favstats()` comes from the `mosaic` package and we will use some data from the `tigerstats` package, so make sure that both are loaded:
 
@@ -32,7 +34,7 @@ str(m111survey)
 ```
 
 
-## Studying One Numerical Variable
+# Studying One Numerical Variable
 
 "favstats" is short for "favorite statistics":  it will give you the some of the most popular summary statistics for numerical variables.
 
@@ -58,7 +60,7 @@ We also see that
 * Nobody did not answer (missing = 0).
 
 
-## Studying the Relationship Between a Numerical Variable and a Factor Variable
+# Studying the Relationship Between a Numerical Variable and a Factor Variable
 
 Studying the relationship between a numerical variable and factor variable involves what is popularly known as "breaking the data into groups" based on the values of the factor variable.  More formally, we obtain the conditional distributions of the numerical variable given the various possible values of the factor variable, and look for difference between these distributions.  If we see large differences. then we know that the factor variable "makes a difference" in the likely values of the numerical variable, i.e., the two variable are related.
 
@@ -81,7 +83,7 @@ The second row summarizes the conditional distribution of **fastest**, given tha
 The two conditional distribution are not the same.  For example, we see that on average females drove about 100 mph, whereas the guys drove about 113.4 mph.  The guys appear to drive faster than the gals:  for this sample of students, fastest speed drive does indeed appear to be related to sex.
 
 
-## Limiting the Output
+# Limiting the Output
 
 Sometimes you want just a few of the numbers from `favstats()`.  If you would like to display only those numbers you can do so using brackets "[" and "]", along with a list of the names of the columns you want to see.  For example, to display only the means and the standard deviations for **fastest**, ask for:
 
@@ -100,7 +102,7 @@ favstats(fastest~sex,data=m111survey)[c(".group","mean","sd")]
 
 
 
-## Warning
+# Warning
 
 `favstats()` specializes in numerical variables:  it won't help you to study a factor variable by itself.  If you try to use it to study the factor variable **sex**, like this:
 

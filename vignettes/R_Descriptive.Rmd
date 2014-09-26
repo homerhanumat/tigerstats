@@ -1,0 +1,161 @@
+---
+title: "R:  Descriptive Statistics"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{R:  Descriptive Statistics}
+  %\usepackage[utf8]{inputenc}
+---
+
+```{r include=FALSE}
+require(knitr)
+opts_chunk$set(tidy=FALSE,fig.width=5.5,fig.height=3.5)
+```
+
+```{r include=FALSE}
+library(mosaic)
+library(tigerstats)
+```
+
+
+# Preliminaries
+
+This is a brief guide on how to use R and functions in `tigerstats` and related packages to do some very basic descriptive statistics.  We will give "templates" for the fucntions, accompanied by no-frills examples of their use.  Consult the function tutorials or other Help documents to learn more about the options for each function.
+
+# One Factor Variable
+
+## Graphics
+
+$$barchartGC(\sim variable, data = MyData)$$
+
+```{r }
+barchartGC(~seat,data=m111survey)
+```
+
+
+
+## Numerical Summaries
+
+`xtabs()` and `rowPerc()`:
+
+```{r}
+seating <- xtabs(~seat,data=m111survey)
+seating
+```
+
+```{r}
+rowPerc(seating)
+```
+
+
+
+# Two Factor Variables
+
+## Graphics
+
+$$barchartGC(\sim exp + resp, data = MyData)$$
+
+```{r }
+barchartGC(~sex+seat,data=m111survey)
+```
+
+
+
+## Numerical Summaries
+
+`xtabs()` and `rowPerc()`:
+
+```{r}
+sexSeat <- xtabs(~sex+seat,data=m111survey)
+sexSeat
+```
+
+```{r}
+rowPerc(sexSeat)
+```
+
+
+# One Numeric Variable
+
+
+## Graphics
+
+`histogram()`, `densityplot()`, or `bwplot()`.
+
+$$function(\sim variable,data=myData)$$
+
+```{r }
+densityplot(~fastest,data=m111survey)
+```
+
+
+## Numerical Summaries
+
+Use `favstats()`:
+
+```{r}
+favstats(~fastest,data=m111survey)
+```
+
+
+# One Factor and One Numeric
+
+## Graphics
+
+$$histogram(\sim numeric \vert factor, data=MyData)$$
+
+$$densityplot(\sim numeric \vert factor, data=MyData)$$
+
+$$bwplot(numeric \sim factor, data=MyData)$$
+
+```{r }
+densityplot(~fastest|sex,data=m111survey)
+```
+
+
+## Numerical Summaries
+
+`favstats()` again:
+
+$$favstats(numeric \sim factor, data=myData)$$
+
+```{r}
+favstats(fastest~sex,data=m111survey)
+```
+
+
+
+# Two Numeric Variables
+
+## Graphics
+
+Scatter plots:
+
+$$xyplot(response \sim explanatory, data = myData)$$
+
+```{r }
+xyplot(GPA~fastest,data=m111survey,type=c("p","r"))
+```
+
+
+## Numerical Summaries
+
+$$lmGC(response \sim explanatory, data=myData)$$
+
+```{r }
+lmGC(GPA~fastest,data=m111survey)
+```
+
+## Prediction
+
+```{r}
+fastGPAMod <- lmGC(GPA~fastest,data=m111survey)
+predict(fastGPAMod,x=100)
+```
+
+
+
+
+
