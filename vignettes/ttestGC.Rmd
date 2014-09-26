@@ -19,7 +19,7 @@ opts_chunk$set(tidy=FALSE,fig.width=5.5,fig.height=3.5)
 You use `ttestGC()` for inferential procedures regarding:
 
 * one population mean $\mu$;
-* the difference of two population means, $\mu\_1 - \mu_2$;
+* the difference of two population means, $\mu_1 - \mu_2$;
 * the mean $\mu_d$ of paired differences in a population.
 
 The function comes from the `tigerstats` package, so make sure that `tigerstats` is loaded:
@@ -181,7 +181,7 @@ Suppose
   
   >$\mu_2 =$ mean fastest speed ever driven, by all GC males
 
-If you desire, say, an 85%-confidence interval for $\mu\_1 - \mu_2$, then use:
+If you desire, say, an 85%-confidence interval for $\mu_1 - \mu_2$, then use:
 
 ```{r}
 ttestGC(fastest~sex,data=m111survey,
@@ -191,11 +191,11 @@ ttestGC(fastest~sex,data=m111survey,
 
 ## Interval and Test
 
-If you want a 95%-confidence interval for $\mu\_1 - \mu_2$ and you would like to test the hypotheses:
+If you want a 95%-confidence interval for $\mu_1 - \mu_2$ and you would like to test the hypotheses:
 
-  >$H\_0:  \mu\_1 - \mu_2 = 0$
+  >$H_0:  \mu_1 - \mu_2 = 0$
   
-  >$H_a: \mu\_1 - \mu_2 \neq 0$
+  >$H_a: \mu_1 - \mu_2 \neq 0$
   
 then use:
 
@@ -240,7 +240,7 @@ Suppose that you have taken two independent samples from two populations (or per
 
 You need to provide the summary data to the arguments `mean`, `sd` and `n`, as lists using the `c()` function.  In each list, data from the first group should come first.
 
-For a 95%-confidence interval for $\mu\_1 - \mu_2$, use:
+For a 95%-confidence interval for $\mu_1 - \mu_2$, use:
 
 ```{r}
 ttestGC(mean=c(32,30),sd=c(4.2,5.1),n=c(33,42))
@@ -250,11 +250,11 @@ ttestGC(mean=c(32,30),sd=c(4.2,5.1),n=c(33,42))
 
 ## Interval and Test
 
-Suppose that you want a 90%-confidence interval for $\mu\_1 - \mu_2$ and that you would like to test the hypotheses:
+Suppose that you want a 90%-confidence interval for $\mu_1 - \mu_2$ and that you would like to test the hypotheses:
 
-  >$H\_0:  \mu\_1 - \mu_2 = 0$
+  >$H_0:  \mu_1 - \mu_2 = 0$
   
-  >$H_a: \mu\_1 - \mu_2 > 0$
+  >$H_a: \mu_1 - \mu_2 > 0$
 
 Suppose also that want a graph of the $P$-value.  Then use:
 

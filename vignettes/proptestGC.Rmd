@@ -19,7 +19,7 @@ opts_chunk$set(tidy=FALSE,fig.width=5.5,fig.height=3.5)
 You use `proptestGC()` for inferential procedures regarding:
 
 * one population proportion $p$;
-* the difference of two population proportions, $p\_1 - p_2$.
+* the difference of two population proportions, $p_1 - p_2$.
 
 The function comes from the `tigerstats` package, so make sure that `tigerstats` is loaded:
 
@@ -188,7 +188,7 @@ Suppose
   
   >$p_2 =$ proportion of all GC males who believe they get enough sleep
 
-If you desire, say, an 85%-confidence interval for $p\_1 - p_2$, then use:
+If you desire, say, an 85%-confidence interval for $p_1 - p_2$, then use:
 
 ```{r}
 proptestGC(~sex+enough_Sleep,data=m111survey,
@@ -200,9 +200,9 @@ proptestGC(~sex+enough_Sleep,data=m111survey,
 
 If you want a 95%-confidence interval for $p\_1 - p_2$ and you would like to test the hypotheses:
 
-  >$H\_0:  p\_1 - p_2 = 0$
+  >$H_0:  p_1 - p_2 = 0$
   
-  >$H_a: p\_1 - p_2 \neq 0$
+  >$H_a: p_1 - p_2 \neq 0$
   
 then use:
 
@@ -247,7 +247,7 @@ Suppose that you have taken two independent samples from two populations (or per
 
 You need to provide the summary data to the arguments `x` and `n` as lists using the `c()` function.  In each list, data from the first group should come first.
 
-For a 95%-confidence interval for $p\_1 - p_2$, use:
+For a 95%-confidence interval for $p_1 - p_2$, use:
 
 ```{r}
 proptestGC(x=c(1325,905),n=c(2500,1800))
@@ -257,11 +257,11 @@ proptestGC(x=c(1325,905),n=c(2500,1800))
 
 ## Interval and Test
 
-Suppose that you want a 90%-confidence interval for $p\_1 - p_2$ and that you would like to test the hypotheses:
+Suppose that you want a 90%-confidence interval for $p_1 - p_2$ and that you would like to test the hypotheses:
 
-  >$H\_0:  p\_1 - p_2 = 0$
+  >$H_0:  p_1 - p_2 = 0$
   
-  >$H_a: p\_1 - p_2 > 0$
+  >$H_a: p_1 - p_2 > 0$
 
 Suppose also that you want a graph of the $P$-value.  Then use:
 
