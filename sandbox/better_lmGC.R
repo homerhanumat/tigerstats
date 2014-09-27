@@ -33,7 +33,10 @@ lmGC2 <-function(form,data=parent.frame(),graph=FALSE,diag=FALSE,degree=1)  {
   if (!is(exp,"numeric")) stop("Predictor variable must be numerical")
   
   #get the numbers from stats::lm
-  resultslm <- lm(resp~poly(exp,degree,raw=TRUE))
+  df <- data.frame(exp,resp)
+  names(df) <- c(expname,respname)
+  form <- as.formula(paste0(respname,"~poly(",expname,",",degree,",raw=TRUE)"))
+  resultslm <- lm(form, data=df)
   results <- summary(resultslm)
   
   
@@ -43,7 +46,7 @@ lmGC2 <-function(form,data=parent.frame(),graph=FALSE,diag=FALSE,degree=1)  {
   xFill <- seq(min(exp),max(exp),length.out=n)
   newdf <- data.frame(xFill)
   names(newdf) <- expname
-  fitsFill <- predict(resultslm,newdata=newdf,se=TRUE)
+  fitsFill <- predict(resultslm,newdata=newdf,se.fit=TRUE)
   residse <- results$sigma
   sepredFill <- sqrt(residse^2+(fitsFill$se.fit)^2)
   
@@ -58,7 +61,7 @@ lmGC2 <-function(form,data=parent.frame(),graph=FALSE,diag=FALSE,degree=1)  {
                    r.squared=results$r.squared,
                    resid.sterr=residse,
                    xFill=xFill,
-                   fitsFill=fitsFill,
+                   fitsFill=fitsFill$fit,
                    sepredFill=sepredFill,
                    degree=degree,
                    graph=graph,diag=diag)
