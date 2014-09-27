@@ -1,4 +1,14 @@
-lmGC2(efficiency~speed,data=fuel,degree=2,graph=TRUE)
-mod <- lm(efficiency~speed,data=fuel)
-predict(mod,newdata=data.frame(speed=c(50,60)))
-as.formula("y ~ x")
+lmGC2(efficiency~speed,data=fuel,degree=4,graph=TRUE)
+mod <- lmGC2(efficiency~speed,data=fuel,degree=4)
+predict(mod,x=50)
+as.name("hello")
+
+res <-quote("hello")
+str(res)
+
+mod <- lmGC2(sheight~fheight,data=galton,degree=6,graph=TRUE)
+predict(mod,x=65)
+
+mod <- lmGC2(OBP~Season,data=henderson,degree=2,graph=TRUE)
+
+lmGC2(gasbill~temp,data=Utilities,degree=5,graph=TRUE)

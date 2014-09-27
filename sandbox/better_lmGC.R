@@ -64,7 +64,8 @@ lmGC2 <-function(form,data=parent.frame(),graph=FALSE,diag=FALSE,degree=1)  {
                    fitsFill=fitsFill$fit,
                    sepredFill=sepredFill,
                    degree=degree,
-                   graph=graph,diag=diag)
+                   graph=graph,diag=diag,
+                   mod=resultslm)
   
   class(results2) <- "GClm2"
   return(results2)

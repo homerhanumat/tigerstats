@@ -23,7 +23,7 @@ print.GClm2 <-function(x,...)  {
          cat("\n") 
          if (degree==1) {
            cat("\tLinear Regression\n\n")
-            cat("Correlation coefficient r = ",round(cor(GClm$exp,GClm$resp,use="na.or.complete"),4),"\n\n")
+            cat("Correlation coefficient r = ",signif(cor(GClm$exp,GClm$resp,use="na.or.complete"),4),"\n\n")
             cat("Equation of Regression Line:\n\n")
             cat("\t",respname,"=",round(coefs[1],4),"+",round(coefs[2],4),"*",
                 expname,"\n")
@@ -79,8 +79,7 @@ print.GClm2 <-function(x,...)  {
            names(df) <- c(expname,respname)
            df <- df[complete.cases(df),]
            
-           
-           p1 <- ggplot(df, aes(speed,efficiency))+
+           p1 <- ggplot(df, aes_string(x=expname,y=respname))+
              geom_point()+
              stat_smooth(method = "lm", formula = y ~ poly(x, degree,raw=TRUE), size = 1,se=FALSE)+
              xlab(expname)+ylab(respname)
