@@ -65,7 +65,13 @@ print.GClm2 <-function(x,...)  {
          cat("Residual Standard Error:\ts   =",round(GClm$resid.sterr,4),"\n")
          cat("R^2 (unadjusted):\t\tR^2 =",round(GClm$r.squared,4),"\n")
          
-         if (GClm$graph) {
+         
+         #make data frame with complete cases to suppress warnings in ggplot
+         df <- data.frame(GClm$exp,GClm$resp)
+         names(df) <- c(expname,respname)
+         df <- df[complete.cases(df),]
+         
+         if (GClm$graph && !GClm$check) {
            xFill <- GClm$xFill
            fitsFill=GClm$fitsFill
            sepredFill <- GClm$sepredFill
@@ -74,10 +80,7 @@ print.GClm2 <-function(x,...)  {
                                 fitsFill+sepredFill)
            names(predfr) <- c(expname,respname,"lwr","upr")
            
-           #make data frame with complete cases to suppress warnings in ggplot
-           df <- data.frame(GClm$exp,GClm$resp)
-           names(df) <- c(expname,respname)
-           df <- df[complete.cases(df),]
+          
            
            p1 <- ggplot(df, aes_string(x=expname,y=respname))+
              geom_point()+
@@ -85,6 +88,22 @@ print.GClm2 <-function(x,...)  {
              xlab(expname)+ylab(respname)
            
            print(p1+geom_ribbon(data=predfr,aes(ymin=lwr,ymax=upr),alpha=0.2))
+           
+         }
+         
+         
+         if (GClm$check) {
+           
+           if (length(GClm$exp) < 1000) method <- "loess" else method <- "gam"
+           
+           p1 <- ggplot(df, aes_string(x=expname,y=respname))+
+              ggtitle("Checking the Model")+
+             geom_point()+
+             stat_smooth(method = "lm", formula = y ~ poly(x, degree,raw=TRUE), size = 1,se=TRUE)+
+             xlab(expname)+ylab(respname) + stat_smooth(method=method,color="red",size=1,se=FALSE)
+             
+           
+           print(p1)
            
          }
          
