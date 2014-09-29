@@ -96,8 +96,10 @@ print.GClm2 <-function(x,...)  {
            
            if (length(GClm$exp) < 1000) method <- "loess" else method <- "gam"
            
+           title <- paste0("Checking the Model Fit\n(model line/curve is blue; ",method," curve is red)")
+           
            p1 <- ggplot(df, aes_string(x=expname,y=respname))+
-              ggtitle("Checking the Model")+
+              ggtitle(title)+
              geom_point()+
              stat_smooth(method = "lm", formula = y ~ poly(x, degree,raw=TRUE), size = 1,se=TRUE)+
              xlab(expname)+ylab(respname) + stat_smooth(method=method,color="red",size=1,se=FALSE)
