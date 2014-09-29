@@ -23,7 +23,7 @@ predict.GClm2 <-function(object,x,...)  {
     residse <- object$resid.sterr
     newdf <- data.frame(x)
     names(newdf) <- expname
-    prediction <- predict(model,newdata=newdf,se.fit=TRUE)
+    prediction <- suppressWarnings(predict(model,newdata=newdf,se.fit=TRUE))
     predVal <- prediction$fit
     sepred <- sqrt(residse^2+(prediction$se.fit)^2)
     return(cat(paste0("Predict ",respname," is about ",signif(predVal,4),

@@ -49,7 +49,7 @@ lmGC2 <-function(form,data=parent.frame(),graph=FALSE,diag=FALSE,degree=1,check=
   xFill <- seq(min(exp),max(exp),length.out=n)
   newdf <- data.frame(xFill)
   names(newdf) <- expname
-  fitsFill <- predict(resultslm,newdata=newdf,se.fit=TRUE)
+  fitsFill <- suppressWarnings(predict(resultslm,newdata=newdf,se.fit=TRUE))
   residse <- results$sigma
   sepredFill <- sqrt(residse^2+(fitsFill$se.fit)^2)
   
