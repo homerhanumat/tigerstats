@@ -4,12 +4,11 @@
 #'   Wrapper function for \code{lm} in package \code{stats}.
 #' 
 #' @rdname lmGC
-#' @usage lmGC(form,data=parent.frame(),graph=FALSE,diag=FALSE,degree=1,check=FALSE)
+#' @usage lmGC(form,data=parent.frame(),graph=FALSE,degree=1,check=FALSE)
 #' @param form formula of form y~x, both variables numeric
 #' @param data dataframe supplying y and x above.  If one or more of the variables is not in data, then
 #' they will be searched for in the parent environment.
 #' @param graph Produce scatterplot with fitted ploynomial, together with prediction standard error bands
-#' @param diag produces diagnostic plots:  density plot of residuals, and residuals vs. fits
 #' @param degree Degree of polynomial to fit to default.  Default is linear fit.
 #' @param check Asks to produce confidence bands around the fitted curve, and a lowess curve for
 #' comparison.
@@ -20,7 +19,7 @@
 #' @examples
 #' #To study the relationship between two numerical variables:
 #' lmGC(fastest~GPA,data=m111survey,graph=TRUE)
-lmGC2 <-function(form,data=parent.frame(),graph=FALSE,diag=FALSE,degree=1,check=FALSE)  {
+lmGC2 <-function(form,data=parent.frame(),graph=FALSE,degree=1,check=FALSE)  {
   
   prsd <- ParseFormula(form)
   respname <- as.character(prsd$lhs)
@@ -44,14 +43,26 @@ lmGC2 <-function(form,data=parent.frame(),graph=FALSE,diag=FALSE,degree=1,check=
   
   
   # for graphing
-  n <- 500 #desired number of poonts to make fitting curve and se.fits
+  n <- 500 #desired number of points to make fitting curve and se.fitl
+
+  xCent <- (exp - mean(exp,na.rm=TRUE))/sd(exp,na.rm=TRUE)
+  centForm <- as.formula(paste0(respname,"~poly(xCent,",degree,",raw=TRUE)"))
+  
+  df2 <- data.frame(xCent,resp)
+  names(df2) <- c("xCent",respname)
+  centMod <- lm(centForm,data=df2)
   
   xFill <- seq(min(exp),max(exp),length.out=n)
-  newdf <- data.frame(xFill)
-  names(newdf) <- expname
-  fitsFill <- suppressWarnings(predict(resultslm,newdata=newdf,se.fit=TRUE))
+  xFillCent <- (xFill - mean(xFill))/sd(xFill)
+  newdf <- data.frame(xFillCent)
+  names(newdf) <- "xCent"
+  fitsFill <- predict.lm(centMod,newdata=newdf,interval="prediction",level=0.95)
+  
+
   residse <- results$sigma
-  sepredFill <- sqrt(residse^2+(fitsFill$se.fit)^2)
+  
+  #old code fomr when I wanted to make "naive" prediction intervals
+  #sepredFill <- sqrt(residse^2+(fitsFill$se.fit)^2)
   
   #Collect what we need for our print function:
   results2 <- list(expname=expname,
@@ -64,12 +75,12 @@ lmGC2 <-function(form,data=parent.frame(),graph=FALSE,diag=FALSE,degree=1,check=
                    r.squared=results$r.squared,
                    resid.sterr=residse,
                    xFill=xFill,
-                   fitsFill=fitsFill$fit,
-                   sepredFill=sepredFill,
+                   fitsFill=fitsFill,
                    degree=degree,
                    graph=graph,diag=diag,
                    check=check,
-                   mod=resultslm)
+                   mod=resultslm,
+                   centMod=centMod)
   
   class(results2) <- "GClm2"
   return(results2)

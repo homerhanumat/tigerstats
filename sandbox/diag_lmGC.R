@@ -1,0 +1,31 @@
+#' @title Diagnostic Plots for GC Linear Regression
+
+#' @description Used by generic plot function
+#' 
+#' @rdname plot.GClm
+#' @method plot GClm
+#' @usage 
+#' \S3method{plot}{GClm}(object,...)
+#' @param object An object of class GClm
+#' @param \ldots ignored
+#' @return two diagmostic plots
+#' @export
+#' @author Homer White \email{hwhite0@@georgetowncollege.edu}
+#' @examples
+#' SpeedModel <- lmGC(fastest~GPA,data=m111survey)
+#' plot(SpeedModel)
+plot.GClm2 <-function(object,...)  {
+  
+    GClm <- object
+  
+    p1 <- densityplot(~GClm$residuals,xlab="residuals",main="Residuals")
+    p2 <- xyplot(GClm$residuals~GClm$fitted.values,xlab="predicted y values",
+                 ylab="residuals",main="Residuals vs. Fits",pch=19,
+                 panel=function(...){
+                   panel.xyplot(...)
+                   panel.abline(h=0)
+                 })   
+    print(p1,split=c(1,1,1,2), more=TRUE)
+    print(p2,split=c(1,2,1,2))
+    
+  }#end plot.GClm
