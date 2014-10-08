@@ -3,12 +3,14 @@
 \alias{predict.GClm}
 \title{Prediction Function for GC Linear Regression}
 \usage{
-\S3method{predict}{GClm}(object,x,...)
+\S3method{predict}{GClm}(object,x,level=NULL,...)
 }
 \arguments{
 \item{object}{An object of class GClm}
 
 \item{x}{value of the predictor variable}
+
+\item{level}{desired level of prediction interval}
 
 \item{\ldots}{ignored}
 }
@@ -22,6 +24,8 @@ Used by generic predict function
 #predict fastest speed driven, for person with GPA=3.0:
 SpeedModel <- lmGC(fastest~GPA,data=m111survey)
 predict(SpeedModel,x=3.0)
+#include prediction interval:
+predict(SpeedModel,x=3.0,level=0.95)
 }
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}

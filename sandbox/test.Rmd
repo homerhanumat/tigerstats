@@ -48,7 +48,7 @@ To get predictions numerically, you still use the generic `predict()` function. 
 predict(mod,x=2002)
 ```
 
-Note that a prediction interval is now provided.  The default level is 95%, but you can change that with the `level` argument.  If you use this with students, point out that the prediction standard error that is provided as the "give-or-take" figure is almost but not quite that same as $s$.  (It will vary a bit depending on the value of $x$.)  Also, the prediction intervals are not quite $\hat{y} \pm 2s$, they are $t$-intervals instead.  We would just say to the students that the routine routine is just trying to be a bit less "rough" that than the 68-95 rule was.
+Note that a prediction interval is now provided.  The default level is 95%, but you can change that with the `level` argument.  If you use this with students, point out that the prediction standard error that is provided as the "give-or-take" figure is almost but not quite that same as $s$.  (It will vary a bit depending on the value of $x$.)  Also, the prediction intervals are not really $\hat{y} \pm 2s$.  We would just say to the students that the routine routine is just trying to be a bit less "rough" that than the 68-95 rule was.
 
 # A Simple Model-Selection Criterion
 
@@ -70,7 +70,7 @@ Compare the reuslts above with what one would get if one checked a linear fit:
 lmGC2(OBP~Season,data=henderson,check=TRUE)
 ```  
 
-It's clear now t0 students: the linear model is too simple, but a quadratic model is probably fine,
+It's clear now to students: the linear model is too simple, but a quadratic model is probably fine,
 
 Of course one could explore higher-degree fits:
 
@@ -78,32 +78,27 @@ Of course one could explore higher-degree fits:
 lmGC2(OBP~Season,data=henderson,degree=3,graph=TRUE)
 ```
 
-Note that the $R^2$ is not much higher (and the $s$ is actually worse than at degree two).
+Note that the $R^2$ is not much higher (and the $s$ is actually worse than at degree two), so there is clearly no benefit in moving to degree 3.
 
-But there is a complication, here.  Note the warning about rank-deficiency, the result of a a call of R's `predict.lm()` from the  `ggplot()` function.
-
-I've also set it up so that the same warning is issued when you use `predict()`:
+The gigher the degree of the fit, the more over-fitting there will be. This is not always immediatley apparent from the graph (see the following fit):
 
 ```{r}
-mod2 <- lmGC2(OBP~Season,data=henderson,degree=3)
+lmGC2(OBP~Season,data=henderson,degree=11,graph=TRUE)
+```
+
+However, you can sometimes make the problems more apparent by extrapolating such a small amount that if the model made sense the prediction would make sense:
+
+
+```{r}
+mod2 <- lmGC2(OBP~Season,data=henderson,degree=11)
 predict(mod2,x=2002)
 ```
 
-Now there are many reasons for rank-deficiency, but only two are likely, I think, to occur for students:
+No way should his OBP increase (esepcially to over 92%) if he had stayed on another year.
 
-* the degree you want to fit is too high, given the number and/or placement of the points on the scatterplot, bascially it's a stupid or overly-complex model;
-* the $x$-values are so large (or so small) that when they are raised to those big powers the numerical routines deliver matrices that don't have full rank.
+Sometimes there are tell-tale signs of problematic models,  The machine may at times issue a warning about "predcitons form rank-deficient matrices", and you may find that some coeeficients are reported as NA.  These are clear signs to reduce the degree of the fit!
 
-There is no simple rule to give to students, or to anyone, that lets you know which of the two is the culprit.  I think that if students are exploring responsibly, then they are far more likely to run into the latter cause rather than the former.  Hence we might have to teach them that when they get a warning they should "center" the data so as to avoid computations with very large numbers.  (Very small numbers would require re-scaling the data, maybe by taking z-scores).
-
-For example:
-
-```{r}
-SeasonCenter <- with(henderson,Season-1990)
-lmGC2(OBP~SeasonCenter,data=henderson,degree=3,graph=TRUE)
-```
-
-No more warning:  now students can tell, from the $R^2$ and $s$, that the data itself is what won't support a move from degree 2 to degree 3.  (The numerical stuff was NOT the reason you should not use a degree-3 model.)
+**Note*: I have taken the liberty of sclaing the $X$-values prior to computing fits and prediction intervals.  This step prevents the machine from issuing warnings based on numerical computation issues that realted only to the size of the explanaotyr variable values rather than on considerations relevant to model selection.
 
 
 # Diagnostics

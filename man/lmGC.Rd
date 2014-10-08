@@ -3,7 +3,7 @@
 \alias{lmGC}
 \title{Linear Regression}
 \usage{
-lmGC(form,data=parent.frame(),graph=FALSE,diag=FALSE)
+lmGC(form,data=parent.frame(),graph=FALSE,check=FALSE)
 }
 \arguments{
 \item{form}{formula of form y~x, both variables numeric}
@@ -11,9 +11,10 @@ lmGC(form,data=parent.frame(),graph=FALSE,diag=FALSE)
 \item{data}{dataframe supplying y and x above.  If one or more of the variables is not in data, then
 they will be searched for in the parent environment.}
 
-\item{graph}{produce scatterplot with regression line}
+\item{graph}{Produce scatterplot with fitted ploynomial, together with prediction standard error bands}
 
-\item{diag}{produces diagnostic plots:  density plot of residuals, and residuals vs. fits}
+\item{check}{Asks to produce a lowess or gam curve with approximate 95%-confidence band.  If the
+fitted line wanders outside the band, then perhaps a linear fit is not appropriate.}
 }
 \value{
 A list of class "GClm".  Elements that may be queried include "slope", "intercept",

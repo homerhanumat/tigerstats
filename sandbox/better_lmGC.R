@@ -4,14 +4,13 @@
 #'   Wrapper function for \code{lm} in package \code{stats}.
 #' 
 #' @rdname lmGC
-#' @usage lmGC(form,data=parent.frame(),graph=FALSE,degree=1,check=FALSE)
+#' @usage lmGC(form,data=parent.frame(),graph=FALSE,check=FALSE)
 #' @param form formula of form y~x, both variables numeric
 #' @param data dataframe supplying y and x above.  If one or more of the variables is not in data, then
 #' they will be searched for in the parent environment.
 #' @param graph Produce scatterplot with fitted ploynomial, together with prediction standard error bands
-#' @param degree Degree of polynomial to fit to default.  Default is linear fit.
-#' @param check Asks to produce confidence bands around the fitted curve, and a lowess curve for
-#' comparison.
+#' @param check Asks to produce a lowess or gam curve with approximate 95%-confidence band.  If the
+#' fitted line wanders outside the band, then perhaps a linear fit is not appropriate.
 #' @return A list of class "GClm".  Elements that may be queried include "slope", "intercept",
 #' "s" (residual standard error), "R^2" (unadjusted).
 #' @export
@@ -19,7 +18,7 @@
 #' @examples
 #' #To study the relationship between two numerical variables:
 #' lmGC(fastest~GPA,data=m111survey,graph=TRUE)
-lmGC2 <-function(form,data=parent.frame(),graph=FALSE,degree=1,check=FALSE)  {
+lmGC <-function(form,data=parent.frame(),graph=FALSE,check=FALSE)  {
   
   prsd <- ParseFormula(form)
   respname <- as.character(prsd$lhs)
@@ -37,26 +36,9 @@ lmGC2 <-function(form,data=parent.frame(),graph=FALSE,degree=1,check=FALSE)  {
   #get the numbers from stats::lm
   df <- data.frame(exp,resp)
   names(df) <- c(expname,respname)
-  form <- as.formula(paste0(respname,"~poly(",expname,",",degree,",raw=TRUE)"))
+  form <- as.formula(paste0(respname,"~",expname))
   resultslm <- lm(form, data=df)
   results <- summary(resultslm)
-  
-  
-  # for graphing
-  n <- 500 #desired number of points to make fitting curve and se.fitl
-
-  xCent <- (exp - mean(exp,na.rm=TRUE))/sd(exp,na.rm=TRUE)
-  centForm <- as.formula(paste0(respname,"~poly(xCent,",degree,",raw=TRUE)"))
-  
-  df2 <- data.frame(xCent,resp)
-  names(df2) <- c("xCent",respname)
-  centMod <- lm(centForm,data=df2)
-  
-  xFill <- seq(min(exp),max(exp),length.out=n)
-  xFillCent <- (xFill - mean(xFill))/sd(xFill)
-  newdf <- data.frame(xFillCent)
-  names(newdf) <- "xCent"
-  fitsFill <- predict.lm(centMod,newdata=newdf,interval="prediction",level=0.95)
   
 
   residse <- results$sigma
@@ -70,29 +52,14 @@ lmGC2 <-function(form,data=parent.frame(),graph=FALSE,degree=1,check=FALSE)  {
                    exp=exp,
                    resp=resp,
                    residuals=resultslm$residuals,
-                   fitted.values=resultslm$fitted.values,
                    coefficients=results$coefficients,
                    r.squared=results$r.squared,
                    resid.sterr=residse,
-                   xFill=xFill,
-                   fitsFill=fitsFill,
-                   degree=degree,
-                   graph=graph,diag=diag,
+                   graph=graph,
                    check=check,
-                   mod=resultslm,
-                   centMod=centMod)
+                   mod=resultslm)
   
-  class(results2) <- "GClm2"
+  class(results2) <- "GClm"
   return(results2)
   
 }#end GClm
-
-# for easy dev
-simpleFind <- function(varName,data) {
-  tryCatch({get(varName,envir=as.environment(data))},
-           error=function(e) {
-             get(varName,inherits=T)
-           }
-  )
-  
-}
