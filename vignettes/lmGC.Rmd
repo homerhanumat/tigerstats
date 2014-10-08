@@ -121,8 +121,14 @@ plot(WeightEff)
 
 You get two graphs:
  
-* a density plot of the residuals.  If the distribution of the residuals is roughly bell-shaped, then you can actually employ a ``regression'' version of the 68-95 Rule:  when you make a prediction using the regression line, there is a about a 68% chance that your predcition will be wtthin one $s$ of the actual $y$-value, and about a 95% chance that ti will be within $2s$ of the actual $y$-value.  *Neat!*
-* A plot of the residuals vs, the ``fitted`` $y$-values (the $y$-coordinates of the points on the original scatter-plot).  If the points exhibit a linear relationship with about the same amount of scatter all the way along the regression line, then this plot should look like a random cloud of points.  In this case, it confirms that our linear model is appropriate to the data.
+* a density plot of the residuals.  If the distribution of the residuals is roughly bell-shaped, then the 68-95 Rule says that:
+    * about 68% of the residuals are between $-s$ and $s$;
+    * about 95% of the residuals are between $-2s$ and $2s$.
+* A plot of the residuals vs, the ``fitted`` $y$-values (the $y$-coordinates of the points on the original scatter-plot).  If the points exhibit a linear relationship with about the same amount of scatter all the way along the regression line, then this plot will look like a random cloud of points
+
+If you plan to use your regression line for prediction and to rely upon the prediction standard errors and prediction intervals provided by the `predict()` function, then the residuals should be roughly bell-shaped, and the plot of residuals vs. fits should look pretty much like a random cloud.
+
+In this case, the plots indicate that we can make reliable predictions from our linear model.
  
 On the other hand, consider `fuel` data frame, which shows the results of a study where a British Ford Escort was driven at various speed along a standard course, and the fuel efficiency (in kilometers traveled per liter of fuel consumed) was recorded at each speed.  Let's try a linear model with **speed** as explanatory and **efficiency** as the response, with some diagnostic plots attached:
  
