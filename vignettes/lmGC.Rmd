@@ -152,12 +152,21 @@ The relationship is strongly curvilinear:  it makes no sense to use the regressi
 
 # Further Checks
 
-A nice way to check whether your fit is appropriate to the data is to use the `check` argument for `lmGC()`:
+Another nice way to check whether your fit is appropriate to the data is to use the `check` argument for `lmGC()`.  Let's perform a check on the `WeightEff` model:
 
+```{r}
+lmGC(mpg ~ wt, data = mtcars, check = TRUE)
+```
+
+The linear fit is graphed, but there is also a "loess" curve, a smooth curve that does not make much assumption about what kind of relationship produced the data in question.  Surrounding the loess curve is a 95%-confidence band:  based on the data we are pretty sure that the "real" relationship between **wt** and **mpg** is some function with a graph that lies within the band.
+
+Now it is highly unlikely that our linear model gives the "real" relationship, but notice that the line stays within the 95%-confidence band.  This means that it's not such a bad idea to use the line to predict fuel efficiency from weight, for the range of weights for which we have data.  The line does wander near the edge of the band for the higher weights, though, so we might employ extra caution there:  common sense says, after all, that fuel efficiency should "level out" at very high weights, rather than follow the line.
+
+On the other hand, consider a check on a linear model for the relationship between **volume** (number of bikes on the trail) and **avgtemp** (average temperature for the day) in the `RailTrail` data frame:
 
 ```{r}
 lmGC(volume~avgtemp,data=RailTrail,check=TRUE)
 ```
 
-We get the linear fit, but there is also a "loess" curve, a smooth curve that does not make much assumption about what kind of process produced the data in question.  Surrounding the loess curve is a 95%-confidence band:  based on the data we are pretty sure that the "real" relationship between **avgtemp** and **volume** is some function with a graph that lies within the band.  The regression line wanders a bit outside the band, so a linear fit probably is not quite adequate.  Perhaps we should learn how to fit some other types of curves to the data!
+Note that regression line wanders a bit outside the band, so a linear fit probably is not quite adequate--especially for days with higher temperatures, when people may forsake bicyle trials for other warm-weather activities such as swimming.  At very high temperatures outside the range for which we have data, **volume** should be low, so the "real" relationship is probably quite curvilinear.  Perhaps we should learn how to fit something other than a straight line to data!
 
