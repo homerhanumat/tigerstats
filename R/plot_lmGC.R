@@ -17,9 +17,12 @@
 plot.GClm <-function(x,...)  {
   
     GClm <- x
+    mod <- GClm$mod
+    residuals <- mod$residuals
+    fitted.values <- mod$fitted.values
   
-    p1 <- densityplot(~GClm$residuals,xlab="residuals",main="Residuals")
-    p2 <- xyplot(GClm$residuals~GClm$fitted.values,xlab="predicted y values",
+    p1 <- densityplot(~residuals,xlab="residuals",main="Residuals")
+    p2 <- xyplot(residuals~fitted.values,xlab="predicted y values",
                  ylab="residuals",main="Residuals vs. Fits",pch=19,
                  panel=function(...){
                    panel.xyplot(...)

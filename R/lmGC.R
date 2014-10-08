@@ -43,15 +43,12 @@ lmGC <-function(form,data=parent.frame(),graph=FALSE,check=FALSE)  {
   
   residse <- results$sigma
   
-  #old code fomr when I wanted to make "naive" prediction intervals
-  #sepredFill <- sqrt(residse^2+(fitsFill$se.fit)^2)
   
   #Collect what we need for our print function:
   results2 <- list(expname=expname,
                    respname=respname,
                    exp=exp,
                    resp=resp,
-                   residuals=resultslm$residuals,
                    coefficients=results$coefficients,
                    r.squared=results$r.squared,
                    resid.sterr=residse,

@@ -5,7 +5,7 @@ output:
     toc: true
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Using lmGC() and predict()}
+  %\VignetteIndexEntry{Using lmGC(), predict() and plot()}
   %\usepackage[utf8]{inputenc}
 ---
 
@@ -127,10 +127,14 @@ The relationship is strongly curvilinear:  it makes no sense to use the regressi
 
 # Further Checks
 
-A n ice way to check whether your fit is appropriate to the data is to use the `check` argument for `lmGC()`:
+A nice way to check whether your fit is appropriate to the data is to use the `check` argument for `lmGC()`:
+
+```{r message=FALSE}
+require(mosaicData)
+```
+
 
 ```{r}
-require(mosaicData)
 lmGC(volume~avgtemp,data=RailTrail,check=TRUE)
 ```
 
