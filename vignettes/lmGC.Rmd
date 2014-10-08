@@ -10,6 +10,7 @@ vignette: >
 ---
 
 ```{r include=FALSE}
+require(mosaicData)
 require(knitr)
 opts_chunk$set(tidy=FALSE,fig.width=5.5,fig.height=3.5)
 ```
@@ -25,7 +26,7 @@ require(tigerstats)
 ```
 
 
-In this tutorial we will work with a couple of data sets:  `mtcars` from the `data` package that comes with the basic R installation, and `fuel` from the `tigerstats` package, so make sure you become familiar with them.  The following commands may be helpful in this regard:
+In this tutorial we will work with a couple of data sets:  `mtcars` from the `data` package that comes with the basic R installation,`fuel` from the `tigerstats` package and `RailTrail` from the package `mosaicData`, so make sure you become familiar with them.  The following commands may be helpful in this regard:
  
 ```{r eval=FALSE}
 data(mtcars)
@@ -40,6 +41,15 @@ For `fuel`:
 data(fuel)
 View(fuel)
 help(fuel)
+```
+
+For `RailTrail`:
+
+```{r eval=FALSE}
+require(mosaicData)
+data(RailTrail)
+View(RailTrail)
+help(RailTrail)
 ```
  
  
@@ -80,18 +90,27 @@ predict(WeightEff, x = 3)
 ```
 
  
-We predict that a 3000 pound car (from the time of the Motor Trend study that produced this data) would have a fuel efficiency of 21.25 mpg, give or take about 3.095 mpg or so.
+We predict that a 3000 pound car (from the time of the Motor Trend study that produced this data) would have a fuel efficiency of 21.25 mpg, give or take about 3.095 mpg or so.  The "give-or-take" figure here is known as the *prediction standard error*.  It's a little bit bigger than the residual standard error $s$, and as a give-or-take figure it's a bit more reliable.  (By the way, it also differs for different values of the explanatory variable.)
+
+You can also get a *predcition interval* for the response variable if you use the `level` argument:
+
+```{r}
+predict(WeightEff,x=3,level=0.95)
+```
+
+The interval says you can be about 95% confident that the actual efficiency of the car is somewhere between 14.9 and 27.6 miles per gallon.
+
  
 # Plotting
  
-But we are getting ahead of ourselves!  In order to use linear models at all, we need to make sure that our data really do show a linear relationship.  The single best way to check this is to look at a scatterplot, so `lmGC()` comes equipped with a option to produce one:  just set the argument `graph` to `TRUE`, as follows:
+But we are getting ahead of ourselves!  In order to use linear models at all, we need to make sure that our data really do show a linear relationship.  The single best way to check this is to look at a scatter-plot, so `lmGC()` comes equipped with a option to produce one:  just set the argument `graph` to `TRUE`, as follows:
  
 ```{r}
 lmGC(mpg ~ wt, data = mtcars, graph = TRUE)
 ```
 
  
-The scatterplot includes the regression line. Indeed, the cloud of point seems to follow a line fairly well.  The relationship may be thought of as linear, so using `lmGC()` for tasks like prediction does make sense, for this data.
+The scatter-plot includes the regression line. Indeed, the cloud of point seems to follow a line fairly well.  The relationship may be thought of as linear, so using `lmGC()` for tasks like prediction does make sense, for this data.
  
 You can also perform some simple diagnostics using the `plot()` function:
  
@@ -103,7 +122,7 @@ plot(WeightEff)
 You get two graphs:
  
 * a density plot of the residuals.  If the distribution of the residuals is roughly bell-shaped, then you can actually employ a ``regression'' version of the 68-95 Rule:  when you make a prediction using the regression line, there is a about a 68% chance that your predcition will be wtthin one $s$ of the actual $y$-value, and about a 95% chance that ti will be within $2s$ of the actual $y$-value.  *Neat!*
-* A plot of the residuals vs, the ``fitted`` $y$-values (the $y$-coordinates of the points on the original scatterplot).  If the points exhibit a linear relationship with about the same amount of scatter all the way along the regression line, then this plot should look like a random cloud of points.  In this case, it confirms that our linear model is appropriate to the data.
+* A plot of the residuals vs, the ``fitted`` $y$-values (the $y$-coordinates of the points on the original scatter-plot).  If the points exhibit a linear relationship with about the same amount of scatter all the way along the regression line, then this plot should look like a random cloud of points.  In this case, it confirms that our linear model is appropriate to the data.
  
 On the other hand, consider `fuel` data frame, which shows the results of a study where a British Ford Escort was driven at various speed along a standard course, and the fuel efficiency (in kilometers traveled per liter of fuel consumed) was recorded at each speed.  Let's try a linear model with **speed** as explanatory and **efficiency** as the response, with some diagnostic plots attached:
  
@@ -112,7 +131,7 @@ effSpeed <- lmGC(efficiency ~ speed, data = fuel)
 plot(effSpeed)
 ```
 
-The residuals have a roughly-bell-shaped distribution, but the residual plot is clearly patterned.  Something is amiss!  Let's look at a scatterplot of the data:
+The residuals have a roughly-bell-shaped distribution, but the residual plot is clearly patterned.  Something is amiss!  Let's look at a scatter-plot of the data:
  
 ```{r}
 xyplot(efficiency~speed,data=fuel,
@@ -129,14 +148,10 @@ The relationship is strongly curvilinear:  it makes no sense to use the regressi
 
 A nice way to check whether your fit is appropriate to the data is to use the `check` argument for `lmGC()`:
 
-```{r message=FALSE}
-require(mosaicData)
-```
-
 
 ```{r}
 lmGC(volume~avgtemp,data=RailTrail,check=TRUE)
 ```
 
-We get the linear fit, but there is also a "loess" curve, a smooth curve that does not make much assumption about what kind of process produced the data in question.  Surrounding the loess curve is a 95%-confidence band:  based on the data we are pretty sure that the "real" relationship between **avgtemp** and **volume** is some curve that lies within the band.  The regression line wander a bit outside the band, so a linear fit probably is not quite adequate for this data.  Perhaps we should learn how to fit some other types of curves to the data!
+We get the linear fit, but there is also a "loess" curve, a smooth curve that does not make much assumption about what kind of process produced the data in question.  Surrounding the loess curve is a 95%-confidence band:  based on the data we are pretty sure that the "real" relationship between **avgtemp** and **volume** is some function with a graph that lies within the band.  The regression line wanders a bit outside the band, so a linear fit probably is not quite adequate.  Perhaps we should learn how to fit some other types of curves to the data!
 
