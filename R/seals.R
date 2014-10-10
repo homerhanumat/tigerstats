@@ -3,7 +3,7 @@
 #' Results of an experiment conducted on ten Weddell seals.
 #' 
 #' 
-#' @name seals
+#' @name sealsO2
 #' @docType data
 #' @format A data frame with 10 observations on the following 2 variables.
 #' \describe{ \item{o2.nonfeeding}{Oxygen consumption during recovery time after a dive during which
