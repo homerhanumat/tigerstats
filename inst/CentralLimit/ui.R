@@ -51,7 +51,7 @@ shinyUI(pageWithSidebar(
       condition="(input.resample > 0 && input.reset == 0) || output.total > output.totalPrev",
       
       tabsetPanel(
-        tabPanel("Latest Interval",
+        tabPanel("Latest Sample",
                  plotOutput("graphSample"),
                  HTML("<p> </p>"),
                  HTML("<ul>
