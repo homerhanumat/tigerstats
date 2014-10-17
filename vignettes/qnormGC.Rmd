@@ -1,20 +1,21 @@
 ---
-title: "Using qnorm()"
+title: "Using qnormGC()"
 output:
   rmarkdown::html_vignette:
     toc: true
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Using qnorm()}
+  %\VignetteIndexEntry{Using qnormGC()}
   %\usepackage[utf8]{inputenc}
 ---
 
 ```{r include=FALSE}
 require(knitr)
+require(tigerstats)
 opts_chunk$set(tidy=FALSE,fig.width=5.5,fig.height=3.5)
 ```
 
-# Comparison of `qnorm()` with `pnormGC()`
+# Comparison of `qnormGC()` with `pnormGC()`
 
 The function `pnorm()` in regular `R`, as well as the function `pnormGC() in the `tigerstats` package, compute probabilities from known bounding values.  For example, suppose that $X$ is a normally distributed random variable with mean 70 and standard deviation 3, and that you want to know:
 
@@ -31,26 +32,23 @@ pnormGC(72, region="below", mean=70,
         sd=3,graph=TRUE)
 ```
 
-The function `qnorm()`, which comes standard with R, aims to do the opposite:  given an area, find the boundary value that determines this area.
+The function `qnormGC()`aims to do the opposite:  given an area, find the boundary value that determines this area.
 
 For example, suppose you want to find that 85th percentile of a normal distribution whose mean is 70 and whose standard deviation is 3.  Then you ask for:
 
 ```{r}
-qnorm(0.85,mean=70,sd=3)
+qnormGC(0.85,region="below",mean=70,sd=3)
 ```
 
 The value 73.1093 is indeed the 85th percentile, in the sense that 85% of the values in a population that is normally distributed with mean 70 and standard deviation 3 will lie below 73.1093.  In other words, if you were to pick a random member $X$ from such a population, then
 
 $$P(X < 73.1093) = 0.85$$.
 
-You can check that this is correct by plugging 73.1093 into `pnormGC()`:
+Quite often you will want to check your understanding by making a graph of the known percent, with the bounding percentile on the x-axis:
 
-```{r qnormtut73}
-pnormGC(73.1093,region="below",mean=70,
-        sd=3,graph=TRUE)
+```{r}
+qnormGC(0.85,region="below",mean=70,sd=3,graph-TRUE)
 ```
-
-Sure enough, the area under the curve before 73.1093 is 0.85.
 
 # A Few More Examples
 
@@ -58,49 +56,42 @@ Sure enough, the area under the curve before 73.1093 is 0.85.
 
   >Suppose that SAT scores are normally distributed, and that the mean SAT score is 1000, and the standard deviation of all SAT scores is 100.  *How high must you score so that only 10% of the population scores higher than you?*
 
-Here's the solution.  If 10% score higher than you, then 90% score lower.  So just call `qnorm()` with 0.90 as the boundary value:
+Here's the solution:  just set `region` to "above":
 
 ```{r}
-qnorm(0.90,mean=1000,sd=100)
+qnormGC(0.10,region="above",mean=1000,sd=100,graph=TRUE)
 ```
 
 In other words, the 90th percentile of SAT scores is around 1128.
 
-**Note**:  `qnorm()` deals by default with areas *below* the given boundary value.  If we had asked for:
-
-```{r eval=FALSE}
-qnorm(0.10,mean=1000,sd=100)
-```
-
-then we would have got only the 10th percentile of the SAT scores, not the desired 90th percentile.  If you would like to input 0.10 directly, then you can do so provided that you fiddle with the `lower.tail` argument:
+Of course, you could have got the same thing by realizing that when 10% are above, 90% are below.  Then you could just ask for:
 
 ```{r}
-qnorm(0.10,mean=1000,sd=100,
-      lower.tail=FALSE)
+qnormGC(0.90,region="below",mean=1000,sd=100)
 ```
 
-But really it seems easier just to do the math:
-
-$1 - 0.10 = 0.90.$
 
 ## An Area Between
 
   >Find a positive number $z$ so that the area under the standard normal curve between $-z$ and $z$ is 0.95.
   
-Here's the solution.  If 95% of the area lies between $-z$ and $z$, then 5% of the area must lie outside of this range.  since normal curves are symmetric, half of this amount--2.5%--must lie before $-z$.  Then the area under the curve before $z$ must be:
-
-$$0.025+0.95=0.975.$$
-
-Hence the number $z$ is actually the 97.5th percentile of the standard normal distribution, and we can find it as follows:
+Here, we can set the `region` argument to "between".  The default value for `mean` is 0 and for `sd` the default is 1, so we can leave those arguments out if we like:
 
 ```{r}
-qnorm(0.975,mean=0,sd=1)
+qnormGC(0.95,region="betwwen",graph=TRUE)
 ```
 
-So $z$ is about 1.96.  We can check this result graphically as follows:
+Both bounds are given.  The positive number we sought is about 1.96.
 
-```{r qnormtutbetween}
-pnormGC(c(-1.96,1.96),region="between",mean=0,
-        sd=1,graph=TRUE)
+## An Area Outside
+
+  >Find a positive number $z$ so that the area under the standard normal curve before $-z$ plus the area  after $z$ is 0.10.
+  
+Here, we can set the `region` argument to "outside".  The default value for `mean` is 0 and for `sd` the default is 1, so we can leave those arguments out if we like:
+
+```{r}
+qnormGC(0.10,region="outside",graph=TRUE)
 ```
+
+Both bounds are given.  The positive number we sought is about 1.645.
 

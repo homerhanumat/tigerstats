@@ -1,28 +1,7 @@
-lmGC2(efficiency~speed,data=fuel,degree=4,graph=TRUE)
-mod <- lmGC2(efficiency~speed,data=fuel,degree=4)
-predict(mod,x=50)
-as.name("hello")
+qnormGC(0.80,mean=72,sd=3,region="below",graph=TRUE)
 
-res <-quote("hello")
-str(res)
+qnormGC(0.15,mean=72,sd=3,region="below",graph=TRUE)
 
-mod <- lmGC2(sheight~fheight,data=galton,graph=TRUE)
-predict(mod,x=65)
+qnormGC(0.95,mean=72,sd=3,region="above",graph=TRUE)
 
-mod <- lmGC2(OBP~Season,data=henderson,degree=2,graph=TRUE)
-lmGC2(OBP~Season,data=henderson,degree=2,check=TRUE)
-
-lmGC2(gasbill~temp,data=Utilities,degree=2,check=TRUE)
-
-mod <- lmGC2(volume~avgtemp,data=RailTrail,degree=2)
-
-lmGC2(OBP~Season,data=henderson,degree=3)
-
-seas2 <- henderson$Season - 1990
-
-lmGC2(OBP~seas2,data=henderson,degree=23,graph=TRUE)
-
-mod3 <- lmGC2(OBP~seas2,data=henderson,degree=20)
-predict(mod3,x=12)
-
-lmGC2(ChugTime~Weight,data=chugtime,check=TRUE)
+qnormGC(0.10,mean=72,sd=3,region="outside",graph=TRUE)
