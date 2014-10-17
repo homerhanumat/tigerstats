@@ -78,7 +78,7 @@ qnormGC(0.90,region="below",mean=1000,sd=100)
 Here, we can set the `region` argument to "between".  The default value for `mean` is 0 and for `sd` the default is 1, so we can leave those arguments out if we like:
 
 ```{r}
-qnormGC(0.95,region="betwwen",graph=TRUE)
+qnormGC(0.95,region="between",graph=TRUE)
 ```
 
 Both bounds are given.  The positive number we sought is about 1.96.
