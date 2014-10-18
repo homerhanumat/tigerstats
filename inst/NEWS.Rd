@@ -1,6 +1,20 @@
 \name{NEWS}
 \title{NEWS file for the tigerstats package}
 
+\section{Changes in Version 1.9} {
+\itemize{
+
+\item Addition of qnormGC().
+
+\item Addition of check argument to lmGC().  Diagnostics are no longer done with the diag argument; instead one calls the plot() function.
+
+\item Addition of polyfitGC().
+
+\item Addition of henderson data frame; the seals data frame has been re-named to sealsO2 to avoid name conflict with seals in the ggplot2 package.
+
+}
+}
+
 \section{Changes in version 0.1.7}{
 \itemize{
 
