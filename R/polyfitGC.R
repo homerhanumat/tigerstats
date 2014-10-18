@@ -12,8 +12,8 @@
 #' @param graph Produce scatterplot with fitted ploynomial.
 #' @param check Asks to produce a lowess or gam curve with approximate 95%-confidence band.  If the
 #' fitted line wanders outside the band, then perhaps a linear fit is not appropriate.
-#' @return A list of class "polyGC".  Elements that may be queried include "slope", "intercept",
-#' "s" (residual standard error), "R^2" (unadjusted).
+#' @return A list of class "polyGC".  Elements that may be queried include
+#' "s" (residual standard error) and "R^2" (unadjusted).
 #' @export
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
 #' @examples

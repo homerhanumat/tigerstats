@@ -19,8 +19,8 @@ they will be searched for in the parent environment.}
 fitted line wanders outside the band, then perhaps a linear fit is not appropriate.}
 }
 \value{
-A list of class "polyGC".  Elements that may be queried include "slope", "intercept",
-"s" (residual standard error), "R^2" (unadjusted).
+A list of class "polyGC".  Elements that may be queried include
+"s" (residual standard error) and "R^2" (unadjusted).
 }
 \description{
 Regression analysis (one numerical predictor variable) with simplified output.
