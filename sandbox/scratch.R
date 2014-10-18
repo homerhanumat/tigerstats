@@ -1,7 +1,4 @@
-qnormGC(0.80,mean=72,sd=3,region="below",graph=TRUE)
+polyfitGC(OBP~Season,data=henderson,degree=2,graph=TRUE)
 
-qnormGC(0.15,mean=72,sd=3,region="below",graph=TRUE)
+predict(SpeedModel,x=3,level=0.95)
 
-qnormGC(0.95,mean=72,sd=3,region="above",graph=TRUE)
-
-qnormGC(0.10,mean=72,sd=3,region="outside",graph=TRUE)
