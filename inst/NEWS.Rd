@@ -1,7 +1,7 @@
 \name{NEWS}
 \title{NEWS file for the tigerstats package}
 
-\section{Changes in Version 1.9} {
+\section{Changes in Version 1.9}{
 \itemize{
 
 \item Addition of qnormGC().
@@ -11,6 +11,9 @@
 \item Addition of polyfitGC().
 
 \item Addition of henderson data frame; the seals data frame has been re-named to sealsO2 to avoid name conflict with seals in the ggplot2 package.
+
+\item Addition of function helpGC(), a convenience function to view package vignettes in the R Studio
+Viewer pane.
 
 }
 }
