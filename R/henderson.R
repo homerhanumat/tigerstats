@@ -1,0 +1,30 @@
+#' Ricky Henderson's Career Stats
+#' 
+#' Various year-by-year statistics for the Major League player Ricky Henderson
+#' 
+#' 
+#' @name henderson
+#' @docType data
+#' @format A data frame with 23 observations on the following 18 variables.
+#' \describe{ \item{Season}{season}
+#' \item{TM}{team played for}
+#' \item{G}{number of games played in}
+#' \item{AB}{number of at-bats}
+#' \item{R}{runs scored}
+#' \item{H}{number of base hits}
+#' \item{X2B}{doubles}
+#' \item{X3B}{triples}
+#' \item{HR}{home runs}
+#' \item{RBI}{runs batted in}
+#' \item{BB}{bases on balls}
+#' \item{SO}{number of times struck out}
+#' \item{SB}{Number of stolen bases}
+#' \item{CS}{number of times caught stealing}
+#' \item{AVG}{batting average}
+#' \item{OBP}{on-base percentage}
+#' \item{SLG}{slugging rate}
+#' \item{OPS}{on-base plus slugging}
+#'  }
+#' @source unknown (possibly Albert: Teaching Statistics With Baseball)
+#' @keywords datasets
+NULL

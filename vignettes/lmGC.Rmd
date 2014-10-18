@@ -17,7 +17,7 @@ opts_chunk$set(tidy=FALSE,fig.width=5.5,fig.height=3.5)
  
 # Preliminaries
  
-The `lmGC()` is a starter-tool for simple linear regression, when you are studying the relationship between two numerical variables, one of which you consider to be an explanatory or predictor variable and the other of which you think of as the response.  It's only a starter-tool:  by the end of the course, or in later statistics courses, you will move on to R's function `lm()`, which allows you to work with more than one explanatory variable and which provides additional useful information in its output.  Also, in `lm()` the explanatory variable(s) can even be factors!
+The function `lmGC()` is a starter-tool for simple linear regression, when you are studying the relationship between two numerical variables, one of which you consider to be an explanatory or predictor variable and the other of which you think of as the response.  It's only a starter-tool:  by the end of the course, or in later statistics courses, you will move on to R's function `lm()`, which allows you to work with more than one explanatory variable and which provides additional useful information in its output.  Also, in `lm()` the explanatory variable(s) can even be factors!
  
 The function (and some of the data) that we will use comes from the `tigerstats` package, so make sure that it is loaded:
  
@@ -59,7 +59,7 @@ Like many R functions, `lmGC()` accepts formula-data input.  The general command
  
 $$lmGC(response \sim explanatory, data = DataFrame)$$
 
-If you are interested in studying the relationship between the fuel efficiency of a car (**mpg** in the `mtcars` data frame, measured in miles per gallon) and its weight (**wt** in `mtcars`, measure din thousands of pounds), then you  can run:
+If you are interested in studying the relationship between the fuel efficiency of a car (**mpg** in the `mtcars` data frame, measured in miles per gallon) and its weight (**wt** in `mtcars`, measured in thousands of pounds), then you  can run:
  
 ```{r}
 lmGC(mpg ~ wt, data = mtcars)
@@ -168,5 +168,5 @@ On the other hand, consider a check on a linear model for the relationship betwe
 lmGC(volume~avgtemp,data=RailTrail,check=TRUE)
 ```
 
-Note that regression line wanders a bit outside the band, so a linear fit probably is not quite adequate--especially for days with higher temperatures, when people may forsake bicyle trials for other warm-weather activities such as swimming.  At very high temperatures outside the range for which we have data, **volume** should be low, so the "real" relationship is probably quite curvilinear.  Perhaps we should learn how to fit something other than a straight line to data!
+Note that the regression line wanders a bit outside the band, so a linear fit probably is not quite adequate--especially for days with higher temperatures, when people may forsake bicyle trials for other warm-weather activities such as swimming.  At very high temperatures outside the range for which we have data, **volume** should be low, so the "real" relationship is probably quite curvilinear.  Perhaps we should learn how to fit something other than a straight line to data!
 
