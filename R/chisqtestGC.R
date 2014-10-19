@@ -193,14 +193,15 @@ chisqtestGC <-
     if(simulate.p.value==TRUE  && type=="association") { #user requested R's routines
       #res <- chisq.test(res$observed,simulate.p.value=T,B=B)
       tab <- res$observed
-      df <- data.frame(resp = rep(colnames(tab),times=colSums(tab)))
+      respRS <- rep(colnames(tab),times=colSums(tab))
       sizes <- rowSums(tab)
       groups <- rownames(tab)
+      grp <- rep(groups,times=sizes)
+      sizeRS <- length(grp)
       nullDist <- numeric(B)
       for (i in 1:B) {
-        newDiv <- RandomExp(df,sizes=sizes,groups=groups)
-        names(newDiv)[2] <- "exp"
-        resamptab <- xtabs(~exp+resp,data=newDiv)
+        expRS <- sample(grp,size=sizeRS,replace=FALSE)
+        resamptab <- xtabs(~expRS+respRS)
         nullDist[i] <- chisq.calc(resamptab)
       }
       res$statistic <- sum((res$observed-res$expected)^2/res$expected) #don't want Yates
