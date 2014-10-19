@@ -14,7 +14,9 @@ helpGC(topic,package="tigerstats")
 side effects
 }
 \description{
-A convenience function to show package vignettes in the R Studio Viewer pane.
+A convenience function to show package vignettes.  Vignette will show in a
+viewer selected by the front-end (e.g, the Viewer pane in R Studio), or in a
+browser if the "viewer" option is not set.
 }
 \examples{
 \dontrun{

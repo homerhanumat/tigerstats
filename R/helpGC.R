@@ -1,6 +1,8 @@
 #' @title Quick Vignettes in the Viewer
 
-#' @description A convenience function to show package vignettes in the R Studio Viewer pane.
+#' @description A convenience function to show package vignettes.  Vignette will show in a 
+#' viewer selected by the front-end (e.g, the Viewer pane in R Studio), or in a 
+#' browser if the "viewer" option is not set.
 #' 
 #' @rdname helpGC
 #' @usage helpGC(topic,package="tigerstats")
@@ -39,6 +41,10 @@ helpGC <- function(topic,package="tigerstats") {
   htmlFile <- file.path(tempDir, "index.html")
   outCon <- htmlFile
   writeLines(inStuff,con=outCon)
-  rstudio::viewer(htmlFile)
+  viewer <- getOption("viewer")
+  if (!is.null(viewer))
+    viewer(htmlFile)
+  else
+    utils::browseURL(htmlFile)
 }
 

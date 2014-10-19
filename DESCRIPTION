@@ -1,7 +1,7 @@
 Package: tigerstats
 Type: Package
 Title: R for Elementary Statistics
-Version: 0.1.9-2
+Version: 0.1.9-3
 Date: 2014-10-18
 Author: Rebekah Robinson <rrobinson20@humana.com> and Homer
     White <hwhite0@georgetowncollege.edu>
@@ -21,8 +21,7 @@ Depends:
     lattice
 Imports:
     MASS,
-    ggplot2,
-    rstudio
+    ggplot2
 Suggests:
     mosaic,
     mosaicData,
