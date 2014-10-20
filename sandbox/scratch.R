@@ -1,6 +1,7 @@
-polyfitGC(OBP~Season,data=henderson,degree=2,graph=TRUE)
+require(tigerstats)
 
-predict(SpeedModel,x=3,level=0.95)
+sexSeat <- xtabs(~sex+seat,data=m111survey)
 
-polyfitGC(efficiency~speed,data=fuel,degree=4,check=TRUE)
+chisqtestGC(~sex+seat,data=m111survey,simulate.p.value=T,graph=T,B=10000)
 
+res <- chisqtestGC(~sex+seat,data=m111survey,simulate.p.value="fixed",graph=T,B=10000)

@@ -12,13 +12,15 @@
 #' then they will be searched for in the parent environment.
 #' @param p For goodness of fit, a vector of probabilities.  This will be automatically scaled so as to sum
 #' to 1.  Negative elements result in an error message.
-#' @param graph produce relevant graph for P-value (chi-square curve or histogram of simulation results).  Ignored if
-#' user requests R's resampling routines (see below).
+#' @param graph produce relevant graph for P-value (chi-square curve or histogram of simulation results).
 #' @param simulate.p.value If FALSE, use a chi-square distribution to estimate the P-value.  Other possible
 #' values are "random" and "fixed" and TRUE.  Random effects are suitable for resampling when the data are a random
 #' sample from a poulation.  Fixed effects assume that the values of the explanatory variable (row variable for table,
 #' var1 in formula ~var1+var2) remain fixed in resampling, and values of response variable are random with null
-#' distribution estimated from the data.  When set to TRUE, we use R's resampling routines.
+#' distribution estimated from the data.  When set to TRUE, we implement an equivalent to R's routine.  
+#' In our view procedure is
+#' most suitable when the data come from a randomized experiment in which the treatment groups are
+#' the values of the explanatory variable.
 #' @param B number of resamples to take.
 #' @param verbose If TRUE, include lots of information in the output.
 #' @return No value, just side effects.  Future versions may define an S3 object, with print method.
@@ -41,7 +43,7 @@
 #' 
 #' #For less ouptut, set argument verbose to FALSE:
 #' chisqtestGC(~sex+seat,data=m111survey,verbose=FALSE)
-chisqtestGC2 <- 
+chisqtestGC <- 
   function (x,data=parent.frame(),p=NULL,graph=FALSE,simulate.p.value=FALSE,B=2000,verbose=TRUE) 
   {
     
@@ -190,17 +192,20 @@ chisqtestGC2 <-
     
     if(simulate.p.value==TRUE  && type=="association") { #user requested R's routines
       #res <- chisq.test(res$observed,simulate.p.value=T,B=B)
+      ptm <- proc.time()
       tab <- res$observed
-      df <- data.frame(resp = rep(colnames(tab),times=colSums(tab)))
+      respRS <- rep(1:ncol(tab),times=colSums(tab))
       sizes <- rowSums(tab)
-      groups <- rownames(tab)
+      groups <- 1:nrow(tab)
+      grp <- rep(groups,times=sizes)
+      sizeRS <- length(grp)
       nullDist <- numeric(B)
       for (i in 1:B) {
-        newDiv <- RandomExp(df,sizes=sizes,groups=groups)
-        names(newDiv)[2] <- "exp"
-        resamptab <- xtabs(~exp+resp,data=newDiv)
+        expRS <- sample(grp,size=sizeRS,replace=FALSE)
+        resamptab <- xtabs(~expRS+respRS)
         nullDist[i] <- chisq.calc(resamptab)
       }
+      print(proc.time()-ptm)
       res$statistic <- sum((res$observed-res$expected)^2/res$expected) #don't want Yates
       res$p.value <- length(nullDist[nullDist >= res$statistic])/B
     }
@@ -292,13 +297,3 @@ chisqtestGC2 <-
     }
     
   }#end chisqtestGC
-
-# for easy testing
-simpleFind <- function(varName,data) {
-  tryCatch({get(varName,envir=as.environment(data))},
-           error=function(e) {
-             get(varName,inherits=T)
-           }
-  )
-  
-}

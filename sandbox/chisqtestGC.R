@@ -12,13 +12,15 @@
 #' then they will be searched for in the parent environment.
 #' @param p For goodness of fit, a vector of probabilities.  This will be automatically scaled so as to sum
 #' to 1.  Negative elements result in an error message.
-#' @param graph produce relevant graph for P-value (chi-square curve or histogram of simulation results).  Ignored if
-#' user requests R's resampling routines (see below).
+#' @param graph produce relevant graph for P-value (chi-square curve or histogram of simulation results).
 #' @param simulate.p.value If FALSE, use a chi-square distribution to estimate the P-value.  Other possible
 #' values are "random" and "fixed" and TRUE.  Random effects are suitable for resampling when the data are a random
 #' sample from a poulation.  Fixed effects assume that the values of the explanatory variable (row variable for table,
 #' var1 in formula ~var1+var2) remain fixed in resampling, and values of response variable are random with null
-#' distribution estimated from the data.  When set to TRUE, we use R's resampling routines.
+#' distribution estimated from the data.  When set to TRUE, we implement an equivalent to R's routine.  
+#' In our view procedure is
+#' most suitable when the data come from a randomized experiment in which the treatment groups are
+#' the values of the explanatory variable.
 #' @param B number of resamples to take.
 #' @param verbose If TRUE, include lots of information in the output.
 #' @return No value, just side effects.  Future versions may define an S3 object, with print method.
@@ -45,11 +47,19 @@ chisqtestGC <-
   function (x,data=parent.frame(),p=NULL,graph=FALSE,simulate.p.value=FALSE,B=2000,verbose=TRUE) 
   {
     
-    #begin with utiltiy function for resampling in test for association:
+    #begin with utiltiy functions for resampling in test for association:
+    
+    exp.counts <- function(x) (rowSums(x) %*% t(colSums(x)))/sum(x)
+    
+    chisq.calc <- function(x) {
+      expected <- exp.counts(x)
+      contributions <- (x - expected)^2/expected
+      return(sum(contributions[!is.nan(contributions)]))
+    }
+    
     ChisqResampler <- function (x, n, effects = "random") 
     {
       #x is a two-way table, n is number of resamples
-      exp.counts <- function(x) (rowSums(x) %*% t(colSums(x)))/sum(x)
       TableResampler <- function(x, n = 1000, effects) {
         rowsampler <- function(x, p) {
           rmultinom(1, size = sum(x), prob = p)
@@ -85,12 +95,7 @@ chisqtestGC <-
           return(resampled.tabs)
         }
       }
-      chisq.calc <- function(x) {
-        exp.counts <- function(x) (rowSums(x) %*% t(colSums(x)))/sum(x)
-        expected <- exp.counts(x)
-        contributions <- (x - expected)^2/expected
-        return(sum(contributions[!is.nan(contributions)]))
-      }
+     
       nullDist <- apply(TableResampler(x, n, effects = effects), 
                         3, chisq.calc)
       
@@ -104,7 +109,7 @@ chisqtestGC <-
         rmultinom(1, size = sum(x), prob = p)
       }
       
-      chisq.calc <- function(x,p) {
+      chisq.calc.1 <- function(x,p) {
         expected <- sum(x)*p
         return(sum((x - expected)^2/expected))
       }
@@ -113,7 +118,7 @@ chisqtestGC <-
       
       for (i in 1:n) {
         resamp.tab <- rowsampler(x,p)
-        NullDist[i] <- chisq.calc(resamp.tab,p)
+        NullDist[i] <- chisq.calc.1(resamp.tab,p)
       }
       
       return(NullDist)
@@ -185,27 +190,57 @@ chisqtestGC <-
     
   #next, check to see if we need to simulate
     
-    if(simulate.p.value==TRUE  && type=="association") { #user requested R's routines
-      res <- chisq.test(res$observed,simulate.p.value=T,B=B)
+    if(simulate.p.value==TRUE  && type=="association") { 
+      #user requested R's routines, so give something very close to it
+      tab <- res$observed
+      statistic <- sum((res$observed-res$expected)^2/res$expected) #don't want Yates
+      expected <- exp.counts(tab)
+      csq <- function(x) {
+        sum((x-expected)^2/expected)
+      }
+      nullDist <- numeric(B)
+      
+      r <- rowSums(tab)
+      c <- colSums(tab)
+      
+      countOver <- 0
+      simsSoFar <- 0
+      ourLimit <- 10000 # amount to handle at once
+      
+      while(simsSoFar < B) {
+        reps <- min(B-simsSoFar,ourLimit)
+        rtabs <- r2dtable(reps,r=r,c=c)
+        sims <- sapply(rtabs,FUN=csq,USE.NAMES=FALSE)
+        nullDist[(simsSoFar+1):(simsSoFar+reps)] <- sims
+        simsSoFar <- simsSoFar + reps
+        countOver <- countOver + length(sims[sims >= statistic])
+      }
+
+      res$statistic <- statistic
+      res$p.value <- (countOver+1)/B
+      res$sims <- nullDist
     }
   
   if(simulate.p.value==TRUE  && type=="goodness") { #we pick up the simulated values ourselves
     expected <- sum(x)*p
     res$statistic <- sum((x-expected)^2/expected) #don't want Yates
     nullDist <- GoodnessResampler(x,n=B,p=p)
-    res$p.value <- length(nullDist[nullDist >= res$statistic])/B
+    res$p.value <- (length(nullDist[nullDist >= res$statistic])+1)/(B+1)
+    res$sims <- nullDist
   }
     
     if (simulate.p.value=="fixed") {
       res$statistic <- sum((res$observed-res$expected)^2/res$expected) #don't want Yates
       nullDist <- ChisqResampler(res$observed,n=B,effects="fixed")
-      res$p.value <- length(nullDist[nullDist >= res$statistic])/B
+      res$p.value <- (length(nullDist[nullDist >= res$statistic])+1)/(B+1)
+      res$sims <- nullDist
     }
     
     if (simulate.p.value=="random") {
       res$statistic <- sum((res$observed-res$expected)^2/res$expected) #don't want Yates
       nullDist <- ChisqResampler(res$observed,n=B,effects="random")
-      res$p.value <- length(nullDist[nullDist >= res$statistic])/B
+      res$p.value <- (length(nullDist[nullDist >= res$statistic])+1)/(B+1)
+      res$sims <- nullDist
     }
     
     
@@ -265,20 +300,16 @@ chisqtestGC <-
     }
     
     #finally, the graph
-    if (graph==TRUE && (simulate.p.value %in% c("fixed","random"))) {
+    if (graph && !(simulate.p.value==FALSE)) {
       hist(nullDist,xlab="Chi-Square Resamples",freq=TRUE,
            main=paste("Distribution of",B,"Resamples"),col="lightblue")
       abline(v=res$statistic,col="red",lwd=2)
     }
-  
-  if (graph==TRUE && (simulate.p.value==TRUE && type=="goodness")) {
-    hist(nullDist,xlab="Chi-Square Resamples",freq=TRUE,
-         main=paste("Distribution of",B,"Resamples"),col="lightblue")
-    abline(v=res$statistic,col="red",lwd=2)
-  }
      
     if (graph==TRUE && simulate.p.value==FALSE) {
       invisible(pchisqGC(res$stat,region="above",df=df,graph=T))
     }
+  
+  return(invisible(res))
     
   }#end chisqtestGC

@@ -49,8 +49,9 @@ chisqtestGC <-
     
     #begin with utiltiy functions for resampling in test for association:
     
+    exp.counts <- function(x) (rowSums(x) %*% t(colSums(x)))/sum(x)
+    
     chisq.calc <- function(x) {
-      exp.counts <- function(x) (rowSums(x) %*% t(colSums(x)))/sum(x)
       expected <- exp.counts(x)
       contributions <- (x - expected)^2/expected
       return(sum(contributions[!is.nan(contributions)]))
@@ -59,7 +60,6 @@ chisqtestGC <-
     ChisqResampler <- function (x, n, effects = "random") 
     {
       #x is a two-way table, n is number of resamples
-      exp.counts <- function(x) (rowSums(x) %*% t(colSums(x)))/sum(x)
       TableResampler <- function(x, n = 1000, effects) {
         rowsampler <- function(x, p) {
           rmultinom(1, size = sum(x), prob = p)
@@ -190,41 +190,57 @@ chisqtestGC <-
     
   #next, check to see if we need to simulate
     
-    if(simulate.p.value==TRUE  && type=="association") { #user requested R's routines
-      #res <- chisq.test(res$observed,simulate.p.value=T,B=B)
+    if(simulate.p.value==TRUE  && type=="association") { 
+      #user requested R's routines, so give something very close to it
       tab <- res$observed
-      respRS <- rep(colnames(tab),times=colSums(tab))
-      sizes <- rowSums(tab)
-      groups <- rownames(tab)
-      grp <- rep(groups,times=sizes)
-      sizeRS <- length(grp)
-      nullDist <- numeric(B)
-      for (i in 1:B) {
-        expRS <- sample(grp,size=sizeRS,replace=FALSE)
-        resamptab <- xtabs(~expRS+respRS)
-        nullDist[i] <- chisq.calc(resamptab)
+      statistic <- sum((res$observed-res$expected)^2/res$expected) #don't want Yates
+      expected <- exp.counts(tab)
+      csq <- function(x) {
+        sum((x-expected)^2/expected)
       }
-      res$statistic <- sum((res$observed-res$expected)^2/res$expected) #don't want Yates
-      res$p.value <- length(nullDist[nullDist >= res$statistic])/B
+      nullDist <- numeric(B)
+      
+      r <- rowSums(tab)
+      c <- colSums(tab)
+      
+      countOver <- 0
+      simsSoFar <- 0
+      ourLimit <- 10000 # amount to handle at once
+      
+      while(simsSoFar < B) {
+        reps <- min(B-simsSoFar,ourLimit)
+        rtabs <- r2dtable(reps,r=r,c=c)
+        sims <- sapply(rtabs,FUN=csq,USE.NAMES=FALSE)
+        nullDist[(simsSoFar+1):(simsSoFar+reps)] <- sims
+        simsSoFar <- simsSoFar + reps
+        countOver <- countOver + length(sims[sims >= statistic])
+      }
+
+      res$statistic <- statistic
+      res$p.value <- (countOver+1)/B
+      res$sims <- nullDist
     }
   
   if(simulate.p.value==TRUE  && type=="goodness") { #we pick up the simulated values ourselves
     expected <- sum(x)*p
     res$statistic <- sum((x-expected)^2/expected) #don't want Yates
     nullDist <- GoodnessResampler(x,n=B,p=p)
-    res$p.value <- length(nullDist[nullDist >= res$statistic])/B
+    res$p.value <- (length(nullDist[nullDist >= res$statistic])+1)/(B+1)
+    res$sims <- nullDist
   }
     
     if (simulate.p.value=="fixed") {
       res$statistic <- sum((res$observed-res$expected)^2/res$expected) #don't want Yates
       nullDist <- ChisqResampler(res$observed,n=B,effects="fixed")
-      res$p.value <- length(nullDist[nullDist >= res$statistic])/B
+      res$p.value <- (length(nullDist[nullDist >= res$statistic])+1)/(B+1)
+      res$sims <- nullDist
     }
     
     if (simulate.p.value=="random") {
       res$statistic <- sum((res$observed-res$expected)^2/res$expected) #don't want Yates
       nullDist <- ChisqResampler(res$observed,n=B,effects="random")
-      res$p.value <- length(nullDist[nullDist >= res$statistic])/B
+      res$p.value <- (length(nullDist[nullDist >= res$statistic])+1)/(B+1)
+      res$sims <- nullDist
     }
     
     
@@ -293,5 +309,7 @@ chisqtestGC <-
     if (graph==TRUE && simulate.p.value==FALSE) {
       invisible(pchisqGC(res$stat,region="above",df=df,graph=T))
     }
+  
+  return(invisible(res))
     
   }#end chisqtestGC
