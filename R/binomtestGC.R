@@ -65,7 +65,9 @@ binomtestGC <-
         stop("No sucesses found.  Did you fail to specify success correctly?")
       }
       successes <- TallyTable[success]
+      names(successes) <- NULL  #keep name off of p-value in the returned results
       trials <- sum(TallyTable)
+      names(trials) <- NULL
       
     }
       
@@ -127,21 +129,20 @@ if (verbose==TRUE) {
         smallOnes <- x[p.x <= ourProb]
         
         if (length(smallOnes) == (n+1)) {
-          return(invisible(pbinomGC(c(0,n),size=n,prob=p,region="between",graph=T)))
+          invisible(pbinomGC(c(0,n),size=n,prob=p,region="between",graph=T))
         } else {
           bigger <- x[p.x > ourProb]
           if (length(bigger) ==1) {
-            return(invisible(pbinomGC(c(bigger,bigger),size=n,prob=p,region="outside",graph=T)))
+            invisible(pbinomGC(c(bigger,bigger),size=n,prob=p,region="outside",graph=T))
           }
           
           if (length(bigger) > 1) {
             lower <- bigger[1]
             upper <- bigger[length(bigger)]
-            return(invisible(pbinomGC(c(lower,upper),size=n,prob=p,region="outside",graph=T)))
+            invisible(pbinomGC(c(lower,upper),size=n,prob=p,region="outside",graph=T))
           }
-          
         } # end else
-        
+        return(invisible(res))
       }  #end twoSide
       
      if (graph)   {  
@@ -153,5 +154,5 @@ if (verbose==TRUE) {
       }
       
     }
-    
+    return(invisible(res))
   }#end binomtestGC
