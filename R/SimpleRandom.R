@@ -205,4 +205,4 @@ SimpleRandom<-function(){
 }
   )}
 
-if(getRversion() >= "2.15.1")  utils::globalVariables(c("picker","type"))
+if(getRversion() >= "2.15.1")  utils::globalVariables(c("picker","type","imagpop"))

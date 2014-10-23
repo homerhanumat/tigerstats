@@ -250,4 +250,4 @@ SimpleRandom2<-function(n=100){
 
 } # end app
 
-if(getRversion() >= "2.15.1")  utils::globalVariables(c("takeSamp","type","button"))
+if(getRversion() >= "2.15.1")  utils::globalVariables(c("takeSamp","type","button","imagpop"))
