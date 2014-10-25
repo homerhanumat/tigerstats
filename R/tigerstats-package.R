@@ -12,6 +12,5 @@
 #' \url{http://statistics.georgetowncollege.edu}
 #'
 #' @keywords package
-#' @importFrom stats binom.test t.test prop.test
-#' @import lattice
+#' @import mosaic
 NULL

@@ -18,10 +18,11 @@ Description: This package consists of data sets and functions that are useful
 License: GPL (>=3)
 Depends:
     R(>= 2.10),
-    lattice
+    mosaic
 Imports:
     MASS,
-    ggplot2
+    ggplot2,
+    lattice
 Suggests:
     mosaic,
     mosaicData,
