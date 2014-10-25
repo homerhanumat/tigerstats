@@ -20,7 +20,7 @@
 #' @keywords graphics 
 #' 
 themerpres <- function () {
-  my.theme <- trellis.par.get() #Would like to be able to pick up the default theme
+  my.theme <- lattice::trellis.par.get() #Would like to be able to pick up the default theme
   my.theme$add.text[[2]] <- 2.5
   my.theme$box.rectangle[[5]] <- 3
   my.theme$box.umbrella[[4]] <- 3

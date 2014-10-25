@@ -123,14 +123,14 @@ barchartGC <-
         
         if (type=="frequency") {
         args <- c(list(x=tab),otherArgs)
-        return(do.call(barchart,args))
+        return(do.call(lattice::barchart,args))
         }
       
         if (type=="percent") {
         perctab <- 100*tab/sum(tab)
         perctab[is.nan(perctab)] <- 0
         args <- c(list(x=perctab),otherArgs)
-        return(do.call(barchart,args))
+        return(do.call(lattice::barchart,args))
           }
       
       } # end one variable
@@ -167,13 +167,13 @@ barchartGC <-
             
             if (type=="frequency") {
               args <- c(list(x=tab),otherArgs)
-              return(do.call(barchart,args))
+              return(do.call(lattice::barchart,args))
             }
             if (type=="percent") {
               perctab <- 100*prop.table(tab,margin=1)
               perctab[is.nan(perctab)] <- 0
               args <- c(list(x=perctab),otherArgs)
-              return(do.call(barchart,args))
+              return(do.call(lattice::barchart,args))
             }   
 
         }
@@ -195,13 +195,13 @@ barchartGC <-
           
           if (type=="frequency") {
             args <- c(list(x=tab),otherArgs)
-            return(do.call(barchart,args))
+            return(do.call(lattice::barchart,args))
           }
           if (type=="percent") {
             perctab <- 100*prop.table(tab,margin=1)
             perctab[is.nan(perctab)] <- 0
             args <- c(list(x=perctab),otherArgs)
-            return(do.call(barchart,args))
+            return(do.call(lattice::barchart,args))
           }   
           
         }
@@ -227,13 +227,13 @@ barchartGC <-
         
         if (type=="frequency") {
         args <- c(list(x=tab),otherArgs)
-        return(do.call(barchart,args))
+        return(do.call(lattice::barchart,args))
         }
         if (type=="percent") {
           perctab <- 100*prop.table(tab,margin=1)
           perctab[is.nan(perctab)] <- 0
           args <- c(list(x=perctab),otherArgs)
-          return(do.call(barchart,args))
+          return(do.call(lattice::barchart,args))
         }   
       }
       
@@ -252,13 +252,13 @@ barchartGC <-
         
         if (type=="frequency") {
           args <- c(list(x=x),otherArgs)
-          return(do.call(barchart,args))
+          return(do.call(lattice::barchart,args))
         }
         if (type=="percent") {
           perctab <- 100*x/sum(x)
           perctab[is.nan(perctab)] <- 0
           args <- c(list(x=perctab),otherArgs)
-          return(do.call(barchart,args))
+          return(do.call(lattice::barchart,args))
         }     
       }
       if (length(dim(x))>1) {#two variables
@@ -287,13 +287,13 @@ barchartGC <-
           
           if (type=="frequency") {
             args <- c(list(x=x),otherArgs)
-            return(do.call(barchart,args))
+            return(do.call(lattice::barchart,args))
           }
           if (type=="percent") {
             perctab <- 100*prop.table(x,margin=1)
             perctab[is.nan(perctab)] <- 0
             args <- c(list(x=perctab),otherArgs)
-            return(do.call(barchart,args))
+            return(do.call(lattice::barchart,args))
           }   
           
         }
@@ -315,13 +315,13 @@ barchartGC <-
           
           if (type=="frequency") {
             args <- c(list(x=x),otherArgs)
-            return(do.call(barchart,args))
+            return(do.call(lattice::barchart,args))
           }
           if (type=="percent") {
             perctab <- 100*prop.table(x,margin=1)
             perctab[is.nan(perctab)] <- 0
             args <- c(list(x=perctab),otherArgs)
-            return(do.call(barchart,args))
+            return(do.call(lattice::barchart,args))
           }   
           
         }
@@ -346,13 +346,13 @@ barchartGC <-
         
         if (type=="frequency") {
           args <- c(list(x=x),otherArgs)
-          return(do.call(barchart,args))
+          return(do.call(lattice::barchart,args))
         }
         if (type=="percent") {
           perctab <- 100*prop.table(x,margin=1)
           perctab[is.nan(perctab)] <- 0
           args <- c(list(x=perctab),otherArgs)
-          return(do.call(barchart,args))
+          return(do.call(lattice::barchart,args))
       }
       
       }
@@ -392,7 +392,7 @@ simpleKeyRev <-
            lineheight = add.text$lineheight,
            ...)
   {
-    add.text <- trellis.par.get("add.text")
+    add.text <- lattice::trellis.par.get("add.text")
     foo <- seq_along(text)
     ans <-
       list(text = list(lab = text),
@@ -402,9 +402,9 @@ simpleKeyRev <-
            fontfamily = fontfamily,
            ...)
     if (points) ans$points <-
-      Rows(trellis.par.get("superpose.symbol"), foo)
+      lattice::Rows(trellis.par.get("superpose.symbol"), foo)
     if (rectangles) {                               #modification is in here
-      temp <-Rows(trellis.par.get("superpose.polygon"), foo)
+      temp <-lattice::Rows(lattice::trellis.par.get("superpose.polygon"), foo)
       temp$col <- rev(temp$col)
       ans$rectangle <- temp
     }

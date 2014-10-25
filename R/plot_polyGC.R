@@ -21,12 +21,12 @@ plot.polyGC <-function(x,...)  {
     residuals <- mod$residuals
     fitted.values <- mod$fitted.values
   
-    p1 <- densityplot(~residuals,xlab="residuals",main="Residuals")
-    p2 <- xyplot(residuals~fitted.values,xlab="predicted y values",
+    p1 <- lattice::densityplot(~residuals,xlab="residuals",main="Residuals")
+    p2 <- lattice::xyplot(residuals~fitted.values,xlab="predicted y values",
                  ylab="residuals",main="Residuals vs. Fits",pch=19,
                  panel=function(...){
-                   panel.xyplot(...)
-                   panel.abline(h=0)
+                   lattice::panel.xyplot(...)
+                   lattice::panel.abline(h=0)
                  })   
     print(p1,split=c(1,1,1,2), more=TRUE)
     print(p2,split=c(1,2,1,2))

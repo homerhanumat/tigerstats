@@ -59,12 +59,12 @@ SampDist2Means <- function(pop,max.samp.sizes=50,sim.reps=1000) {
  #determine upper y limit for histogram of samples x1bar-x2bar, may decide not to use this
  ymax <- 1.2/(sqrt(2*3.1416)*maxsddiffmeans)
  
- p1 <- histogram(~popvals|breaker,type="density",
+ p1 <- lattice::histogram(~popvals|breaker,type="density",
                  main="Population Distributions",
                  xlab=numvar,
                  col="red",
                  panel = function(x, ...) {
-                   panel.histogram(x, ...)
+                   lattice::panel.histogram(x, ...)
                  }          )
  
  twopops <- split(popvals,breaker)
@@ -78,11 +78,11 @@ SampDist2Means <- function(pop,max.samp.sizes=50,sim.reps=1000) {
    sim.means[i] <- mean(samp1)-mean(samp2)
  }
  
- p2 <- histogram(~sim.means,type="density",
+ p2 <- lattice::histogram(~sim.means,type="density",
                  main=paste(reps,"Simulations of x1bar-x2bar"),
                  xlab="x1bar-x2bar",
                  panel = function(x, ...) {
-                   panel.histogram(x, ...)
+                   lattice::panel.histogram(x, ...)
                  })
  
  print(p1,split=c(1,1,1,2), more=TRUE)

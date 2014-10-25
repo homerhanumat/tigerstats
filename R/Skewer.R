@@ -31,28 +31,28 @@ Skewer <- function ()
   y.den <- beta.100(x.den,alpha=a,beta=b)
   
   if (showpop)  {
-    p1 <- histogram(~rand.data, type = "density", main = "Histogram of Some Random Data", 
+    p1 <- lattice::histogram(~rand.data, type = "density", main = "Histogram of Some Random Data", 
                     xlim = c(-5, 105), ylim = c(0, ymax), xlab = "x",
                     breaks=seq(0,100,by=5),
                     panel=function(x,...) {
-                      panel.histogram(x, ...)
-                      panel.lines(x.den,y.den,col="red")
+                      lattice::panel.histogram(x, ...)
+                      lattice::panel.lines(x.den,y.den,col="red")
                     }
     )
   }else {
-    p1 <- histogram(~rand.data, type = "density", main = "Histogram of Some Random Data", 
+    p1 <- lattice::histogram(~rand.data, type = "density", main = "Histogram of Some Random Data", 
                     xlim = c(-5, 105), ylim = c(0, ymax), xlab = "x",
                     breaks=seq(0,100,by=5),
                     panel=function(x,...) {
-                      panel.histogram(x, ...)
+                      lattice::panel.histogram(x, ...)
                     }
     )
   }
   
-  p2 <- bwplot(~rand.data, xlim = c(0, 100), main = "Violin Plot of the Same Data", 
+  p2 <- lattice::bwplot(~rand.data, xlim = c(0, 100), main = "Violin Plot of the Same Data", 
                xlab = "x", panel = function(..., box.ratio) {
-                 panel.violin(..., col = "bisque", box.ratio = box.ratio)
-                 panel.bwplot(..., box.ratio = 0.1)
+                 lattice::panel.violin(..., col = "bisque", box.ratio = box.ratio)
+                 lattice::panel.bwplot(..., box.ratio = 0.1)
                })
   cat("median =", round(median(rand.data),2), "\n")
   cat("mean =", round(mean(rand.data),2), "\n")
