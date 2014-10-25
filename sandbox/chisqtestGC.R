@@ -255,3 +255,13 @@ chisqtestGC <-
     
     
   }#end chisqtestGC
+
+#for easy dev
+simpleFind <- function(varName,data) {
+  tryCatch({get(varName,envir=as.environment(data))},
+           error=function(e) {
+             get(varName,inherits=T)
+           }
+  )
+  
+}
