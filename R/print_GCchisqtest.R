@@ -87,7 +87,5 @@ print.GCchisqtest <- function(x,...)  {
   if (graph==TRUE && simulate.p.value==FALSE) {
     invisible(pchisqGC(statistic,region="above",df=df,graph=T))
   }
-  
-  return(invisible(res))
 
   }
