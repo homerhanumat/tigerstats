@@ -23,4 +23,5 @@ Utility function for pbinomGC ...
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
+\keyword{internal}
 

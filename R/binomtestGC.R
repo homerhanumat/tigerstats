@@ -84,75 +84,117 @@ binomtestGC <-
       res <- stats::binom.test(successes,trials,p=0.5,conf.level=conf.level)
     } else res <- stats::binom.test(successes,trials,p=p,alternative=alternative,conf.level=conf.level)
     
-    #now for the output
+    res$alternative <- alternative
+    res$success <- success
+    res$graph <- graph
+    res$p <- p
+    res$conf.level <- conf.level
+    res$varname <- varname
+    res$verbose <- verbose
+    res$input <- x
+    res$successes <- successes
+    class(res) <- "GCbinomtest"
+    
+    return(res)
    
-    cat("\nExact Binomial Procedures for a Single Proportion p:\n")
-    if (is(x,"formula")) {
-      cat("\tVariable under study is",varname,"\n")
-    } else cat("\tResults based on Summary Data\n")
-    if (verbose==TRUE) {   
-      cat("\n\n")
-      cat("Descriptive Results: ",successes,"successes in",trials,"trials\n\n")
-    }
-    
-p.hat <- successes/trials
-se.phat <- sqrt(p.hat*(1-p.hat)/trials)
-    
-if (verbose==TRUE) {
+
+  }#end binomtestGC
+
+#' @title Print Function for binomestGC
+
+#' @description Utility print function
+#' @keywords internal
+#' 
+#' @rdname print.GCbinomtest
+#' @method print GCbinomtest
+#' @usage 
+#' \S3method{print}{GCbinomtest}(x,...)
+#' @param x An object of class GCbinomtest.
+#' @param \ldots ignored
+#' @return Output to the console.
+#' @author Homer White \email{hwhite0@@georgetowncollege.edu}
+#' @export
+print.GCbinomtest <- function(x,...) {
+  
+  varname <- x$varname
+  alternative <- x$alternative
+  graph <- x$graph
+  p <- x$p
+  conf.level <- x$conf.level
+  verbose <- x$verbose
+  input <- x$input
+  successes <- x$successes
+  trials <- x$parameter
+  n <- trials #in case I fall into the habit of calling trials n
+  conf.int <- x$conf.int
+  p.value <- res$p.value
+  
+  cat("Exact Binomial Procedures for a Single Proportion p:\n")
+  if (is(input,"formula")) {
+    cat("\tVariable under study is",varname,"\n")
+  } else cat("\tResults based on Summary Data\n")
+  if (verbose==TRUE) {   
+    cat("\n")
+    cat("Descriptive Results: ",successes,"successes in",trials,"trials\n\n")
+  }
+  
+  p.hat <- successes/trials
+  se.phat <- sqrt(p.hat*(1-p.hat)/trials)
+  
+  if (verbose==TRUE) {
     cat("Inferential Results:\n\n")
     cat("Estimate of p:\t",round(p.hat,4),"\n")
     cat("SE(p.hat):\t",round(se.phat,4),"\n\n")
-}
-    cat(conf.level*100,"% Confidence Interval for p:\n\n",sep="")
-    int <- res$conf.int
-    cat(sprintf("%-10s%-20s%-20s","","lower.bound","upper.bound"),"\n")
-    cat(sprintf("%-10s%-20f%-20f","",int[1],int[2]),"\n\n")
-    
-    if (!is.null(p)) {
-      if (verbose==TRUE) {
-        cat("Test of Significance:\n\n")
-        symbol <- switch(alternative,
+  }
+  cat(conf.level*100,"% Confidence Interval for p:\n\n",sep="")
+  int <- conf.int
+  cat(sprintf("%-10s%-20s%-20s","","lower.bound","upper.bound"),"\n")
+  cat(sprintf("%-10s%-20f%-20f","",int[1],int[2]),"\n\n")
+  
+  if (!is.null(p)) {
+    if (verbose==TRUE) {
+      cat("Test of Significance:\n\n")
+      symbol <- switch(alternative,
                        less="<",
                        greater=">",
                        two.sided="!=")
-        cat("\tH_0:  p =",p,"\n")
-        cat("\tH_a:  p",symbol,p,"\n\n")
-      }
-      cat("\tP-value:\t\tP =",round(res$p.value,4),"\n")
-      
-      #deal with graphing in two-sided tests:
-      twoSide <- function(count,n,p) {
-        x <- 0:n
-        p.x <- dbinom(x,size=n,prob=p)
-        ourProb <- dbinom(count,size=n,prob=p)
-        
-        smallOnes <- x[p.x <= ourProb]
-        
-        if (length(smallOnes) == (n+1)) {
-          invisible(pbinomGC(c(0,n),size=n,prob=p,region="between",graph=T))
-        } else {
-          bigger <- x[p.x > ourProb]
-          if (length(bigger) ==1) {
-            invisible(pbinomGC(c(bigger,bigger),size=n,prob=p,region="outside",graph=T))
-          }
-          
-          if (length(bigger) > 1) {
-            lower <- bigger[1]
-            upper <- bigger[length(bigger)]
-            invisible(pbinomGC(c(lower,upper),size=n,prob=p,region="outside",graph=T))
-          }
-        } # end else
-        return(invisible(res))
-      }  #end twoSide
-      
-     if (graph)   {  
-        switch(alternative,
-               less=invisible(pbinomGC(successes,size=trials,prob=p,region="below",graph=T)),
-               greater=invisible(pbinomGC(successes-1,size=trials,prob=p,region="above",graph=T)),
-               two.sided=twoSide(count=successes,n=trials,p=p)
-        )
-      }
-      
+      cat("\tH_0:  p =",p,"\n")
+      cat("\tH_a:  p",symbol,p,"\n\n")
     }
-    return(invisible(res))
-  }#end binomtestGC
+    cat("\tP-value:\t\tP =",round(p.value,4),"\n")
+    
+    #deal with graphing in two-sided tests:
+    twoSide <- function(count,n,p) {
+      x <- 0:n
+      p.x <- dbinom(x,size=n,prob=p)
+      ourProb <- dbinom(count,size=n,prob=p)
+      
+      smallOnes <- x[p.x <= ourProb]
+      
+      if (length(smallOnes) == (n+1)) {
+        invisible(pbinomGC(c(0,n),size=n,prob=p,region="between",graph=T))
+      } else {
+        bigger <- x[p.x > ourProb]
+        if (length(bigger) ==1) {
+          invisible(pbinomGC(c(bigger,bigger),size=n,prob=p,region="outside",graph=T))
+        }
+        
+        if (length(bigger) > 1) {
+          lower <- bigger[1]
+          upper <- bigger[length(bigger)]
+          invisible(pbinomGC(c(lower,upper),size=n,prob=p,region="outside",graph=T))
+        }
+      } # end else
+      return(invisible(res))
+    }  #end twoSide
+    
+    if (graph)   {  
+      switch(alternative,
+             less=invisible(pbinomGC(successes,size=trials,prob=p,region="below",graph=T)),
+             greater=invisible(pbinomGC(successes-1,size=trials,prob=p,region="above",graph=T)),
+             two.sided=twoSide(count=successes,n=trials,p=p)
+      )
+    }
+    
+  }
+}
