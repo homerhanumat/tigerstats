@@ -23,8 +23,7 @@
 #' the values of the explanatory variable.
 #' @param B number of resamples to take.
 #' @param verbose If TRUE, include lots of information in the output.
-#' @return No value, just side effects.  Future versions may define an S3 object, with print method.
-#' @note Deprecated in favor of \code{chisqtestGC}.  Will be removed eventually.
+#' @return an object of class GCchisqtest
 #' @export
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
 #' @examples

@@ -32,14 +32,11 @@ the values of the explanatory variable.}
 \item{verbose}{If TRUE, include lots of information in the output.}
 }
 \value{
-No value, just side effects.  Future versions may define an S3 object, with print method.
+an object of class GCchisqtest
 }
 \description{
 Perform chi-square test, either goodness of fit or test for association.  Enter either
 formula-data input or a summary table.  Simulation is optional.
-}
-\note{
-Deprecated in favor of \code{chisqtestGC}.  Will be removed eventually.
 }
 \examples{
 #Goodness of fit test for one factor variable:
