@@ -149,7 +149,7 @@ binomtestGC(x=1325,n=2500,p=0.50)
 
 # Want Less Output?
 
-Sometimes you don't need to see quite so much output to the console. If you only wantf the basics (confidence interval for $p$ and $P$-value for your test), then set the argument `verbose` to `FALSE`.
+Sometimes you don't need to see quite so much output to the console. If you only want the basics (confidence interval for $p$ and $P$-value for your test), then set the argument `verbose` to `FALSE`.
 
 For example, if you want a 90%-confidence interval and a two-sided test then try:
 
