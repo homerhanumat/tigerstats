@@ -21,7 +21,7 @@
 #' @param conf.level Number between 0 and 1 indicating the confidence-level of the interval supplied.
 #' @param graph If TRUE, plot graph of P-value.  Ignored if no test is performed.
 #' @param verbose Determines whether to return lots of information or only the basics
-#' @return Output to console.  Future versions may return an object, and include a print method.
+#' @return an object of class GCbinomtest.
 #' @export
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
 #' @examples
@@ -89,7 +89,7 @@ binomtestGC <-
     res$graph <- graph
     res$p <- p
     res$conf.level <- conf.level
-    res$varname <- varname
+    if (is(x,"formula")) res$varname <- varname
     res$verbose <- verbose
     res$input <- x
     res$successes <- successes
@@ -116,18 +116,18 @@ binomtestGC <-
 #' @export
 print.GCbinomtest <- function(x,...) {
   
-  varname <- x$varname
   alternative <- x$alternative
   graph <- x$graph
   p <- x$p
   conf.level <- x$conf.level
   verbose <- x$verbose
   input <- x$input
+  if (is(input,"formula")) varname <- x$varname
   successes <- x$successes
   trials <- x$parameter
   n <- trials #in case I fall into the habit of calling trials n
   conf.int <- x$conf.int
-  p.value <- res$p.value
+  p.value <- x$p.value
   
   cat("Exact Binomial Procedures for a Single Proportion p:\n")
   if (is(input,"formula")) {
@@ -185,7 +185,6 @@ print.GCbinomtest <- function(x,...) {
           invisible(pbinomGC(c(lower,upper),size=n,prob=p,region="outside",graph=T))
         }
       } # end else
-      return(invisible(res))
     }  #end twoSide
     
     if (graph)   {  

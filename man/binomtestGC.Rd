@@ -32,7 +32,7 @@ two values.}
 \item{verbose}{Determines whether to return lots of information or only the basics}
 }
 \value{
-Output to console.  Future versions may return an object, and include a print method.
+an object of class GCbinomtest.
 }
 \description{
 Wrapper for binom.test in package \code{stats}.  Employs the binomial distribution
