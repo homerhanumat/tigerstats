@@ -14,7 +14,7 @@ Description: This package consists of data sets and functions that are useful
     can only be run on the R Studio integrated development environment with
     RStudio's package manipulate loaded. R Studio is freely available
     (www.rstudio.org), and includes package manipulate.  Other instructional
-    applets are Shiny aps that may be run locally. In teaching, the package is
+    applets are Shiny aps that may be run locally. In teaching the package is
     used alongside of package mosaic, which is therefore listed as a
     dependency.
 License: GPL (>=3)
