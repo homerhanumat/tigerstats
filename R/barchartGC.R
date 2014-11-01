@@ -402,7 +402,7 @@ simpleKeyRev <-
            fontfamily = fontfamily,
            ...)
     if (points) ans$points <-
-      lattice::Rows(trellis.par.get("superpose.symbol"), foo)
+      lattice::Rows(lattice::trellis.par.get("superpose.symbol"), foo)
     if (rectangles) {                               #modification is in here
       temp <-lattice::Rows(lattice::trellis.par.get("superpose.polygon"), foo)
       temp$col <- rev(temp$col)
