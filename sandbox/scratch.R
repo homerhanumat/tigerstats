@@ -11,3 +11,22 @@ xtabs(~x+y)
 complete.cases(x,y)
 complete.cases(xtabs(~x+y))
 chisq.test(xtabs(~x+y))
+
+chisqtestGC(~sex+seat,data=m111survey,graph=T,simulate.p.value=T,B=2500)
+chisqtestGC(c(20,25,20),data=m111survey,p=rep(1/3,3),graph=T,simulate.p.value=T,B=5000)
+
+#Goodness of fit test for one factor variable:
+chisqtestGC(~seat,data=m111survey,p=c(1/3,1/3,1/3))
+
+#Test for relationship between two factor variables:
+chisqtestGC(~sex+seat,data=m111survey)
+
+#You can input a two-way table directly into chisqtestGC():
+SexSeat <- xtabs(~sex+seat,data=m111survey)
+chisqtestGC(SexSeat)
+
+#For small datasets, severa ltypes of simulation are possible, e.g.:
+chisqtestGC(~weather+crowd.behavior,data=ledgejump,simulate.p.value=F,B=2500,verbose=F)
+
+#For less ouptut, set argument verbose to FALSE:
+chisqtestGC(~sex+seat,data=m111survey,verbose=FALSE)
