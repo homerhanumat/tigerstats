@@ -16,7 +16,7 @@
 #' @examples
 #' \dontrun{
 #' throws <- c(one=8,two=18,three=11,four=7,five=9,six=7)
-#' if (require(manipulate)) SlowGoodness(throws,p=rep(1/6,6))
+#' SlowGoodness(throws,p=rep(1/6,6))
 #' }
 SlowGoodness <- function(x,p)  {
   

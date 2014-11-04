@@ -1,8 +1,8 @@
 Package: tigerstats
 Type: Package
 Title: R for Elementary Statistics
-Version: 0.1.9-18
-Date: 2014-11-01
+Version: 0.1.9-19
+Date: 2014-11-03
 Author: Rebekah Robinson <rrobinson20@humana.com> and Homer
     White <hwhite0@georgetowncollege.edu>
 Maintainer: Homer White <hwhite0@georgetowncollege.edu>
@@ -12,7 +12,7 @@ Description: This package consists of data sets and functions that are useful
     for elementary inferential procedures follow a uniform interface for user
     input.  Some of the functions are instructional applets that
     can only be run on the R Studio integrated development environment with
-    package manipulate loaded. R Studio is freely available
+    package manipulate attached. R Studio is freely available
     (www.rstudio.org), and includes package manipulate.  Other instructional
     applets are Shiny apps that may be run locally. In teaching the package is
     used alongside of package mosaic, which is therefore listed as a
@@ -27,7 +27,6 @@ Imports:
     lattice
 Suggests:
     mosaicData,
-    manipulate,
     shiny,
     knitr
 LazyLoad: yes

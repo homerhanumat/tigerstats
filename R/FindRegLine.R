@@ -71,7 +71,6 @@ function()  {
   score <- turns+close
   #Initial score will alwauys be 100, because you
   #start at line with slope 0, intercept = mean(y)
-  require(manipulate)
   
   manipulate(
     a=slider(lowa.slider,higha.slider,step=0.01,initial=y.mean,label="Intercept"),

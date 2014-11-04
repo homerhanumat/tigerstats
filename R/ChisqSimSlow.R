@@ -25,7 +25,7 @@
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
 #' @examples
 #' \dontrun{
-#' if (require(manipulate)) ChisqSimSlow(~weather+crowd.behavior,data=ledgejump,effects="fixed")
+#' ChisqSimSlow(~weather+crowd.behavior,data=ledgejump,effects="fixed")
 #' }
 ChisqSimSlow <- function(form,data,effects="random")  {
   

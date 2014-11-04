@@ -21,7 +21,6 @@ function()  {
   #The blue point (outside) is more influential, but its influence
   #wanes as number of points in cloud increases, and as
   #correlation of cloud approaches 1 or -1.
-  require(manipulate)
   
   offloc <- 5
   middle <- c(0,0)

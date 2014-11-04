@@ -17,7 +17,6 @@
 #' if(require(manipulate)) EmpRuleGC(mean=70,sd=3,xlab="Height (inches)")
 #' }
 EmpRuleGC <- function(mean=0,sd=1,xlab="x") {
-  require(manipulate)
   manipulate(
     range=picker("mean +- one SD"=1,
                  "mean +- two SDs"=2,

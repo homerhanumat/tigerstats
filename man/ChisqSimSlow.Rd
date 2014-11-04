@@ -33,7 +33,7 @@ console.
 }
 \examples{
 \dontrun{
-if (require(manipulate)) ChisqSimSlow(~weather+crowd.behavior,data=ledgejump,effects="fixed")
+ChisqSimSlow(~weather+crowd.behavior,data=ledgejump,effects="fixed")
 }
 }
 \author{

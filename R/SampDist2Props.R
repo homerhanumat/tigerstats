@@ -19,7 +19,6 @@
 #' }
 SampDist2Props <-
 function(form,data,max.sample.sizes=100,sim.reps=1000) {
-  require(manipulate)
   
   #pop should be a data frame with numerical and factor variables
   

@@ -19,7 +19,6 @@ function(form,data)  {
   #Produce dynamic trellised histogram of orig conditioned by
   #a range of values in cond
   #Input should be a data frame, orig first then cond
-  require(manipulate)
   pull <- function(orig,cond,qlow,qhigh)  {
     range <- quantile(cond,c(qlow,qhigh),na.rm=TRUE)
     desired <- (cond >= range[1] & cond <= range[2])
