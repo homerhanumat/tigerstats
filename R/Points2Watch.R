@@ -16,6 +16,12 @@
 #' }
 Points2Watch <-
 function()  {
+  
+  if (!("manipulate"  %in% .packages())) {
+    return(cat(paste0("You must be on R Studio with package manipulate attached\n",
+                      "in order to run this function.")))
+  }
+  
   #In this app the red point (placed near middle of cloud)
   #is not influential, even when it is moved to be an oultier.
   #The blue point (outside) is more influential, but its influence

@@ -16,6 +16,12 @@
 #' }
 VaryCorrelation <-
 function (n=300)  {
+  
+  if (!("manipulate"  %in% .packages())) {
+    return(cat(paste0("You must be on R Studio with package manipulate attached\n",
+                      "in order to run this function.")))
+  }
+  
   #n is number of points on scatterplot
   manipulate(
     rho=slider(-1,1,step=0.01,initial=0,

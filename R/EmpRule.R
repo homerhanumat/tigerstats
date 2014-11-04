@@ -17,6 +17,11 @@
 EmpRule <- function () 
 {
   
+  if (!("manipulate"  %in% .packages())) {
+    return(cat(paste0("You must be on R Studio with package manipulate attached\n",
+                      "in order to run this function.")))
+  }
+  
   rpareto <- function(n,alpha,theta) {#random values for Pareto(alpha,theta) distribution
     theta*((1-runif(n))^(-1/alpha)-1)
   }

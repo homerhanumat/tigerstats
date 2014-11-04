@@ -14,6 +14,12 @@
 #' if (require(manipulate)) SimpleRandom()
 #' }
 SimpleRandom2<-function(n=100){
+  
+  if (!("manipulate"  %in% .packages())) {
+    return(cat(paste0("You must be on R Studio with package manipulate attached\n",
+                      "in order to run this function.")))
+  }
+  
   n <- as.integer(n)
   popSize <- 10000
   if (n > popSize) {

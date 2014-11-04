@@ -21,6 +21,12 @@
 #' }
 CIMean <- function (form, data) 
 {
+  
+  if (!("manipulate"  %in% .packages())) {
+    return(cat(paste0("You must be on R Studio with package manipulate attached\n",
+                      "in order to run this function.")))
+  }
+  
   nprev = NULL
   lprev = NULL
   tally = c(0, 0)

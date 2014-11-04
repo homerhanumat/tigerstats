@@ -22,6 +22,12 @@
 #' if (require(manipulate)) SimpleRandom()
 #' }
 SimpleRandom<-function(){
+  
+  if (!("manipulate"  %in% .packages())) {
+    return(cat(paste0("You must be on R Studio with package manipulate attached\n",
+                      "in order to run this function.")))
+  }
+  
   manipulate(
     n=slider(5,10000,initial=100,label="Sample Size n"),
     type=picker("sex", "math", "cappun", "income", "height", "idealheight", "diff", "kkardashtemp",label="Variable"),

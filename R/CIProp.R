@@ -18,6 +18,12 @@
 #' if (require(manipulate)) CIProp()
 #' }
 CIProp=function(){
+  
+  if (!("manipulate"  %in% .packages())) {
+    return(cat(paste0("You must be on R Studio with package manipulate attached\n",
+                      "in order to run this function.")))
+  }
+  
   nprev=NULL
   pprev=NULL
   lprev=NULL

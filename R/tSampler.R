@@ -23,6 +23,12 @@ tSampler <-
 function(form,data,
                         max.sample.size=30,
                         show.sample=FALSE) {
+  
+  if (!("manipulate"  %in% .packages())) {
+    return(cat(paste0("You must be on R Studio with package manipulate attached\n",
+                      "in order to run this function.")))
+  }
+  
   #We are NOT gonna monkey around with missing values:
   data <- data[complete.cases(data),] 
   dcurven <- 512

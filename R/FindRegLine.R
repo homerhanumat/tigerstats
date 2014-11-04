@@ -18,6 +18,12 @@
 #' }
 FindRegLine <-
 function()  {
+  
+  if (!("manipulate"  %in% .packages())) {
+    return(cat(paste0("You must be on R Studio with package manipulate attached\n",
+                      "in order to run this function.")))
+  }
+  
   lowa <- -5
   higha <- 5
   lowb <- -2

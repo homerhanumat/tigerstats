@@ -14,6 +14,12 @@
 #' }
 RegEstimate <-
 function(x=1:10)  {
+  
+  if (!("manipulate"  %in% .packages())) {
+    return(cat(paste0("You must be on R Studio with package manipulate attached\n",
+                      "in order to run this function.")))
+  }
+  
   #x gives the set of fixed x-values in the model
   
   manipulate(

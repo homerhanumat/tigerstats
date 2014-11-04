@@ -14,6 +14,12 @@
 #' }
 Skewer <- function () 
 {
+  
+  if (!("manipulate"  %in% .packages())) {
+    return(cat(paste0("You must be on R Studio with package manipulate attached\n",
+                      "in order to run this function.")))
+  }
+  
   b <- 10
   
   beta.100 <- function(x,alpha,beta) { #density function for population ~ 100*beta

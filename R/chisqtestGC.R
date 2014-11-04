@@ -37,7 +37,7 @@
 #' SexSeat <- xtabs(~sex+seat,data=m111survey)
 #' chisqtestGC(SexSeat)
 #' 
-#' #For small datasets, severa ltypes of simulation are possible, e.g.:
+#' #Several types of simulation are possible, e.g.:
 #' chisqtestGC(~weather+crowd.behavior,data=ledgejump,simulate.p.value="fixed",B=2500)
 #' 
 #' #For less ouptut, set argument verbose to FALSE:
@@ -46,7 +46,9 @@ chisqtestGC <-
   function (x,data=parent.frame(),p=NULL,graph=FALSE,simulate.p.value=FALSE,B=2000,verbose=TRUE) 
   {
     
-    #begin with utiltiy functions for resampling in test for association:
+###########################################################
+#  begin with utiltiy functions
+##########################################################
     
     exp.counts <- function(x) (rowSums(x) %*% t(colSums(x)))/sum(x)
     
@@ -56,21 +58,58 @@ chisqtestGC <-
       return(sum(contributions[!is.nan(contributions)]))
     }
     
-    ChisqResampler <- function (x, n, effects = "random") 
+##########################################################################  
+#    simulation for simulate.p.value==TRUE, when test is for association
+##########################################################################
+
+    DoubleFixedResampler <- function(x,n) {
+      expected <- exp.counts(x)
+      csq <- function(x) {
+        sum((x-expected)^2/expected)
+      }
+      statistic <- csq(x)
+      nullDist <- numeric(n)
+      
+      r <- rowSums(x)
+      c <- colSums(x)
+      
+      countOver <- 0
+      simsSoFar <- 0
+      ourLimit <- 10000 # reps to handle at once
+      
+      while(simsSoFar <n) {
+        reps <- min(n-simsSoFar,ourLimit)
+        rtabs <- r2dtable(reps,r=r,c=c)
+        sims <- sapply(rtabs,FUN=csq,USE.NAMES=FALSE)
+        nullDist[(simsSoFar+1):(simsSoFar+reps)] <- sims
+        simsSoFar <- simsSoFar + reps
+        countOver <- countOver + length(sims[sims >= statistic])
+      }
+      return(list(nullDist=nullDist,countOver=countOver))
+    }
+
+
+#################################################   
+#   simulation for "fixed" and "random"
+#################################################
+
+    RandFixedResampler <- function (x, n, effects = "random") 
     {
       #x is a two-way table, n is number of resamples
       TableResampler <- function(x, n = 1000, effects) {
         rowsampler <- function(x, p) {
           rmultinom(1, size = sum(x), prob = p)
         }
-        table.samp <- function(x) {
-          nullprobs <- colSums(x)/sum(x)
-          resamp <- t(apply(x, 1, rowsampler, p = nullprobs))
-          rownames(resamp) <- rownames(x)
-          colnames(resamp) <- colnames(x)
-          as.table(resamp)
-        }
-        rtabsamp <- function(x, n) {
+        
+      table.samp <- function(x) {
+        nullprobs <- colSums(x)/sum(x)
+        resamp <- t(apply(x, 1, rowsampler, p = nullprobs))
+        rownames(resamp) <- rownames(x)
+        colnames(resamp) <- colnames(x)
+        as.table(resamp)
+      }
+      
+      rtabsamp <- function(x, n) {
           expected <- exp.counts(x)
           probs <- expected/sum(x)
           resamp.tab <- rmultinom(1, size = n, prob = probs)
@@ -78,9 +117,10 @@ chisqtestGC <-
           rownames(resamp.tab) <- rownames(x)
           colnames(resamp.tab) <- colnames(x)
           return(resamp.tab)
-        }
-        resampled.tabs <- array(0, dim = c(nrow(x), ncol(x), 
-                                           n))
+      }
+      
+      resampled.tabs <- array(0, dim = c(nrow(x), ncol(x),n))
+      
         if (effects == "fixed") {
           for (i in 1:n) {
             resampled.tabs[, , i] <- table.samp(x)
@@ -101,7 +141,11 @@ chisqtestGC <-
       return(nullDist)
     }#end of ChisqResampler
     
-    #Utility function for resampling in goodness-of-fit
+
+###################################################################
+#   Simulation in goodness of fit
+###################################################################
+
     GoodnessResampler <- function(x,n,p) {
       
       rowsampler <- function(x, p) {
@@ -113,15 +157,25 @@ chisqtestGC <-
         return(sum((x - expected)^2/expected))
       }
       
-      NullDist <- numeric(n)
+      nullDist <- numeric(n)
       
       for (i in 1:n) {
         resamp.tab <- rowsampler(x,p)
-        NullDist[i] <- chisq.calc.1(resamp.tab,p)
+        nullDist[i] <- chisq.calc.1(resamp.tab,p)
       }
       
-      return(NullDist)
+      return(nullDist)
     }#end of GoodnessResampler
+    
+
+ 
+ ##################################################################
+ ####
+ ####
+ #### Process Input
+ ####
+ ####
+ #################################################################
     
     type <- NULL #will be set to the type of test (association or goodness)
     
@@ -171,89 +225,113 @@ chisqtestGC <-
   {
     if (length(dim(x))>2) #array more than two dimensions
     {
-      stop("This problem is above my pay-grade")
+      stop("For tables with more than two dimensions, use chisq.test()")
     }
     
-    x <- as.table(x)
-    if (length(dim(x))==1) {
+    tab <- as.table(x)
+    if (length(dim(tab))==1) {
       type <- "goodness"
       res <- suppressWarnings(chisq.test(x,p=p,rescale.p=TRUE))
     }#end of goodness of fit processing
     
-    if (length(dim(x))==2) {
+    if (length(dim(tab))==2) {
       type <- "association"
-      res <- suppressWarnings(chisq.test(x))
+      res <- suppressWarnings(chisq.test(tab))
     }#end of association processing
     
   }#end processing for summary data
+
+
+###################################################################################
+# preliminary collection of results, these may be altered if simulaion is desired
+###################################################################################
+
+  statistic <- res$statistic
+  p.value <- res$p.value
+  parameter <- res$parameter
+  method <- res$method
+  observed <- tab
+  expected <- res$expected
+  residuals <- res$residuals
+  if (simulate.p.value==F) {
+    sims <- ""
+  }
     
-  #next, check to see if we need to simulate
+################################################
+# Handle Simulation, as needed
+################################################
+  
+    if (simulate.p.value %in% c("random","fixed") && type=="association") {
+      statistic <- sum((observed-expected)^2/expected) #don't want Yates
+      nullDist <- RandFixedResampler(observed,n=B,effects=simulate.p.value)
+      p.value <- (length(nullDist[nullDist >= statistic])+1)/(B+1)
+      sims <- nullDist
+    }
     
     if(simulate.p.value==TRUE  && type=="association") { 
       #user requested R's routines, so give something very close to it
-      tab <- res$observed
       statistic <- sum((res$observed-res$expected)^2/res$expected) #don't want Yates
-      expected <- exp.counts(tab)
-      csq <- function(x) {
-        sum((x-expected)^2/expected)
-      }
-      nullDist <- numeric(B)
-      
-      r <- rowSums(tab)
-      c <- colSums(tab)
-      
-      countOver <- 0
-      simsSoFar <- 0
-      ourLimit <- 10000 # amount to handle at once
-      
-      while(simsSoFar < B) {
-        reps <- min(B-simsSoFar,ourLimit)
-        rtabs <- r2dtable(reps,r=r,c=c)
-        sims <- sapply(rtabs,FUN=csq,USE.NAMES=FALSE)
-        nullDist[(simsSoFar+1):(simsSoFar+reps)] <- sims
-        simsSoFar <- simsSoFar + reps
-        countOver <- countOver + length(sims[sims >= statistic])
-      }
-
-      res$statistic <- statistic
-      res$p.value <- (countOver+1)/B
-      res$sims <- nullDist
+      simResults <- DoubleFixedResampler(x=tab,n=B)
+      countOver <- simResults$countOver
+      p.value <- (countOver+1)/B
+      sims <- simResults$nullDist
     }
+  
+  if (simulate.p.value %in% c("random","fixed") && type=="goodness") {
+    stop("For simulation in a goodness of fit test, set simulate.p.value to TRUE")
+  }
   
   if(simulate.p.value==TRUE  && type=="goodness") { #we pick up the simulated values ourselves
-    expected <- sum(x)*p
-    res$statistic <- sum((x-expected)^2/expected) #don't want Yates
-    nullDist <- GoodnessResampler(x,n=B,p=p)
-    res$p.value <- (length(nullDist[nullDist >= res$statistic])+1)/(B+1)
-    res$sims <- nullDist
+    expected <- sum(tab)*p
+    statistic <- sum((tab-expected)^2/expected) #don't want Yates
+    sims <- GoodnessResampler(x,n=B,p=p)
+    p.value <- (length(sims[sims >= statistic])+1)/(B+1)
   }
-    
-    if (simulate.p.value=="fixed") {
-      res$statistic <- sum((res$observed-res$expected)^2/res$expected) #don't want Yates
-      nullDist <- ChisqResampler(res$observed,n=B,effects="fixed")
-      res$p.value <- (length(nullDist[nullDist >= res$statistic])+1)/(B+1)
-      res$sims <- nullDist
-    }
-    
-    if (simulate.p.value=="random") {
-      res$statistic <- sum((res$observed-res$expected)^2/res$expected) #don't want Yates
-      nullDist <- ChisqResampler(res$observed,n=B,effects="random")
-      res$p.value <- (length(nullDist[nullDist >= res$statistic])+1)/(B+1)
-      res$sims <- nullDist
-    }
-    
-    
-    res$simulate.p.value <- simulate.p.value
-    res$verbose <- verbose
-    res$B <- B
-    res$type <- type
-    res$graph <- graph
-  
-    class(res) <- "GCchisqtest"
-    return(res)
+
+  if (simulate.p.value=="fixed") {
+      method <- paste("Pearson's chi-squared test with simulated p-value, fixed row sums\n\t (based on",
+                      B,"resamples)")
+  }
+
+  if (simulate.p.value=="random") {
+      method <- paste("Pearson's chi-squared test with simulated p-value, marginal sums not fixed\n\t (based on",
+                  B,"resamples)")
+  }
+
+  if (simulate.p.value==TRUE) {
+    method <- paste("Pearson's chi-squared test with simulated p-value \n\t (based on",B,"resamples)")
+  }
+
+
+################################################
+# create results object
+###############################################
+
+    results <- structure(list(
+                            statistic=statistic,
+                            parameter=parameter,
+                            p.value=p.value,
+                            method=method,
+                            type=type,
+                            observed=observed,
+                            expected=expected,
+                            residuals=residuals,
+                            simulate.p.value=simulate.p.value,
+                            sims=sims,
+                            B=B,
+                            verbose=verbose,
+                            graph=graph),
+                         class="GCchisqtest")
+
+    return(results)
     
     
   }#end chisqtestGC
+
+
+#' ##########################################################
+#' #########################################################
+
 
 #' @title Print Function for chisqtestGC
 
@@ -270,36 +348,23 @@ chisqtestGC <-
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
 #' @export
 print.GCchisqtest <- function(x,...)  {
-  res <- x
-  simulate.p.value <- res$simulate.p.value
-  B <- res$B
-  sims <- res$sims
-  verbose <- res$verbose
-  type <- res$type
-  observed <- res$observed
-  expected <- res$expected
-  residuals <- res$residuals
-  p.value <- res$p.value
-  method <- res$method
-  statistic <- res$statistic
-  graph <- res$graph
+
+  simulate.p.value <- x$simulate.p.value
+  B <- x$B
+  sims <- x$sims
+  verbose <- x$verbose
+  type <- x$type
+  observed <- x$observed
+  expected <- x$expected
+  residuals <- x$residuals
+  p.value <- x$p.value
+  method <- x$method
+  statistic <- x$statistic
+  graph <- x$graph
+  method <- x$method
   
   
-  if (simulate.p.value==FALSE) {
-    cat(method,"\n\n")
-  }
-  
-  if (simulate.p.value=="fixed") {
-    cat("Pearson's chi-squared test with simulated p-value, fixed effects\n\t (based on",B,"resamples)\n\n")
-  }
-  
-  if (simulate.p.value=="random") {
-    cat("Pearson's chi-squared test with simulated p-value, random effects\n\t (based on",B,"resamples)\n\n")
-  }
-  
-  if (simulate.p.value==TRUE) {
-    cat("Pearson's chi-squared test with simulated p-value \n\t (based on",B,"resamples)\n\n")
-  }
+  cat(method,"\n\n")
   
   if (verbose) {#print some tables
     
@@ -331,7 +396,9 @@ print.GCchisqtest <- function(x,...)  {
   
   #warn if no simulation and any expected cell counts are below 5
   if (min(expected) <5 && simulate.p.value==FALSE){
-    warning("Some expected cell counts are low:\n\tthe approximation of the P-value may be unreliable.\n\tConsider using simulation.")
+    cat(paste0("Some expected cell counts are low:",
+            "\n\tthe approximation of the P-value may be unreliable.",
+            "\n\tConsider using simulation."))
   }
   
   #finally, the graph

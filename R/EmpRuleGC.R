@@ -17,6 +17,12 @@
 #' if(require(manipulate)) EmpRuleGC(mean=70,sd=3,xlab="Height (inches)")
 #' }
 EmpRuleGC <- function(mean=0,sd=1,xlab="x") {
+  
+  if (!("manipulate"  %in% .packages())) {
+    return(cat(paste0("You must be on R Studio with package manipulate attached\n",
+                      "in order to run this function.")))
+  }
+  
   manipulate(
     range=picker("mean +- one SD"=1,
                  "mean +- two SDs"=2,

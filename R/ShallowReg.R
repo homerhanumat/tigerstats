@@ -20,6 +20,12 @@
 #' }
 ShallowReg <-
 function(n=900,rho=0.5)  {
+  
+  if (!("manipulate"  %in% .packages())) {
+    return(cat(paste0("You must be on R Studio with package manipulate attached\n",
+                      "in order to run this function.")))
+  }
+  
   #n is number of points in cloud
   #rho is the target correlation of cloud
   varcovar <- cbind(c(1,rho),c(rho,1))

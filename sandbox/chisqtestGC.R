@@ -289,12 +289,12 @@ chisqtestGC <-
   }
 
   if (simulate.p.value=="fixed") {
-      method <- paste("Pearson's chi-squared test with simulated p-value, fixed row tallies\n\t (based on",
+      method <- paste("Pearson's chi-squared test with simulated p-value, fixed row sums\n\t (based on",
                       B,"resamples)")
   }
 
   if (simulate.p.value=="random") {
-      method <- paste("Pearson's chi-squared test with simulated p-value, marginal tallies not fixed\n\t (based on",
+      method <- paste("Pearson's chi-squared test with simulated p-value, marginal sums not fixed\n\t (based on",
                   B,"resamples)")
   }
 

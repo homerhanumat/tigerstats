@@ -18,6 +18,12 @@
 #' if (require(manipulate)) SampDist2Means(imagpop)
 #' }
 SampDist2Means <- function(pop,max.samp.sizes=50,sim.reps=1000) {
+  
+  if (!("manipulate"  %in% .packages())) {
+    return(cat(paste0("You must be on R Studio with package manipulate attached\n",
+                      "in order to run this function.")))
+  }
+  
   #pop should be a data frame with numerical and factor variables
   
   #We are NOT gonna monkey around with missing values:

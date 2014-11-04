@@ -14,6 +14,11 @@
 BinomNorm <- function()  {
   #Normal approx to binomial.  Can vary n, but x-axis scale will change.
   
+  if (!("manipulate"  %in% .packages())) {
+    return(cat(paste0("You must be on R Studio with package manipulate attached\n",
+                      "in order to run this function.")))
+  }
+  
   manipulate(
     p=slider(0.01,0.99,step=0.01,initial=0.20,label="Success Chance p"),
     n=slider(1,1000,initial=5,label="Number of Trials n"),

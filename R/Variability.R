@@ -15,6 +15,12 @@
 #' if (require(manipulate)) Variability()
 #' }
 Variability=function(){
+  
+  if (!("manipulate"  %in% .packages())) {
+    return(cat(paste0("You must be on R Studio with package manipulate attached\n",
+                      "in order to run this function.")))
+  }
+  
   manipulate(
     n=slider(10,1000,initial=100,label="Sample Size n"),
     stdev=slider(1,5,initial=3,step=0.1,label="Standard deviation"),

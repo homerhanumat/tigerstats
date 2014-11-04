@@ -13,6 +13,12 @@
 #' if (require(manipulate)) tExplore()
 #' }
 tExplore <- function() {
+  
+  if (!("manipulate"  %in% .packages())) {
+    return(cat(paste0("You must be on R Studio with package manipulate attached\n",
+                      "in order to run this function.")))
+  }
+  
   manipulate(
     df=slider(1,100,step=1,initial=1,label="Degrees of Freedom"),
     ShowNorm=checkbox(FALSE,"Show Standard Normal Curve"),
