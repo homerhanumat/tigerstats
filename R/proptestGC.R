@@ -138,7 +138,7 @@ proptestGC <-
         flip <- FALSE
         if (!is.null(first)) {
           if (!(first %in% unique(explanatory))) {
-            stop(paste(first,"is not a value of",explanatory))}
+            stop(paste(first,"is not a value of the variable",expname))}
           if (sort(unique(explanatory))[1]!=first) flip <- TRUE
         }
         
