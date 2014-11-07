@@ -31,7 +31,7 @@ Let
 
   >$p =$ the proportion of all Georgetown College students who are female
   
-Suppose that you would like a 95%-confidence interval for $p$.  Since **sex** is present as a variable in the `m111survey` data frame, so you can use formula-data input in the usual way to direct the attention of `binomtestGC()` to **sex** as the data.
+Suppose that you would like a 95%-confidence interval for $p$.  Since **sex** is present as a variable in the `m111survey` data frame, you can use formula-data input in the usual way to direct the attention of `binomtestGC()` to **sex** as the data.
 
 However, when the function looks at **sex**, it sees the values "female" and "male".  It needs to be told which of them to count as a "success" when it computes the sample proportion $\hat{p}$.  You do this with the `success` argument.
 
