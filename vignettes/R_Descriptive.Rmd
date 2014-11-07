@@ -142,11 +142,20 @@ xyplot(GPA~fastest,data=m111survey,type=c("p","r"))
 
 ## Numerical Summaries
 
+### Fitting a line to the data:
+
 $$lmGC(response \sim explanatory, data=myData)$$
 
 ```{r }
 lmGC(GPA~fastest,data=m111survey)
 ```
+
+### Fitting a polynomial to the data:
+
+```{r}
+polyfitGC(OBP~Season,data=henderson,degree=2)
+```
+
 
 ## Prediction
 
@@ -154,6 +163,8 @@ lmGC(GPA~fastest,data=m111survey)
 fastGPAMod <- lmGC(GPA~fastest,data=m111survey)
 predict(fastGPAMod,x=100)
 ```
+
+
 
 
 
