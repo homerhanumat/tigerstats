@@ -16,6 +16,10 @@ Output to the console and to the plot window
 \description{
 Utility print function
 }
+\details{
+##########################################################
+#########################################################
+}
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }

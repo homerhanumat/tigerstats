@@ -3,15 +3,18 @@
 \alias{ttestGC}
 \title{t-Procedures}
 \usage{
-ttestGC(x=NULL,mean=numeric(),sd=numeric(),n=numeric(),
- mu=NULL,data=parent.frame(),alternative="two.sided",var.equal=FALSE,
+ttestGC(x=NULL,data=parent.frame(),mean=numeric(),sd=numeric(),n=numeric(),
+ mu=NULL,alternative=c("two.sided","less","greater"),var.equal=FALSE,
  conf.level=0.95,graph=FALSE,first=NULL,verbose=TRUE)
 }
 \arguments{
 \item{x}{If not NULL, then must be a formula.  If a formula, then data must be a dataframe.
 For one sample t-procedures, x is of the form ~var.  For two-sample procedures,
 x is of the form resp~exp, where exp is factor with two values.  If x is of form ~var1-var2,
-then matched pairs procedures are performed .}
+then matched pairs procedures are performed.}
+
+\item{data}{A data frame containing variables in formula x.  If some variables are not in data,
+then they are searched for in the parent environment.}
 
 \item{mean}{When not NULL, contains sample mean(s).  Length 1 for one sample t-procedures,
 Length 2 for two-sample procedures.}
@@ -22,10 +25,8 @@ Length 2 for two-sample procedures.}
 
 \item{mu}{Contains the null value for the parameter of interest.  If not set, no test is performed.}
 
-\item{data}{A data frame containing variables in formula x.  If some variables are not in data,
-then they are searched for in the parent environment.}
-
-\item{alternative}{"two.sided" requests computation of a two-sided P-value;  other possible values are "less" and "greater".}
+\item{alternative}{"two.sided" requests computation of a two-sided P-value;  other possible values
+are "less" and "greater".}
 
 \item{var.equal}{When FALSE, use Welch's approximation to the degrees of freedom.}
 

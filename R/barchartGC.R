@@ -59,14 +59,21 @@ barchartGC <-
   function(x,data=parent.frame(),
            type="frequency",flat=FALSE,auto.key=TRUE,horizontal=FALSE,stack=FALSE,...)  {
     
+    
     levelTol <- 5 #above this number, set legend vertically to the right
     
     #handle incorrect type specifications
-    if (type %in% c("frequency","count","counts","freq","Freq","Counts","Count","Frequency")) {
+    if (type %in% c("frequency","count","counts",
+                    "freq","Freq","Counts","Count","Frequency",
+                    "fre","fr","f","Fre","Fr","F",
+                    "Coun","Cou","Co","C",
+                    "coun","cou","co","c")) {
       type <- "frequency"
     }
     
-    if (type %in% c("percentage","percent","perc","%","Percentage","Percent","Perc")) {
+    if (type %in% c("percentage","percent","perc","%",
+                    "Percentage","Percent","Perc",
+                    "per","per","p","Per","Pe","P")) {
       type <- "percent"
     }
     

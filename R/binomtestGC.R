@@ -4,15 +4,15 @@
 #' in inferential procedures for a single proportion.
 #' 
 #' @rdname binomtestGC
-#' @usage binomtestGC(x,n=numeric(),p=NULL,data=parent.frame(),alternative="two.sided",
+#' @usage binomtestGC(x,data=parent.frame(),n=numeric(),p=NULL,alternative=c("two.sided","less","greater"),
 #'                          success="yes",conf.level=0.95,graph=FALSE,verbose=TRUE)
 #' @param x Either a formula or a numeric vector.  If formula, it must be of the form ~x
 #' indicating the single variable under study.  When summary data are provided, x is a numeric vector of 
 #' success counts.
-#' @param n When not empty, this is a numeric vector giving the size of the sample.
-#' @param p Specifies Null Hypothesis value for population proportion.  If not set, no test is performed.
 #' @param data Data frame that supplies the variable x. If not found in data, the variable is searched
 #' for in the parent environment.
+#' @param n When not empty, this is a numeric vector giving the size of the sample.
+#' @param p Specifies Null Hypothesis value for population proportion.  If not set, no test is performed.
 #' @param alternative "two.sided" requests computation of a two-sided P-value;  
 #' other possible values are "less" and "greater".
 #' @param success  When x is a formula, this argument indicates which value of variable x is being counted as a success.  
@@ -43,12 +43,14 @@
 #' #In one sample, 40 successes in 100 trials.  Testing whether p = 0.45.
 #' binomtestGC(40,100,p=0.45)
 binomtestGC <-
-  function(x,n=numeric(),
-           p=NULL,data=parent.frame(),
-           alternative="two.sided",
+  function(x,data=parent.frame(),n=numeric(),
+           p=NULL,
+           alternative=c("two.sided","less","greater"),
            success="yes",
            conf.level=0.95,
            graph=FALSE,verbose=TRUE)  { 
+    
+    alternative <- match.arg(alternative)
     
     if (is(x,"formula"))  {
       

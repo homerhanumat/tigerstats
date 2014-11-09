@@ -3,21 +3,22 @@
 #' @description t-tests and confidence intervals for one and two samples.
 #' 
 #' @rdname ttestGC
-#' @usage ttestGC(x=NULL,mean=numeric(),sd=numeric(),n=numeric(),
-#'  mu=NULL,data=parent.frame(),alternative="two.sided",var.equal=FALSE,
+#' @usage ttestGC(x=NULL,data=parent.frame(),mean=numeric(),sd=numeric(),n=numeric(),
+#'  mu=NULL,alternative=c("two.sided","less","greater"),var.equal=FALSE,
 #'  conf.level=0.95,graph=FALSE,first=NULL,verbose=TRUE)
 #' @param x If not NULL, then must be a formula.  If a formula, then data must be a dataframe.
 #' For one sample t-procedures, x is of the form ~var.  For two-sample procedures,
 #' x is of the form resp~exp, where exp is factor with two values.  If x is of form ~var1-var2,
-#' then matched pairs procedures are performed .
+#' then matched pairs procedures are performed.
+#' @param data A data frame containing variables in formula x.  If some variables are not in data,
+#' then they are searched for in the parent environment.
 #' @param mean When not NULL, contains sample mean(s).  Length 1 for one sample t-procedures,
 #' Length 2 for two-sample procedures.
 #' @param sd When not NULL, contains sample standard deviation(s).
 #' @param n When not NULL, contains sample size(s).
 #' @param mu Contains the null value for the parameter of interest.  If not set, no test is performed.
-#' @param data A data frame containing variables in formula x.  If some variables are not in data,
-#' then they are searched for in the parent environment.
-#' @param alternative "two.sided" requests computation of a two-sided P-value;  other possible values are "less" and "greater".
+#' @param alternative "two.sided" requests computation of a two-sided P-value;  other possible values 
+#' are "less" and "greater".
 #' @param var.equal When FALSE, use Welch's approximation to the degrees of freedom.
 #' @param conf.level Number between 0 and 1 indicating the confidence-level of the interval supplied.
 #' @param graph If TRUE, plot graph of P-value.
@@ -54,10 +55,11 @@
 #' #Summary data, two samples:
 #' ttestGC(mean=c(50,55),sd=c(3,4),n=c(25,40),mu=0)
 ttestGC <-
-  function(x=NULL,mean=numeric(),sd=numeric(),n=numeric(),
-           mu=NULL,data=parent.frame(),alternative="two.sided", var.equal=FALSE,
+  function(x=NULL,data=parent.frame(),mean=numeric(),sd=numeric(),n=numeric(),
+           mu=NULL,alternative=c("two.sided","less","greater"), var.equal=FALSE,
            conf.level=0.95,graph=FALSE,first=NULL,verbose=TRUE)  {
     
+    alternative <- match.arg(alternative)
     stat <- FALSE
     p.value <- FALSE  #These will get numerical values if a test is performed
     

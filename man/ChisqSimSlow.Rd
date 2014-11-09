@@ -3,7 +3,7 @@
 \alias{ChisqSimSlow}
 \title{Chi Square Resampler (One at a Time)}
 \usage{
-ChisqSimSlow(form,data,effects="random")
+ChisqSimSlow(form,data,effects=c("random","fixed"))
 }
 \arguments{
 \item{form}{a formula of the form ~x+y.  When using

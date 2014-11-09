@@ -49,7 +49,7 @@ chisqtestGC(~sex+seat,data=m111survey)
 SexSeat <- xtabs(~sex+seat,data=m111survey)
 chisqtestGC(SexSeat)
 
-#For small datasets, severa ltypes of simulation are possible, e.g.:
+#Several types of simulation are possible, e.g.:
 chisqtestGC(~weather+crowd.behavior,data=ledgejump,simulate.p.value="fixed",B=2500)
 
 #For less ouptut, set argument verbose to FALSE:
