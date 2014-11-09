@@ -3,7 +3,8 @@
 \alias{binomtestGC}
 \title{Exact Procedures for a Single Proportion}
 \usage{
-binomtestGC(x,data=parent.frame(),n=numeric(),p=NULL,alternative=c("two.sided","less","greater"),
+binomtestGC(x,data=parent.frame(),n=numeric(),p=NULL,
+                         alternative=c("two.sided","less","greater"),
                          success="yes",conf.level=0.95,graph=FALSE,verbose=TRUE)
 }
 \arguments{
@@ -55,7 +56,7 @@ binomtestGC(~sex,data=m111survey,p=0.50,
 
 #Summary data:
 #In one sample, 40 successes in 100 trials.  Testing whether p = 0.45.
-binomtestGC(40,100,p=0.45)
+binomtestGC(x=40,n=100,p=0.45)
 }
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}

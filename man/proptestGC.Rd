@@ -3,7 +3,8 @@
 \alias{proptestGC}
 \title{Proportions Procedures}
 \usage{
-proptestGC(x,data=parent.frame(),n=numeric(),p=NULL,alternative=c("two.sided","less","greater"),
+proptestGC(x,data=parent.frame(),n=numeric(),p=NULL,
+                         alternative=c("two.sided","less","greater"),
                          success="yes",first=NULL,conf.level=0.95,
                          correct=TRUE,graph=FALSE,verbose=TRUE)
 }
@@ -63,7 +64,7 @@ proptestGC(x=c(23,33),n=c(100,110))
 
 #Summary data:
 #In one sample, 40 successes in 100 trials.  Testing whether p = 0.45.
-proptestGC(40,100,p=0.45,correct=TRUE)
+proptestGC(x=40,n=100,p=0.45,correct=TRUE)
 
 #Want less output?  Set argument verbose to FALSE:
 proptestGC(~sex+seat,data=m111survey,success="2_middle",p=0.33,verbose=FALSE)

@@ -4,7 +4,8 @@
 #' in inferential procedures for a single proportion.
 #' 
 #' @rdname binomtestGC
-#' @usage binomtestGC(x,data=parent.frame(),n=numeric(),p=NULL,alternative=c("two.sided","less","greater"),
+#' @usage binomtestGC(x,data=parent.frame(),n=numeric(),p=NULL,
+#'                          alternative=c("two.sided","less","greater"),
 #'                          success="yes",conf.level=0.95,graph=FALSE,verbose=TRUE)
 #' @param x Either a formula or a numeric vector.  If formula, it must be of the form ~x
 #' indicating the single variable under study.  When summary data are provided, x is a numeric vector of 
@@ -41,7 +42,7 @@
 #' 
 #' #Summary data:
 #' #In one sample, 40 successes in 100 trials.  Testing whether p = 0.45.
-#' binomtestGC(40,100,p=0.45)
+#' binomtestGC(x=40,n=100,p=0.45)
 binomtestGC <-
   function(x,data=parent.frame(),n=numeric(),
            p=NULL,
