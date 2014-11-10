@@ -87,18 +87,23 @@ binomtestGC <-
       res <- stats::binom.test(successes,trials,p=0.5,conf.level=conf.level)
     } else res <- stats::binom.test(successes,trials,p=p,alternative=alternative,conf.level=conf.level)
     
-    res$alternative <- alternative
-    res$success <- success
-    res$graph <- graph
-    res$p <- p
-    res$conf.level <- conf.level
-    if (is(x,"formula")) res$varname <- varname
-    res$verbose <- verbose
-    res$input <- x
-    res$successes <- successes
-    class(res) <- "GCbinomtest"
     
-    return(res)
+    results <- structure(list(
+        successes=successes,
+        trials=trials,
+        p.value=res$p.value,
+        conf.int=res$conf.int,
+        conf.level=conf.level,
+        p=p,
+        alternative=alternative,
+        input=x,
+        varname = ifelse(is(x,"formula"),varname,""),
+        success=success,
+        verbose=verbose,
+        graph=graph),
+        class="GCbinomtest")
+    
+    return(results)
    
 
   }#end binomtestGC
@@ -125,9 +130,9 @@ print.GCbinomtest <- function(x,...) {
   conf.level <- x$conf.level
   verbose <- x$verbose
   input <- x$input
-  if (is(input,"formula")) varname <- x$varname
+  varname <- x$varname
   successes <- x$successes
-  trials <- x$parameter
+  trials <- x$trials
   n <- trials #in case I fall into the habit of calling trials n
   conf.int <- x$conf.int
   p.value <- x$p.value
