@@ -1,0 +1,31 @@
+---
+title: "Teaching with Tigerstats"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Teaching with Tigerstats}
+  %\usepackage[utf8]{inputenc}
+---
+
+```{r include=FALSE}
+require(knitr)
+opts_chunk$set(tidy=FALSE,fig.width=5.5,fig.height=3.5)
+```
+
+# Preliminaries
+
+We assume that the instructor is familiar with R, and has a basic understanding of the `mosaic` package and its use in the teaching of statistics.  Consult, e.g., the `mosaic` vignette "Start Teaching Statistics Using R."
+
+# Package Requirements
+
+In its current version package `tigerstats` depends on the packages `mosaic`, `mosaicData`and `abd`.  All of these will be attached when one attaches `tigerstats`:
+
+```{r message=FALSE}
+library(tigerstats)
+```
+
+# Workhorse Functions
+
+`tigerstats` is used in an elementayr classroom setting where students are taught to perform a "variable analysis"

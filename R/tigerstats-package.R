@@ -12,5 +12,5 @@
 #' \url{http://statistics.georgetowncollege.edu}
 #'
 #' @keywords package
-#' @import mosaic
+#' @import mosaic mosaicData abd
 NULL

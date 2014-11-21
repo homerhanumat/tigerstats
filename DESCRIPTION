@@ -1,8 +1,8 @@
 Package: tigerstats
 Type: Package
 Title: R for Elementary Statistics
-Version: 0.1.9-23
-Date: 2014-11-10
+Version: 0.1.9-24
+Date: 2014-11-21
 Author: Rebekah Robinson <rrobinson20@humana.com> and Homer
     White <hwhite0@georgetowncollege.edu>
 Maintainer: Homer White <hwhite0@georgetowncollege.edu>
@@ -20,13 +20,14 @@ Description: This package consists of data sets and functions that are useful
 License: GPL (>=3)
 Depends:
     R(>= 2.10),
-    mosaic
+    mosaic,
+    mosaicData,
+    abd
 Imports:
     MASS,
     ggplot2,
     lattice
 Suggests:
-    mosaicData,
     shiny,
     knitr
 LazyLoad: yes
