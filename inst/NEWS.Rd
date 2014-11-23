@@ -1,7 +1,13 @@
 \name{NEWS}
 \title{NEWS file for the tigerstats package}
 
-\section{Changes in Version 1.9}{
+\section{Changes in version 0.2}{
+\itemize{
+\item Addition of vignette "Teaching with Tigerstats."
+}
+}
+
+\section{Changes in version 0.1.9}{
 \itemize{
 
 \item Addition of qnormGC().
@@ -33,7 +39,7 @@ Viewer pane.
 \section{Changes in version 0.1.6}{
 \itemize{
 
-\item Addition of Shiny app \code{SamplingMethods} and manipulate app \code{SimpleRandom2}..
+\item Addition of Shiny app \code{SamplingMethods} and manipulate app \code{SimpleRandom2}.
 
 \item Instructional function expCounts() computes expected cell counts from a two-way table of observed counts.
 
