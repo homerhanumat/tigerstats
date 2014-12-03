@@ -104,7 +104,7 @@ Some of the applets are Shiny apps:
 Any of the above apps may be run locally, using the `shiny` package that is installed along with `tigerstats`.  For example, to run `SlowGoodness` simply type:
 
 ```{r eval=FALSE}
-shiny::runApp(system.file("CIMean",package="tigerstats"))
+shiny::runApp(system.file("SlowGoodness",package="tigerstats"))
 ```
 
 In classroom settings one is often using the server version of the R Studio IDE.  In this case, depending on how permissions are set by the sysadmin, it may not be possible to run Shiny apps locally.  In that case you should install the apps on a Shiny server for remote access.  Obtain the source code for the apps from the `inst` directory of the `tigerstats` package on Git Hub:
