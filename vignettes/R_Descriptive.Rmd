@@ -22,7 +22,7 @@ library(tigerstats)
 
 # Preliminaries
 
-This is a brief guide on how to use R and functions in `tigerstats` and related packages to do some very basic descriptive statistics.  We will give "templates" for the fucntions, accompanied by no-frills examples of their use.  Consult the function tutorials or other Help documents to learn more about the options for each function.
+This is a brief guide on how to use R and functions in `tigerstats` and related packages to do some very basic descriptive statistics.  We will give "templates" for the functions, accompanied by no-frills examples of their use.  Consult the function tutorials or other Help documents to learn more about the options for each function.
 
 # One Factor Variable
 
