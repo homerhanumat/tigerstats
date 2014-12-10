@@ -88,10 +88,10 @@ ttestGC(~fastest,data=m111survey,mu=100,
 
 If the single numerical variable of interest is a difference of two numerical variables, then you are probably interested in the "paired" t-test:
 
-$$ttestGC(secondVar - firstVar, data=MyData,mu=0).$$
+$$ttestGC(\sim secondVar - firstVar, data=MyData,mu=0).$$
 
 ```{r eval=FALSE}
-ttestGC(height - ideal_ht,data=m111survey,
+ttestGC(~height - ideal_ht,data=m111survey,
           mu=0,
           alternative="two.sided")
 ```
@@ -116,4 +116,4 @@ ttestGC(fastest~sex,data=m111survey,
 
 # Two Numerical Variables
 
-This topic is not provide for in the `tigerstats` package, but if you encounter this situation you will want to learn about `lm()`, the "grown-up" version of `lmGC()`.
+This topic is not extensively provided for in the `tigerstats` package, but if you encounter this situation you will want to learn about `lm()`, the "grown-up" version of `lmGC()`.
