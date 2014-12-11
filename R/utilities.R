@@ -71,8 +71,21 @@ RectShade <- function(low,high,func,...) { #Utility
 #' @keywords internal
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
 simpleFind <- function(varName,data) {
+  
+  if (is.null(data)) {
+    return(get(varName,inherits=T))
+  }
+  
   tryCatch({get(varName,envir=as.environment(data))},
            error=function(e) {
+             # is data name on the search path?
+             dataName <- deparse(substitute(data))
+             
+             # will throw the error if data is not on search path 
+             get(dataName,inherits=T)  
+             
+             # otherwise, user probably intends that this particular variable
+             # is outside the stated data, so look for it:
              get(varName,inherits=T)
            }
   )
