@@ -11,3 +11,4 @@ fn <- function(data){
 
 res <- chisqtestGC(~sex+seat,data=m111survey,simulate.p.value=T)
 densityplot(~Sims,data=res)
+
