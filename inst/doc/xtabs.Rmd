@@ -1,0 +1,91 @@
+---
+title: "Using xtabs() and rowPerc()"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Using xtabs() and rowPerc()}
+  %\usepackage[utf8]{inputenc}
+---
+
+# Preliminaries
+
+`xtabs()` is the numerical version of `barchartGC()`.  You use it when you want to study
+
+* the distribution of one factor variable;
+* the relationship between two factor variables.
+
+The function `xtabs()` comes with the `stats` package, which is always loaded in R.  However, some of the data and other functions that we will use come from the `tigerstats` package, so make sure that it is loaded:
+
+```{r message=FALSE}
+require(tigerstats)
+```
+
+# One Factor Variable
+
+To see a table of the tallies for the factor variable **seat** (from the `mat111survey` data frame in the `tigerstats` package):
+
+```{r}
+xtabs(~seat,data=m111survey)
+```
+
+In order to get the actual distribution of **seat**, you want percents rather than counts, so apply the function `rowPerc()` from `tigerstats`:
+
+```{r}
+rowPerc(xtabs(~seat,data=m111survey))
+```
+
+If you have a table of the counts for a variable, then you can enter it directly.  For example, suppose you have already made:
+
+```{r}
+Seat <- xtabs(~seat,data=m111survey)
+Seat
+```
+
+Then you can just enter the table into `rowPerc()`:
+```{r}
+rowPerc(Seat)
+```
+
+
+# Two Factor Variables
+
+You can also use `xtabs()` to study the relationship between two factor variables.  For example, if you want to see whether males and females differ in their seating preferences, then you might try formula-data input as follows:
+
+```{r}
+xtabs(~sex+seat,data=m111survey)
+```
+
+Of course, row percents are the way to actually study the relationship:
+
+```{r}
+rowPerc(xtabs(~sex+seat,data=m111survey))
+```
+
+Note the type of formula used to study the relationship between two factor variables:
+
+$$\sim ExplanatoryFactor + ResponseFactor$$
+
+Note also that people usually want to do several things with their two-way table, so often they will make it and store it in a well-named object, and then print out the object:
+
+```{r}
+SexSeat <- xtabs(~sex+seat,data=m111survey)
+SexSeat
+```
+
+Then to get row percents they just put in the named object:
+
+```{r}
+rowPerc(SexSeat)
+```
+
+
+# Column Percents, Too!
+
+We don't use column percents very often, but you can get them:
+
+```{r}
+colPerc(SexSeat)
+```
+

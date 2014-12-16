@@ -1,0 +1,223 @@
+---
+title: "Using chisqtestGC()"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Using chisqtestGC()}
+  %\usepackage[utf8]{inputenc}
+---
+
+```{r include=FALSE}
+require(knitr)
+require(tigerstats)
+opts_chunk$set(tidy=FALSE,fig.width=4.5,fig.height=3.5)
+```
+
+# Preliminaries
+
+You use the $\chi^2$-test when you are addressing the inferential aspect of research questions about:
+
+* the relationship between two factor variables (test for association);
+* the distribution of one factor variable (goodness-of-fit test).
+
+#Two Factor Variables (Association)
+
+## Formula-Data Input
+
+When your data are in raw form, straight from a data frame, you can perform the test using "formula-data input".  For example, in the `mat111survey` data, we might wonder whether sex and seating preference are related, in the population from which the sample was (allegedly randomly) drawn.  The function call and the output are as follows:
+
+
+```{r}
+chisqtestGC(~sex+seat,data=m111survey)
+```
+
+
+## Two-Way Table Input
+
+Sometimes you already have a two-way table on hand:
+
+```{r}
+SexSeat <- xtabs(~sex+seat,data=m111survey)
+SexSeat
+```
+
+In that case you can save yourself some typing by entering the table in place of the formula and the `data` arguments:
+
+```{r eval=FALSE}
+chisqtestGC(SexSeat)
+```
+
+
+## A Table From Summary Data
+
+Remember:  if you are given summary data, only, then you can construct a nice two-way table and enter it into `chisquaretestGC()`.  Suppose that you want this two-way table:
+
+|   |Front|Middle|Back|
+|:---------|:----------:|:----------:|:-----------:|
+|Female|19|16|5|
+|Male|8|16|7|
+
+You can get it as follows:
+
+```{r}
+MySexSeat <- rbind(female=c(19,16,5),male=c(8,16,7))
+colnames(MySexSeat) <- c("front","middle","back")
+```
+
+Let's just check to see that this worked:
+
+```{r}
+MySexSeat
+```
+
+Then you can enter `MySexSeat` into the function:
+
+```{r eval=FALSE}
+chisqtestGC(MySexSeat)
+```
+
+
+## Simulation
+
+When the Null's expected counts are low, `chisqtestGC()` delivers a warning and suggests the use of simulation to compute the $P$-value.  You do this by way of the argument `simulate.p.value`, and you have three options:
+
+* `simulate.p.value = "fixed"`
+* `simulate.p.value = "random"`
+* `simulate.p.value = "TRUE"`
+
+### Explanatory Tallies Fixed
+
+Suppose that the objects under study are not a random sample from some larger population, and that the way chance comes into the production of the data is through random variation in all of the other factors---besides the explanatory variable--- that might be associated with the response variable.  Then since the items being observed are fixed, the tally of values for the explanatory variable are fixed.  The response values for these items are the product of chance, but only through random variation in those other factors.
+
+The study from the `ledgejump` data frame was an example of this.  The 21 incidents were fixed, so there were nine cold-weather incidents and 12 warm-weather incidents, no matter what.  The crowd behavior at each incident, however is still a matter of chance.
+
+In such a case you might want to resample under the restriction that in all of your resamples, the tally for the explanatory variable stays just the same as it was in the data you observed.  Then your function call looks like:
+
+```{r echo=FALSE}
+set.seed(12345)
+```
+
+
+```{r}
+chisqtestGC(~weather+crowd.behavior,data=ledgejump,
+             simulate.p.value="fixed",B=2500)
+```
+
+You can set `B`, the number of resamples, as you wish, but it should be at least a few thousand.  Of course the $P$-value, having been determined by random resampling, will vary from one run of the function to another.
+
+
+### Explanatory Tallies Random
+
+In the `m111survey` study on sex and seating preference, the subjects are a random sample from a larger population.  In that case the tallies for both the explanatory and the response variables depend upon chance. If you simulate in such a case, then you set `simulate.p.value` to "random":
+
+```{r}
+chisqtestGC(~sex+seat,data=m111survey,
+             simulate.p.value="random",B=2500)
+```
+
+
+
+### Both Tallies Fixed
+
+If you want to resample in such a way that the tallies for BOTH the explanatory and response variables stay exactly the same as they were in the actual data, then you set `simulate.p.value` to "TRUE".  This invokes R's standard method for resampling:
+
+```{r}
+chisqtestGC(~sex+seat,data=m111survey,
+             simulate.p.value=TRUE,B=2500)
+```
+
+It's not easy to understand why R would adopt such a method, but there is some good theoretical support for it.  If you are ever in doubt about how to simulate, just use this third option.
+
+## Graphs of the P-Value
+
+
+You can get a graph of the $P$-value in the plot window by setting the argument `graph` to TRUE.  When you did not simulate, the graph shows a density curve for the $\chi^2$ random variable with the relevant degrees of freedom.  When you simulate, the graph is a histogram of the resampled $\chi^2$-statistics.
+
+Here is a case with no simulation:
+
+```{r chisqtutnosim, fig.width=4,fig.height=3.5,fig.cap="Graph of P-value, no simulation"}
+chisqtestGC(~sex+seat,data=m111survey,graph=TRUE)
+```
+
+
+Here is a case with simulation:
+
+
+```{r chisqtutsim,fig.width=4,fig.height=3.5,fig.cap="Graph of P-value, with simulation"}
+chisqtestGC(~sex+seat,data=m111survey,
+             simulate.p.value="random",B=2500,graph=TRUE)
+```
+
+# One Factor Variable (Goodness of Fit)
+
+## Formula-Data Input
+
+The variable **seat** in the `m111survey` data frame indicates the classroom seating preference of each person in the survey.  Suppose we want to know whether or not the sample data provide strong evidence that seating preference in the Georgetown College population is not uniformly distributed among the three possible options (Front, Middle, and Back).  That is, letting
+
+  >$p_f =$ proportion of all GC students who prefer the front,
+  
+  >$p_m =$ proportion of all GC students who prefer the middle,
+  
+  >$p_b =$ proportion of all GC students who prefer the back,
+
+we want to test the hypotheses:
+
+  >$H\_0:$  $p_f = 1/3$ and $p_m = 1/3$ and $p_b = 1/3$
+  
+  >$H_a:$  at least one of the above proportions is not $1/3$
+  
+We can do so using the $\chi^2$-test for goodness of fit.  The argument `p` will give what the Null Hypothesis believes to be the distribution of the variable **seat** in the Georgetown College population:
+
+```{r chisqtutseatgraph}
+chisqtestGC(~seat,data=m111survey,
+            p=c(1/3,1/3,1/3),
+            graph=TRUE)
+```
+
+
+## Summary Data
+
+Suppose that the data had only come to us in summary form:
+
+|Front|Middle|Back|
+|:----------:|:----------:|:-----------:|
+|27|32|12|
+
+We could still perform the test, by making a table and storing it as an R-object:
+
+```{r}
+Seat <- c(front=27,middle=32,back=12)
+Seat
+```
+
+Then we could perform the test using `Seat`:
+
+```{r}
+chisqtestGC(Seat,p=c(1/3,1/3,1/3))
+```
+
+## Simulation
+
+When expected cell counts fall below 5, `chisqtestGC()` issues a warning and suggests the use of simulation.  We can perform simulation at any time, though.
+
+For goodness-of-fit tests, the only relevant form of simulation is the one provided by setting `simulate.p.value` to `TRUE`.  Of course we also need to set the number `B` of resamples.
+
+```{r chisqtutseatsim}
+set.seed(678910)
+chisqtestGC(~seat,data=m111survey,
+            p=c(1/3,1/3,1/3),
+            simulate.p.value=TRUE,
+            B=2500,graph=TRUE)
+```
+
+# Want Less Output?
+
+If you do not wnat to see quite so much output to the console and are only interested in the essentials for reporting a $\chi^2$-test, then set the argument `verbose` to `FALSE`:
+
+```{r}
+chisqtestGC(~sex+seat,data=m111survey,
+            verbose=FALSE)
+```
+

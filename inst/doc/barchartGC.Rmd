@@ -1,0 +1,151 @@
+---
+title: "Using barchartGC()"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Using barchartGC()}
+  %\usepackage[utf8]{inputenc}
+---
+
+```{r include=FALSE}
+require(knitr)
+opts_chunk$set(tidy=FALSE,fig.width=5.5,fig.height=3.5)
+```
+
+
+# Preliminaries
+
+`barchartGC()` provides quick-and-easy bar charts for the graphical exploration of factor variables.  The function comes from the `tigerstats` package and we will use some data from the `tigerstats` as well, so make sure that `tigerstats` is loaded:
+
+```{r message=FALSE}
+require(tigerstats)
+```
+
+In this tutorial we will work with the `m111survey` data frame from `tigerstats` package.  If you are not yet familiar with this data, then run:
+
+```{r eval=FALSE}
+data(m111survey)
+View(m111survey)
+help(m111survey)
+```
+
+
+# One Factor Variable
+
+To look see a bar chart for the tallies of the factor variable **seat**:
+
+```{r barchartseatfreq,tidy=FALSE}
+barchartGC(~seat,data=m111survey,type="frequency",
+           main="Barchart of Seating Preference",
+           xlab="Seating Preference")
+```
+
+In order to get the actual distribution of **seat**, you want percents rather than counts:
+
+```{r barchartseatperc,tidy=FALSE}
+barchartGC(~seat,data=m111survey,type="percent",
+           main="Barchart of Seating Preference",
+          xlab="Seating Preference")
+```
+
+If you have a table of the counts for a variable, then you can enter it directly.  For example, suppose you have already made:
+
+```{r}
+Seat <- xtabs(~seat,data=m111survey)
+Seat
+```
+
+Then you can just enter the table:
+```{r barchartseattab, tidy=FALSE}
+barchartGC(Seat,type="percent",
+           main="Barchart of Seating Preference",
+           xlab="Seating Preference")
+```
+
+
+# Two Factor Variables
+
+You can also use `barchartGC()` to study the relationship between two factor variables.  For example, if you want to see whether males and females differ in their seating preferences, then you might try formula-data input as follows:
+
+```{r barchartsexseat, tidy=FALSE}
+barchartGC(~sex+seat,data=m111survey,
+           type="percent",
+           main="Sex and Seating Preference\nat Georgetown",
+           xlab="Sex of student",
+           sub="Bar color shows seating preference")
+```
+
+Again, if you happen to have already made a two-way table, then you can just enter it:
+
+```{r}
+SexSeat <- xtabs(~sex+seat,data=m111survey)
+SexSeat
+```
+
+Here is the bar chart from the two-way table:
+
+```{r barchartsexseattab, tidy=FALSE}
+barchartGC(SexSeat,type="percent",
+           main="Sex and Seating Preference\nat Georgetown",
+           xlab="Sex of student",
+           sub="Bar color shows seating preference")
+```
+
+# Flat Bar Charts
+
+To study the relationship between tow factor variables through numericla summaries, you might make a table of row percentages, as follows:
+
+```{r}
+rowPerc(SexSeat)
+```
+
+To geta bar chart that looks like a visual "copy" of the row percentages, set the argument `flat` to `TRUE`:
+
+```{r}
+barchartGC(SexSeat,type="percent",
+           main="Sex and Seating Preference\nat Georgetown",
+           ylab="Sex of student",
+           sub="Bar color shows seating preference",
+           flat=TRUE)
+```
+
+
+Note that you might want a label for the y-axis, now.
+
+# Other Options
+
+You can make vertical stacked bars:
+
+```{r}
+barchartGC(SexSeat,type="freq",
+           main="Sex and Seating Preference\nat Georgetown",
+           xlab="Sex of student",
+           sub="Bar color shows seating preference",
+           stack=TRUE)
+```
+
+You can also make horizontal, unstacked ones:
+
+```{r}
+barchartGC(SexSeat,type="freq",
+           main="Sex and Seating Preference\nat Georgetown",
+           ylab="Sex of student",
+           sub="Bar color shows seating preference",
+           stack=FALSE,
+           horizontal=TRUE)
+```
+
+
+# Warning
+
+Bar charts are for factor variables, not for numerical variables.  Look what happens when you ask for a bar chart of **fastest**:
+
+```{r barchartfastest,tidy=FALSE,fig.width=7,fig.height=5}
+barchartGC(~fastest,data=m111survey,
+           main="Fastest Speed Ever Driven")
+```
+
+
+R tries to accommodate your request, but it ends up making something that resembles a very amateurish histogram.  R draws a separate bar for each speed that appears in the data, making for a very "busy" graph.  Worse yet, consecutive speeds are equally spaced from each other, even though the differences between consecutive speeds vary.  For example, the spacing between the 90 ans 91 mph bars is the same as the spacing between the 160 and 190 mph bars.  This is very misleading!

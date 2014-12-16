@@ -18,18 +18,9 @@ Description: A collection of data sets and functions that are useful
     used alongside of package mosaic, mosaicData and abd, which are therefore listed as
     dependencies.
 License: GPL (>=3)
-Depends:
-    R(>= 2.10),
-    mosaic,
-    mosaicData,
-    abd
-Imports:
-    MASS,
-    ggplot2,
-    lattice
-Suggests:
-    shiny,
-    knitr
+Depends: R(>= 2.10), mosaic, mosaicData, abd
+Imports: MASS, ggplot2, lattice
+Suggests: shiny, knitr
 LazyLoad: yes
 LazyData: true
 VignetteBuilder: knitr
