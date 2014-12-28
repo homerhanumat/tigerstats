@@ -3,7 +3,7 @@
 \name{tigerstats-package}
 \alias{tigerstats}
 \alias{tigerstats-package}
-\title{R for Elementary Statistics}
+\title{R Functions for Elementary Statistics}
 \description{
 tigerstats
 }
