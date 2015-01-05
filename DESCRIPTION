@@ -22,7 +22,7 @@ Depends:
     R(>= 2.10),
     abd,
     mosaic,
-    mosaicData,
+    mosaicData
 Imports:
     ggplot2,
     lattice,
