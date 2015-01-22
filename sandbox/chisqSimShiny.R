@@ -135,7 +135,7 @@ chisqGraph <- function(bound,region="above",df=NA,xlab="chi_square_statistic",gr
     }
     
 ##########################################################################  
-#    simulation for simulate.p.value==TRUE, when test is for association
+#    simulation for "rcfix" option
 ##########################################################################
 
     DoubleFixedResampler <- function(x,n) {
@@ -157,7 +157,7 @@ chisqGraph <- function(bound,region="above",df=NA,xlab="chi_square_statistic",gr
 
 
 #################################################   
-#   simulation for "fixed" and "random"
+#   simulation for "rfix" and "gtfix" options
 #################################################
 
     RandFixedResampler <- function (x, n, effects = "random") 
@@ -215,10 +215,6 @@ chisqGraph <- function(bound,region="above",df=NA,xlab="chi_square_statistic",gr
  ####
  ####
  #################################################################
-
-
-    
-
     
   #first see if we have formula-data input, or summary data
   if (is(x,"formula")) #we have formula-data input
@@ -257,21 +253,19 @@ chisqGraph <- function(bound,region="above",df=NA,xlab="chi_square_statistic",gr
 
 # Define server logic for SlowGoodness
 server <- function(input, output) {
-  
-  
-  simLimit <- 10000
+   
+  simLimit <- 10000 # no more than this many sims at one time
   
   #Keep track of number of simulations in a given "set-up"
   numberSims <- 0
   chisqSims <- numeric()
   latest_table <- NULL
-  #fullSim <-character()
   
-  #we also want the ability to refresh the "set-up
+  #we also want the ability to refresh the set-up
   total <- 0 #total number of sims over all set-ups including current one
   totalPrev <- 0 #total number of sims over all set-ups excluding current one
   
-  
+  # The observed two-way table:
   observed <- tab
   rowNames <- rownames(tab)
   colNames <- colnames(tab)
@@ -283,7 +277,7 @@ server <- function(input, output) {
   simsUpdate <- reactive({
     if (input$resample > 0) {
       reps <- min(simLimit,isolate(input$sims))
-      simType <- isolate(input$simType)
+      simType <- isolate(input$simType) #probably don't need isolate
       if (simType=="rcfix") newSims <- DoubleFixedResampler(observed,reps)
       if (simType=="rfix") newSims <- RandFixedResampler(observed,reps,effects="fixed")
       if (simType=="gtfix") newSims <- RandFixedResampler(observed,reps,effects="random")
@@ -293,11 +287,6 @@ server <- function(input, output) {
       latestSim <<- newSims[reps]
       numberSims <<- numberSims + reps
       total <<- total+reps
-      
-      #now build fake list of outcomes for each trial, on the last sim
-#       varLevels <- isolate(namesInput)
-#       namesList <- rep(varLevels,times=latestSim)
-#       fullSim <<- sample(namesList,size=totalCounts,replace=FALSE)
       list(numberSims,latestSim)
     }
   })
@@ -318,8 +307,7 @@ server <- function(input, output) {
   
   xmax <- qchisq(0.999,df=df)
   
-  
-  #help with conditonal panals
+  #help with conditonal panels
   output$totalPrev <- reactive({
     simsReset()
   })
@@ -332,25 +320,9 @@ server <- function(input, output) {
     total
   })
   
-  # needed for the conditional panels to work
+  # also needed for the conditional panels to work
   outputOptions(output, 'total', suspendWhenHidden=FALSE)
   
-#   output$barGraphInitial <- renderPlot({
-#     
-#     observed <- obsInput
-#     nulls <- nullsInput/sum(nullsInput)
-#     names <- namesInput
-#     
-#     
-#     observed <- obsInput
-#     expected <- nulls*sum(observed)
-#     tab <- rbind(observed,expected)
-#     rownames(tab) <-c("Observed","Expected")
-#     colnames(tab) <- names
-#     barplot(tab,beside=T,col=c("#ee7700","grey"),
-#             main="Bargraph of Observed and Expected Counts",xlab="",ylab="Counts",
-#             legend.text=TRUE)
-#   }) 
   
   output$remarksInitial <- renderText({
     paste("Observed chi-square statistic =  ",as.character(round(obschisq,2)),sep="")
@@ -360,15 +332,24 @@ server <- function(input, output) {
     observed
   })
 
-output$expTable <- renderTable({
-  expected <- exp.counts(observed)
-  rownames(expected) <- rowNames
-  expected
-})
+  output$expTable <- renderTable({
+    expected <- exp.counts(observed)
+    rownames(expected) <- rowNames
+    expected
+  })
+  
+  output$mosaicInitial <- renderPlot({
+    par(mfrow=c(1,2))
+    mosaicplot(t(observed),col="orange",main="Observed Table")
+    expected <- exp.counts(observed)
+    rownames(expected) <- rowNames
+    mosaicplot(t(expected),col="grey",main="Expected Table")
+    par(mfrow=c(1,1))
+  })
 
-output$contrTable <- renderTable({
-  (observed-exp.counts(observed))^2/exp.counts(observed)
-})
+  output$contrTable <- renderTable({
+    (observed-exp.counts(observed))^2/exp.counts(observed)
+  })
   
   output$remarksLatest1 <- renderText({
     input$resample
@@ -376,6 +357,20 @@ output$contrTable <- renderTable({
     rounded2 <- round(chisqSims[length(chisqSims)],2)
     paste("Observed chi-square statistic =  ",as.character(rounded1),
           ", Latest resampled chi-square = ",as.character(rounded2),sep="")
+  })
+  
+  output$mosaicLatest <- renderPlot({
+    if(input$resample > 0) { # for the dependency
+      par(mfrow=c(1,2))
+      rownames(latest_table) <- rowNames
+      colnames(latest_table) <- colNames
+      latest_table <- as.matrix(latest_table)
+      mosaicplot(t(latest_table),col="blue",main="Simulated Table")
+      expected <- exp.counts(latest_table)
+      rownames(expected) <- rowNames
+      mosaicplot(t(expected),col="grey",main="Expected Table\n(from simulation)")
+      par(mfrow=c(1,1))
+    }
   })
 
 output$latestTable <- renderTable({
@@ -395,24 +390,6 @@ output$latestTable <- renderTable({
     paste("Observed chi-square statistic =  ",as.character(rounded1),
           ", Latest resampled chi-square = ",as.character(rounded2),sep="")
   })
-  
-  
-#   output$barGraphLatest <- renderPlot({
-#     input$resample
-#     if (length(chisqSims) > 0) {
-#       totalCounts <- isolate(sum(obsInput))
-#       nulls <- isolate(nullsInput/sum(nullsInput))
-#       expected <- totalCounts*nulls
-#       tab <- rbind(obsInput,expected,latestSim)
-#       rownames(tab) <-c("Observed","Expected","Resampled")
-#       colnames(tab) <- isolate(namesInput)
-#       barplot(tab,beside=T,col=c("#ee7700","grey","#3333ff"),
-#               main="Bargraph of Observed, Expected, and Latest Resample",xlab="",
-#               ylab="Counts",
-#               legend.text=TRUE)
-#     }
-#     
-#   })
   
   output$densityplot <-
     renderPlot({
@@ -449,8 +426,9 @@ output$latestTable <- renderTable({
   output$remarksProbBar <- renderText({
     obs <- obschisq
     paste0("The percentage in the table gives the approximate probability, based on our resamples so far, of getting a chi-square statistic of ",
-           round(obs,2)," or more, if the probability of each outcome is as the Null probabilities state.",
-           "  The more resamples you take the better this approximations will be!")
+           round(obs,2)," or more, if the Null Hypothesis (no relationship between the two factor",
+           " variables under study) is true. The more resamples you take the better these",
+           "approximations will be!")
   })
   
   
@@ -472,9 +450,11 @@ output$latestTable <- renderTable({
   output$remarksProbDensity <- renderText({
     obs <- obschisq
     paste0("The curve above approximates the true probability distribution of the chi-square statistic.",
-           " It is based on our resamples so far.  The percentage in the table gives the approximate probability, based on our resamples so far, of getting a chi-square statistic of ",
-           round(obs,2)," or more, if the probability of each outcome is as the Null probabilities state.",
-           "  The more resamples you take the better these approximations will be!")
+           " It is based on our resamples so far.  The percentage in the table gives the approximate",
+            "probability, based on our resamples so far, of getting a chi-square statistic of ",
+           round(obs,2)," or more, if the Null Hypothesis (no relationship between the two factor",
+           " variables under study) is true. The more resamples you take the better these",
+            "approximations will be!")
   })
   
   
@@ -490,7 +470,8 @@ output$latestTable <- renderTable({
     obs <- obschisq
     paste0("The curve above approximates the true probability distribution of the chi-square statistic.",
            " The shaded area gives the approximate probability of getting a chi-square statistic of ",
-           round(obs,2)," or more, if the probability of each outcome is as the Null probabilities state.")
+           round(obs,2)," or more, if the Null Hypothesis (no relationshoip between the two factor",
+           " variables under study) is true.")
   })
   
 } #end server
@@ -510,7 +491,7 @@ ui <- shinyUI(pageWithSidebar(
                            "Row Sums Fixed"="rfix",
                            "Grand Total Fixed"="gtfix"))
       ),
-    helpText("One simulation means the machine will produce one table of",
+    helpText("One simulation means the machine will produce one simulated table of",
              "counts, assuming the Null Hypothesis.  How many simulations do",
              "you want the machine to perform at once?  (Limit is 10000.)"),
     numericInput("sims","Number of Simulations at Once",1,min=0,step=1),
@@ -529,6 +510,7 @@ ui <- shinyUI(pageWithSidebar(
     
     conditionalPanel(
       condition="input.resample == 0 || output.totalPrev == output.total",
+      plotOutput("mosaicInitial"),
       h4("Observed Table"),
       tableOutput("obsTable"),
       hr(),
@@ -545,6 +527,7 @@ ui <- shinyUI(pageWithSidebar(
       condition="(input.resample > 0 && input.reset == 0) || output.total > output.totalPrev",
       tabsetPanel(selected="Latest Simulation",
                   tabPanel("Latest Simulation",
+                           plotOutput("mosaicLatest"),
                            h4("Last Simulated Table"),
                            tableOutput("latestTable"),
                            hr(),
