@@ -390,12 +390,17 @@ output$latestTable <- renderTable({
     paste("Observed chi-square statistic =  ",as.character(rounded1),
           ", Latest resampled chi-square = ",as.character(rounded2),sep="")
   })
+
+  chisqDensities <- reactive({
+    input$resample
+    if (length(chisqSims)==1) band <- 1 else band <- "nrd0"
+    density(chisqSims,n=500,from=0,to=xmax,bw=band)
+  })
   
   output$densityplot <-
     renderPlot({
       input$resample
-      if (length(chisqSims)==1) band <- 1 else band <- "nrd0"
-      dchisq <- density(chisqSims,n=500,from=0,to=xmax,bw=band)
+      dchisq <- chisqDensities()
       plot(dchisq$x,dchisq$y,type="l",col="blue",
            xlab="Chi-Square Value",ylab="Estimated Density",
            main="Distribution of Resampled Chi-Square Statistics")
@@ -464,6 +469,9 @@ output$latestTable <- renderTable({
     chisqGraph(bound=obs,region="above",df=degFreedom,xlab="Chi-Square Values",
                graph=TRUE)
     abline(v=obs)
+    if (input$compareDen) {
+      lines(chisqDensities(),col="blue",lwd=4)
+    }
   })
   
   output$remarksProb <- renderText({
@@ -541,8 +549,13 @@ ui <- shinyUI(pageWithSidebar(
                            p(textOutput("remarksProbDensity"))),
                   tabPanel("Probability Distribution",
                            plotOutput("chisqCurve"),
+                           hr(),
+                           checkboxInput("compareDen","Compare with simulated chi-square distribution"),
                            p(textOutput("remarksProb"))
                   ),
+                  tabPanel("Simulation Types",
+                           includeHTML(system.file("doc/instructorNotes.html",
+                                                   package="tigerstats"))),
                   id="MyPanel"
       )
     )
