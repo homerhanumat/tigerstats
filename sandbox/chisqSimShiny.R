@@ -10,7 +10,7 @@
 #' @param data dataframe supplying variables for formula x.  If variables in x ar enot found in the data,
 #' then they will be searched for in the parent environment.
 #' @return side effects
-#' @note This is a locally-run Shiny app.  It may not work properly on some R Stduio Server set-ups,
+#' @note This is a locally-run Shiny app.  It may not work properly on some R Studio Server set-ups,
 #' especially on the CentoOS operating system.
 #' @export
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}

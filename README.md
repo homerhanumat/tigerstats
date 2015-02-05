@@ -17,6 +17,10 @@ or the latest version from Git Hub by first installing package `devtools` from C
 devtools::install_github("homerhanumat/tigerstats",build_vignettes=TRUE)
 ```
 
+## Shiny
+
+If you are here for source code for a Shiny app, look in in the inst directory above.
+
 ## More Information
 
 Begin with the package vignette "Teaching with Tigerstats."
