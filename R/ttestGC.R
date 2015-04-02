@@ -128,6 +128,7 @@ ttestGC <-
                            mu,data,alternative,
                            conf.level,graph,first) {
       prsd <- ParseFormula(x)
+      
       respname <- as.character(prsd$lhs)
       expname <- as.character(prsd$rhs)
 #       if (!(respname %in% names(data))) {
@@ -140,6 +141,7 @@ ttestGC <-
       
       resp <- simpleFind(varName=respname,data=data)
       exp <- simpleFind(varName=expname,data=data)
+
       
       expEntries <- unique(exp)
       nonTrivial <- length(expEntries[!is.na(expEntries)])

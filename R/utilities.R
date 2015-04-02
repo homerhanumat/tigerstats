@@ -86,7 +86,16 @@ simpleFind <- function(varName,data) {
              
              # otherwise, user probably intends that this particular variable
              # is outside the stated data, so look for it:
-             get(varName,inherits=T)
+             possibleVar <- get(varName,inherits=T)
+             
+             # the following is a bit of a hack, but here goes:
+             # sometimes the name coincides with one of R's base functions.
+             # Perhaps then the user has the variable in the Globabl Environment.
+             # Look for it there:
+             if (is.function(possibleVar)) {
+               possibleVar <- get(varName,inherits=T,envir = globalenv())
+             }
+             possibleVar
            }
   )
   
