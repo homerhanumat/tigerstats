@@ -3,7 +3,7 @@ library(shiny)
 source("chisqGraph.R")
 
 # Define server logic for SlowGoodness
-shinyServer(function(input, output) {
+shinyServer(function(input, output,session) {
   simLimit <- 10000
 
   #Keep track of number of simulations in a given "set-up"
@@ -75,6 +75,10 @@ shinyServer(function(input, output) {
       latestSim <<- newSims[,reps]
       numberSims <<- numberSims + reps
       total <<- total+reps
+      
+      if (total - totalPrev == 1) {
+        updateTabsetPanel(session,"myPanel",selected="Latest Simulation")
+      }
       
       #now build fake list of outcomes for each trial, on the last sim
       varLevels <- isolate(namesInput())
@@ -232,20 +236,40 @@ shinyServer(function(input, output) {
     
   })
   
-  output$densityplot <-
-    renderPlot({
+  chisqDensities <- reactive({
     input$resample
     if (length(chisqSims)==1) band <- 1 else band <- "nrd0"
-    dchisq <- density(chisqSims,n=500,from=0,to=xmaxInput(),bw=band)
-    plot(dchisq$x,dchisq$y,type="l",col="blue",
-         xlab="Chi-Square Value",ylab="Estimated Density",
-         main="Distribution of Resampled Chi-Square Statistics")
-    rug(chisqSims)
-    latest <- chisqSims[length(chisqSims)]
-    points(latest,0,col="blue",pch=19)
-    abline(v=isolate(obschisqInput()))
-    
+    density(chisqSims,n=500,from=0,to=xmaxInput(),bw=band)
+  })
+  
+  
+  output$densityplot <-
+    renderPlot({
+      input$resample
+      dchisq <- chisqDensities()
+      plot(dchisq$x,dchisq$y,type="l",col="blue",
+           xlab="Chi-Square Value",ylab="Estimated Density",
+           main="Distribution of Resampled Chi-Square Statistics")
+      if (length(chisqSims) <= 200) rug(chisqSims)
+      latest <- chisqSims[length(chisqSims)]
+      points(latest,0,col="blue",pch=19)
+      abline(v=isolate(obschisqInput()))
     })
+  
+#   output$densityplot <-
+#     renderPlot({
+#     input$resample
+#     if (length(chisqSims)==1) band <- 1 else band <- "nrd0"
+#     dchisq <- density(chisqSims,n=500,from=0,to=xmaxInput(),bw=band)
+#     plot(dchisq$x,dchisq$y,type="l",col="blue",
+#          xlab="Chi-Square Value",ylab="Estimated Density",
+#          main="Distribution of Resampled Chi-Square Statistics")
+#     if (length(chisqSims) <= 200) rug(chisqSims)
+#     latest <- chisqSims[length(chisqSims)]
+#     points(latest,0,col="blue",pch=19)
+#     abline(v=isolate(obschisqInput()))
+#     
+#     })
   
   output$summary1 <- renderTable({
     input$resample
@@ -302,6 +326,9 @@ shinyServer(function(input, output) {
       chisqGraph(bound=obs,region="above",df=degFreedom,xlab="Chi-Square Values",
                  graph=TRUE)
     abline(v=obs)
+    if (input$compareDen) {
+      lines(chisqDensities(),col="blue",lwd=4)
+    }
   })
   
   output$remarksProb <- renderText({
