@@ -15,7 +15,6 @@ heard each three different genres of music.  Each subject took a reading compreh
 \itemize{
 \item{\code{sex}} {a factor with levels \code{Female} \code{Male}}
 \item{\code{year}} {class rank of subject}
-\item{\code{computer}} {a numeric vector}
 \item{\code{type}} {type of music subject listened to while reading}
 \item{\code{score}} {number of questions correct on reading comprehension test}
 }
