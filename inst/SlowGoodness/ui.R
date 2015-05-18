@@ -1,30 +1,29 @@
 library(shiny)
+library(shinyjs)
 # Define UI for SlowGoodness application
-shinyUI(pageWithSidebar(
+shinyUI(fluidPage(
+  useShinyjs(),
   # Application title
-  headerPanel("Chi-Square Goodness-of-Fit Resampling"),
+  titlePanel("Chi-Square Goodness-of-Fit Resampling"),
   # Sidebar
   sidebarPanel(
-    conditionalPanel(
-      condition="input.resample == 0 || output.totalPrev == output.total",
-      textInput("nulls","Enter Null Probabilities (separated by commas)",
-                "0.17,0.17,0.17,0.17,0.17,0.17"),
+#   conditionalPanel(
+#      condition="input.resample == 0 || output.totalPrev == output.total",
+    inputPanel(id="setup",
       helpText("Enter the probabilities as decimal numbers.",
-               "If they do not sum to 1, then the",
-               "application will re-scale them for you."),
-      br(),
+                  "If they do not sum to 1, then the",
+                  "application will re-scale them for you."),
+      textInput("nulls","Null Probabilities (separated by commas)",
+                ".17,.17,.17,.17,.17,.17"),
       textInput("obs","Enter Observed Counts (separated by commas)",
                 "8,18,11,7,9,7"),
-      br(),
       textInput("names","Enter Level Names (separated by commas)",
-                "One,Two,Three,Four,Five,Six"),
-      br()
+                "One,Two,Three,Four,Five,Six")
     ),
     helpText("One simulation means the machine will produce one table of",
              "counts, using the Null probabilities. How many simulations do",
              "you want the machine to perform at once? (Limit is 10000.)"),
     numericInput("sims","Number of Simulations at Once",1,min=0,step=1),
-    br(),
     actionButton("resample","Simulate Now"),
     conditionalPanel(
       condition="(input.resample > 0 && input.reset == 0) || output.total > output.totalPrev",

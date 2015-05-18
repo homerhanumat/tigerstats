@@ -14,14 +14,14 @@ vignette: >
 
 `favstats()` comes from the `mosaic` package and we will use some data from the `tigerstats` package, so make sure that both are loaded:
 
-```{r message=FALSE}
+```{r, message=FALSE}
 require(mosaic)
 require(tigerstats)
 ```
 
 In this tutorial we will work with the `m111survey` data frame from `tigerstats` package.  If you are not yet familiar with this data, then run:
 
-```{r eval=FALSE}
+```{r, eval=FALSE}
 data(m111survey)
 View(m111survey)
 help(m111survey)
@@ -41,7 +41,7 @@ str(m111survey)
 Suppose, for example, that you want to know how fast people in the `m111survey` sample tend to drive, when they drive their fastest. The you want to study the numerical variable **fastest**:  the fastest speed each person claims to have ever driven, measured in miles per hour.  Just try `favstats()` with the usual formula-data input:
 
 ```{r}
-favstats(~fastest,data=m111survey)
+favstats(~fastest, data = m111survey)
 ```
 
 Remember what each of the statistics tells you:
@@ -73,7 +73,7 @@ $$numerical \sim factor.$$
 So we run the following command:
 
 ```{r}
-favstats(fastest~sex,data=m111survey)
+favstats(fastest~sex, data = m111survey)
 ```
 
 The first row of the output gives a summary of the conditional distribution of **fastest**, given that **sex** is female.
@@ -88,27 +88,26 @@ The two conditional distribution are not the same.  For example, we see that on 
 Sometimes you want just a few of the numbers from `favstats()`.  If you would like to display only those numbers you can do so using brackets "[" and "]", along with a list of the names of the columns you want to see.  For example, to display only the means and the standard deviations for **fastest**, ask for:
 
 ```{r}
-favstats(fastest,data=m111survey)[c("mean","sd")]
+favstats(~fastest, data=m111survey)[c("mean","sd")]
 ```
 
 The brackets are R's way of locating particular parts of an object.  If you want to display more than one column, make sure to combine their names (in quotes) in a list with the `c()` function, as shown above.
 
-When you are breaking a numerical variable into groups, you will probably also want to see the group names:  this requires the addition of the column named `.group`.  Therefore, to see just the mean and the standard deviation for **fastest** broken down by **sex**, ask for:
+When you are breaking a numerical variable into groups, you will probably also want to see the group names:  this requires the addition of the column named for the factor variable in question.  Therefore, to see just the mean and the standard deviation for **fastest** broken down by **sex**, ask for:
 
 
 ```{r}
-favstats(fastest~sex,data=m111survey)[c(".group","mean","sd")]
+favstats(fastest~sex, data = m111survey)[c("sex","mean","sd")]
 ```
 
 
 
 # Warning
 
-`favstats()` specializes in numerical variables:  it won't help you to study a factor variable by itself.  If you try to use it to study the factor variable **sex**, like this:
+`favstats()` specializes in numerical variables:  it does not like being used to study a factor variable by itself.  Look what happens if you try to use it to study the factor variable **sex**:
 
-```{r eval=FALSE}
-favstats(~sex,data=m111survey)
+```{r, error=TRUE, purl = FALSE}
+favstats(~sex, data = m111survey)
 ```
 
-then you will get an error!
-
+`favstats()` converted the factor variable to a numeric variable and tried to give you some useful information based on that conversion, but elements of the output (especially the mean and the standard deviation) are meaningless in the context of factor variables.  In order to study a factor variable you really should look instead at functions like `xtabs()`.

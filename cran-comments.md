@@ -1,1 +1,1 @@
-Package tigerstats 0.2 passed check on linux platform, current release of R, with only the maintainer Note.  Package was checked with devtools::winbuild(), and on current R release passed with the maintainer Note; on dev-version there were no Notes.
+Package tigerstats 0.2 passed check on linux platform, current release of R, with only the maintainer Note.  Package was checked with devtools::build_win(), and on current R release passed with the maintainer Note; on dev-version there were no Notes.
