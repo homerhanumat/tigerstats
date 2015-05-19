@@ -19,4 +19,4 @@ I observed the following NOTEs:
 
 ## Downstream dependencies
 
-There are currently no downstram dependencies for this package.
+There are currently no downstream dependencies for this package.
