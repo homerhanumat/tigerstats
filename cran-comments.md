@@ -5,17 +5,11 @@
 
 ## R CMD check results
 
-There were no Errors or WARNINGs.
+There were no ERRORs or WARNINGs.
 
-I observed the following NOTEs:
+I observed the following NOTE:
 
 * (win-builder devel only):  No repository set, so cyclic dependency check skipped
-* (win-builder devel only):  Maintainer: 'Homer White hwhite0@georgetowncollege.edu'
-* (win-builder devel and release):  Possibly mis-spelled words in DESCRIPTION:
-    * abd (18:36)
-    * mosaicData (18:21)
-    
-`abd` and `mosaicData` are names of packages.
 
 ## Downstream dependencies
 
