@@ -1,0 +1,50 @@
+---
+title: "About this App"
+author: "Homer White"
+date: "June 24, 2015"
+output: 
+  html_document:
+    theme:  null
+---
+
+## Determining the Score
+
+### The y-bar Line.
+
+Given a set of $n$ points on a scatter plot:
+
+$$(x_1,y_1),(x_2,y_2),\ldots,(x_n,y_n),$$
+
+the $\bar{y}$-line is defined to be the horizontal line whose y-intercept is:
+
+$$\bar{y} = \frac{\sum_{i = 0}^{n} y_i}{n},$$
+
+the mean of the $y$-coordinates of the points on the scatter plot.  Of all horizontal lines, it's the one that "best fits" the scatter plot, in the sense that you would use it to predict the $y$-value of an observation if you were not allowed to take its $x$-value into account.
+
+When you begin a game, the $\bar{y}$-line is drawn for you.
+
+### Error Sum of Squares
+
+For any line $l$ with equation $y = a + bx$, we define the *error sum of squares* (ESS for short) of the line as follows:
+
+$$ESS_{l} = \sum_{i = 0}^{n} (y_i - (a + b x_i))^2.$$
+
+When you play the app, the ESS for the line you have at any given moment is the sum of the squares of the vertical lines (drawn on the plot) between the given data points and your line.
+
+The regression line has the interesting property of being the line that makes the ESS as small as possible.   If your line has an ESS equal to that of the regression line, then it *is* the regression line!
+
+When you play the game, your "closeness measure" is determined by the following formula:
+
+$$\text{closeness} = \frac{ESS_{\text{your current line}} - ESS_{\text{the regression line}}}{ESS_{\bar{y}\text{-line}} - ESS_{\text{the regression line}}} \times 100.$$
+
+Thus, the closeness measure is computes how close your current line comes to the regression line with how close the $\bar{y}$-line is to to the regression line.  This comparison is multiplied by 100 so that you can think of it as a percentage. When the game begins your line *is* the $\bar{y}$-line, so the closeness measure is 100%.
+
+Your score at any moment is:
+
+$$\text{Score} = \text{number of turns so far} + \text{current closeness measure}.$$
+
+## Suggestions
+
+It's often a good idea to work first with the slider that determines the slope.  Once you think you have the slope about right, use the intercept-slider to move the line up or down horizontally.  You won't get a new score report until you submit, but you can move the line around as much as you like before committing yourself to a submission.
+
+Can you think of a situation where it is in your best interests to stop?  (**Hint:  ** Each additional submission costs you an extra point.)

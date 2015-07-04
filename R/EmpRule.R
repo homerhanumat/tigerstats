@@ -176,4 +176,4 @@ EmpRule <- function ()
 })
 }
 
-if(getRversion() >= "2.15.1")  utils::globalVariables(c("picker", "type","showpop"))
+# if(getRversion() >= "2.15.1")  utils::globalVariables(c("type","showpop"))

@@ -1,0 +1,6 @@
+---
+title: "About the Project"
+output: html_document
+---
+
+This app was written by Homer White:  <http://github.com/homerhanumat>.  It's part of a tutorial (PROVIDE LINK) for [Project MOSAIC](http://mosaic-web.org/).

@@ -180,4 +180,4 @@ CIMean <- function (form, data)
 })
 }
 
-if(getRversion() >= "2.15.1")  utils::globalVariables(c("picker", "conf.level","sim.reps"))
+if(getRversion() >= "2.15.1")  utils::globalVariables(c("conf.level","sim.reps"))

@@ -1,0 +1,154 @@
+---
+title: "Using the Apps"
+author: "Homer White"
+output: html_document
+---
+
+```{r echo=FALSE}
+source("ptGC.R")
+```
+
+
+Here are some things to think about while playing with these apps.
+
+## Confidence Level
+
+Say that we have taken a random sample from some population, and we use that sample to make a 95%-confidence for some population parameter in which we are interested.  (For this app we will suppose that we are interested in the mean $\mu$ of the population.)  Maybe the interval turns out to range from 65 to 75.  We are taught to say:
+
+>"We are 95%-confident that $\mu$ is somewhere between 65 and 75."
+
+That's all very well, but suppose someone asks:  "What's with the 95 percent?  What makes you 95% confident, instead of 90% confident, or something else?"
+
+The standard answer (if you are making confidence intervals using what statisticians call the *frequentist* approach) goes something like this:
+
+>"If we were to take many, many random samples from that same population and make a confidence interval from each sample, using the same method to make the interval that we used on our actual sample, then about 95% of those intervals would contain the population mean $\mu$."
+
+That's a mouthful:  the person you are talking to might not understand it---much less believe it!  One of the purposes of the purposes of this app is to help us all understand statements like this and to see when it they are exactly true, and to see when they might be only approximately true, or even not very close to true at all.
+
+## t-Intervals
+
+There are many methods for making confidence intervals.  The intervals treated in this app are often called "t-interval" and they are frequently taught in introductory statistics courses.  
+
+### How t-Intervals are Made
+
+Here's a quick review of how they are constructed.  (If you haven't studied how t-intervals are made, you can safely skip this part.)
+
+The formula for a t-interval is:
+
+$$\bar{x} \pm t_{n-1}^{*} \times \frac{s}{\sqrt{n}},$$
+
+where:
+
+* $\bar{x}$ is the mean of the sample (your single best guess at what $\mu$ is);
+* $n$ is the sample size;
+* $s$ is the standard deviation of the sample (the quantity $s/\sqrt{n}$ is often called the *standard error* )
+* $t_{n-1}^{*}$ is the *multiplier*.
+
+The multiplier is derived from the t-curve with $n-1$ degrees of freedom, and it depends on the level of confidence you desire for your interval.  If you would like, for example, a 95%-confidence interval based on a sample of size 25, then $t^*$ is the number so that 95% of the area under the t-curve with 24 degrees of freedom lies between $-t^*$ and $t^*$.  As you can see from the graph below, it turns out that $t^*$ is about 2.0595:
+
+```{r echo = FALSE}
+invisible(ptGC(c(-2.059539,2.059539), region = "between", df = 24, graph = TRUE))
+```
+
+
+### t-interval Theory
+
+Even if you haven't studied how t-intervals are made, you should know the basic facts about t-intervals that are proved in statistical theory.
+
+Here's the deal.  Suppose that:
+
+* you take a random sample of size $n$ from a large population, and
+* the population is distributed exactly like a normal curve.
+
+Then it turns out that the t-statistic:
+
+$$t = \frac{\bar{x} - \mu}{s/\sqrt{n}}$$
+
+is distributed exactly like a t-curve with $n$ degrees of freedom.  This leads directly to the familiar "95%-confidence" property:
+
+>"If we were to take many, many random samples from that same population and make a 95%-confidence interval from each sample, using the same method to make the interval that we used on our actual sample, then about 95% of those intervals would contain the population mean $\mu$."
+
+You can replace 95 with other levels of confidence, and you still get a perfectly true statement:
+
+>"If we were to take many, many random samples from that same population and make a 80$-confidence interval from each sample, using the same method to make the interval that we used on our actual sample, then about 80% of those intervals would contain the population mean $\mu$."
+
+
+It doesn't matter what the sample size is:  the above statements are exactly correct, no matter whether you are taking a large or a small random sample.
+
+Statistical theory has another thing to say:
+
+>No matter what the population is like, the bigger the size $n$ of your random sample the closer the actual level of confidence will be to the desired level of confidence.
+
+## t-interval in Practice
+
+### Normal Population
+
+You can verify the t-interval theory with the app:
+
+* Choose the **Coverage Properties** tab
+* Select the Normal population.  (The mean of this population is 70.)
+* Pick any sample size you like.
+* Select any confidence level you like.
+* Ask to take a sample.
+* Keep taking samples.  The app keeps track of the percentage of samples that cover the mean of the population.
+*  Note that you can ask for lots of samples at once.  The app will still keep track of the coverage rates.
+
+The more samples you take, the closer the actual coverage percentage should be to the confidence level you selected.  That's statistical theory at work.
+
+### Departures
+
+If your population isn't exactly normal, then the actual level of confidence of your interval (the actual percentage of the times the intervals would cover the mean in repeated sampling) won't equal the confidence level you selected.  You can explore this by choosing other populations to work with.
+
+#### Skewy
+
+The "Skewy" population has a *gamma* distribution.  As you can see, it is somewhat right-skewed.  The mean is 100.
+
+* Try the Skewy population with the desired level of confidence set at 80%.
+* Try first with a very small sample size ($n = 2$, say).
+* Then try somewhat larger sample sizes (maybe $n = 15$).  Is the actual level of confidence now quite close to the desired level?
+
+#### More Extreme Departures from Normaility
+
+Remember that statistical theory said:
+
+>No matter what the population is like, the bigger the size $n$ of your random sample the closer the actual level of confidence will be to the desired level of confidence.
+
+However, if your population differs radically from normal---especially if it has strong skewness or a group of strong outliers---then you might require a very large sample before the actual level of confidence gets close to the desired level.
+
+The Really Skewed population has what statisticians call a Pareto distribution.  Distributions like this have very "heavy" tails.
+
+Play with this app at small and large sample sizes, with some fixed desired level of confidence such as 80%. Find a sample size where you feel that the actual level is "acceptably close" to the desired level.  Is this sample size larger than the one that delivers "acceptable" results for the Skewy population?
+
+In the Way-Out Gutlier Group population, 90% of the items from a group that is normally distributed with a mean of 50.  The remaining 10% are normally distributed with a mean of 200.  (The mean for the entire population is therefore 65.)
+
+Play with the app for the Way-Out Outlier Group population:
+
+* Set the desired confidence level to 95%.
+* Try sample size $n = 10$.  What's the actual level of confidence?
+* Try larger sample sizes (you can go as high as 50).
+* Statistical says that if you take a large enough sample then you will be at a point where the actual level of confidence feels "close enough" to the desired level of confidence.  Do you think $n = 50$ is large enough, for this population?
+
+## The t-statistic Tab
+
+If you have learned about t-curves and how t-interval are made from them, then you might consider looking at this tab.
+
+You can head to the t-statistic tab at any time, but it makes the most sense to do so when you have drawn about ten thousand samples.  This tab compares the t-curve that is being used to make your confidence interval with a density curve of the actual t-statistics that comes from your samples.  When your intervals are performing well (i.e., have an actual level of confidence close to the desired level) than you should find that the t-curve matches up pretty well with the actual distribution of the t-statistic.  (For a normal population the match wold be exact, if you could take"infinitely many" random samples.)  When the intervals are behaving badly, you will notice significant differences between the two curves.
+
+**Note**:  For the Way-Out Outlier population, the density curve of the t-statistics is difficult to render accurately.  The app chooses to draw density curves with a reasonably large bandwidth, and this gives the erroneous impression (when you many, many samples) that the t-statistic's density curve covers a lot more area than the actual t-curve does.  A very small bandwidth would correct this impression, but would also make the two curves very difficult to compare to one another.
+
+## Fifty at a Time
+
+Use this tab to make and graph fifty intervals at once.  It can be interesting to see *how* the interval go wrong, from one population to another.
+
+This tab also helps you explore how the width of t-intervals is affected by three things:
+
+* the sample size $n$;
+* the desired level of confidence;
+* the standard deviation $s$ of the sample.
+
+Fix a population, a sample size, and a desired level of confidence.  Make your fifty intervals.  Note that they are not all the same width.  This is because not all of your samples had the same standard deviaiton.  The more spread out the sample is, the more spread out the confidence interval for $\mu$ will be.  At what sample sizes are the differences in width most notable?
+
+Fix a population and a sample size,but vary the desired level of confidence.  You should note that the larger the desired level of confidence, the wider the intervals are.
+
+Fix a population and a sample a desired level of confidence, but vary the sample size  You should note that the larger the sample size, the narrower the intervals are.
+

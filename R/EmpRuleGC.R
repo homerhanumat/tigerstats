@@ -70,4 +70,4 @@ EmpRuleGC <- function(mean=0,sd=1,xlab="x") {
     )  #end manipulate
 }  #end EmpRuleGC
 
-if(getRversion() >= "2.15.1")  utils::globalVariables(c("picker", "shade"))
+if(getRversion() >= "2.15.1")  utils::globalVariables(c("shade"))
