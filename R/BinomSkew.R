@@ -16,8 +16,8 @@ BinomSkew <- function(){
   #Normal Approximation to Binomial (need n*p big enough)
   #Number of trials fixed.  You can vary p.  x-axis scale stays same.
   
-  if (!("manipulate"  %in% .packages())) {
-    return(cat(paste0("You must be on R Studio with package manipulate attached\n",
+  if (!("manipulate"  %in% installed.packages())) {
+    return(cat(paste0("You must be on R Studio with package manipulate installed\n",
                       "in order to run this function.")))
   }
   

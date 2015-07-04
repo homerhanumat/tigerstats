@@ -18,8 +18,8 @@
 #' }
 EmpRuleGC <- function(mean=0,sd=1,xlab="x") {
   
-  if (!("manipulate"  %in% .packages())) {
-    return(cat(paste0("You must be on R Studio with package manipulate attached\n",
+  if (!("manipulate"  %in% installed.packages())) {
+    return(cat(paste0("You must be on R Studio with package manipulate installed\n",
                       "in order to run this function.")))
   }
   
