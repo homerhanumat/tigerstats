@@ -15,4 +15,5 @@ docLines <- paste0("#' @importFrom ", packageNames, " ", funcNames)
 writeLines(docLines)
 
 # add output to tigerstats-package.R
-# NOTE:  for now, must remove @importFrom methods is (gives ERROR)
+# NOTES:  need to declare methods as an import in DESCRIPTION file
+
