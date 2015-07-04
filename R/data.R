@@ -198,7 +198,6 @@ NA
 #' 
 #' @source Michael J. Radelet:  "Racial Characteristics and 
 #' the Imposition of the Death Penalty", \emph{American Sociological Review}, 46 (1981).
-#' See also the JSTOR location:  \url{http://www.jstor.org/stable/2095088}.
 #' @keywords datasets
 
 

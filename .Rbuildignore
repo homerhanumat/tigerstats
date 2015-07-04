@@ -5,3 +5,4 @@ Package_Build_Procedure.Rmd
 ^.*\.Rproj$
 ^\.Rproj\.user$
 cran-comments.md
+cranfix.R
