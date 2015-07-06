@@ -45,3 +45,5 @@ BinomNorm <- function()  {
 }
   )
 }
+
+if(getRversion() >= "2.15.1")  utils::globalVariables(c("n","p","x"))

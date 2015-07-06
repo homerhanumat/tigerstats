@@ -125,16 +125,5 @@ navbarPage(
           tableOutput("summary2")
         )
       )
-    ),
-  navbarMenu(
-    title = "More",
-    tabPanel(
-      title = "Help",
-      includeHTML("infoFiles/help.html")
-      ),
-    tabPanel(
-      title = "About",
-      includeHTML("infoFiles/aboutapp.html")
-      )
     )
   )

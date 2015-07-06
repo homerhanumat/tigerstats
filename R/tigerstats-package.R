@@ -12,7 +12,8 @@
 #' \url{http://statistics.georgetowncollege.edu}
 #'
 #' @keywords package
-#' @import abd mosaic mosaicData
+#' @import abd mosaicData
+#' @importFrom mosaic favstats
 #' @importFrom manipulate button checkbox picker slider manipulate
 #' @importFrom MASS mvrnorm
 #' @importFrom methods is
@@ -65,4 +66,5 @@
 #' @importFrom graphics text
 #' @importFrom utils vignette
 #' @importFrom stats xtabs
+#' @importFrom stats cor median quantile sd t.test var
 NULL

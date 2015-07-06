@@ -1,8 +1,3 @@
-#' Make global variables for items in manioulate functions that generate CRAN notes:
-if(getRversion() >= "2.15.1")  utils::globalVariables(c("n","p","x"))
-#' many other items are specific to particular apps and globals are defined in
-#' their .R files.  What generates a note appears to vary with R version.
-
 #' Parse formulas
 #'
 #' utility for extracting portions of formulas.
