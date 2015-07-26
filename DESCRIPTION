@@ -1,8 +1,8 @@
 Package: tigerstats
 Type: Package
 Title: R Functions for Elementary Statistics
-Version: 0.2.6-4
-Date: 2015-07-05
+Version: 0.2.7
+Date: 2015-07-26
 Author: Rebekah Robinson <rrobinson20@humana.com> and Homer
     White <hwhite0@georgetowncollege.edu>
 Maintainer: Homer White <hwhite0@georgetowncollege.edu>
@@ -12,7 +12,7 @@ Description: A collection of data sets and functions that are useful in the
     elementary inferential procedures follow a uniform interface for user
     input.  Some of the functions are instructional applets that can only be
     run on the R Studio integrated development environment with package
-    'manipulate' attached.  Other instructional applets are Shiny apps
+    'manipulate' installed.  Other instructional applets are Shiny apps
     that may be run locally. In teaching the package is used alongside of
     package 'mosaic', 'mosaicData' and 'abd', which are therefore listed as
     dependencies.

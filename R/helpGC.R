@@ -16,10 +16,12 @@
 #' helpGC(lmGC)
 #' }
 helpGC <- function(topic,package="tigerstats") {
-  
-  if (!("rstudio" %in% rownames(installed.packages()))) {
-    return(cat("You need to be using R Studio for this helpGC() to help you!\n"))
-  }
+
+# The following is outdated, as the rstudio package is no longer
+# available:
+#   if (!("rstudio" %in% rownames(installed.packages()))) {
+#     return(cat("You need to be using R Studio for this helpGC() to help you!\n"))
+#   }
   
   topic <- as.character(substitute(topic))
   vigList <- vignette(package=package)$results
