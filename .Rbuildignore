@@ -7,3 +7,4 @@ Package_Build_Procedure.Rmd
 cran-comments.md
 cranfix.R
 usefulInfo
+.Rprofile
