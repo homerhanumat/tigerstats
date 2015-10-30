@@ -1,7 +1,7 @@
 ## Test environments
 
 * local Linux install (Ubuntu 14.04 LTS), R 3.2.2
-* local OS X install (Yosemite 10.10.5), R 3.2.2
+* local OS X install (El Capitan 10.11.1), R 3.2.2
 * win-builder (devel and release)
 
 ## R CMD check results
