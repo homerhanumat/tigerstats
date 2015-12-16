@@ -373,6 +373,7 @@ barchartGC <-
 #' Utility function for barchartGC.
 #' 
 #' @rdname simpleKeyRev
+#' @description utility function for barchartGC
 #' @usage simpleKeyRev(text, points = TRUE,
 #' rectangles = FALSE,
 #' lines = FALSE,
