@@ -1,6 +1,6 @@
 ## Test environments
 
-* local Linux install (Ubuntu 14.04 LTS), R 3.2.2
+* local Linux install (Debian 8.2 Jesse), R 3.2.3
 * local OS X install (El Capitan 10.11.1), R 3.2.2
 * win-builder (devel and release)
 
