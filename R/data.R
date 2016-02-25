@@ -451,7 +451,7 @@ NA
 #' \item{year}{calendar year}
 #' \item{temp}{average high temperature for that year.}
 #' }
-#' @source See \url{www.hanford.gov/hms/}
+#' @source For more on the Hanford station, see \url{http://www.hanford.gov/page.cfm/HMS}
 #' @keywords datasets
 
 
