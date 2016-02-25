@@ -10,7 +10,7 @@
 \item{temp}{average high temperature for that year.}
 }}
 \source{
-See \url{www.hanford.gov/hms/}
+For more on the Hanford station, see \url{http://www.hanford.gov/page.cfm/HMS}
 }
 \description{
 The weather station is located in Hanford, WA.  Note that this dataset is more complete than \code{\link{hanford1}}
