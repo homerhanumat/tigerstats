@@ -1,9 +1,9 @@
 Package: tigerstats
 Type: Package
 Title: R Functions for Elementary Statistics
-Version: 0.2.7-1
-Date: 2015-12-16
-Author: Rebekah Robinson <rrobinson20@humana.com> and Homer
+Version: 0.2.7-2
+Date: 2016-02-25
+Author: Rebekah Robinson <rebekahrobinson14@gmail.com> and Homer
     White <hwhite0@georgetowncollege.edu>
 Maintainer: Homer White <hwhite0@georgetowncollege.edu>
 Description: A collection of data sets and functions that are useful in the
@@ -18,8 +18,7 @@ Description: A collection of data sets and functions that are useful in the
     dependencies.
 License: GPL (>=3)
 Depends:
-    R(>= 2.10),
-    abd,
+    R(>= 3.0),
     mosaic,
     mosaicData
 Imports:
