@@ -12,7 +12,7 @@
 #' \url{http://statistics.georgetowncollege.edu}
 #'
 #' @keywords package
-#' @import mosaicData
+#' @import mosaicData abd
 #' @importFrom mosaic favstats
 #' @importFrom manipulate button checkbox picker slider manipulate
 #' @importFrom MASS mvrnorm

@@ -12,7 +12,7 @@ tigerstats
 Datasets and functions useful for teaching elementary statistics.
 }
 \author{
-Rebekah Robinson (\email{rrobinson20@humana.com}), Homer White (\email{hwhite0@georgetowncollege.edu})
+Rebekah Robinson (\email{rebekahrobinson14@gmail.com}), Homer White (\email{hwhite0@georgetowncollege.edu})
 }
 \references{
 \url{http://statistics.georgetowncollege.edu}
