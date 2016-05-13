@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Using barchartGC()</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="site_libs/highlight/textmate.css"
+      type="text/css" />
+<script src="site_libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="site_libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+  padding-left: 10px;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">tigerstats</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="instructorNotes.html">Instructors</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Vignettes
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Outlines</li>
+    <li>
+      <a href="R_Descriptive.html">Descriptive Outline</a>
+    </li>
+    <li>
+      <a href="R_Inferential.html">Inferential Outline</a>
+    </li>
+    <li class="dropdown-header">Graphics</li>
+    <li>
+      <a href="barchartGC.html">Bar Charts</a>
+    </li>
+    <li>
+      <a href="bwplot.html">Box-and-Whisker Plots</a>
+    </li>
+    <li>
+      <a href="densityplot.html">Density Plots</a>
+    </li>
+    <li>
+      <a href="histogram.html">Histograms</a>
+    </li>
+    <li class="dropdown-header">Numerical Summaries</li>
+    <li>
+      <a href="favstats.html">Mosaic's Favstats</a>
+    </li>
+    <li>
+      <a href="xtabs.html">Cross-tables and Percentages</a>
+    </li>
+    <li class="dropdown-header">Linear Mpdels</li>
+    <li>
+      <a href="lmGC.html">lmGC</a>
+    </li>
+    <li>
+      <a href="polyfitGC.html">polyfitGC</a>
+    </li>
+    <li class="dropdown-header">Probability</li>
+    <li>
+      <a href="pbinomGC.html">pbinomGC</a>
+    </li>
+    <li>
+      <a href="pnormGC.html">pnormGC</a>
+    </li>
+    <li>
+      <a href="qnorm.html">qnorm</a>
+    </li>
+    <li>
+      <a href="qnormGC.html">qnormGC</a>
+    </li>
+    <li class="dropdown-header">Inferential Procedures</li>
+    <li>
+      <a href="binomtestGC.html">binomtestGC</a>
+    </li>
+    <li>
+      <a href="proptestGC.html">proptestGC</a>
+    </li>
+    <li>
+      <a href="chisqtestGC.html">The Chi-Square Test</a>
+    </li>
+    <li>
+      <a href="ttestGC.html">The t-Test</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/homerhanumat/tigerstats">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Using barchartGC()</h1>
+
+</div>
+
+
+<div id="preliminaries" class="section level1">
+<h1>Preliminaries</h1>
+<p><code>barchartGC()</code> provides quick-and-easy bar charts for the graphical exploration of factor variables. The function comes from the <code>tigerstats</code> package and we will use some data from the <code>tigerstats</code> as well, so make sure that <code>tigerstats</code> is loaded:</p>
+<pre class="r"><code>require(tigerstats)</code></pre>
+<p>In this tutorial we will work with the <code>m111survey</code> data frame from <code>tigerstats</code> package. If you are not yet familiar with this data, then run:</p>
+<pre class="r"><code>data(m111survey)
+View(m111survey)
+help(m111survey)</code></pre>
+</div>
+<div id="one-factor-variable" class="section level1">
+<h1>One Factor Variable</h1>
+<p>To look see a bar chart for the tallies of the factor variable <strong>seat</strong>:</p>
+<pre class="r"><code>barchartGC(~seat,data=m111survey,type=&quot;frequency&quot;,
+           main=&quot;Barchart of Seating Preference&quot;,
+           xlab=&quot;Seating Preference&quot;)</code></pre>
+<p><img src="barchartGC_files/figure-html/barchartseatfreq-1.png" width="528" /></p>
+<p>In order to get the actual distribution of <strong>seat</strong>, you want percents rather than counts:</p>
+<pre class="r"><code>barchartGC(~seat,data=m111survey,type=&quot;percent&quot;,
+           main=&quot;Barchart of Seating Preference&quot;,
+          xlab=&quot;Seating Preference&quot;)</code></pre>
+<p><img src="barchartGC_files/figure-html/barchartseatperc-1.png" width="528" /></p>
+<p>If you have a table of the counts for a variable, then you can enter it directly. For example, suppose you have already made:</p>
+<pre class="r"><code>Seat &lt;- xtabs(~seat,data=m111survey)
+Seat</code></pre>
+<pre><code>## seat
+##  1_front 2_middle   3_back 
+##       27       32       12</code></pre>
+<p>Then you can just enter the table:</p>
+<pre class="r"><code>barchartGC(Seat,type=&quot;percent&quot;,
+           main=&quot;Barchart of Seating Preference&quot;,
+           xlab=&quot;Seating Preference&quot;)</code></pre>
+<p><img src="barchartGC_files/figure-html/barchartseattab-1.png" width="528" /></p>
+</div>
+<div id="two-factor-variables" class="section level1">
+<h1>Two Factor Variables</h1>
+<p>You can also use <code>barchartGC()</code> to study the relationship between two factor variables. For example, if you want to see whether males and females differ in their seating preferences, then you might try formula-data input as follows:</p>
+<pre class="r"><code>barchartGC(~sex+seat,data=m111survey,
+           type=&quot;percent&quot;,
+           main=&quot;Sex and Seating Preference\nat Georgetown&quot;,
+           xlab=&quot;Sex of student&quot;,
+           sub=&quot;Bar color shows seating preference&quot;)</code></pre>
+<p><img src="barchartGC_files/figure-html/barchartsexseat-1.png" width="528" /></p>
+<p>Again, if you happen to have already made a two-way table, then you can just enter it:</p>
+<pre class="r"><code>SexSeat &lt;- xtabs(~sex+seat,data=m111survey)
+SexSeat</code></pre>
+<pre><code>##         seat
+## sex      1_front 2_middle 3_back
+##   female      19       16      5
+##   male         8       16      7</code></pre>
+<p>Here is the bar chart from the two-way table:</p>
+<pre class="r"><code>barchartGC(SexSeat,type=&quot;percent&quot;,
+           main=&quot;Sex and Seating Preference\nat Georgetown&quot;,
+           xlab=&quot;Sex of student&quot;,
+           sub=&quot;Bar color shows seating preference&quot;)</code></pre>
+<p><img src="barchartGC_files/figure-html/barchartsexseattab-1.png" width="528" /></p>
+</div>
+<div id="flat-bar-charts" class="section level1">
+<h1>Flat Bar Charts</h1>
+<p>To study the relationship between tow factor variables through numericla summaries, you might make a table of row percentages, as follows:</p>
+<pre class="r"><code>rowPerc(SexSeat)</code></pre>
+<pre><code>##         seat
+## sex      1_front 2_middle 3_back  Total
+##   female   47.50    40.00  12.50 100.00
+##   male     25.81    51.61  22.58 100.00</code></pre>
+<p>To geta bar chart that looks like a visual “copy” of the row percentages, set the argument <code>flat</code> to <code>TRUE</code>:</p>
+<pre class="r"><code>barchartGC(SexSeat,type=&quot;percent&quot;,
+           main=&quot;Sex and Seating Preference\nat Georgetown&quot;,
+           ylab=&quot;Sex of student&quot;,
+           sub=&quot;Bar color shows seating preference&quot;,
+           flat=TRUE)</code></pre>
+<p><img src="barchartGC_files/figure-html/unnamed-chunk-7-1.png" width="528" /></p>
+<p>Note that you might want a label for the y-axis, now.</p>
+</div>
+<div id="other-options" class="section level1">
+<h1>Other Options</h1>
+<p>You can make vertical stacked bars:</p>
+<pre class="r"><code>barchartGC(SexSeat,type=&quot;freq&quot;,
+           main=&quot;Sex and Seating Preference\nat Georgetown&quot;,
+           xlab=&quot;Sex of student&quot;,
+           sub=&quot;Bar color shows seating preference&quot;,
+           stack=TRUE)</code></pre>
+<p><img src="barchartGC_files/figure-html/unnamed-chunk-8-1.png" width="528" /></p>
+<p>You can also make horizontal, unstacked ones:</p>
+<pre class="r"><code>barchartGC(SexSeat,type=&quot;freq&quot;,
+           main=&quot;Sex and Seating Preference\nat Georgetown&quot;,
+           ylab=&quot;Sex of student&quot;,
+           sub=&quot;Bar color shows seating preference&quot;,
+           stack=FALSE,
+           horizontal=TRUE)</code></pre>
+<p><img src="barchartGC_files/figure-html/unnamed-chunk-9-1.png" width="528" /></p>
+</div>
+<div id="warning" class="section level1">
+<h1>Warning</h1>
+<p>Bar charts are for factor variables, not for numerical variables. Look what happens when you ask for a bar chart of <strong>fastest</strong>:</p>
+<pre class="r"><code>barchartGC(~fastest,data=m111survey,
+           main=&quot;Fastest Speed Ever Driven&quot;)</code></pre>
+<p><img src="barchartGC_files/figure-html/barchartfastest-1.png" width="672" /></p>
+<p>R tries to accommodate your request, but it ends up making something that resembles a very amateurish histogram. R draws a separate bar for each speed that appears in the data, making for a very “busy” graph. Worse yet, consecutive speeds are equally spaced from each other, even though the differences between consecutive speeds vary. For example, the spacing between the 90 ans 91 mph bars is the same as the spacing between the 160 and 190 mph bars. This is very misleading!</p>
+</div>
+
+
+
+<!-- bizible -->
+<script type="text/javascript" src="//cdn.bizible.com/scripts/bizible.js" async=""></script>
+
+
+<!-- disqus -->
+<!--  <div id="disqus_thread" style="margin-top: 45px;"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'rmarkdown'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+-->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

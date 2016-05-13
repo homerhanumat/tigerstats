@@ -1,0 +1,335 @@
+---
+title: "Using ttestGC()"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+---
+
+```{r include=FALSE}
+require(knitr)
+opts_chunk$set(tidy=FALSE,fig.width=5.5,fig.height=3.5, cache = TRUE)
+```
+
+# Preliminaries
+
+You use `ttestGC()` for inferential procedures regarding:
+
+* one population mean $\mu$;
+* the difference of two population means, $\mu_1 - \mu_2$;
+* the mean $\mu_d$ of paired differences in a population.
+
+The function comes from the `tigerstats` package, so make sure that `tigerstats` is loaded:
+
+```{r message=FALSE}
+require(tigerstats)
+```
+
+# One Mean, From Data Frame (Read This!!)
+
+Read this section carefully.  It talks about:
+
+* levels of confidence,
+* types of Alternative Hypothesis,
+* graphs of the P-value, and
+* an option to limit output to the console
+
+in ways that apply to all uses of `ttestGC()`.
+
+## Confidence Interval Only
+
+In the `m111survey` data from the `tigerstats` package, suppose you want a 95%-confidence interval for:
+
+  >$\mu =$ the mean fastest speed ever driven, for all GC students.
+
+Use the function:
+
+```{r}
+ttestGC(~fastest,data=m111survey)
+```
+
+To get any other level of confidence, you need to use the `conf.level` argument, indicating your desired level of confidence in decimal (not percentage) form.
+
+For example, for a 90%-confidence interval for $\mu$, use
+
+```{r}
+ttestGC(~fastest,data=m111survey,conf.level=0.90)
+```
+
+
+## Interval and Test
+
+If you want a test of significance as well as the confidence interval, then
+
+* use the `mu` argument to set what the Null Hypothesis thinks that the value of $\mu$ is;
+* use the `alternative` argument to specify the Alternative Hypothesis.
+
+For example, if the hypotheses are:
+
+  >$H_0:  \mu = 100$
+  
+  >$H_a: \mu > 100$
+  
+Then use:
+
+
+```{r}
+ttestGC(~fastest,data=m111survey,mu=100,alternative="greater")
+```
+
+If the hypotheses are:
+
+  >$H_0:  \mu = 100$
+  
+  >$H_a: \mu < 100$
+  
+Then use:
+
+
+```{r}
+ttestGC(~fastest,data=m111survey,mu=100,alternative="less")
+```
+
+If the hypotheses are:
+
+  >$H_0:  \mu = 100$
+  
+  >$H_a: \mu \neq 100$
+  
+Then use:
+
+
+```{r}
+ttestGC(~fastest,data=m111survey,mu=100,
+        alternative="two.sided")
+```
+
+But note that the default value of `alternative` is "two.sided", so if you want you could just leave it out and still get a two-sided test:
+
+```{r eval=FALSE}
+ttestGC(~fastest,data=m111survey,mu=100)
+```
+
+## Graph of the P-Value
+
+Anytime you want, you can get a graph of the $P$-value for your test, simply by setting the argument `graph` to `TRUE`:
+
+```{r ttesttutonemean2sided}
+ttestGC(~fastest,data=m111survey,mu=100,
+        alternative="two.sided",graph=TRUE)
+```
+
+## Limiting Output
+
+Sometimes you don't need R to print so much information to the console.  If you want only the basics (such as a confidence interval, the test statistic and $P$-value), then set the `verbose` argument to `FALSE`:
+
+```{r}
+ttestGC(~fastest,data=m111survey,mu=100,
+        alternative="two.sided",verbose=FALSE)
+```
+
+
+# One Mean, From Summary Data
+
+## Confidence Interval Only
+
+Say that you have taken a simple random sample from some large population, and:
+
+* the sample mean is $\bar{x}=30$,
+* the sample standard deviation is $s=4$,
+* the sample size was $n=40$.
+
+You don't have the raw data present in a data frame, but you have enough summary data to use `ttestGC()`.  You just have to set some new arguments:
+
+* set `mean` to the sample mean;
+* set `sd` to the sample standard deviation;
+* set `n` to the sample size.
+
+So if you only want a 95%-confidence interval for $\mu$. use:
+
+```{r}
+ttestGC(mean=30,sd=4,n=40)
+```
+
+
+## Interval and Test
+
+If you also want to do a test of significance, again specify `mu` and `alternative`.  For example, to test the hypotheses
+
+  >$H_0:  \mu = 32$
+  
+  >$H_a: \mu < 32$
+
+use:
+
+```{r}
+ttestGC(mean=30,sd=4,n=40,
+        mu=32,alternative="less")
+```
+
+
+# Difference of Two Means, Data Frame
+
+## Confidence Interval Only
+
+Suppose
+
+  >$\mu_1 =$ mean fastest speed ever driven, by all GC females
+  
+  >$\mu_2 =$ mean fastest speed ever driven, by all GC males
+
+If you desire, say, an 85%-confidence interval for $\mu_1 - \mu_2$, then use:
+
+```{r}
+ttestGC(fastest~sex,data=m111survey,
+        conf.level=0.85)
+```
+
+
+## Interval and Test
+
+If you want a 95%-confidence interval for $\mu_1 - \mu_2$ and you would like to test the hypotheses:
+
+  >$H_0:  \mu_1 - \mu_2 = 0$
+  
+  >$H_a: \mu_1 - \mu_2 \neq 0$
+  
+then use:
+
+```{r}
+ttestGC(fastest~sex,data=m111survey,
+      mu=0)
+```
+
+Notice that this time:
+
+* you specified the Null's belief about the value of $\mu_1-\mu_2$ using the `mu` argument;
+* you did not have to set `conf.level` to 0.95 (the default value of the argument is 0.95 already);
+* you did not have to specify the two-sided alternative (the default value of `alternative` is already "two.sided").
+
+## Order of the Groups
+
+Suppose that in the previous situation you had defined:
+
+  >$\mu_1 =$ mean fastest speed ever driven, by all GC males
+  
+  >$\mu_2 =$ mean fastest speed ever driven, by all GC females
+
+Then for you, the first population is all GC males and the second population is all GC females.  In order to guarantee that R abides by your choice, use the argument `first`:
+
+```{r}
+ttestGC(fastest~sex,data=m111survey,
+      mu=0,first="male")
+```
+
+
+# Difference of Two Means, Summary Data
+
+## Confidence Interval Only
+
+Suppose that you have taken two independent samples from two populations (or performed a completely randomized experiment with two treatment groups), and you have the following summary data:
+
+|Group|$\bar{x}$|$s$|$n$|
+|:-----:|:------:|:--------:|:------:|
+|group one|32|4.2|33|
+|group two|30|5.1|42|
+
+
+You need to provide the summary data to the arguments `mean`, `sd` and `n`, as lists using the `c()` function.  In each list, data from the first group should come first.
+
+For a 95%-confidence interval for $\mu_1 - \mu_2$, use:
+
+```{r}
+ttestGC(mean=c(32,30),sd=c(4.2,5.1),n=c(33,42))
+```
+
+
+
+## Interval and Test
+
+Suppose that you want a 90%-confidence interval for $\mu_1 - \mu_2$ and that you would like to test the hypotheses:
+
+  >$H_0:  \mu_1 - \mu_2 = 0$
+  
+  >$H_a: \mu_1 - \mu_2 > 0$
+
+Suppose also that want a graph of the $P$-value.  Then use:
+
+```{r ttesttut2meanssummary}
+ttestGC(mean=c(32,30),sd=c(4.2,5.1),n=c(33,42),
+        mu=0,alternative="greater",
+        conf.level=0.90,graph=TRUE)
+```
+
+
+# Mean of Differences
+
+
+## Both Variables in the Data Frame
+
+### Confidence Interval Only
+
+Suppose that
+
+  >$\mu_d =$ mean difference (ideal height minus actual height) for all Georgetown College student.
+  
+Both of the relevant variables---**ideal_ht** and **height**---are present in the `m111survey` data frame.
+
+If you want a 95%-confidence interval for $\mu_d$, then use:
+
+```{r}
+ttestGC(~ideal_ht - height,data=m111survey)
+```
+
+Note how the "~" character signals the presence of a formula.
+
+### Interval and Test
+
+In order to test:
+
+  >$H_0:  \mu_d = 0$
+  
+  >$H_a: \mu_d > 0$
+
+use:
+
+```{r}
+ttestGC(~ideal_ht - height,data=m111survey,
+        mu=0,alternative="greater")
+```
+
+
+
+## The Difference is in the Data Frame
+
+Sometimes the difference of the two relevant numerical variables is included in the data frame as another variable:  such is the case for `m111survey`, where the difference is recorded as the variable **diff.ideal.act.**
+
+If you would like to use this difference, then work just as if you were studying one population mean $\mu$.
+
+### Confidence Interval Only
+
+Thus, for a 95%-confidence interval for $\mu_d$ we could also have done:
+
+```{r}
+ttestGC(~diff.ideal.act.,data=m111survey)
+```
+
+
+
+### Interval and Test
+
+For a test of
+
+  >$H_0:  \mu_d = 0$
+  
+  >$H_a: \mu_d > 0$
+  
+we could have done:
+
+```{r}
+ttestGC(~diff.ideal.act.,data=m111survey,
+        mu=0,alternative="greater")
+```
+
+
+Note that in its statement of hypotheses, R identifies the parameter of interest as $\mu$ rather than as $\mu_d$.  It had no way of knowing that **diff.ideal.act.** recorded the difference of a pair of measurements.

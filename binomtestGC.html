@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Using binomtestGC()</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="site_libs/highlight/textmate.css"
+      type="text/css" />
+<script src="site_libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="site_libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+  padding-left: 10px;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">tigerstats</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="instructorNotes.html">Instructors</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Vignettes
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Outlines</li>
+    <li>
+      <a href="R_Descriptive.html">Descriptive Outline</a>
+    </li>
+    <li>
+      <a href="R_Inferential.html">Inferential Outline</a>
+    </li>
+    <li class="dropdown-header">Graphics</li>
+    <li>
+      <a href="barchartGC.html">Bar Charts</a>
+    </li>
+    <li>
+      <a href="bwplot.html">Box-and-Whisker Plots</a>
+    </li>
+    <li>
+      <a href="densityplot.html">Density Plots</a>
+    </li>
+    <li>
+      <a href="histogram.html">Histograms</a>
+    </li>
+    <li class="dropdown-header">Numerical Summaries</li>
+    <li>
+      <a href="favstats.html">Mosaic's Favstats</a>
+    </li>
+    <li>
+      <a href="xtabs.html">Cross-tables and Percentages</a>
+    </li>
+    <li class="dropdown-header">Linear Mpdels</li>
+    <li>
+      <a href="lmGC.html">lmGC</a>
+    </li>
+    <li>
+      <a href="polyfitGC.html">polyfitGC</a>
+    </li>
+    <li class="dropdown-header">Probability</li>
+    <li>
+      <a href="pbinomGC.html">pbinomGC</a>
+    </li>
+    <li>
+      <a href="pnormGC.html">pnormGC</a>
+    </li>
+    <li>
+      <a href="qnorm.html">qnorm</a>
+    </li>
+    <li>
+      <a href="qnormGC.html">qnormGC</a>
+    </li>
+    <li class="dropdown-header">Inferential Procedures</li>
+    <li>
+      <a href="binomtestGC.html">binomtestGC</a>
+    </li>
+    <li>
+      <a href="proptestGC.html">proptestGC</a>
+    </li>
+    <li>
+      <a href="chisqtestGC.html">The Chi-Square Test</a>
+    </li>
+    <li>
+      <a href="ttestGC.html">The t-Test</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/homerhanumat/tigerstats">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Using binomtestGC()</h1>
+
+</div>
+
+
+<div id="preliminaries" class="section level1">
+<h1>Preliminaries</h1>
+<p>You use <code>binomtestGC()</code> for inferential procedures regarding one population proportion <span class="math inline">\(p\)</span>. The function <code>proptestGC()</code> can also handle this analysis, but <code>binomtestGC()</code> computes exact <span class="math inline">\(P\)</span>-values rather than employing the (sometimes crude) normal approximation, and it also uses a somewhat more sophisticated method to compute confidence intervals.</p>
+<p>Make sure you have <code>tigerstats</code> loaded:</p>
+<pre class="r"><code>require(tigerstats)</code></pre>
+</div>
+<div id="working-from-a-data-frame" class="section level1">
+<h1>Working from a Data Frame</h1>
+<p>Let</p>
+<blockquote>
+<p><span class="math inline">\(p =\)</span> the proportion of all Georgetown College students who are female</p>
+</blockquote>
+<p>Suppose that you would like a 95%-confidence interval for <span class="math inline">\(p\)</span>. Since <strong>sex</strong> is present as a variable in the <code>m111survey</code> data frame, you can use formula-data input in the usual way to direct the attention of <code>binomtestGC()</code> to <strong>sex</strong> as the data.</p>
+<p>However, when the function looks at <strong>sex</strong>, it sees the values “female” and “male”. It needs to be told which of them to count as a “success” when it computes the sample proportion <span class="math inline">\(\hat{p}\)</span>. You do this with the <code>success</code> argument.</p>
+<p>So you use:</p>
+<pre class="r"><code>binomtestGC(~sex,data=m111survey,
+            success=&quot;female&quot;)</code></pre>
+<pre><code>## Exact Binomial Procedures for a Single Proportion p:
+##  Variable under study is sex 
+## 
+## Descriptive Results:  40 successes in 71 trials
+## 
+## Inferential Results:
+## 
+## Estimate of p:    0.5634 
+## SE(p.hat):    0.0589 
+## 
+## 95% Confidence Interval for p:
+## 
+##           lower.bound         upper.bound          
+##           0.440455            0.680850</code></pre>
+<p>Note that you did not have to specify a confidence level: by default, the function returns a 95%-confidence interval.</p>
+</div>
+<div id="setting-the-confidence-level" class="section level1">
+<h1>Setting the Confidence Level</h1>
+<p>You can get intervals with other levels of confidence besides 95%, simply by setting the argument <code>conf.level</code> to the desired level (expressed as a proportion, rather than as a percentage).</p>
+<p>For example, if you want a 90%-confidence interval for <span class="math inline">\(p\)</span>, then you use:</p>
+<pre class="r"><code>binomtestGC(~sex,data=m111survey,
+            success=&quot;female&quot;,conf.level=0.90)</code></pre>
+<pre><code>## Exact Binomial Procedures for a Single Proportion p:
+##  Variable under study is sex 
+## 
+## Descriptive Results:  40 successes in 71 trials
+## 
+## Inferential Results:
+## 
+## Estimate of p:    0.5634 
+## SE(p.hat):    0.0589 
+## 
+## 90% Confidence Interval for p:
+## 
+##           lower.bound         upper.bound          
+##           0.458929            0.663741</code></pre>
+</div>
+<div id="significance-tests" class="section level1">
+<h1>Significance Tests</h1>
+<p>Let’s now let</p>
+<blockquote>
+<p><span class="math inline">\(p =\)</span> the proportion of all Georgetown College students who are male</p>
+</blockquote>
+<p>(Notice that, for variety’s sake, we have switched to counting up males.)</p>
+<p>Suppose that we want to perform a test of significance. Then we would use:</p>
+<ul>
+<li>the argument <code>p</code> to indicate the belief of the Null Hypothesis as to the value of <span class="math inline">\(p\)</span>;</li>
+<li>the argument <code>alternative</code> to specify the direction of the Alternative Hypothesis. The possible values of this argument are:
+<ul>
+<li>“less”</li>
+<li>“greater”</li>
+<li>“two.sided” (the default value)</li>
+</ul></li>
+</ul>
+<p>For example, if we want to test the hypotheses:</p>
+<blockquote>
+<p><span class="math inline">\(H_0 : p = 0.50\)</span></p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\(H_a : p &lt; 0.50\)</span></p>
+</blockquote>
+<p>then we use</p>
+<pre class="r"><code>binomtestGC(~sex,data=m111survey,
+            success=&quot;male&quot;,p=0.50,
+            alternative=&quot;less&quot;)</code></pre>
+<pre><code>## Exact Binomial Procedures for a Single Proportion p:
+##  Variable under study is sex 
+## 
+## Descriptive Results:  31 successes in 71 trials
+## 
+## Inferential Results:
+## 
+## Estimate of p:    0.4366 
+## SE(p.hat):    0.0589 
+## 
+## 95% Confidence Interval for p:
+## 
+##           lower.bound         upper.bound          
+##           0.000000            0.541071             
+## 
+## Test of Significance:
+## 
+##  H_0:  p = 0.5 
+##  H_a:  p &lt; 0.5 
+## 
+##  P-value:        P = 0.1712</code></pre>
+<p>To test the hypotheses</p>
+<blockquote>
+<p><span class="math inline">\(H_0 : p = 0.50\)</span></p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\(H_a : p &gt; 0.50\)</span></p>
+</blockquote>
+<p>then we use</p>
+<pre class="r"><code>binomtestGC(~sex,data=m111survey,
+            success=&quot;male&quot;,p=0.50,
+            alternative=&quot;greater&quot;)</code></pre>
+<pre><code>## Exact Binomial Procedures for a Single Proportion p:
+##  Variable under study is sex 
+## 
+## Descriptive Results:  31 successes in 71 trials
+## 
+## Inferential Results:
+## 
+## Estimate of p:    0.4366 
+## SE(p.hat):    0.0589 
+## 
+## 95% Confidence Interval for p:
+## 
+##           lower.bound         upper.bound          
+##           0.336259            1.000000             
+## 
+## Test of Significance:
+## 
+##  H_0:  p = 0.5 
+##  H_a:  p &gt; 0.5 
+## 
+##  P-value:        P = 0.8825</code></pre>
+<p>If we want a two-side test</p>
+<blockquote>
+<p><span class="math inline">\(H_0 : p = 0.50\)</span></p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\(H_a : p \neq 0.50\)</span></p>
+</blockquote>
+<p>then we use</p>
+<pre class="r"><code>binomtestGC(~sex,data=m111survey,
+            success=&quot;male&quot;,p=0.50)</code></pre>
+<pre><code>## Exact Binomial Procedures for a Single Proportion p:
+##  Variable under study is sex 
+## 
+## Descriptive Results:  31 successes in 71 trials
+## 
+## Inferential Results:
+## 
+## Estimate of p:    0.4366 
+## SE(p.hat):    0.0589 
+## 
+## 95% Confidence Interval for p:
+## 
+##           lower.bound         upper.bound          
+##           0.319150            0.559545             
+## 
+## Test of Significance:
+## 
+##  H_0:  p = 0.5 
+##  H_a:  p != 0.5 
+## 
+##  P-value:        P = 0.3425</code></pre>
+<p>Note that there is no need to specify an alternative, since the default value of <code>alternative</code> is “two.sided”.</p>
+</div>
+<div id="a-graph-of-the-p-value" class="section level1">
+<h1>A Graph of the <span class="math inline">\(P\)</span>-Value</h1>
+<p>We can get a graph of the <span class="math inline">\(P\)</span>-value simply by setting the argument <code>graph</code> to <code>TRUE</code>:</p>
+<pre class="r"><code>binomtestGC(~sex,data=m111survey,
+            success=&quot;male&quot;,p=0.50,
+            alternative=&quot;less&quot;,
+            graph=TRUE)</code></pre>
+<pre><code>## Exact Binomial Procedures for a Single Proportion p:
+##  Variable under study is sex 
+## 
+## Descriptive Results:  31 successes in 71 trials
+## 
+## Inferential Results:
+## 
+## Estimate of p:    0.4366 
+## SE(p.hat):    0.0589 
+## 
+## 95% Confidence Interval for p:
+## 
+##           lower.bound         upper.bound          
+##           0.000000            0.541071             
+## 
+## Test of Significance:
+## 
+##  H_0:  p = 0.5 
+##  H_a:  p &lt; 0.5 
+## 
+##  P-value:        P = 0.1712</code></pre>
+<p><img src="binomtestGC_files/figure-html/binomtesttutsexless-1.png" width="528" /></p>
+</div>
+<div id="working-with-summary-data" class="section level1">
+<h1>Working with Summary Data</h1>
+<p>Suppose that in a poll of 2500 randomly selected registered voters, 1325 of them indicated support for the Affordable Care Act. Suppose that we want a confidence interval for <span class="math inline">\(p\)</span>, the proportion of all registered voters who favor the Act, and a two-sided test of significance with the hypotheses:</p>
+<blockquote>
+<p><span class="math inline">\(H_0 : p = 0.50\)</span></p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\(H_a : p \neq 0.50\)</span></p>
+</blockquote>
+<p>We do not have raw data from a data frame, but the summary information we are given will suffice for <code>binomtestGC()</code>. We need only:</p>
+<ul>
+<li>set the argument <code>x</code> to the number of successes (the count of people who said they support the Act), and</li>
+<li>set the argument <code>n</code> to the sample size.</li>
+</ul>
+<p>Hence we use:</p>
+<pre class="r"><code>binomtestGC(x=1325,n=2500,p=0.50)</code></pre>
+<pre><code>## Exact Binomial Procedures for a Single Proportion p:
+##  Results based on Summary Data
+## 
+## Descriptive Results:  1325 successes in 2500 trials
+## 
+## Inferential Results:
+## 
+## Estimate of p:    0.53 
+## SE(p.hat):    0.01 
+## 
+## 95% Confidence Interval for p:
+## 
+##           lower.bound         upper.bound          
+##           0.510210            0.549719             
+## 
+## Test of Significance:
+## 
+##  H_0:  p = 0.5 
+##  H_a:  p != 0.5 
+## 
+##  P-value:        P = 0.0029</code></pre>
+</div>
+<div id="want-less-output" class="section level1">
+<h1>Want Less Output?</h1>
+<p>Sometimes you don’t need to see quite so much output to the console. If you only want the basics (confidence interval for <span class="math inline">\(p\)</span> and <span class="math inline">\(P\)</span>-value for your test), then set the argument <code>verbose</code> to <code>FALSE</code>.</p>
+<p>For example, if you want a 90%-confidence interval and a two-sided test then try:</p>
+<pre class="r"><code>binomtestGC(~sex,data=m111survey,
+            success=&quot;male&quot;,p=0.50,
+            verbose=FALSE)</code></pre>
+<pre><code>## Exact Binomial Procedures for a Single Proportion p:
+##  Variable under study is sex 
+## 95% Confidence Interval for p:
+## 
+##           lower.bound         upper.bound          
+##           0.319150            0.559545             
+## 
+##  P-value:        P = 0.3425</code></pre>
+</div>
+
+
+
+<!-- bizible -->
+<script type="text/javascript" src="//cdn.bizible.com/scripts/bizible.js" async=""></script>
+
+
+<!-- disqus -->
+<!--  <div id="disqus_thread" style="margin-top: 45px;"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'rmarkdown'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+-->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

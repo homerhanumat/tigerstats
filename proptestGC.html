@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Using proptestGC()</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="site_libs/highlight/textmate.css"
+      type="text/css" />
+<script src="site_libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="site_libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+  padding-left: 10px;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">tigerstats</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="instructorNotes.html">Instructors</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Vignettes
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Outlines</li>
+    <li>
+      <a href="R_Descriptive.html">Descriptive Outline</a>
+    </li>
+    <li>
+      <a href="R_Inferential.html">Inferential Outline</a>
+    </li>
+    <li class="dropdown-header">Graphics</li>
+    <li>
+      <a href="barchartGC.html">Bar Charts</a>
+    </li>
+    <li>
+      <a href="bwplot.html">Box-and-Whisker Plots</a>
+    </li>
+    <li>
+      <a href="densityplot.html">Density Plots</a>
+    </li>
+    <li>
+      <a href="histogram.html">Histograms</a>
+    </li>
+    <li class="dropdown-header">Numerical Summaries</li>
+    <li>
+      <a href="favstats.html">Mosaic's Favstats</a>
+    </li>
+    <li>
+      <a href="xtabs.html">Cross-tables and Percentages</a>
+    </li>
+    <li class="dropdown-header">Linear Mpdels</li>
+    <li>
+      <a href="lmGC.html">lmGC</a>
+    </li>
+    <li>
+      <a href="polyfitGC.html">polyfitGC</a>
+    </li>
+    <li class="dropdown-header">Probability</li>
+    <li>
+      <a href="pbinomGC.html">pbinomGC</a>
+    </li>
+    <li>
+      <a href="pnormGC.html">pnormGC</a>
+    </li>
+    <li>
+      <a href="qnorm.html">qnorm</a>
+    </li>
+    <li>
+      <a href="qnormGC.html">qnormGC</a>
+    </li>
+    <li class="dropdown-header">Inferential Procedures</li>
+    <li>
+      <a href="binomtestGC.html">binomtestGC</a>
+    </li>
+    <li>
+      <a href="proptestGC.html">proptestGC</a>
+    </li>
+    <li>
+      <a href="chisqtestGC.html">The Chi-Square Test</a>
+    </li>
+    <li>
+      <a href="ttestGC.html">The t-Test</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/homerhanumat/tigerstats">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Using proptestGC()</h1>
+
+</div>
+
+
+<div id="preliminaries" class="section level1">
+<h1>Preliminaries</h1>
+<p>You use <code>proptestGC()</code> for inferential procedures regarding:</p>
+<ul>
+<li>one population proportion <span class="math inline">\(p\)</span>;</li>
+<li>the difference of two population proportions, <span class="math inline">\(p_1 - p_2\)</span>.</li>
+</ul>
+<p>The function comes from the <code>tigerstats</code> package, so make sure that <code>tigerstats</code> is loaded:</p>
+<pre class="r"><code>require(tigerstats)</code></pre>
+</div>
+<div id="one-proportion-from-data-frame-read-this" class="section level1">
+<h1>One Proportion, From Data Frame (Read This!!)</h1>
+<p>In inference procedures regarding one proportion, <code>binomtestGC()</code> is preferred over <code>proptestGC()</code>, especially at smaller sample sizes. Nevertheless, read this section carefully. It talks about:</p>
+<ul>
+<li>what to count as a “success”,</li>
+<li>levels of confidence,</li>
+<li>types of Alternative Hypothesis,</li>
+<li>graphs of the P-value, and</li>
+<li>an option to limit output to the console</li>
+</ul>
+<p>in ways that apply to all uses of <code>proptestGC()</code>.</p>
+<div id="confidence-interval-only" class="section level2">
+<h2>Confidence Interval Only</h2>
+<p>In the <code>m111survey</code> data from the <code>tigerstats</code> package, suppose you want a 95%-confidence interval for:</p>
+<blockquote>
+<p><span class="math inline">\(p =\)</span> the proportion of all Georgetown College students who are female.</p>
+</blockquote>
+<p>Use the function:</p>
+<pre class="r"><code>proptestGC(~sex,data=m111survey,
+           success=&quot;female&quot;)</code></pre>
+<pre><code>## 
+## 
+## Inferential Procedures for a Single Proportion p:
+##  Variable under study is sex 
+##  Continuity Correction Applied to Test Statistic
+## 
+## 
+## Descriptive Results:
+## 
+##  female  n estimated.prop
+##      40 71         0.5634
+## 
+## 
+## Inferential Results:
+## 
+## Estimate of p:    0.5634 
+## SE(p.hat):    0.05886 
+## 
+## 95% Confidence Interval for p:
+## 
+##           lower.bound         upper.bound          
+##           0.448016            0.678745</code></pre>
+<p>Note that the <code>success</code> argument is set to “female” in order to make the function recognize <span class="math inline">\(p\)</span> as the population proportion of <em>females</em>, rather than the proportion of males (or of some other value of the variable in question).</p>
+<p>To get any other level of confidence, you need to use the <code>conf.level</code> argument, indicating your desired level of confidence in decimal (not percentage) form.</p>
+<p>For example, for a 90%-confidence interval for <span class="math inline">\(\mu\)</span>, use</p>
+<pre class="r"><code>proptestGC(~sex,data=m111survey,
+           success=&quot;female&quot;,conf.level=0.90)</code></pre>
+<pre><code>## 
+## 
+## Inferential Procedures for a Single Proportion p:
+##  Variable under study is sex 
+##  Continuity Correction Applied to Test Statistic
+## 
+## 
+## Descriptive Results:
+## 
+##  female  n estimated.prop
+##      40 71         0.5634
+## 
+## 
+## Inferential Results:
+## 
+## Estimate of p:    0.5634 
+## SE(p.hat):    0.05886 
+## 
+## 90% Confidence Interval for p:
+## 
+##           lower.bound         upper.bound          
+##           0.466564            0.660197</code></pre>
+</div>
+<div id="interval-and-test" class="section level2">
+<h2>Interval and Test</h2>
+<p>If you want a test of significance as well as the confidence interval, then</p>
+<ul>
+<li>use the <code>p</code> argument to set what the Null Hypothesis thinks that the value of <span class="math inline">\(p\)</span> is;</li>
+<li>use the <code>alternative</code> argument to specify the Alternative Hypothesis.</li>
+</ul>
+<p>For example, if the hypotheses are:</p>
+<blockquote>
+<p><span class="math inline">\(H_0: p = 0.50\)</span></p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\(H_a: p &gt; 0.50\)</span></p>
+</blockquote>
+<p>Then use:</p>
+<pre class="r"><code>proptestGC(~sex,data=m111survey,p=0.50,
+           success=&quot;female&quot;,alternative=&quot;greater&quot;)</code></pre>
+<pre><code>## 
+## 
+## Inferential Procedures for a Single Proportion p:
+##  Variable under study is sex 
+##  Continuity Correction Applied to Test Statistic
+## 
+## 
+## Descriptive Results:
+## 
+##  female  n estimated.prop
+##      40 71         0.5634
+## 
+## 
+## Inferential Results:
+## 
+## Estimate of p:    0.5634 
+## SE(p.hat):    0.05886 
+## 
+## 95% Confidence Interval for p:
+## 
+##           lower.bound         upper.bound          
+##           0.466564            1.000000             
+## 
+## Test of Significance:
+## 
+##  H_0:  p = 0.5 
+##  H_a:  p &gt; 0.5 
+## 
+##  Test Statistic:     z = 0.9571 
+##  P-value:        P = 0.1692</code></pre>
+<p>If the hypotheses are:</p>
+<blockquote>
+<p><span class="math inline">\(H_0: p = 0.50\)</span></p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\(H_a: p &lt; 0.50\)</span></p>
+</blockquote>
+<p>Then use:</p>
+<pre class="r"><code>proptestGC(~sex,data=m111survey,p=0.50,
+           success=&quot;female&quot;,alternative=&quot;less&quot;)</code></pre>
+<pre><code>## 
+## 
+## Inferential Procedures for a Single Proportion p:
+##  Variable under study is sex 
+##  Continuity Correction Applied to Test Statistic
+## 
+## 
+## Descriptive Results:
+## 
+##  female  n estimated.prop
+##      40 71         0.5634
+## 
+## 
+## Inferential Results:
+## 
+## Estimate of p:    0.5634 
+## SE(p.hat):    0.05886 
+## 
+## 95% Confidence Interval for p:
+## 
+##           lower.bound         upper.bound          
+##           0.000000            0.660197             
+## 
+## Test of Significance:
+## 
+##  H_0:  p = 0.5 
+##  H_a:  p &lt; 0.5 
+## 
+##  Test Statistic:     z = 1.196 
+##  P-value:        P = 0.8842</code></pre>
+<p>If the hypotheses are:</p>
+<blockquote>
+<p><span class="math inline">\(H_0: p = 0.50\)</span></p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\(H_a: p \neq 0.50\)</span></p>
+</blockquote>
+<p>Then use:</p>
+<pre class="r"><code>proptestGC(~sex,data=m111survey,p=0.50,
+        success=&quot;female&quot;,alternative=&quot;two.sided&quot;)</code></pre>
+<pre><code>## 
+## 
+## Inferential Procedures for a Single Proportion p:
+##  Variable under study is sex 
+##  Continuity Correction Applied to Test Statistic
+## 
+## 
+## Descriptive Results:
+## 
+##  female  n estimated.prop
+##      40 71         0.5634
+## 
+## 
+## Inferential Results:
+## 
+## Estimate of p:    0.5634 
+## SE(p.hat):    0.05886 
+## 
+## 95% Confidence Interval for p:
+## 
+##           lower.bound         upper.bound          
+##           0.448016            0.678745             
+## 
+## Test of Significance:
+## 
+##  H_0:  p = 0.5 
+##  H_a:  p != 0.5 
+## 
+##  Test Statistic:     z = 0.9571 
+##  P-value:        P = 0.3385</code></pre>
+<p>But note that the default value of <code>alternative</code> is “two.sided”, so if you want you could just leave it out and still get a two-sided test:</p>
+<pre class="r"><code>proptestGC(~sex,data=m111survey,p=0.50,
+           success=&quot;female&quot;)</code></pre>
+</div>
+<div id="graph-of-the-p-value" class="section level2">
+<h2>Graph of the P-Value</h2>
+<p>Anytime you want, you can get a graph of the <span class="math inline">\(P\)</span>-value for your test, simply by setting the argument <code>graph</code> to <code>TRUE</code>:</p>
+<pre class="r"><code>proptestGC(~sex,data=m111survey,p=0.50,
+        success=&quot;female&quot;,graph=TRUE)</code></pre>
+<pre><code>## 
+## 
+## Inferential Procedures for a Single Proportion p:
+##  Variable under study is sex 
+##  Continuity Correction Applied to Test Statistic
+## 
+## 
+## Descriptive Results:
+## 
+##  female  n estimated.prop
+##      40 71         0.5634
+## 
+## 
+## Inferential Results:
+## 
+## Estimate of p:    0.5634 
+## SE(p.hat):    0.05886 
+## 
+## 95% Confidence Interval for p:
+## 
+##           lower.bound         upper.bound          
+##           0.448016            0.678745             
+## 
+## Test of Significance:
+## 
+##  H_0:  p = 0.5 
+##  H_a:  p != 0.5 
+## 
+##  Test Statistic:     z = 0.9571 
+##  P-value:        P = 0.3385</code></pre>
+<p><img src="proptestGC_files/figure-html/proptesttutoneprop2sided-1.png" width="528" /></p>
+</div>
+<div id="limiting-output" class="section level2">
+<h2>Limiting Output</h2>
+<p>Sometimes you don’t need R to print so much information to the console. If you want only the basics (such as a confidence interval, the test statistic and <span class="math inline">\(P\)</span>-value), then set the <code>verbose</code> argument to <code>FALSE</code>:</p>
+<pre class="r"><code>proptestGC(~sex,data=m111survey,p=0.50,
+        success=&quot;female&quot;,verbose=FALSE)</code></pre>
+<pre><code>## 
+## 
+## Inferential Procedures for a Single Proportion p:
+##  Variable under study is sex 
+##  Continuity Correction Applied to Test Statistic
+## 95% Confidence Interval for p:
+## 
+##           lower.bound         upper.bound          
+##           0.448016            0.678745             
+## 
+##  Test Statistic:     z = 0.9571 
+##  P-value:        P = 0.3385</code></pre>
+</div>
+</div>
+<div id="one-proportion-from-summary-data" class="section level1">
+<h1>One Proportion, From Summary Data</h1>
+<p>Again note that <code>binomtestGC()</code> is preferred in this situation, especially at smaller sample sizes.</p>
+<div id="confidence-interval-only-1" class="section level2">
+<h2>Confidence Interval Only</h2>
+<p>Say that you have taken a simple random sample of size <span class="math inline">\(n=2500\)</span> from the population of all registered voters in the U.S., and you find that 1325 of them favor the Affordable Care Act. Suppose that you would like to make a confidence interval for</p>
+<blockquote>
+<p><span class="math inline">\(p =\)</span> the proportion of all registered voters in the U.S. who support the Act.</p>
+</blockquote>
+<p>You don’t have the raw data present in a data frame, but you have enough summary data to use <code>proptestGC()</code>. You just have to set some new arguments:</p>
+<ul>
+<li>set <code>x</code> to 1325, the number of “successes” you are counting up;</li>
+<li>set <code>n</code> to 2500, the sample size.</li>
+</ul>
+<p>So if you only want a 95%-confidence interval for <span class="math inline">\(p\)</span>. use:</p>
+<pre class="r"><code>proptestGC(x=1325,n=2500)</code></pre>
+<pre><code>## 
+## 
+## Inferential Procedures for a Single Proportion p:
+##  Results based on Summary Data
+##  Continuity Correction Applied to Test Statistic
+## 
+## 
+## Descriptive Results:
+## 
+##  successes    n estimated.prop
+##       1325 2500           0.53
+## 
+## 
+## Inferential Results:
+## 
+## Estimate of p:    0.53 
+## SE(p.hat):    0.009982 
+## 
+## 95% Confidence Interval for p:
+## 
+##           lower.bound         upper.bound          
+##           0.510436            0.549564</code></pre>
+</div>
+<div id="interval-and-test-1" class="section level2">
+<h2>Interval and Test</h2>
+<p>If you also want to do a test of significance, again specify <code>p</code> and <code>alternative</code>. For example, to test the hypotheses</p>
+<blockquote>
+<p><span class="math inline">\(H_0: p = 0.50\)</span></p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\(H_a: p &lt; 0.50\)</span></p>
+</blockquote>
+<p>use:</p>
+<pre class="r"><code>proptestGC(x=1325,n=2500,
+        p=0.50,,alternative=&quot;less&quot;)</code></pre>
+<pre><code>## 
+## 
+## Inferential Procedures for a Single Proportion p:
+##  Results based on Summary Data
+##  Continuity Correction Applied to Test Statistic
+## 
+## 
+## Descriptive Results:
+## 
+##  successes    n estimated.prop
+##       1325 2500           0.53
+## 
+## 
+## Inferential Results:
+## 
+## Estimate of p:    0.53 
+## SE(p.hat):    0.009982 
+## 
+## 95% Confidence Interval for p:
+## 
+##           lower.bound         upper.bound          
+##           0.000000            0.546419             
+## 
+## Test of Significance:
+## 
+##  H_0:  p = 0.5 
+##  H_a:  p &lt; 0.5 
+## 
+##  Test Statistic:     z = 3.025 
+##  P-value:        P = 0.9988</code></pre>
+</div>
+</div>
+<div id="difference-of-two-proportions-data-frame" class="section level1">
+<h1>Difference of Two Proportions, Data Frame</h1>
+<div id="confidence-interval-only-2" class="section level2">
+<h2>Confidence Interval Only</h2>
+<p>Suppose</p>
+<blockquote>
+<p><span class="math inline">\(p_1 =\)</span> proportion of all GC females who believe they get enough sleep</p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\(p_2 =\)</span> proportion of all GC males who believe they get enough sleep</p>
+</blockquote>
+<p>If you desire, say, an 85%-confidence interval for <span class="math inline">\(p_1 - p_2\)</span>, then use:</p>
+<pre class="r"><code>proptestGC(~sex+enough_Sleep,data=m111survey,
+        success=&quot;yes&quot;,conf.level=0.85)</code></pre>
+<pre><code>## 
+## 
+## Inferential Procedures for the Difference of Two Proportions p1-p2:
+##   enough_Sleep grouped by sex 
+## 
+## 
+## Descriptive Results:
+## 
+##        yes  n estimated.prop
+## female  14 40         0.3500
+## male    11 31         0.3548
+## 
+## 
+## Inferential Results:
+## 
+## Estimate of p1-p2:    -0.004839 
+## SE(p1.hat - p2.hat):  0.1143 
+## 
+## 85% Confidence Interval for p1-p2:
+## 
+##           lower.bound         upper.bound          
+##           -0.169426           0.159749</code></pre>
+</div>
+<div id="interval-and-test-2" class="section level2">
+<h2>Interval and Test</h2>
+<p>If you want a 95%-confidence interval for <span class="math inline">\(p\_1 - p_2\)</span> and you would like to test the hypotheses:</p>
+<blockquote>
+<p><span class="math inline">\(H_0: p_1 - p_2 = 0\)</span></p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\(H_a: p_1 - p_2 \neq 0\)</span></p>
+</blockquote>
+<p>then use:</p>
+<pre class="r"><code>proptestGC(~sex+enough_Sleep,data=m111survey,
+      success=&quot;yes&quot;,p=0)</code></pre>
+<pre><code>## 
+## 
+## Inferential Procedures for the Difference of Two Proportions p1-p2:
+##   enough_Sleep grouped by sex 
+## 
+## 
+## Descriptive Results:
+## 
+##        yes  n estimated.prop
+## female  14 40         0.3500
+## male    11 31         0.3548
+## 
+## 
+## Inferential Results:
+## 
+## Estimate of p1-p2:    -0.004839 
+## SE(p1.hat - p2.hat):  0.1143 
+## 
+## 95% Confidence Interval for p1-p2:
+## 
+##           lower.bound         upper.bound          
+##           -0.228929           0.219252             
+## 
+## Test of Significance:
+## 
+##  H_0:  p1-p2 = 0
+##  H_a:  p1-p2 != 0
+## 
+##  Test Statistic:     z = -0.04232 
+##  P-value:        P = 0.9662</code></pre>
+<p>Notice that this time:</p>
+<ul>
+<li>you specified the Null’s belief about the value of <span class="math inline">\(p\_1-p_2\)</span> using the <code>p</code> argument;</li>
+<li>you did not have to set <code>conf.level</code> to 0.95 (the default value of the argument is 0.95 already);</li>
+<li>you did not have to specify the two-sided alternative (the default value of <code>alternative</code> is already “two.sided”).</li>
+</ul>
+</div>
+<div id="order-of-the-groups" class="section level2">
+<h2>Order of the Groups</h2>
+<p>Suppose that in the previous situation you had defined:</p>
+<blockquote>
+<p><span class="math inline">\(p_1 =\)</span> proportion of all GC males who believe they get enough sleep</p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\(p_2 =\)</span> proportion of all GC females who believe they get enough sleep</p>
+</blockquote>
+<p>Then for you, the first population is all GC males and the second population is all GC females. In order to guarantee that R abides by your choice, use the argument <code>first</code>:</p>
+<pre class="r"><code>proptestGC(~sex+enough_Sleep,data=m111survey,
+      success=&quot;yes&quot;,p=0,first=&quot;male&quot;)</code></pre>
+<pre><code>## 
+## 
+## Inferential Procedures for the Difference of Two Proportions p1-p2:
+##   enough_Sleep grouped by sex 
+## 
+## 
+## Descriptive Results:
+## 
+##        yes  n estimated.prop
+## male    11 31         0.3548
+## female  14 40         0.3500
+## 
+## 
+## Inferential Results:
+## 
+## Estimate of p1-p2:    0.004839 
+## SE(p1.hat - p2.hat):  0.1143 
+## 
+## 95% Confidence Interval for p1-p2:
+## 
+##           lower.bound         upper.bound          
+##           -0.219252           0.228929             
+## 
+## Test of Significance:
+## 
+##  H_0:  p1-p2 = 0
+##  H_a:  p1-p2 != 0
+## 
+##  Test Statistic:     z = 0.04232 
+##  P-value:        P = 0.9662</code></pre>
+</div>
+</div>
+<div id="difference-of-two-proportions-summary-data" class="section level1">
+<h1>Difference of Two Proportions, Summary Data</h1>
+<div id="confidence-interval-only-3" class="section level2">
+<h2>Confidence Interval Only</h2>
+<p>Suppose that you have taken two independent samples from two populations (or performed a completely randomized experiment with two treatment groups), and you have the following summary data:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Group</th>
+<th align="center">Success Count</th>
+<th align="center">Sample Size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">group one</td>
+<td align="center">1325</td>
+<td align="center">2500</td>
+</tr>
+<tr class="even">
+<td align="center">group two</td>
+<td align="center">905</td>
+<td align="center">1800</td>
+</tr>
+</tbody>
+</table>
+<p>You need to provide the summary data to the arguments <code>x</code> and <code>n</code> as lists using the <code>c()</code> function. In each list, data from the first group should come first.</p>
+<p>For a 95%-confidence interval for <span class="math inline">\(p_1 - p_2\)</span>, use:</p>
+<pre class="r"><code>proptestGC(x=c(1325,905),n=c(2500,1800))</code></pre>
+<pre><code>## 
+## 
+## Inferential Procedures for the Difference of Two Proportions p1-p2:
+##  Results taken from summary data.
+## 
+## 
+## Descriptive Results:
+## 
+##         successes    n estimated.prop
+## Group 1      1325 2500         0.5300
+## Group 2       905 1800         0.5028
+## 
+## 
+## Inferential Results:
+## 
+## Estimate of p1-p2:    0.02722 
+## SE(p1.hat - p2.hat):  0.01544 
+## 
+## 95% Confidence Interval for p1-p2:
+## 
+##           lower.bound         upper.bound          
+##           -0.003048           0.057492</code></pre>
+</div>
+<div id="interval-and-test-3" class="section level2">
+<h2>Interval and Test</h2>
+<p>Suppose that you want a 90%-confidence interval for <span class="math inline">\(p_1 - p_2\)</span> and that you would like to test the hypotheses:</p>
+<blockquote>
+<p><span class="math inline">\(H_0: p_1 - p_2 = 0\)</span></p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\(H_a: p_1 - p_2 &gt; 0\)</span></p>
+</blockquote>
+<p>Suppose also that you want a graph of the <span class="math inline">\(P\)</span>-value. Then use:</p>
+<pre class="r"><code>proptestGC(x=c(1325,905),n=c(2500,1800),
+           p=0,conf.level=0.90,graph=TRUE)</code></pre>
+<pre><code>## 
+## 
+## Inferential Procedures for the Difference of Two Proportions p1-p2:
+##  Results taken from summary data.
+## 
+## 
+## Descriptive Results:
+## 
+##         successes    n estimated.prop
+## Group 1      1325 2500         0.5300
+## Group 2       905 1800         0.5028
+## 
+## 
+## Inferential Results:
+## 
+## Estimate of p1-p2:    0.02722 
+## SE(p1.hat - p2.hat):  0.01544 
+## 
+## 90% Confidence Interval for p1-p2:
+## 
+##           lower.bound         upper.bound          
+##           0.001819            0.052626             
+## 
+## Test of Significance:
+## 
+##  H_0:  p1-p2 = 0
+##  H_a:  p1-p2 != 0
+## 
+##  Test Statistic:     z = 1.763 
+##  P-value:        P = 0.07797</code></pre>
+<p><img src="proptestGC_files/figure-html/proptesttut2propssummary-1.png" width="528" /></p>
+</div>
+</div>
+
+
+
+<!-- bizible -->
+<script type="text/javascript" src="//cdn.bizible.com/scripts/bizible.js" async=""></script>
+
+
+<!-- disqus -->
+<!--  <div id="disqus_thread" style="margin-top: 45px;"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'rmarkdown'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+-->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

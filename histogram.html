@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Using lattice’s histogram()</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="site_libs/highlight/textmate.css"
+      type="text/css" />
+<script src="site_libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="site_libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+  padding-left: 10px;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">tigerstats</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="instructorNotes.html">Instructors</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Vignettes
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Outlines</li>
+    <li>
+      <a href="R_Descriptive.html">Descriptive Outline</a>
+    </li>
+    <li>
+      <a href="R_Inferential.html">Inferential Outline</a>
+    </li>
+    <li class="dropdown-header">Graphics</li>
+    <li>
+      <a href="barchartGC.html">Bar Charts</a>
+    </li>
+    <li>
+      <a href="bwplot.html">Box-and-Whisker Plots</a>
+    </li>
+    <li>
+      <a href="densityplot.html">Density Plots</a>
+    </li>
+    <li>
+      <a href="histogram.html">Histograms</a>
+    </li>
+    <li class="dropdown-header">Numerical Summaries</li>
+    <li>
+      <a href="favstats.html">Mosaic's Favstats</a>
+    </li>
+    <li>
+      <a href="xtabs.html">Cross-tables and Percentages</a>
+    </li>
+    <li class="dropdown-header">Linear Mpdels</li>
+    <li>
+      <a href="lmGC.html">lmGC</a>
+    </li>
+    <li>
+      <a href="polyfitGC.html">polyfitGC</a>
+    </li>
+    <li class="dropdown-header">Probability</li>
+    <li>
+      <a href="pbinomGC.html">pbinomGC</a>
+    </li>
+    <li>
+      <a href="pnormGC.html">pnormGC</a>
+    </li>
+    <li>
+      <a href="qnorm.html">qnorm</a>
+    </li>
+    <li>
+      <a href="qnormGC.html">qnormGC</a>
+    </li>
+    <li class="dropdown-header">Inferential Procedures</li>
+    <li>
+      <a href="binomtestGC.html">binomtestGC</a>
+    </li>
+    <li>
+      <a href="proptestGC.html">proptestGC</a>
+    </li>
+    <li>
+      <a href="chisqtestGC.html">The Chi-Square Test</a>
+    </li>
+    <li>
+      <a href="ttestGC.html">The t-Test</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/homerhanumat/tigerstats">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Using lattice’s histogram()</h1>
+
+</div>
+
+
+<div id="preliminaries" class="section level1">
+<h1>Preliminaries</h1>
+<p>The function <code>histogram()</code> is used to study the distribution of a numerical variable. It comes from the <code>lattice</code> package for statistical graphics, which is pre-installed with every distribution of R. Also, package <code>tigerstats</code> depends on lattice, so if you load <code>tigerstats</code>:</p>
+<pre class="r"><code>require(tigerstats)</code></pre>
+<p>then <code>lattice</code> will be loaded as well. If you don’t plan to use <code>tigerstats</code> but you want to use the function <code>histogram()</code>, then make sure you load lattice:</p>
+<pre class="r"><code>require(lattice)</code></pre>
+<p><strong>Note:</strong> If you are not working with the R Studio server hosted by Georgetown College, then you will need to install <code>tigerstats</code> on your own machine. You can get the current version from <a href="http://github.com">Github</a> by first installing the <code>devtools</code> package from the CRAN repository, and then running the following commands in a fresh R session:</p>
+<pre class="r"><code>require(devtools)
+install_github(repo=&quot;homerhanumat/tigerstats&quot;)</code></pre>
+<p>In this tutorial we will also use a function from the <code>mosaic</code> package, so let’s make sure it is loaded:</p>
+<pre class="r"><code>require(mosaic)</code></pre>
+</div>
+<div id="one-numerical-variable" class="section level1">
+<h1>One Numerical Variable</h1>
+<p>In the <code>m11survey</code> data frame from the <code>tigerstats</code> package, suppose that you want to study the distribution of <strong>fastest</strong>, the fastest speed one has ever driven. You can do so with the following command:</p>
+<pre class="r"><code>histogram(~fastest,data=m111survey,
+       type=&quot;density&quot;,
+       xlab=&quot;speed (mph)&quot;,
+       main=&quot;Fastest Speed Ever Driven&quot;)</code></pre>
+<p><img src="histogram_files/figure-html/histtutfastest-1.png" width="432" /></p>
+<p>Note the use of:</p>
+<ul>
+<li>the <code>xlab</code> argument to label the horizontal axis, complete with units (miles per hour);</li>
+<li>the <code>main</code> argument to provide a brief but descriptive title for the graph;</li>
+<li>the <code>type</code> argument to make a density histogram (we like this type the most, but other possible types are “count” and “percent”).</li>
+</ul>
+<div id="controlling-breaks" class="section level2">
+<h2>Controlling Breaks</h2>
+<p>One of the most important ways to customize a histogram is to to set your own values for the left and right-hand boundaries of the rectangles.</p>
+<p>In order to accomplish this, you should first know the range of your data values. You can find this quickly using the <code>favstats()</code> function from package <code>mosaic</code>:</p>
+<pre class="r"><code>favstats(~fastest,data=m111survey)</code></pre>
+<pre><code>##  min   Q1 median    Q3 max     mean      sd  n missing
+##   60 90.5    102 119.5 190 105.9014 20.8773 71       0</code></pre>
+<p>The minimum fastest speed is 60 mph, and the maximum fastest speed is 190 mph.</p>
+<p>One possible choice for rectangle boundaries is to have the left-most rectangle begin at sixty, and then have each rectangle be 10 mph wide at the base, finally reaching a rectangle that ends at 190 mph. In other words, we want the rectangle boundaries to be:</p>
+<p><span class="math display">\[60,70,80,90,100,110,120,130,140,150,160,170,280,190.\]</span></p>
+<p>These numbers will be the “breaks” for the rectangles in our histogram. We can set these breaks by putting them, as a list, into the <code>breaks</code> argument of the <code>histogram()</code> function, as follows:</p>
+<pre class="r"><code>histogram(~fastest,data=m111survey,
+       type=&quot;density&quot;,
+       xlab=&quot;speed (mph)&quot;,
+       main=&quot;Fastest Speed Ever Driven&quot;,
+       breaks=c(60,70,80,90,100,110,120,130,
+                140,150,160,170,180,190))</code></pre>
+<p><img src="histogram_files/figure-html/histtutfastestbreaks10-1.png" width="432" /></p>
+<p>You can accomplish the same thing with less typing, if you make use of the <code>seq()</code> function:</p>
+<pre class="r"><code>histogram(~fastest,data=m111survey,
+       type=&quot;density&quot;,
+       xlab=&quot;speed (mph)&quot;,
+       main=&quot;Fastest Speed Ever Driven&quot;,
+       breaks=seq(from=60,to=190,by=10))</code></pre>
+<p><img src="histogram_files/figure-html/histtutfastestbreaks10seq-1.png" width="432" /></p>
+</div>
+</div>
+<div id="numerical-and-factor-variable" class="section level1">
+<h1>Numerical and Factor Variable</h1>
+<p>Suppose you want to know:</p>
+<blockquote>
+<p><em>Who tends to drive faster: guys or gals?</em></p>
+</blockquote>
+<p>Then you might wish to study the relationship between the numerical variable <strong>fastest</strong> and the factor variable <strong>sex</strong>. You can use histograms in order to perform such a study.</p>
+<p>Try this code:</p>
+<pre class="r"><code>histogram(~fastest|sex,data=m111survey,
+       type=&quot;density&quot;,
+       xlab=&quot;speed (mph)&quot;,
+       main=&quot;Fastest Speed Ever Driven,\nby Sex&quot;,
+       breaks=seq(from=60,to=190,by=10))</code></pre>
+<p><img src="histogram_files/figure-html/histtutfastestsexcond-1.png" width="432" /></p>
+<p>Note that to produce side-by-side histograms, you “condition” on the factor variable with the formula:</p>
+<p><span class="math display">\[\sim numerical \vert factor\]</span></p>
+<p>Note also the use of “\n” to split the title into two lines: this is a useful trick when the title is long.</p>
+<p>You can also adjust the layout of the separate panels to your liking:</p>
+<pre class="r"><code>histogram(~fastest|sex,data=m111survey,
+       type=&quot;density&quot;,
+       xlab=&quot;speed (mph)&quot;,
+       main=&quot;Fastest Speed Ever Driven,\nby Sex&quot;,
+       breaks=seq(from=60,to=190,by=10),
+       layout=c(1,2))</code></pre>
+<p><img src="histogram_files/figure-html/histtutfastestsexcond2-1.png" width="432" /></p>
+</div>
+
+
+
+<!-- bizible -->
+<script type="text/javascript" src="//cdn.bizible.com/scripts/bizible.js" async=""></script>
+
+
+<!-- disqus -->
+<!--  <div id="disqus_thread" style="margin-top: 45px;"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'rmarkdown'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+-->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

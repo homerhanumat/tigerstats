@@ -1,0 +1,12 @@
+base
+rmarkdown
+knitr
+nlme
+lattice
+dplyr
+ggplot2
+car
+mosaicData
+mosaic
+abd
+tigerstats

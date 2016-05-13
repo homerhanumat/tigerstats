@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Using chisqtestGC()</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="site_libs/highlight/textmate.css"
+      type="text/css" />
+<script src="site_libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="site_libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+  padding-left: 10px;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">tigerstats</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="instructorNotes.html">Instructors</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Vignettes
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Outlines</li>
+    <li>
+      <a href="R_Descriptive.html">Descriptive Outline</a>
+    </li>
+    <li>
+      <a href="R_Inferential.html">Inferential Outline</a>
+    </li>
+    <li class="dropdown-header">Graphics</li>
+    <li>
+      <a href="barchartGC.html">Bar Charts</a>
+    </li>
+    <li>
+      <a href="bwplot.html">Box-and-Whisker Plots</a>
+    </li>
+    <li>
+      <a href="densityplot.html">Density Plots</a>
+    </li>
+    <li>
+      <a href="histogram.html">Histograms</a>
+    </li>
+    <li class="dropdown-header">Numerical Summaries</li>
+    <li>
+      <a href="favstats.html">Mosaic's Favstats</a>
+    </li>
+    <li>
+      <a href="xtabs.html">Cross-tables and Percentages</a>
+    </li>
+    <li class="dropdown-header">Linear Mpdels</li>
+    <li>
+      <a href="lmGC.html">lmGC</a>
+    </li>
+    <li>
+      <a href="polyfitGC.html">polyfitGC</a>
+    </li>
+    <li class="dropdown-header">Probability</li>
+    <li>
+      <a href="pbinomGC.html">pbinomGC</a>
+    </li>
+    <li>
+      <a href="pnormGC.html">pnormGC</a>
+    </li>
+    <li>
+      <a href="qnorm.html">qnorm</a>
+    </li>
+    <li>
+      <a href="qnormGC.html">qnormGC</a>
+    </li>
+    <li class="dropdown-header">Inferential Procedures</li>
+    <li>
+      <a href="binomtestGC.html">binomtestGC</a>
+    </li>
+    <li>
+      <a href="proptestGC.html">proptestGC</a>
+    </li>
+    <li>
+      <a href="chisqtestGC.html">The Chi-Square Test</a>
+    </li>
+    <li>
+      <a href="ttestGC.html">The t-Test</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/homerhanumat/tigerstats">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Using chisqtestGC()</h1>
+
+</div>
+
+
+<div id="preliminaries" class="section level1">
+<h1>Preliminaries</h1>
+<p>You use the <span class="math inline">\(\chi^2\)</span>-test when you are addressing the inferential aspect of research questions about:</p>
+<ul>
+<li>the relationship between two factor variables (test for association);</li>
+<li>the distribution of one factor variable (goodness-of-fit test).</li>
+</ul>
+</div>
+<div id="two-factor-variables-association" class="section level1">
+<h1>Two Factor Variables (Association)</h1>
+<div id="formula-data-input" class="section level2">
+<h2>Formula-Data Input</h2>
+<p>When your data are in raw form, straight from a data frame, you can perform the test using “formula-data input”. For example, in the <code>mat111survey</code> data, we might wonder whether sex and seating preference are related, in the population from which the sample was (allegedly randomly) drawn. The function call and the output are as follows:</p>
+<pre class="r"><code>chisqtestGC(~sex+seat,data=m111survey)</code></pre>
+<pre><code>## Pearson&#39;s Chi-squared test 
+## 
+## Observed Counts:
+##         seat
+## sex      1_front 2_middle 3_back
+##   female      19       16      5
+##   male         8       16      7
+## 
+## Counts Expected by Null:
+##         seat
+## sex      1_front 2_middle 3_back
+##   female   15.21    18.03   6.76
+##   male     11.79    13.97   5.24
+## 
+## Contributions to the chi-square statistic:
+##         seat
+## sex      1_front 2_middle 3_back
+##   female    0.94     0.23   0.46
+##   male      1.22     0.29   0.59
+## 
+## 
+## Chi-Square Statistic = 3.734 
+## Degrees of Freedom of the table = 2 
+## P-Value = 0.1546</code></pre>
+</div>
+<div id="two-way-table-input" class="section level2">
+<h2>Two-Way Table Input</h2>
+<p>Sometimes you already have a two-way table on hand:</p>
+<pre class="r"><code>SexSeat &lt;- xtabs(~sex+seat,data=m111survey)
+SexSeat</code></pre>
+<pre><code>##         seat
+## sex      1_front 2_middle 3_back
+##   female      19       16      5
+##   male         8       16      7</code></pre>
+<p>In that case you can save yourself some typing by entering the table in place of the formula and the <code>data</code> arguments:</p>
+<pre class="r"><code>chisqtestGC(SexSeat)</code></pre>
+</div>
+<div id="a-table-from-summary-data" class="section level2">
+<h2>A Table From Summary Data</h2>
+<p>Remember: if you are given summary data, only, then you can construct a nice two-way table and enter it into <code>chisquaretestGC()</code>. Suppose that you want this two-way table:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="center">Front</th>
+<th align="center">Middle</th>
+<th align="center">Back</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Female</td>
+<td align="center">19</td>
+<td align="center">16</td>
+<td align="center">5</td>
+</tr>
+<tr class="even">
+<td align="left">Male</td>
+<td align="center">8</td>
+<td align="center">16</td>
+<td align="center">7</td>
+</tr>
+</tbody>
+</table>
+<p>You can get it as follows:</p>
+<pre class="r"><code>MySexSeat &lt;- rbind(female=c(19,16,5),male=c(8,16,7))
+colnames(MySexSeat) &lt;- c(&quot;front&quot;,&quot;middle&quot;,&quot;back&quot;)</code></pre>
+<p>Let’s just check to see that this worked:</p>
+<pre class="r"><code>MySexSeat</code></pre>
+<pre><code>##        front middle back
+## female    19     16    5
+## male       8     16    7</code></pre>
+<p>Then you can enter <code>MySexSeat</code> into the function:</p>
+<pre class="r"><code>chisqtestGC(MySexSeat)</code></pre>
+</div>
+<div id="simulation" class="section level2">
+<h2>Simulation</h2>
+<p>When the Null’s expected counts are low, <code>chisqtestGC()</code> delivers a warning and suggests the use of simulation to compute the <span class="math inline">\(P\)</span>-value. You do this by way of the argument <code>simulate.p.value</code>, and you have three options:</p>
+<ul>
+<li><code>simulate.p.value = &quot;fixed&quot;</code></li>
+<li><code>simulate.p.value = &quot;random&quot;</code></li>
+<li><code>simulate.p.value = &quot;TRUE&quot;</code></li>
+</ul>
+<div id="explanatory-tallies-fixed" class="section level3">
+<h3>Explanatory Tallies Fixed</h3>
+<p>Suppose that the objects under study are not a random sample from some larger population, and that the way chance comes into the production of the data is through random variation in all of the other factors—besides the explanatory variable— that might be associated with the response variable. Then since the items being observed are fixed, the tally of values for the explanatory variable are fixed. The response values for these items are the product of chance, but only through random variation in those other factors.</p>
+<p>The study from the <code>ledgejump</code> data frame was an example of this. The 21 incidents were fixed, so there were nine cold-weather incidents and 12 warm-weather incidents, no matter what. The crowd behavior at each incident, however is still a matter of chance.</p>
+<p>In such a case you might want to resample under the restriction that in all of your resamples, the tally for the explanatory variable stays just the same as it was in the data you observed. Then your function call looks like:</p>
+<pre class="r"><code>chisqtestGC(~weather+crowd.behavior,data=ledgejump,
+             simulate.p.value=&quot;fixed&quot;,B=2500)</code></pre>
+<pre><code>## Pearson&#39;s chi-squared test with simulated p-value, fixed row sums
+##   (based on 2500 resamples) 
+## 
+## Observed Counts:
+##        crowd.behavior
+## weather baiting polite
+##    cool       2      7
+##    warm       8      4
+## 
+## Counts Expected by Null:
+##        crowd.behavior
+## weather baiting polite
+##    cool    4.29   4.71
+##    warm    5.71   6.29
+## 
+## Contributions to the chi-square statistic:
+##        crowd.behavior
+## weather baiting polite
+##    cool    1.22   1.11
+##    warm    0.91   0.83
+## 
+## 
+## Chi-Square Statistic = 4.0727 
+## Degrees of Freedom of the table = 1 
+## P-Value = 0.05</code></pre>
+<p>You can set <code>B</code>, the number of resamples, as you wish, but it should be at least a few thousand. Of course the <span class="math inline">\(P\)</span>-value, having been determined by random resampling, will vary from one run of the function to another.</p>
+</div>
+<div id="explanatory-tallies-random" class="section level3">
+<h3>Explanatory Tallies Random</h3>
+<p>In the <code>m111survey</code> study on sex and seating preference, the subjects are a random sample from a larger population. In that case the tallies for both the explanatory and the response variables depend upon chance. If you simulate in such a case, then you set <code>simulate.p.value</code> to “random”:</p>
+<pre class="r"><code>chisqtestGC(~sex+seat,data=m111survey,
+             simulate.p.value=&quot;random&quot;,B=2500)</code></pre>
+<pre><code>## Pearson&#39;s chi-squared test with simulated p-value, marginal sums not fixed
+##   (based on 2500 resamples) 
+## 
+## Observed Counts:
+##         seat
+## sex      1_front 2_middle 3_back
+##   female      19       16      5
+##   male         8       16      7
+## 
+## Counts Expected by Null:
+##         seat
+## sex      1_front 2_middle 3_back
+##   female   15.21    18.03   6.76
+##   male     11.79    13.97   5.24
+## 
+## Contributions to the chi-square statistic:
+##         seat
+## sex      1_front 2_middle 3_back
+##   female    0.94     0.23   0.46
+##   male      1.22     0.29   0.59
+## 
+## 
+## Chi-Square Statistic = 3.734 
+## Degrees of Freedom of the table = 2 
+## P-Value = 0.1687</code></pre>
+</div>
+<div id="both-tallies-fixed" class="section level3">
+<h3>Both Tallies Fixed</h3>
+<p>If you want to resample in such a way that the tallies for BOTH the explanatory and response variables stay exactly the same as they were in the actual data, then you set <code>simulate.p.value</code> to “TRUE”. This invokes R’s standard method for resampling:</p>
+<pre class="r"><code>chisqtestGC(~sex+seat,data=m111survey,
+             simulate.p.value=TRUE,B=2500)</code></pre>
+<pre><code>## Pearson&#39;s chi-squared test with simulated p-value 
+##   (based on 2500 resamples) 
+## 
+## Observed Counts:
+##         seat
+## sex      1_front 2_middle 3_back
+##   female      19       16      5
+##   male         8       16      7
+## 
+## Counts Expected by Null:
+##         seat
+## sex      1_front 2_middle 3_back
+##   female   15.21    18.03   6.76
+##   male     11.79    13.97   5.24
+## 
+## Contributions to the chi-square statistic:
+##         seat
+## sex      1_front 2_middle 3_back
+##   female    0.94     0.23   0.46
+##   male      1.22     0.29   0.59
+## 
+## 
+## Chi-Square Statistic = 3.734 
+## Degrees of Freedom of the table = 2 
+## P-Value = 0.1704</code></pre>
+<p>It’s not easy to understand why R would adopt such a method, but there is some good theoretical support for it. If you are ever in doubt about how to simulate, just use this third option.</p>
+</div>
+</div>
+<div id="graphs-of-the-p-value" class="section level2">
+<h2>Graphs of the P-Value</h2>
+<p>You can get a graph of the <span class="math inline">\(P\)</span>-value in the plot window by setting the argument <code>graph</code> to TRUE. When you did not simulate, the graph shows a density curve for the <span class="math inline">\(\chi^2\)</span> random variable with the relevant degrees of freedom. When you simulate, the graph is a histogram of the resampled <span class="math inline">\(\chi^2\)</span>-statistics.</p>
+<p>Here is a case with no simulation:</p>
+<pre class="r"><code>chisqtestGC(~sex+seat,data=m111survey,graph=TRUE)</code></pre>
+<pre><code>## Pearson&#39;s Chi-squared test 
+## 
+## Observed Counts:
+##         seat
+## sex      1_front 2_middle 3_back
+##   female      19       16      5
+##   male         8       16      7
+## 
+## Counts Expected by Null:
+##         seat
+## sex      1_front 2_middle 3_back
+##   female   15.21    18.03   6.76
+##   male     11.79    13.97   5.24
+## 
+## Contributions to the chi-square statistic:
+##         seat
+## sex      1_front 2_middle 3_back
+##   female    0.94     0.23   0.46
+##   male      1.22     0.29   0.59
+## 
+## 
+## Chi-Square Statistic = 3.734 
+## Degrees of Freedom of the table = 2 
+## P-Value = 0.1546</code></pre>
+<div class="figure">
+<img src="chisqtestGC_files/figure-html/chisqtutnosim-1.png" alt="Graph of P-value, no simulation" width="384" />
+<p class="caption">
+Graph of P-value, no simulation
+</p>
+</div>
+<p>Here is a case with simulation:</p>
+<pre class="r"><code>chisqtestGC(~sex+seat,data=m111survey,
+             simulate.p.value=&quot;random&quot;,B=2500,graph=TRUE)</code></pre>
+<pre><code>## Pearson&#39;s chi-squared test with simulated p-value, marginal sums not fixed
+##   (based on 2500 resamples) 
+## 
+## Observed Counts:
+##         seat
+## sex      1_front 2_middle 3_back
+##   female      19       16      5
+##   male         8       16      7
+## 
+## Counts Expected by Null:
+##         seat
+## sex      1_front 2_middle 3_back
+##   female   15.21    18.03   6.76
+##   male     11.79    13.97   5.24
+## 
+## Contributions to the chi-square statistic:
+##         seat
+## sex      1_front 2_middle 3_back
+##   female    0.94     0.23   0.46
+##   male      1.22     0.29   0.59
+## 
+## 
+## Chi-Square Statistic = 3.734 
+## Degrees of Freedom of the table = 2 
+## P-Value = 0.1575</code></pre>
+<div class="figure">
+<img src="chisqtestGC_files/figure-html/chisqtutsim-1.png" alt="Graph of P-value, with simulation" width="384" />
+<p class="caption">
+Graph of P-value, with simulation
+</p>
+</div>
+</div>
+</div>
+<div id="one-factor-variable-goodness-of-fit" class="section level1">
+<h1>One Factor Variable (Goodness of Fit)</h1>
+<div id="formula-data-input-1" class="section level2">
+<h2>Formula-Data Input</h2>
+<p>The variable <strong>seat</strong> in the <code>m111survey</code> data frame indicates the classroom seating preference of each person in the survey. Suppose we want to know whether or not the sample data provide strong evidence that seating preference in the Georgetown College population is not uniformly distributed among the three possible options (Front, Middle, and Back). That is, letting</p>
+<blockquote>
+<p><span class="math inline">\(p_f =\)</span> proportion of all GC students who prefer the front,</p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\(p_m =\)</span> proportion of all GC students who prefer the middle,</p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\(p_b =\)</span> proportion of all GC students who prefer the back,</p>
+</blockquote>
+<p>we want to test the hypotheses:</p>
+<blockquote>
+<p><span class="math inline">\(H_0:\)</span> <span class="math inline">\(p_f = 1/3\)</span> and <span class="math inline">\(p_m = 1/3\)</span> and <span class="math inline">\(p_b = 1/3\)</span></p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\(H_a:\)</span> at least one of the above proportions is not <span class="math inline">\(1/3\)</span></p>
+</blockquote>
+<p>We can do so using the <span class="math inline">\(\chi^2\)</span>-test for goodness of fit. The argument <code>p</code> will give what the Null Hypothesis believes to be the distribution of the variable <strong>seat</strong> in the Georgetown College population:</p>
+<pre class="r"><code>chisqtestGC(~seat,data=m111survey,
+            p=c(1/3,1/3,1/3),
+            graph=TRUE)</code></pre>
+<pre><code>## Chi-squared test for given probabilities 
+## 
+##          Observed counts Expected by Null Contr to chisq stat
+## 1_front               27            23.67                0.47
+## 2_middle              32            23.67                2.93
+## 3_back                12            23.67                5.75
+## 
+## 
+## Chi-Square Statistic = 9.1549 
+## Degrees of Freedom of the table = 2 
+## P-Value = 0.0103</code></pre>
+<p><img src="chisqtestGC_files/figure-html/chisqtutseatgraph-1.png" width="432" /></p>
+</div>
+<div id="summary-data" class="section level2">
+<h2>Summary Data</h2>
+<p>Suppose that the data had only come to us in summary form:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Front</th>
+<th align="center">Middle</th>
+<th align="center">Back</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">27</td>
+<td align="center">32</td>
+<td align="center">12</td>
+</tr>
+</tbody>
+</table>
+<p>We could still perform the test, by making a table and storing it as an R-object:</p>
+<pre class="r"><code>Seat &lt;- c(front=27,middle=32,back=12)
+Seat</code></pre>
+<pre><code>##  front middle   back 
+##     27     32     12</code></pre>
+<p>Then we could perform the test using <code>Seat</code>:</p>
+<pre class="r"><code>chisqtestGC(Seat,p=c(1/3,1/3,1/3))</code></pre>
+<pre><code>## Chi-squared test for given probabilities 
+## 
+##        Observed counts Expected by Null Contr to chisq stat
+## front               27            23.67                0.47
+## middle              32            23.67                2.93
+## back                12            23.67                5.75
+## 
+## 
+## Chi-Square Statistic = 9.1549 
+## Degrees of Freedom of the table = 2 
+## P-Value = 0.0103</code></pre>
+</div>
+<div id="simulation-1" class="section level2">
+<h2>Simulation</h2>
+<p>When expected cell counts fall below 5, <code>chisqtestGC()</code> issues a warning and suggests the use of simulation. We can perform simulation at any time, though.</p>
+<p>For goodness-of-fit tests, the only relevant form of simulation is the one provided by setting <code>simulate.p.value</code> to <code>TRUE</code>. Of course we also need to set the number <code>B</code> of resamples.</p>
+<pre class="r"><code>set.seed(678910)
+chisqtestGC(~seat,data=m111survey,
+            p=c(1/3,1/3,1/3),
+            simulate.p.value=TRUE,
+            B=2500,graph=TRUE)</code></pre>
+<pre><code>## Pearson&#39;s chi-squared test with simulated p-value 
+##   (based on 2500 resamples) 
+## 
+##          Observed counts Expected by Null Contr to chisq stat
+## 1_front               27            23.67                0.47
+## 2_middle              32            23.67                2.93
+## 3_back                12            23.67                5.75
+## 
+## 
+## Chi-Square Statistic = 9.1549 
+## Degrees of Freedom of the table = 2 
+## P-Value = 0.0116</code></pre>
+<p><img src="chisqtestGC_files/figure-html/chisqtutseatsim-1.png" width="432" /></p>
+</div>
+</div>
+<div id="want-less-output" class="section level1">
+<h1>Want Less Output?</h1>
+<p>If you do not wnat to see quite so much output to the console and are only interested in the essentials for reporting a <span class="math inline">\(\chi^2\)</span>-test, then set the argument <code>verbose</code> to <code>FALSE</code>:</p>
+<pre class="r"><code>chisqtestGC(~sex+seat,data=m111survey,
+            verbose=FALSE)</code></pre>
+<pre><code>## Pearson&#39;s Chi-squared test 
+## 
+## Chi-Square Statistic = 3.734 
+## Degrees of Freedom of the table = 2 
+## P-Value = 0.1546</code></pre>
+</div>
+
+
+
+<!-- bizible -->
+<script type="text/javascript" src="//cdn.bizible.com/scripts/bizible.js" async=""></script>
+
+
+<!-- disqus -->
+<!--  <div id="disqus_thread" style="margin-top: 45px;"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'rmarkdown'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+-->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

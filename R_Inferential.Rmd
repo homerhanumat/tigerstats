@@ -1,0 +1,116 @@
+---
+title: "R:  Inferential Statistics"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+---
+
+```{r include=FALSE}
+require(knitr)
+opts_chunk$set(tidy=FALSE,fig.width=5.5,fig.height=3.5, cache = TRUE)
+```
+
+```{r include=FALSE}
+library(mosaic)
+library(tigerstats)
+```
+
+
+# Preliminaries
+
+This is a brief guide on how to use R and functions in `tigerstats` and related packages to do some very basic inferential statistics.  We will give "templates" for the functions, accompanied by no-frills examples of their use.  Consult the function tutorials or other Help documents to learn more about the options for each function.
+
+# One Factor Variable
+
+## Two Values
+
+We recommend `binomtestGC()`.  The template is:
+
+$$binomtestGC(\sim variable,data=MyData,p=NullBelief).$$
+
+```{r eval=FALSE}
+binomtestGC(~sex,data=m111survey,
+            p=0.50,
+            alternative="two.sided",
+            success="female")
+```
+
+
+## More Than Two Values
+
+`chisqtestGC()` is the function to use.  The template is:
+
+$$chisqtestGC(\sim variable,data=MyData,p=NullProbs).$$
+
+```{r eval=FALSE}
+chisqtestGC(~seat,data=m111survey,p=c(1/3,1/3,1/3))
+```
+
+
+# Two Factor Variables
+
+## Both Variables Have Two Values
+
+If both the explanatory and response variable have two values each, then you might want `proptestGC()`.  The template is:
+
+$$proptestGC(\sim explanaotry + response, data=MyData,p=0).$$
+
+```{r eval=FALSE}
+proptestGC(~sex+love_first,data=m111survey,
+                p=0,
+                alternative="two,sided")
+```
+
+## One or Both Variables Have More Than two Values
+
+If one or more of the variables has more than two values, stick with `chisqtestGC()`.  The format is:
+
+$$chisqtestGC(\sim explanatory + response, data=MyData).$$
+
+```{r eval=FALSE}
+chisqtestGC(~sex+seat,data=m111survey)
+```
+
+# One Numerical Variable
+
+The function is `ttestGC()`.  Template:
+
+$$ttestGC(\sim variable, data=MyData,mu=NullBelief).$$
+
+```{r eval=FALSE}
+ttestGC(~fastest,data=m111survey,mu=100,
+          alternative="two.sided")
+```
+
+If the single numerical variable of interest is a difference of two numerical variables, then you are probably interested in the "paired" t-test:
+
+$$ttestGC(\sim secondVar - firstVar, data=MyData,mu=0).$$
+
+```{r eval=FALSE}
+ttestGC(~height - ideal_ht,data=m111survey,
+          mu=0,
+          alternative="two.sided")
+```
+
+
+# One Numerical and One Factor Variable
+
+We assume that the factor variable has two values.
+
+You probably want the "2-sample t-test".  The format is:
+
+$$ttestGC(numerical \sim factor, data=MyData,mu=0).$$
+
+```{r eval=FALSE}
+ttestGC(fastest~sex,data=m111survey,
+          mu=0,
+          alternative="two.sided")
+```
+
+
+
+
+# Two Numerical Variables
+
+This topic is not extensively provided for in the `tigerstats` package, but if you encounter this situation you will want to learn about `lm()`, the "grown-up" version of `lmGC()`.

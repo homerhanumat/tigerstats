@@ -1,0 +1,15 @@
+name:  "tigerstats"
+output_dir: '.'
+output:
+  html_document:
+    theme: cosmo
+    highlight: textmate
+    mathjax: default
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+    includes:
+      after_body: include/after_body.html
+    css: styles.css
+
+

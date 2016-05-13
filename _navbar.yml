@@ -1,0 +1,56 @@
+title: "tigerstats"
+type: inverse
+left:
+  - text: "Home"
+    href: index.html
+  - text: "About"
+    href:  about.html
+  - text:  "Instructors"
+    href:  instructorNotes.html
+  - text:  "Vignettes"
+    menu:
+      - text: "Outlines"
+      - text:  "Descriptive Outline"
+        href:  R_Descriptive.html
+      - text:  "Inferential Outline"
+        href:  R_Inferential.html
+      - text:  "Graphics"
+      - text:  "Bar Charts"
+        href: barchartGC.html
+      - text:  "Box-and-Whisker Plots"
+        href:  bwplot.html
+      - text: "Density Plots"
+        href: densityplot.html
+      - text: "Histograms"
+        href: histogram.html
+      - text: "Numerical Summaries"
+      - text: "Mosaic's Favstats"
+        href: favstats.html
+      - text: "Cross-tables and Percentages"
+        href:  xtabs.html
+      - text:  "Linear Mpdels"
+      - text:  "lmGC"
+        href:  lmGC.html
+      - text:  "polyfitGC"
+        href:  polyfitGC.html
+      - text: "Probability"
+      - text:  "pbinomGC"
+        href:  pbinomGC.html
+      - text:  "pnormGC"
+        href:  pnormGC.html
+      - text:  "qnorm"
+        href:  qnorm.html
+      - text:  "qnormGC"
+        href:  qnormGC.html
+      - text:  "Inferential Procedures"
+      - text:  "binomtestGC"
+        href:  binomtestGC.html
+      - text:  "proptestGC"
+        href:  proptestGC.html
+      - text:  "The Chi-Square Test"
+        href:  chisqtestGC.html
+      - text:  "The t-Test"
+        href:  "ttestGC.html"
+right:
+  - icon: fa-github fa-lg
+    href: https://github.com/homerhanumat/tigerstats
