@@ -14,9 +14,6 @@
 <title>The tigerstats Package</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -167,106 +164,6 @@ $(document).ready(function () {
 
 
 
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
-
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.9em;
-  padding-left: 5px;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-.tocify-subheader {
-  display: inline;
-}
-.tocify-subheader .tocify-item {
-  font-size: 0.95em;
-  padding-left: 10px;
-}
-
-</style>
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
-
-
 
 
 <div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
@@ -381,7 +278,15 @@ div.tocify {
 </div>
 
 
-<p>Welcome to the <code>tigerstats</code> R-package!</p>
+<style type="text/css">
+.title {
+  display: none;
+}
+
+</style>
+<div class="row">
+<div class="col-sm-10">
+<h3 id="welcome-to-the-tigerstats-r-package">Welcome to the <code>tigerstats</code> R-package!</h3>
 <p><code>tigerstats</code> is designed to facilitate the teaching of elementary statistics with the R programming language, especially in the RStudio integrated development environment.</p>
 <p>The menu items in the Navbar above describe some of the main features of the package. Instructors should consult the Instructor Notes. Students and instructors will find the Vignettes helpful: they offer tutorials on commonly-used functions specific to the <code>tigerstats</code> package as well as R-functions from other packages that play an important role in how the course is taught at the home institution of the package author.</p>
 <p><code>tigerstats</code> may be downloaded from CRAN:</p>
@@ -390,6 +295,8 @@ div.tocify {
 <pre><code>install.packages(&quot;devtools&quot;)
 devtools::install_github(&quot;homerhanumat/tigerstats&quot;, build_vignettes = TRUE)</code></pre>
 <p><strong>Note:</strong> In the coming months <code>tigerstats</code> will acquire some important new features that will be documented here as they are added.</p>
+</div>
+</div>
 
 
 
@@ -416,8 +323,6 @@ devtools::install_github(&quot;homerhanumat/tigerstats&quot;, build_vignettes = 
 -->
 
 
-</div>
-</div>
 
 </div>
 

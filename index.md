@@ -1,8 +1,21 @@
 ---
 title: "The tigerstats Package"
+output:
+  html_document:
+    toc_float: false
 ---
 
-Welcome to the `tigerstats` R-package!
+<style type="text/css">
+.title {
+  display: none;
+}
+
+</style>
+
+<div class="row">
+<div class="col-sm-10">
+
+### Welcome to the `tigerstats` R-package!
 
 `tigerstats` is designed to facilitate the teaching of elementary statistics with the R programming language, especially in the RStudio integrated development environment.
 
@@ -22,3 +35,6 @@ devtools::install_github("homerhanumat/tigerstats", build_vignettes = TRUE)
 ```
 
 **Note:** In the coming months `tigerstats` will acquire some important new features that will be documented here as they are added.
+
+</div>
+</div>
