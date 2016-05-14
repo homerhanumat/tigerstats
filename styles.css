@@ -31,7 +31,8 @@ table.table td a:only-child:active {
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
-  color: #ffbbbc;
+  color: #000000;
+  background-color:  #cdb99c;
 }
 .navbar-inverse .navbar-nav > li > .dropdown-menu {
   background-color: #ffa500;
