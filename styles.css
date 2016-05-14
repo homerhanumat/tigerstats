@@ -42,8 +42,8 @@ table.table td a:only-child:active {
 }
 .navbar-inverse .navbar-nav > li > .dropdown-menu > li > a:hover,
 .navbar-inverse .navbar-nav > li > .dropdown-menu > li > a:focus {
-  color: #ffbbbc;
-  background-color: #000000;
+  color: #000000;
+  background-color: #cdb99c;
 }
 .navbar-inverse .navbar-nav > li > .dropdown-menu > li > .divider {
   background-color: #000000;
@@ -93,7 +93,8 @@ table.table td a:only-child:active {
   }
   .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
-    color: #ffbbbc;
+      color: #000000;
+      background-color: #cdb99c;
   }
   .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a,
   .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover,
@@ -120,6 +121,6 @@ table.table td a:only-child:active {
     background-color: #000000;
 }
 
-.tocify-tem .list-group-item {
+.tocify .list-group-item {
     background-color: #ffa500;
 }
