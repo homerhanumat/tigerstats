@@ -5,7 +5,7 @@ left:
     href: index.html
   - text: "About"
     href:  about.html
-  - text:  "Instructors"
+  - text:  "For Instructors"
     href:  instructorNotes.html
   - text:  "Vignettes"
     menu:
@@ -51,6 +51,8 @@ left:
         href:  chisqtestGC.html
       - text:  "The t-Test"
         href:  "ttestGC.html"
+  - text: "Related"
+    href:  resources.html
 right:
   - icon: fa-github fa-lg
     href: https://github.com/homerhanumat/tigerstats

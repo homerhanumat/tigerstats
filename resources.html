@@ -11,7 +11,7 @@
 
 
 
-<title>Using lattice’s bwplot()</title>
+<title>Related Packages and Resources</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
@@ -379,65 +379,77 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Using lattice’s bwplot()</h1>
+<h1 class="title toc-ignore">Related Packages and Resources</h1>
 
 </div>
 
 
-<div id="preliminaries" class="section level1">
-<h1>Preliminaries</h1>
-<p>The function <code>bwplot()</code> makes box-and-whisker plots for numerical variables. It comes from the <code>lattice</code> package for statistical graphics, which is pre-installed with every distribution of R. Also, package <code>tigerstats</code> depends on lattice, so if you load <code>tigerstats</code>:</p>
-<pre class="r"><code>require(tigerstats)</code></pre>
-<p>then <code>lattice</code> will be loaded as well.</p>
-</div>
-<div id="one-numerical-variable" class="section level1">
-<h1>One Numerical Variable</h1>
-<p>For a box-and-whisker plot of the fastest speeds ever driven by students in the <code>m111survey</code> data frame, use the command:</p>
-<pre class="r"><code>bwplot(~fastest,data=m111survey,
-       xlab=&quot;speed (mph)&quot;,
-       main=&quot;Fastest Speed Ever Driven&quot;)</code></pre>
-<p><img src="bwplot_files/figure-html/bwtutfastest-1.png" width="432" /></p>
-<p>Note the use of:</p>
-<ul>
-<li>the <code>xlab</code> argument to label the horizontal axis, complete with units (miles per hour);</li>
-<li>the <code>main</code> argument to provide a brief but descriptive title for the graph.</li>
-</ul>
-</div>
-<div id="numerical-and-factor-variable" class="section level1">
-<h1>Numerical and Factor Variable</h1>
-<p>Say you want to know:</p>
-<blockquote>
-<p><em>Who tends to drive faster: the guys or the gals?</em></p>
-</blockquote>
-<p>Then you are studying the relationship between the numerical variable <strong>fastest</strong> and the factor variable <strong>sex</strong>. <code>bwplot()</code> will break the fastest speeds up by sex and parallel box-and-whisker plots, if you run the following command:</p>
-<pre class="r"><code>bwplot(fastest~sex,data=m111survey,
-       ylab=&quot;speed (mph)&quot;,
-       main=&quot;Fastest Speed Ever Driven,\nby Sex of Subject&quot;)</code></pre>
-<p><img src="bwplot_files/figure-html/bwtutfastestsex-1.png" width="432" /></p>
-<p>Note the use of the “” to create a two-line title. This trick can come in handy if your title is long!</p>
-<p>If you prefer your box-and-whisker plots to be horizontal, then you can reverse the order of the variables in the formula:</p>
-<pre class="r"><code>bwplot(sex~fastest,data=m111survey,
-       xlab=&quot;speed (mph)&quot;,
-       main=&quot;Fastest Speed Ever Driven,\nby Sex of Subject&quot;)</code></pre>
-<p><img src="bwplot_files/figure-html/bwtutfastestsexhoriz-1.png" width="432" /></p>
-</div>
-<div id="warning" class="section level1">
-<h1>Warning</h1>
-<p>Box-and-Whisker plots are great for studying:</p>
-<ul>
-<li>one numerical variable</li>
-<li>the relationship between a numerical variable and a factor variable.</li>
-</ul>
-<p>However, if you try to study the relationship between two numerical variables with <code>bwplot()</code>, you will get bizarre results.</p>
-<p>For example, suppose you want to study the relationship between fastest speed ever driven (<strong>fastest</strong>) and the grade point average (<strong>GPA</strong>) of the subjects in <code>m111survey</code>:</p>
-<pre class="r"><code>bwplot(fastest~GPA,data=m111survey,
-       ylab=&quot;speed (mph)&quot;,
-       xbal=&quot;grade-point average&quot;,
-       main=&quot;Fastes Speed Ever Driven,\nby Grade-Point Average&quot;)</code></pre>
-<p><img src="bwplot_files/figure-html/bwtutbad-1.png" width="432" /></p>
-<p><code>bwplot()</code> expects at least one of the two variable in the formula to be numerical. When it is presented with two numerical variables it politely makes do—apparently converting <strong>fastest</strong> into a new factor variable—but the resulting graph doesn’t make any sense at all.</p>
-<p>Use <code>xyplot()</code> (scatterplots) to study the relationship between two numerical variables.</p>
-</div>
+<a href="https://www.causeweb.org/cause/" target = "_blank">
+<h3>
+CAUSE
+</h3>
+<p></a></p>
+<p>The Consortium for the Advancement of Undergraduate Statistics Education sponsors webinars, online resources, and conferences focused on undergraduate statistics education. We especially recommend USCOTS, their biennial face-to-face conference and eCOTS, its alternate-year virtual counterpart.</p>
+<a href="http://mosaic-web.org/" target = "_blank">
+<h3>
+Project MOSAIC
+</h3>
+<p></a></p>
+<p><code>tigerstats</code> is intended to be used alongside of package <code>mosaic</code>, which is the pioneering package to mediate R for undergraduate students. If you want to learn how to teach with <code>tigerstats</code>, start by learning how to teach with <code>mosaic</code>. The site above has links to instructor guides and other <code>mosaic</code>-related materials.</p>
+<a href="https://statistics.georgetowncollege.edu" target = "_blank">
+<h3>
+GC Stats
+</h3>
+<p></a></p>
+<p>This is the current website for Elementary Statistics at Georgetown College. You will find here the Course Notes (scheduled to be seriously upgraded in the next year or so) and some rather out-of-date YouTube videos.</p>
+<a href="https://github.com/homerhanumat/mat111devGH" target = "_blank">
+<h3>
+<code>mat111devGC</code>
+</h3>
+<p></a></p>
+<p>Repository for selected non-sensitive course materials for the course we teach: slides, a few assignments, etc. Feel free to modify and re-use.</p>
+<a href="https://github.com/homerhanumat/shinyGC" target = "_blank">
+<h3>
+<code>shinyGC</code>
+</h3>
+<p></a></p>
+<p><a href="http://shiny.rstudio.com/" target="_blank">Shiny</a> is a web-app development framework powered by R: if you know some R then you can write Shiny apps without having to think much about HTML, JavaScript, CSS and all that. We use Shiny apps almost daily when teaching statistics. Feel free to use and/or modify the apps in this repo and to host them on your own Shiny Server.</p>
+<a href="https://github.com/homerhanumat/tigerData" target = "_blank">
+<h3>
+<code>tigerData</code>
+</h3>
+<p></a></p>
+<p>A few additional datasets that we find useful in our classes.</p>
+<a href="https://github.com/homerhanumat/tigerTree" target = "_blank">
+<h3>
+<code>tigerTree</code>
+</h3>
+<p></a></p>
+<p>Functions to teach predictive modeling (classification and regression trees) to elementary students. Includes a locally-run Shiny app that assists in model-selection.</p>
+<a href="https://github.com/homerhanumat/addinplots" target = "_blank">
+<h3>
+<code>addinplots</code>
+</h3>
+<p></a></p>
+<p>RStudio Addins are locally-run Shiny apps that can interact directly with your R session: they can make use of objects in your Global Environment and can deliver results to a source document of your choosing. We designed <code>addinplots</code> as a GUI for the <code>lattice</code> pltting system, enabling students to incorporate reasonably complex and customized graphs into their Data Analysis reports without having to spend time learning the fine points of <code>lattice</code> coding.</p>
+<a href="cameverett.github.io/itr/" target = "_blank">
+<h3>
+IT-R
+</h3>
+<p></a></p>
+<p>We use the RStudio Server for all of our R-teaching, as it eliminates the—for students—initially daunting task of installing R and RStudio on their own machines, and guarantees a uniform computing environment for the class. The IT-R project is the work of two Georgetown College students: Cameron Everett and Chase Toy. Cam and Chase wrote some Bash scripts to facilitate automated routine tasks such as the collection and return of assignments through the Server and the “publication” of documents to students’ Home folders. <strong>Note:</strong> We expect this approach to superceded by “RSConnect” a forthcoming initiative of RStudio.</p>
+<a href="https://github.com/WilliamKitto/R-and-Rstudio-from-flash-drive" target = "_blank">
+<h3>
+R Course on a USB Stick
+</h3>
+<p></a></p>
+<p>William Kitto and colleagues at Antelope Valley College have developed an interesting classroom alternative to the RStudio Server environment: they put R, RStudio and a bunch of course materials on USB sticks! They have also integrated their setup very nicely with Moodle.</p>
+<a href="http://campus.murraystate.edu/academic/faculty/cmecklin/RWebpage.html" target = "_blank">
+<h3>
+Teaching With R Commander
+</h3>
+<p></a></p>
+<p>R Commander is a simple GUI for R. It doesn’t play well with RStudio, but it’s a viable no-coding alternative to teaching with R, as Christopher Mecklin demonstrates in the above links.</p>
 
 
 
