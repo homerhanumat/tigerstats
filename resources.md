@@ -34,7 +34,7 @@ Functions to teach predictive modeling (classification and regression trees) to 
 
 RStudio Addins are locally-run Shiny apps that can interact directly with your R session:  they can make use of objects in your Global Environment and can deliver results to a source document of your choosing.  We designed `addinplots` as a GUI for the `lattice` pltting system, enabling students to incorporate reasonably complex and customized graphs into their Data Analysis reports without having to spend time learning the fine points of `lattice` coding.
 
-<a href="cameverett.github.io/itr/" target = "_blank"><h3>IT-R</h3></a>
+<a href="http://cameverett.github.io/itr/" target = "_blank"><h3>IT-R</h3></a>
 
 We use the RStudio Server for all of our R-teaching, as it eliminates the---for students---initially daunting task  of installing R and RStudio on their own machines, and guarantees a uniform computing environment for the class.  The IT-R project is the work of two Georgetown College students:  Cameron Everett and Chase Toy.  Cam and Chase wrote some Bash scripts to facilitate automated routine tasks such as the collection and return of assignments through the Server and the "publication" of documents to students' Home folders.  **Note:**  We expect this approach to superceded by "RSConnect" a forthcoming initiative of RStudio.
 
