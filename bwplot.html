@@ -155,7 +155,7 @@ $(document).ready(function () {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="site_libs/navigation-1.0/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -317,6 +317,9 @@ div.tocify {
     <li>
       <a href="histogram.html">Histograms</a>
     </li>
+    <li>
+      <a href="xyplot.html">Scatter Plots</a>
+    </li>
     <li class="dropdown-header">Numerical Summaries</li>
     <li>
       <a href="favstats.html">Mosaic's Favstats</a>
@@ -437,6 +440,25 @@ div.tocify {
 <p><img src="bwplot_files/figure-html/bwtutbad-1.png" width="432" /></p>
 <p><code>bwplot()</code> expects at least one of the two variable in the formula to be numerical. When it is presented with two numerical variables it politely makes do—apparently converting <strong>fastest</strong> into a new factor variable—but the resulting graph doesn’t make any sense at all.</p>
 <p>Use <code>xyplot()</code> (scatterplots) to study the relationship between two numerical variables.</p>
+</div>
+<div id="additional-variables" class="section level1">
+<h1>Additional Variables</h1>
+<p>You can incorporate additional variables into your analysis by <em>facetting</em>, i.e., producing a plot with separate panels for each of several subgroups of the observations, as determined by one or two other variables.</p>
+<p>Suppose, for example, that we would like to study the relationship between sex and fastest speed ever driven, but to break the subjects down further into groups determined by their height and by where they prefer to sit in a classroom. The following code accomplishes this:</p>
+<pre class="r"><code>Height &lt;- equal.count(m111survey$height, number = 2, overlap = 0.1)
+bwplot(sex ~ fastest | Height * seat,
+    data = m111survey,
+    layout = c(2,3))</code></pre>
+<p><img src="bwplot_files/figure-html/bwtutfacet-1.png" width="432" /></p>
+<p>In the code above, the line:</p>
+<pre class="r"><code>Height &lt;- equal.count(m111survey$height, number = 2, overlap = 0.1)</code></pre>
+<p>prepares us to facet by height. The <code>equal.count()</code> function takes a numerical variable and divides its values into groups of approximately equal size. The number of the groups is specified by the <code>number</code> argument. In this case we are asking for two groups: “shorter” students and “taller” students. The groups are permitted to contain some members in common, and the allowed percentage intersection is specified by the <code>overlap</code> argument. (Setting <code>overlap = 0</code> would result in completely disjoint groups.) The new variable <code>Height</code> is called a <em>shingle</em>, but you can think of it as a factor variable with two values: shorter and taller.</p>
+<p>The formula <code>fastest ~ sex | Height * seat</code> <em>facets</em> by <code>Height</code> and <code>seat</code>. The variables by which you facet appear after a <code>|</code> bar, anf if you facet by two variables then you must separate them with a <code>*</code>. Since<code>Height</code> has two values and `seat has three values and <span class="math inline">\(2 \times 3 = 6\)</span>, we arrive at a plot with six panels.</p>
+<p>The <code>layout</code> argument determines the number of rows and columns in our facet-ted plot. Setting <code>layout</code> to <code>c(2,3)</code> specified two columns and three rows. (Note that the columns are specified first!)</p>
+</div>
+<div id="further-refinements" class="section level1">
+<h1>Further Refinements</h1>
+<p>Box-and-whisker plots can be combined with other types of plots such as violin plots or individual-value plots. For these and other refinements, consult the <strong>Lattice Box-Whisker Plot</strong> Addin in RStudio.</p>
 </div>
 
 

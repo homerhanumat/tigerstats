@@ -92,13 +92,13 @@ barchartGC(SexSeat,type="percent",
 
 # Flat Bar Charts
 
-To study the relationship between tow factor variables through numericla summaries, you might make a table of row percentages, as follows:
+To study the relationship between two factor variables through numerical summaries you might make a table of row percentages, as follows:
 
 ```{r}
 rowPerc(SexSeat)
 ```
 
-To geta bar chart that looks like a visual "copy" of the row percentages, set the argument `flat` to `TRUE`:
+To get a bar chart that looks like a visual "copy" of the row percentages, set the argument `flat` to `TRUE`:
 
 ```{r}
 barchartGC(SexSeat,type="percent",
@@ -146,3 +146,7 @@ barchartGC(~fastest,data=m111survey,
 
 
 R tries to accommodate your request, but it ends up making something that resembles a very amateurish histogram.  R draws a separate bar for each speed that appears in the data, making for a very "busy" graph.  Worse yet, consecutive speeds are equally spaced from each other, even though the differences between consecutive speeds vary.  For example, the spacing between the 90 ans 91 mph bars is the same as the spacing between the 160 and 190 mph bars.  This is very misleading!
+
+# Additional Variables and Further Refinements
+
+You can incorporate additional variables into your analysis by *facetting*, i.e., producing a plot with separate panels for each of several subgroups of the observations, as determined by one or two other variables.  For this and further refinements, use the **Lattice Bar Chart** Addin in RStudio.

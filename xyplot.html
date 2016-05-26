@@ -155,7 +155,7 @@ $(document).ready(function () {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="site_libs/navigation-1.0/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -317,6 +317,9 @@ div.tocify {
     <li>
       <a href="histogram.html">Histograms</a>
     </li>
+    <li>
+      <a href="xyplot.html">Scatter Plots</a>
+    </li>
     <li class="dropdown-header">Numerical Summaries</li>
     <li>
       <a href="favstats.html">Mosaic's Favstats</a>
@@ -412,8 +415,10 @@ div.tocify {
 <p>When we think of one variable as explanatory and the other as the response, it is common to put the explanatory on the horizontal axis and the response on the vertical axis. This is accomplished by the formula</p>
 <p><span class="math display">\[response \sim explanatory\]</span></p>
 </div>
-<div id="including-a-regression-line" class="section level1">
-<h1>Including a Regression Line</h1>
+<div id="including-smoothers" class="section level1">
+<h1>Including Smoothers</h1>
+<div id="adding-a-regression-line" class="section level2">
+<h2>Adding a Regression Line</h2>
 <p>If you want desire a regression line along with your scatterplot, use the argument <code>type</code>, as follows:</p>
 <pre class="r"><code>xyplot(fastest~GPA,data=m111survey,
        xlab=&quot;grade point average&quot;,
@@ -423,18 +428,92 @@ div.tocify {
 <p><img src="xyplot_files/figure-html/xytutfastestgpareg-1.png" width="528" /></p>
 <p>The list given by <code>c(&quot;p&quot;,&quot;r&quot;)</code> tells <code>xyplot()</code> that we want both the points (“p”) and a regression line (“r”).</p>
 </div>
-<div id="playing-with-points" class="section level1">
-<h1>Playing With Points</h1>
-<p>You can vary the type of point using the <code>pch</code> argument, and the color of the points with the <code>col</code> argument. For example:</p>
+<div id="adding-a-loess-curve" class="section level2">
+<h2>Adding a Loess Curve</h2>
+<p>You can also get loess curves:</p>
 <pre class="r"><code>xyplot(fastest~GPA,data=m111survey,
        xlab=&quot;grade point average&quot;,
        ylab=&quot;speed (mph)&quot;,
        main=&quot;Fastest Speed Ever Driven,\nby Grade Point Average&quot;,
-       pch=19,col=&quot;blue&quot;)</code></pre>
+       type=c(&quot;p&quot;,&quot;smooth&quot;))</code></pre>
+<p><img src="xyplot_files/figure-html/xytutfastestgpaloess-1.png" width="528" /></p>
+</div>
+</div>
+<div id="grouping" class="section level1">
+<h1>Grouping</h1>
+<p>The <code>groups</code> argument enables you to introduce a third variable into your analysis, so long as that variable is a factor. For example, suppose you want to study the relationship between <code>fastest</code> and <code>GPA</code>, but see if the nature of relationship is different for women than it is for men. You can do this with the <code>groups</code> argument:</p>
+<pre class="r"><code>xyplot(fastest~GPA,data=m111survey,
+       groups = sex,
+       auto.key = TRUE,
+       xlab=&quot;grade point average&quot;,
+       ylab=&quot;speed (mph)&quot;,
+       main=&quot;Fastest Speed Ever Driven,\nby Grade Point Average&quot;,
+       type=c(&quot;p&quot;,&quot;r&quot;))</code></pre>
+<p><img src="xyplot_files/figure-html/xytutfastestgpareggroups-1.png" width="528" /></p>
+<p>Setting <code>groups = sex</code> prodcued to scatterplots (with regression lines), one for the gals and another for the guys. The legend at the top of the graph was produced by <code>auto.key = TRUE</code>.</p>
+</div>
+<div id="types-of-points" class="section level1">
+<h1>Types of Points</h1>
+<p>You can vary the type of point using the <code>pch</code> argument. For example:</p>
+<pre class="r"><code>xyplot(fastest~GPA,data=m111survey,
+       xlab=&quot;grade point average&quot;,
+       ylab=&quot;speed (mph)&quot;,
+       main=&quot;Fastest Speed Ever Driven,\nby Grade Point Average&quot;,
+       pch=19)</code></pre>
 <p><img src="xyplot_files/figure-html/xytutfastestgpapoints-1.png" width="528" /></p>
 <p>There are 25 different values for <code>pch</code>: the integers 1 through 25.</p>
-<p>There are many, many values for <code>col</code>. You can explore 657 of them with the command:</p>
+<div id="colors" class="section level2">
+<h2>Colors</h2>
+<div id="single-color" class="section level3">
+<h3>Single Color</h3>
+<p>If you want to set a specific color for all of the points on your plot, the <code>col</code> argument is your friend:</p>
+<pre class="r"><code>xyplot(fastest~GPA,data=m111survey,
+       xlab=&quot;grade point average&quot;,
+       ylab=&quot;speed (mph)&quot;,
+       main=&quot;Fastest Speed Ever Driven,\nby Grade Point Average&quot;,
+       pch = 19,
+       col = &quot;red&quot;)</code></pre>
+<p><img src="xyplot_files/figure-html/xytutfastestgpapointsred-1.png" width="528" /></p>
+<p>There are many, many values for <code>col</code>. You can explore all 657 of the named colors with the command:</p>
 <pre class="r"><code>colors()</code></pre>
+</div>
+<div id="color-schemes" class="section level3">
+<h3>Color Schemes</h3>
+<p>When you use the <code>groups</code> argument, you may want to customize the colors that go with each group. This is accomplished by temporarily changing the <code>lattice</code> parameter settings via the <code>par.settings</code> argument. For example to make the female points blue and the male points red, do the following:</p>
+<pre class="r"><code>xyplot(fastest~GPA,data=m111survey,
+       groups = sex,
+       auto.key = TRUE,
+       par.settings = list(superpose.symbol = list(col = c(&quot;blue&quot;,&quot;red&quot;),
+                                                   pch = 19),
+                           superpose.line = list(col = c(&quot;blue&quot;,&quot;red&quot;),
+                                                 lwd = 2)),
+       xlab=&quot;grade point average&quot;,
+       ylab=&quot;speed (mph)&quot;,
+       main=&quot;Fastest Speed Ever Driven,\nby Grade Point Average&quot;,
+       type=c(&quot;p&quot;,&quot;smooth&quot;))</code></pre>
+<p><img src="xyplot_files/figure-html/xytutfastestgpareggroupscol-1.png" width="528" /></p>
+<p>In <code>par.settings</code> the <code>superpose.symbol</code> list specifies properties of the points in the scatterlot. <code>superpose.line</code> specifies properties of the lines drawn for each group. (Setting <code>lwd</code> to 2 made the loess curves a bit thicker.)</p>
+</div>
+</div>
+</div>
+<div id="additional-variables" class="section level1">
+<h1>Additional Variables</h1>
+<p>You can incorporate additional variables into your analysis by <em>facetting</em>, i.e., producing a plot with separate panels for each of several subgroups of the observations, as determined by one or two other variables. Unlike the variable in the <code>groups</code> argument, these don’t have to be factor variables!</p>
+<p>Suppose, for example, that we would like to study the relationship between GPA and fastest speed ever driven, but to break the subjects down further into groups determined by their height and by where they prefer to sit in a classroom. The following code accomplishes this:</p>
+<pre class="r"><code>Height &lt;- equal.count(m111survey$height, number = 2, overlap = 0.1)
+xyplot(fastest ~ GPA | Height * seat,
+    data = m111survey, pch = 19, type = c(&quot;p&quot;,&quot;r&quot;),
+    layout = c(2,3))</code></pre>
+<p><img src="xyplot_files/figure-html/bwtutfacet-1.png" width="528" /></p>
+<p>In the code above, the line:</p>
+<pre class="r"><code>Height &lt;- equal.count(m111survey$height, number = 2, overlap = 0.1)</code></pre>
+<p>prepares us to facet by height. The <code>equal.count()</code> function takes a numerical variable and divides its values into groups of approximately equal size. The number of the groups is specified by the <code>number</code> argument. In this case we are asking for two groups: “shorter” students and “taller” students. The groups are permitted to contain some members in common, and the allowed percentage intersection is specified by the <code>overlap</code> argument. (Setting <code>overlap = 0</code> would result in completely disjoint groups.) The new variable <code>Height</code> is called a <em>shingle</em>, but you can think of it as a factor variable with two values: shorter and taller.</p>
+<p>The formula <code>fastest ~ sex | Height * seat</code> <em>facets</em> by <code>Height</code> and <code>seat</code>. The variables by which you facet appear after a <code>|</code> bar, anf if you facet by two variables then you must separate them with a <code>*</code>. Since <code>Height</code> has two values and `seat has three values and <span class="math inline">\(2 \times 3 = 6\)</span>, we arrive at a plot with six panels.</p>
+<p>The <code>layout</code> argument determines the number of rows and columns in our facet-ted plot. Setting <code>layout</code> to <code>c(2,3)</code> specified two columns and three rows. (Note that the columns are specified first!)</p>
+</div>
+<div id="further-refinements" class="section level1">
+<h1>Further Refinements</h1>
+<p>For other refinements, consult the <strong>Lattice Scatter Plot</strong> Addin in RStudio.</p>
 </div>
 
 

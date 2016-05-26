@@ -23,6 +23,8 @@ left:
         href: densityplot.html
       - text: "Histograms"
         href: histogram.html
+      - text: "Scatter Plots"
+        href: xyplot.html
       - text: "Numerical Summaries"
       - text: "Mosaic's Favstats"
         href: favstats.html

@@ -54,7 +54,7 @@ Then you might wish to study the relationship between the numerical variable **f
 
 ## Separate Panels
 
-You can get a density plot for each vlaue of the favtor variable:
+You can get a density plot for each value of the factor variable:
 
 ```{r dentutfastestsexcond}
 densityplot(~fastest|sex,data=m111survey,
@@ -62,11 +62,12 @@ densityplot(~fastest|sex,data=m111survey,
        main="Fastest Speed Ever Driven,\nby Sex")
 ```
 
-Note that to produce separate plots, you "condition" on the factor variable with the formula:
+Note that to produce separate plots, you *facet* on the factor variable using the formula:
 
-$$\sim numerical \vert factor$$
+$$\sim numerical\  \vert \ factor$$
 
-Note also the use of "\n" to split the title into two lines:  this is a useful trick when the title is long.
+
+Note also the use of "`\n`" to split the title into two lines:  this is a useful trick when the title is long.
 
 You can determine the layout of the separate plots with the `layout` argument:
 
@@ -96,6 +97,21 @@ Note the use of the `auto,key` argument to produce the legend at the top, so tha
 
 Many people think that grouped density plots allow for easier comparison than side-by-side plots do---at least if the number of groups is small.
 
+## Setting the Colors
+
+When you use `groups` arugment to make more than one density plot in the same panel, it is sometimes nice to be able to customize the colors that represent the groups. This is accomplished by temporarily changing the `lattice` parameter settings via the `par.settings` argument.  For example to make the female plot blue and the male plot red, do the following:
+
+```{r dentutfastestsexgroupscolors}
+densityplot(~fastest,data=m111survey,
+       groups=sex,
+       par.settings = list(superpose.line = list(col = c("blue","red"))),
+       xlab="speed (mph)",
+       main="Fastest Speed Ever Driven,\nby Sex",
+       plot.points=FALSE,
+       auto.key=TRUE)
+```
+
+
 # From and To
 
 In the `imagpop` data frame, the variable **kkardashtemp** records the rating given, by each individual in the data frame, for the celebrity Kim Kardashian.  The possible ratings range from 0 to 100.
@@ -114,4 +130,37 @@ densityplot(~kkardashtemp,data=imagpop,
             plot.points=FALSE,
             from=0,to=100)
 ```
+
+# Additional Variables
+
+We saw above that you can incorporate additional variables into your analysis by *facetting*, i.e., producing a plot with separate panels for each of several subgroups of the observations, as determined by a separate variable.  You can also do this with two other variables, and they don't have to be factors!
+
+Suppose, for example, that we would like to study the relationship between sex and fastest speed ever driven, but to break the subjects down further into groups determined by their height and by where they prefer to sit in a classroom.  The following code accomplishes this:
+
+```{r bwtutfacet}
+Height <- equal.count(m111survey$height, number = 2, overlap = 0.1)
+densityplot(~fastest | Height * seat,
+  data = m111survey,
+  groups = sex,
+  auto.key = TRUE,
+  plot.points = FALSE,
+	layout = c(2,3))
+```
+
+In the code above, the line:
+
+```{r eval = FALSE}
+Height <- equal.count(m111survey$height, number = 2, overlap = 0.1)
+```
+
+prepares us to facet by height.  The `equal.count()` function takes a numerical variable and divides its values into groups of approximately equal size.  The number of the groups is specified by the `number` argument.  In this case we are asking for two groups:  "shorter" students and "taller" students.  The groups are permitted to contain some members in common, and the allowed percentage intersection is specified by the `overlap` argument.  (Setting `overlap = 0` would result in completely disjoint groups.)  The new variable `Height` is called a *shingle*, but you can think of it as a factor variable with two values: shorter and taller.
+
+The formula `fastest ~ sex | Height * seat` *facets* by `Height` and `seat`. The variables by which you facet appear after a `|` bar, anf if you facet by two variables then you must separate them with a `*`. Since`Height` has two values and `seat has three values and $2 \times 3 = 6$, we arrive at a plot with six panels.
+
+The `layout` argument determines the number of rows and columns in our facet-ted plot.  Setting `layout` to `c(2,3)` specified two columns and three rows.  (Note that the columns are specified first!)
+
+
+# Further Refinements
+
+For some other refinements, consult the **Lattice Box-Whisker Plot** Addin in RStudio.
 

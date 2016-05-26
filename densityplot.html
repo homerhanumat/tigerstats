@@ -155,7 +155,7 @@ $(document).ready(function () {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="site_libs/navigation-1.0/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -317,6 +317,9 @@ div.tocify {
     <li>
       <a href="histogram.html">Histograms</a>
     </li>
+    <li>
+      <a href="xyplot.html">Scatter Plots</a>
+    </li>
     <li class="dropdown-header">Numerical Summaries</li>
     <li>
       <a href="favstats.html">Mosaic's Favstats</a>
@@ -418,14 +421,14 @@ div.tocify {
 <p>Then you might wish to study the relationship between the numerical variable <strong>fastest</strong> and the factor variable <strong>sex</strong>. You can use density plots in two ways in order to perform such a study.</p>
 <div id="separate-panels" class="section level2">
 <h2>Separate Panels</h2>
-<p>You can get a density plot for each vlaue of the favtor variable:</p>
+<p>You can get a density plot for each value of the factor variable:</p>
 <pre class="r"><code>densityplot(~fastest|sex,data=m111survey,
        xlab=&quot;speed (mph)&quot;,
        main=&quot;Fastest Speed Ever Driven,\nby Sex&quot;)</code></pre>
 <p><img src="densityplot_files/figure-html/dentutfastestsexcond-1.png" width="528" /></p>
-<p>Note that to produce separate plots, you “condition” on the factor variable with the formula:</p>
-<p><span class="math display">\[\sim numerical \vert factor\]</span></p>
-<p>Note also the use of “” to split the title into two lines: this is a useful trick when the title is long.</p>
+<p>Note that to produce separate plots, you <em>facet</em> on the factor variable using the formula:</p>
+<p><span class="math display">\[\sim numerical\  \vert \ factor\]</span></p>
+<p>Note also the use of “<code>\n</code>” to split the title into two lines: this is a useful trick when the title is long.</p>
 <p>You can determine the layout of the separate plots with the <code>layout</code> argument:</p>
 <pre class="r"><code>densityplot(~fastest|sex,data=m111survey,
        xlab=&quot;speed (mph)&quot;,
@@ -447,6 +450,18 @@ div.tocify {
 <p>Note the use of the <code>auto,key</code> argument to produce the legend at the top, so that the reader can tell which plot goes with which sex.</p>
 <p>Many people think that grouped density plots allow for easier comparison than side-by-side plots do—at least if the number of groups is small.</p>
 </div>
+<div id="setting-the-colors" class="section level2">
+<h2>Setting the Colors</h2>
+<p>When you use <code>groups</code> arugment to make more than one density plot in the same panel, it is sometimes nice to be able to customize the colors that represent the groups. This is accomplished by temporarily changing the <code>lattice</code> parameter settings via the <code>par.settings</code> argument. For example to make the female plot blue and the male plot red, do the following:</p>
+<pre class="r"><code>densityplot(~fastest,data=m111survey,
+       groups=sex,
+       par.settings = list(superpose.line = list(col = c(&quot;blue&quot;,&quot;red&quot;))),
+       xlab=&quot;speed (mph)&quot;,
+       main=&quot;Fastest Speed Ever Driven,\nby Sex&quot;,
+       plot.points=FALSE,
+       auto.key=TRUE)</code></pre>
+<p><img src="densityplot_files/figure-html/dentutfastestsexgroupscolors-1.png" width="528" /></p>
+</div>
 </div>
 <div id="from-and-to" class="section level1">
 <h1>From and To</h1>
@@ -460,6 +475,28 @@ div.tocify {
             plot.points=FALSE,
             from=0,to=100)</code></pre>
 <p><img src="densityplot_files/figure-html/dentutkkardfromto-1.png" width="528" /></p>
+</div>
+<div id="additional-variables" class="section level1">
+<h1>Additional Variables</h1>
+<p>We saw above that you can incorporate additional variables into your analysis by <em>facetting</em>, i.e., producing a plot with separate panels for each of several subgroups of the observations, as determined by a separate variable. You can also do this with two other variables, and they don’t have to be factors!</p>
+<p>Suppose, for example, that we would like to study the relationship between sex and fastest speed ever driven, but to break the subjects down further into groups determined by their height and by where they prefer to sit in a classroom. The following code accomplishes this:</p>
+<pre class="r"><code>Height &lt;- equal.count(m111survey$height, number = 2, overlap = 0.1)
+densityplot(~fastest | Height * seat,
+  data = m111survey,
+  groups = sex,
+  auto.key = TRUE,
+  plot.points = FALSE,
+    layout = c(2,3))</code></pre>
+<p><img src="densityplot_files/figure-html/bwtutfacet-1.png" width="528" /></p>
+<p>In the code above, the line:</p>
+<pre class="r"><code>Height &lt;- equal.count(m111survey$height, number = 2, overlap = 0.1)</code></pre>
+<p>prepares us to facet by height. The <code>equal.count()</code> function takes a numerical variable and divides its values into groups of approximately equal size. The number of the groups is specified by the <code>number</code> argument. In this case we are asking for two groups: “shorter” students and “taller” students. The groups are permitted to contain some members in common, and the allowed percentage intersection is specified by the <code>overlap</code> argument. (Setting <code>overlap = 0</code> would result in completely disjoint groups.) The new variable <code>Height</code> is called a <em>shingle</em>, but you can think of it as a factor variable with two values: shorter and taller.</p>
+<p>The formula <code>fastest ~ sex | Height * seat</code> <em>facets</em> by <code>Height</code> and <code>seat</code>. The variables by which you facet appear after a <code>|</code> bar, anf if you facet by two variables then you must separate them with a <code>*</code>. Since<code>Height</code> has two values and `seat has three values and <span class="math inline">\(2 \times 3 = 6\)</span>, we arrive at a plot with six panels.</p>
+<p>The <code>layout</code> argument determines the number of rows and columns in our facet-ted plot. Setting <code>layout</code> to <code>c(2,3)</code> specified two columns and three rows. (Note that the columns are specified first!)</p>
+</div>
+<div id="further-refinements" class="section level1">
+<h1>Further Refinements</h1>
+<p>For some other refinements, consult the <strong>Lattice Box-Whisker Plot</strong> Addin in RStudio.</p>
 </div>
 
 

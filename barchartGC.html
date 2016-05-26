@@ -155,7 +155,7 @@ $(document).ready(function () {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="site_libs/navigation-1.0/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -317,6 +317,9 @@ div.tocify {
     <li>
       <a href="histogram.html">Histograms</a>
     </li>
+    <li>
+      <a href="xyplot.html">Scatter Plots</a>
+    </li>
     <li class="dropdown-header">Numerical Summaries</li>
     <li>
       <a href="favstats.html">Mosaic's Favstats</a>
@@ -442,13 +445,13 @@ SexSeat</code></pre>
 </div>
 <div id="flat-bar-charts" class="section level1">
 <h1>Flat Bar Charts</h1>
-<p>To study the relationship between tow factor variables through numericla summaries, you might make a table of row percentages, as follows:</p>
+<p>To study the relationship between two factor variables through numerical summaries you might make a table of row percentages, as follows:</p>
 <pre class="r"><code>rowPerc(SexSeat)</code></pre>
 <pre><code>##         seat
 ## sex      1_front 2_middle 3_back  Total
 ##   female   47.50    40.00  12.50 100.00
 ##   male     25.81    51.61  22.58 100.00</code></pre>
-<p>To geta bar chart that looks like a visual “copy” of the row percentages, set the argument <code>flat</code> to <code>TRUE</code>:</p>
+<p>To get a bar chart that looks like a visual “copy” of the row percentages, set the argument <code>flat</code> to <code>TRUE</code>:</p>
 <pre class="r"><code>barchartGC(SexSeat,type=&quot;percent&quot;,
            main=&quot;Sex and Seating Preference\nat Georgetown&quot;,
            ylab=&quot;Sex of student&quot;,
@@ -482,6 +485,10 @@ SexSeat</code></pre>
            main=&quot;Fastest Speed Ever Driven&quot;)</code></pre>
 <p><img src="barchartGC_files/figure-html/barchartfastest-1.png" width="672" /></p>
 <p>R tries to accommodate your request, but it ends up making something that resembles a very amateurish histogram. R draws a separate bar for each speed that appears in the data, making for a very “busy” graph. Worse yet, consecutive speeds are equally spaced from each other, even though the differences between consecutive speeds vary. For example, the spacing between the 90 ans 91 mph bars is the same as the spacing between the 160 and 190 mph bars. This is very misleading!</p>
+</div>
+<div id="additional-variables-and-further-refinements" class="section level1">
+<h1>Additional Variables and Further Refinements</h1>
+<p>You can incorporate additional variables into your analysis by <em>facetting</em>, i.e., producing a plot with separate panels for each of several subgroups of the observations, as determined by one or two other variables. For this and further refinements, use the <strong>Lattice Bar Chart</strong> Addin in RStudio.</p>
 </div>
 
 

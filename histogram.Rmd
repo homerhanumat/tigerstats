@@ -118,9 +118,9 @@ histogram(~fastest|sex,data=m111survey,
        breaks=seq(from=60,to=190,by=10))
 ```
 
-Note that to produce side-by-side histograms, you "condition" on the factor variable with the formula:
+Note that to produce side-by-side histograms, you *facet* on the factor variable with the formula:
 
-$$\sim numerical \vert factor$$
+$$\sim numerical\  \vert \ factor$$
 
 Note also the use of "\\n" to split the title into two lines:  this is a useful trick when the title is long.
 
@@ -134,4 +134,34 @@ histogram(~fastest|sex,data=m111survey,
        breaks=seq(from=60,to=190,by=10),
        layout=c(1,2))
 ```
+
+# Additional Variables
+
+We saw above that you can incorporate additional variables into your analysis by *facetting*, i.e., producing a plot with separate panels for each of several subgroups of the observations, as determined by a separate variable.  You can also do this with two other variables, and they don't have to be factors!
+
+Suppose, for example, that we would like to study the relationship the fastest speed ever driven, but to break the subjects down further into groups determined by their height and by where they prefer to sit in a classroom.  The following code accomplishes this:
+
+```{r bwtutfacet}
+Height <- equal.count(m111survey$height, number = 2, overlap = 0.1)
+histogram(~fastest | Height * seat,
+  data = m111survey,
+	layout = c(2,3))
+```
+
+In the code above, the line:
+
+```{r eval = FALSE}
+Height <- equal.count(m111survey$height, number = 2, overlap = 0.1)
+```
+
+prepares us to facet by height.  The `equal.count()` function takes a numerical variable and divides its values into groups of approximately equal size.  The number of the groups is specified by the `number` argument.  In this case we are asking for two groups:  "shorter" students and "taller" students.  The groups are permitted to contain some members in common, and the allowed percentage intersection is specified by the `overlap` argument.  (Setting `overlap = 0` would result in completely disjoint groups.)  The new variable `Height` is called a *shingle*, but you can think of it as a factor variable with two values: shorter and taller.
+
+The formula `fastest ~ sex | Height * seat` *facets* by `Height` and `seat`. The variables by which you facet appear after a `|` bar, anf if you facet by two variables then you must separate them with a `*`. Since`Height` has two values and `seat has three values and $2 \times 3 = 6$, we arrive at a plot with six panels.
+
+The `layout` argument determines the number of rows and columns in our facet-ted plot.  Setting `layout` to `c(2,3)` specified two columns and three rows.  (Note that the columns are specified first!)
+
+
+# Further Refinements
+
+For some other refinements, consult the **Lattice Histogram** Addin in RStudio.
 

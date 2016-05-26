@@ -155,7 +155,7 @@ $(document).ready(function () {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="site_libs/navigation-1.0/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -317,6 +317,9 @@ div.tocify {
     <li>
       <a href="histogram.html">Histograms</a>
     </li>
+    <li>
+      <a href="xyplot.html">Scatter Plots</a>
+    </li>
     <li class="dropdown-header">Numerical Summaries</li>
     <li>
       <a href="favstats.html">Mosaic's Favstats</a>
@@ -409,8 +412,8 @@ help(m111survey)</code></pre>
 ##  $ sex            : Factor w/ 2 levels &quot;female&quot;,&quot;male&quot;: 2 2 1 1 2 2 2 2 1 1 ...
 ##  $ diff.ideal.act.: num  2 2 NA 3 0 NA 2 -3 2 0 ...</code></pre>
 </div>
-<div id="studying-one-numerical-variable" class="section level1">
-<h1>Studying One Numerical Variable</h1>
+<div id="one-numerical-variable" class="section level1">
+<h1>One Numerical Variable</h1>
 <p>“favstats” is short for “favorite statistics”: it will give you the some of the most popular summary statistics for numerical variables.</p>
 <p>Suppose, for example, that you want to know how fast people in the <code>m111survey</code> sample tend to drive, when they drive their fastest. The you want to study the numerical variable <strong>fastest</strong>: the fastest speed each person claims to have ever driven, measured in miles per hour. Just try <code>favstats()</code> with the usual formula-data input:</p>
 <pre class="r"><code>favstats(~fastest, data = m111survey)</code></pre>
@@ -432,8 +435,8 @@ help(m111survey)</code></pre>
 <li>Nobody did not answer (missing = 0).</li>
 </ul>
 </div>
-<div id="studying-the-relationship-between-a-numerical-variable-and-a-factor-variable" class="section level1">
-<h1>Studying the Relationship Between a Numerical Variable and a Factor Variable</h1>
+<div id="a-numerical-variable-and-a-factor-variable" class="section level1">
+<h1>A Numerical Variable and a Factor Variable</h1>
 <p>Studying the relationship between a numerical variable and factor variable involves what is popularly known as “breaking the data into groups” based on the values of the factor variable. More formally, we obtain the conditional distributions of the numerical variable given the various possible values of the factor variable, and look for difference between these distributions. If we see large differences. then we know that the factor variable “makes a difference” in the likely values of the numerical variable, i.e., the two variable are related.</p>
 <p>For example we might want to know if the fastest speed one drives might be related to one’s sex. The relevant variables in <code>m111survey</code> are then the numerical <strong>fastest</strong> and the factor variable <strong>sex</strong>.</p>
 <p>In formula-data input for <code>favstats()</code> the formula always follows the format:</p>
@@ -469,6 +472,35 @@ help(m111survey)</code></pre>
 <pre><code>##  min Q1 median Q3 max    mean        sd  n missing
 ##    1  1      1  2   2 1.43662 0.4994967 71       0</code></pre>
 <p><code>favstats()</code> converted the factor variable to a numeric variable and tried to give you some useful information based on that conversion, but elements of the output (especially the mean and the standard deviation) are meaningless in the context of factor variables. In order to study a factor variable you really should look instead at functions like <code>xtabs()</code>.</p>
+</div>
+<div id="additional-variables" class="section level1">
+<h1>Additional Variables</h1>
+<p>You can incorporate additional factor variables into your analysis. For example, suppose you want to break down the students’ fastest speed not only by sex but also by where they prefer to sit in a classroom. This is accomplished as follows:</p>
+<pre class="r"><code>favstats(fastest ~ sex + seat, data = m111survey)</code></pre>
+<pre><code>##          sex.seat min    Q1 median     Q3 max      mean        sd  n
+## 1  female.1_front  60  87.5  100.0 116.00 130  99.63158 20.276452 19
+## 2    male.1_front  85  97.5  112.5 119.00 130 108.50000 15.556349  8
+## 3 female.2_middle  80  90.0   95.0 101.00 110  94.93750  8.290306 16
+## 4   male.2_middle  85 100.0  109.0 121.25 143 111.00000 16.737184 16
+## 5   female.3_back  90 110.0  120.0 125.00 145 118.00000 20.186629  5
+## 6     male.3_back  95  96.5  110.0 142.50 190 124.71429 36.976183  7
+##   missing
+## 1       0
+## 2       0
+## 3       0
+## 4       0
+## 5       0
+## 6       0</code></pre>
+<p>The two “breakdown” variables after the “~” are separated by a “+”. Once again, you may want to limit your output:</p>
+<pre class="r"><code>favstats(fastest ~ sex + seat, data = m111survey)[c(&quot;sex.seat&quot;, &quot;mean&quot;,&quot;sd&quot;,&quot;n&quot;)]</code></pre>
+<pre><code>##          sex.seat      mean        sd  n
+## 1  female.1_front  99.63158 20.276452 19
+## 2    male.1_front 108.50000 15.556349  8
+## 3 female.2_middle  94.93750  8.290306 16
+## 4   male.2_middle 111.00000 16.737184 16
+## 5   female.3_back 118.00000 20.186629  5
+## 6     male.3_back 124.71429 36.976183  7</code></pre>
+<p>You can break down by more than two factor variables, but the resulting tables can be rather messy.</p>
 </div>
 
 

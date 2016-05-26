@@ -35,7 +35,7 @@ str(m111survey)
 ```
 
 
-# Studying One Numerical Variable
+# One Numerical Variable
 
 "favstats" is short for "favorite statistics":  it will give you the some of the most popular summary statistics for numerical variables.
 
@@ -61,7 +61,7 @@ We also see that
 * Nobody did not answer (missing = 0).
 
 
-# Studying the Relationship Between a Numerical Variable and a Factor Variable
+# A Numerical Variable and a Factor Variable
 
 Studying the relationship between a numerical variable and factor variable involves what is popularly known as "breaking the data into groups" based on the values of the factor variable.  More formally, we obtain the conditional distributions of the numerical variable given the various possible values of the factor variable, and look for difference between these distributions.  If we see large differences. then we know that the factor variable "makes a difference" in the likely values of the numerical variable, i.e., the two variable are related.
 
@@ -112,3 +112,19 @@ favstats(~sex, data = m111survey)
 ```
 
 `favstats()` converted the factor variable to a numeric variable and tried to give you some useful information based on that conversion, but elements of the output (especially the mean and the standard deviation) are meaningless in the context of factor variables.  In order to study a factor variable you really should look instead at functions like `xtabs()`.
+
+# Additional Variables
+
+You can incorporate additional factor variables into your analysis.  For example, suppose you want to break down the students' fastest speed not only by sex but also by where they prefer to sit in a classroom.  This is accomplished as follows:
+
+```{r}
+favstats(fastest ~ sex + seat, data = m111survey)
+```
+
+The two "breakdown" variables after the "~" are separated by a "+".  Once again, you may want to limit your output:
+
+```{r}
+favstats(fastest ~ sex + seat, data = m111survey)[c("sex.seat", "mean","sd","n")]
+```
+
+You can break down by more than two factor variables, but the resulting tables can be rather messy.
