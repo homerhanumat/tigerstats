@@ -105,9 +105,9 @@ xyplot(fastest~GPA,data=m111survey,
 
 There are 25 different values for `pch`:  the integers 1 through 25.
 
-## Colors
+# Colors
 
-### Single Color
+## Single Color
 
 If you want to set a specific color for all of the points on your plot, the `col` argument is your friend:
 
@@ -126,7 +126,7 @@ There are many, many values for `col`.  You can explore all 657 of the named col
 colors()
 ```
 
-### Color Schemes
+## Color Schemes
 
 When you use the `groups` argument, you may want to customize the colors that go with each group.  This is accomplished by temporarily changing the `lattice` parameter settings via the `par.settings` argument.  For example to make the female points blue and the male points red, do the following:
 

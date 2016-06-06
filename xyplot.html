@@ -462,10 +462,11 @@ div.tocify {
        pch=19)</code></pre>
 <p><img src="xyplot_files/figure-html/xytutfastestgpapoints-1.png" width="528" /></p>
 <p>There are 25 different values for <code>pch</code>: the integers 1 through 25.</p>
-<div id="colors" class="section level2">
-<h2>Colors</h2>
-<div id="single-color" class="section level3">
-<h3>Single Color</h3>
+</div>
+<div id="colors" class="section level1">
+<h1>Colors</h1>
+<div id="single-color" class="section level2">
+<h2>Single Color</h2>
 <p>If you want to set a specific color for all of the points on your plot, the <code>col</code> argument is your friend:</p>
 <pre class="r"><code>xyplot(fastest~GPA,data=m111survey,
        xlab=&quot;grade point average&quot;,
@@ -477,8 +478,8 @@ div.tocify {
 <p>There are many, many values for <code>col</code>. You can explore all 657 of the named colors with the command:</p>
 <pre class="r"><code>colors()</code></pre>
 </div>
-<div id="color-schemes" class="section level3">
-<h3>Color Schemes</h3>
+<div id="color-schemes" class="section level2">
+<h2>Color Schemes</h2>
 <p>When you use the <code>groups</code> argument, you may want to customize the colors that go with each group. This is accomplished by temporarily changing the <code>lattice</code> parameter settings via the <code>par.settings</code> argument. For example to make the female points blue and the male points red, do the following:</p>
 <pre class="r"><code>xyplot(fastest~GPA,data=m111survey,
        groups = sex,
@@ -493,7 +494,6 @@ div.tocify {
        type=c(&quot;p&quot;,&quot;smooth&quot;))</code></pre>
 <p><img src="xyplot_files/figure-html/xytutfastestgpareggroupscol-1.png" width="528" /></p>
 <p>In <code>par.settings</code> the <code>superpose.symbol</code> list specifies properties of the points in the scatterlot. <code>superpose.line</code> specifies properties of the lines drawn for each group. (Setting <code>lwd</code> to 2 made the loess curves a bit thicker.)</p>
-</div>
 </div>
 </div>
 <div id="additional-variables" class="section level1">
