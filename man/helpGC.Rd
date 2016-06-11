@@ -2,22 +2,20 @@
 % Please edit documentation in R/helpGC.R
 \name{helpGC}
 \alias{helpGC}
-\title{Quick Vignettes in the Viewer}
+\title{Extensive Help Via Vignettes}
 \usage{
-helpGC(topic,package="tigerstats")
+helpGC(topic)
 }
 \arguments{
 \item{topic}{filename of the vignette, exclusive of the .html extension}
-
-\item{package}{Name of the installed package containing the desried vignette}
 }
 \value{
 side effects
 }
 \description{
-A convenience function to show package vignettes.  Vignette will show in a 
-viewer selected by the front-end (e.g, the Viewer pane in R Studio), or in a 
-browser if the "viewer" option is not set.
+A convenience function to show vignettes associated with
+package \code{tigerstats}.  Vignette will open in the user's default
+browser.
 }
 \examples{
 \dontrun{

@@ -1,13 +1,12 @@
-#' @title Quick Vignettes in the Viewer
+#' @title Extensive Help Via Vignettes
 
-#' @description A convenience function to show package vignettes.  Vignette will show in a 
-#' viewer selected by the front-end (e.g, the Viewer pane in R Studio), or in a 
-#' browser if the "viewer" option is not set.
+#' @description A convenience function to show vignettes associated with
+#' package \code{tigerstats}.  Vignette will open in the user's default
+#' browser.
 #' 
 #' @rdname helpGC
-#' @usage helpGC(topic,package="tigerstats")
+#' @usage helpGC(topic)
 #' @param topic filename of the vignette, exclusive of the .html extension
-#' @param package Name of the installed package containing the desried vignette
 #' @return side effects
 #' @export
 #' @author Homer White (hwhite0@@georgetowncollege.edu)
@@ -15,38 +14,69 @@
 #' \dontrun{
 #' helpGC(lmGC)
 #' }
-helpGC <- function(topic,package="tigerstats") {
-
-# The following is outdated, as the rstudio package is no longer
-# available:
-#   if (!("rstudio" %in% rownames(installed.packages()))) {
-#     return(cat("You need to be using R Studio for this helpGC() to help you!\n"))
-#   }
+helpGC <- function(topic) {
   
   topic <- as.character(substitute(topic))
-  vigList <- vignette(package=package)$results
-  vigItems <- vigList[,"Item"]
-  libPaths <- vigList[,"LibPath"]
   
-  if (!(topic %in% vigItems)) {
-    stop(paste0("Sorry, there is no vignette for ",topic," in package ",package,"."))
+  baseURL <- "http://homerhanumat.github.io/tigerstats/"
+  
+  topicList <- c("descriptive",
+                 "inferential",
+                 "bwplot",
+                 "densityplot",
+                 "histogram",
+                 "xyplot",
+                 "scatterplot",
+                 "favstats",
+                 "xtabs",
+                 "rowPerc",
+                 "colPerc",
+                 "lmGC",
+                 "polyfitGC",
+                 "pbinomGC",
+                 "pnormGC",
+                 "qnorm",
+                 "qnormGC",
+                 "binomtestGC",
+                 "proptestGC",
+                 "chisqtestGC",
+                 "ttestGC")
+  
+  fileList <-   c("R_descriptive",
+                  "R_inferential",
+                  "bwplot",
+                  "densityplot",
+                  "histogram",
+                  "xyplot",
+                  "xyplot",
+                  "favstats",
+                  "xtabs",
+                  "xtabs",
+                  "xtabs",
+                  "lmGC",
+                  "polyfitGC",
+                  "pbinomGC",
+                  "pnormGC",
+                  "qnorm",
+                  "qnormGC",
+                  "binomtestGC",
+                  "proptestGC",
+                  "chisqtestGC",
+                  "ttestGC")
+  
+  urlList <- paste0(baseURL,fileList,".html")
+  
+  
+  if (!(topic %in% topicList)) {
+    cat(paste0("Sorry, there is no vignette for the topic:  ",topic,".\n"))
+    cat("The possible topics are:\n ")
+    return(cat(paste0(topicList,"\n")))
+    
   } else {
-    frow <- which(vigItems==topic)
-    vigPath <- paste0(libPaths[frow],"/",package,"/doc/",topic,".html")
+    urlRow <- which(topicList==topic)
+    vigURL <- urlList[urlRow]
   }
   
-  inCon  <- file(vigPath,"r")
-  inStuff <- readLines(inCon)
-  close(inCon)
-  tempDir <- tempfile()
-  dir.create(tempDir)
-  htmlFile <- file.path(tempDir, "index.html")
-  outCon <- htmlFile
-  writeLines(inStuff,con=outCon)
-  viewer <- getOption("viewer")
-  if (!is.null(viewer))
-    viewer(htmlFile)
-  else
-    utils::browseURL(htmlFile)
+  utils::browseURL(vigURL)
 }
 

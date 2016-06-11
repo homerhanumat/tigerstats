@@ -1,8 +1,8 @@
 Package: tigerstats
 Type: Package
 Title: R Functions for Elementary Statistics
-Version: 0.2.7-2
-Date: 2016-03-11
+Version: 0.3
+Date: 2016-06-12
 Author: Rebekah Robinson <rebekahrobinson14@gmail.com> and Homer
     White <hwhite0@georgetowncollege.edu>
 Maintainer: Homer White <hwhite0@georgetowncollege.edu>
@@ -34,7 +34,6 @@ Suggests:
     shinyjs
 LazyLoad: yes
 LazyData: true
-VignetteBuilder: knitr
 NeedsCompilation: no
 Packaged: 2015-12-16 23:47:17 UTC; homer
 RoxygenNote: 5.0.1

@@ -1,6 +1,17 @@
 \name{NEWS}
 \title{NEWS file for the tigerstats package}
 
+\section{Changes in version 0.3}{
+\itemize{
+\item Further information about the package is now available at 
+\url{http://homerhanumat.github.io/tigerstats}.
+\item Vignettes have been removed from the package and are now available 
+at the above URL.
+\item \code{helpGC} no longer brings vignettes into viewer; instead 
+it links to them at the above URL.
+}
+}
+
 \section{Changes in version 0.2}{
 \itemize{
 \item Addition of vignette "Teaching with Tigerstats."
