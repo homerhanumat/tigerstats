@@ -31,7 +31,7 @@ or from the Github repository:
 
 ```
 install.packages("devtools")
-devtools::install_github("homerhanumat/tigerstats", build_vignettes = TRUE)
+devtools::install_github("homerhanumat/tigerstats")
 ```
 
 **Note:** In the coming months `tigerstats` will acquire some important new features that will be documented here as they are added.

@@ -26,7 +26,7 @@ Repository for selected non-sensitive course materials for the course we teach: 
 
 A few additional datasets that we find useful in our classes.
 
-<a href="https://github.com/homerhanumat/tigerTree" target = "_blank"><h3>`tigerTree`</h3></a>
+<a href="http://homerhanumat.gihub.io/tigerTree" target = "_blank"><h3>`tigerTree`</h3></a>
 
 Functions to teach predictive modeling (classification and regression trees) to elementary students.  Includes a locally-run Shiny app that assists in model-selection.
 
