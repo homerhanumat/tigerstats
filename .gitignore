@@ -6,3 +6,4 @@ Read-and-delete-me
 .RData
 sandbox/scratch.R
 .Rprofile
+.DS_Store

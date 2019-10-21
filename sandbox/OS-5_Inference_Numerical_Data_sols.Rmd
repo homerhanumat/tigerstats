@@ -1,0 +1,568 @@
+---
+title: "Inference for Numerical Data"
+author: "Homer White"
+date: "`r Sys.Date()`"
+output:
+  rmdformats::readthedown:
+    highlight: kate
+    toc_depth:  2
+---
+
+<style>
+.answer {
+  border:  5px solid red;
+  border-radius:  15px;
+  background-color:  burlywood;
+  font-weight:  800;
+  padding: 5px;
+  margin: 20px 0 20px 0;
+}
+.question {
+  border:  5px solid blue;
+  border-radius:  15px;
+  background-color:  beige;
+  font-style:  italic;
+  font-weight:  800;
+  padding: 5px;
+  margin: 20px 0 20px 0;
+}
+</style>
+
+```{r include = FALSE}
+library(tigerstats)
+knitr::opts_chunk$set(
+  tidy=FALSE,     # display code as typed
+  size="small",   # slightly smaller font for code
+  fig.align = "center",  # center graphs on page
+  warning = FALSE, message = FALSE,  # suppress by setting to FALSE
+  error = TRUE,     # so students can knit even if code still has problems
+  out.width = "90%")     # % of available width the graph will take up
+```
+
+## Attach Packages
+
+For this lab you'll need to make sure that **tigerstats** is attached:
+
+```{r eval = FALSE}
+library(tigerstats)
+```
+
+## Fastest Speeds at Penn State
+
+Suppose that it is known that at Georgetown College the mean fastest speed at which students have ever driven a car is 105 mph.
+
+We wonder if students at Penn State have the same mean fastest speed.
+
+Consider the data set `pennstate1`:
+
+```{r eval = FALSE}
+View(pennstate1)
+help("pennstate1")
+```
+
+Note that the variable **Fastest** records the fastest speed the student ever drove a car.
+
+Let $\mu$ denote the mean fastest speed ever driven, for ALL Penn State students.
+
+We set up the following hypotheses:
+
+* $H_0:  \mu = 105$ (Penn State students are like GC students)
+* $H_a:  \mu \neq 0$
+
+### Question:  R-Code { .question }
+
+Here is the template for making a 95%-confidence interval for $\mu$ and for performing the test of hypothesis, from original data:
+
+```{r eval = FALSE}
+ttestGC(
+  ~ your_variable,
+  data = your_data_set,
+  mu = the_null_value
+)
+```
+
+Modify the code as needed to get your confidence interval and test.
+
+
+### Answer { .answer }
+
+```{r}
+ttestGC(
+  ~ Fastest,
+  data = pennstate1,
+  mu = 105
+)
+```
+
+
+###
+
+### Question:  Estimator  { .question }
+
+Examine the output.  If you had to give ONE number as your estimate of the mean fastest speed ever driven by all Penn State students, what would you say?
+
+### Answer  { .answer }
+
+```
+Estimate of mu:	 97.15 
+```
+
+I'd give $\bar{x}$, which is 97.15 mph.
+
+###
+
+### Question:  Estimator Off { .question }
+
+The estimate you gave in the previous section probably differs from the true value of $\mu$.  By how much is it liable to differ?  (Hint:  you are looking for the standard error of the estimator.)
+
+### Answer  { .answer }
+
+```
+SE(x.bar):	 1.343
+```
+
+The standard error of $\bar{x}$ is 1.343 mph.
+
+###
+
+
+### Question:  Confidence interval { .question }
+
+What are the lower and upper bounds of the confidence interval? Based on the interval, does it seem reasonable to believe that Penn State students have the same mean fastest speed that GC students do?  Why or why not?
+
+### Answer  { .answer }
+
+```
+95% Confidence Interval for mu:
+
+          lower.bound         upper.bound          
+          94.498106           99.798190
+```
+
+The null value of 105 lies well above the confidence interval.  Looks like GC students drive faster!
+
+###
+
+### Question:  Test Statistic  { .question }
+
+How many standard errors is your estimator above or below what the Null Hypothesis believes $\mu$ to be?  (Hint:  the test statistic measures this.)  Based on this, would the results of the study seem unusual to someone who believes the Null Hypothesis?
+
+### Answer  { .answer }
+
+```
+Test Statistic:		t = -5.845 
+```
+
+Our estimate for the population mean is about 5.8 standard errors below the 105 value that the Null was expecting.  This would be VERY unusual, for a believer in the Null!
+
+
+###
+
+### Question:  P-Value  { .question }
+
+If the Null Hypothesis is correct, what is the probability of getting results at least as extreme as what we got in this study?
+
+### Answer  { .answer }
+
+```
+P-value:		P = 2.203e-08
+```
+
+The P-value is $2.203 \times 10^{-8}$, which is about 2 in 100 million. If the Null is right then there is only about 2 out of 100 million chance of getting a sample mean as far from the null value as what we actually got.
+
+###
+
+### Question:  Decision and Conclusion  { .question }
+
+Should we reject the Null Hypothesis?  Why or why not?  Also, write a simple conclusion.
+
+### Answer  { .answer }
+
+Reject the Null, because the P-value is less than 0.05.  This data provides strong evidence that Penn State students drive slower, on average, than GC students do.
+
+###
+
+## Great White Sharks
+
+Marine biologists have randomly gathered 100 adult male Great White sharks from the Atlantic Ocean, and an independent random sample of 120 adult male Great Whites from the Pacific Ocean.
+
+The Atlantic sharks had a mean weight of 1510 pounds, with a standard deviation of 119 pounds.
+
+The Pacific sharks had a mean weight of 1544 pounds, with a standard deviation of 105 pounds.
+
+We are interesting knowing whether the mean weight of the the populations of Atlantic and Pacific adult male Great Whites are different.
+
+We define parameters as follows:
+
+* Let $\mu_1$ denote the mean weight of ALL adult male Great Whites in the Atlantic Ocean.
+* Let $\mu_2$ denote the mean weight of ALL adult male Great Whites in the Pacific Ocean.
+
+We set up hypotheses as follows:
+
+* $H_0:  \mu_1 - \mu_2 = 0$
+* $H_a:  \mu_1 - \mu_2 \neq 0$
+
+### Question:  R-Code { .question }
+
+Here is the template for making a 95%-confidence interval for $\mu_1-\mu_2$ and for performing the test of hypothesis, from summary data:
+
+```{r eval = FALSE}
+ttestGC(
+  mean = c(xbar1, xbar2),
+  sd = c(sd1, sd2),
+  n = c(n1, n2),
+  mu = 0
+)
+```
+
+Modify the code as needed to get your confidence interval and test.
+
+
+### Answer { .answer }
+
+```{r}
+ttestGC(
+  mean = c(1510, 1544),
+  sd = c(119, 105),
+  n = c(120, 100),
+  mu = 0
+)
+```
+
+
+###
+
+### Question:  Estimator  { .question }
+
+Examine the output.  If you had to give ONE number as your estimate of how much the mean weights of the two populations differ, what would you say?  According to this estimate, which population has the smaller mean?
+
+### Answer  { .answer }
+
+```
+Estimate of mu1-mu2:	 -34
+```
+
+###
+
+### Question:  Estimator Off { .question }
+
+The estimate you gave in the previous section probably differs from the true value of $\mu_1 - \mu_2$.  By how much is it liable to differ?  (Hint:  you are looking for the standard error of the estimator.)
+
+### Answer  { .answer }
+
+```
+SE(x1.bar - x2.bar):	 15.11 
+```
+
+###
+
+### Question:  Confidence interval { .question }
+
+What are the lower and upper bounds of the confidence interval? Based on the interval, does it seem reasonable to believe that the two populations have the same mean weight?  Why or why not?
+
+### Answer  { .answer }
+
+```
+95% Confidence Interval for mu1-mu2:
+
+          lower.bound         upper.bound          
+          -63.777435          -4.222565 
+```
+
+The interval lies entirely below 0, so it's not reasonable to believe that the two populations have the same mean weight.  Atlantic sharks seem to be lighter.
+
+###
+
+### Question:  Test Statistic  { .question }
+
+How many standard errors is your estimator above or below what the Null Hypothesis believes $\mu_1 - \mu_2$ to be?  (Hint:  the test statistic measures this.)  Based on this, would the results of the study seem unusual to someone who believes the Null Hypothesis?
+
+### Answer  { .answer }
+
+```
+Test Statistic:		t = -2.25
+```
+
+###
+
+### Question:  P-Value  { .question }
+
+If the Null Hypothesis is correct, what is the probability of getting results at least as extreme as what we got in this study?
+
+### Answer  { .answer }
+
+```
+P-value:		P = 0.02542
+```
+
+###
+
+### Question:  Decision and Conclusion  { .question }
+
+Should we reject the Null Hypothesis?  Why or why not?  Also, write a simple conclusion.
+
+### Answer  { .answer }
+
+Reject the Null, because the P-value is less than 0.05.  This data provides strong evidence that Atlantic sharks weigh less, on average, than Pacific sharks do.
+
+###
+
+## Who Gets More Sleep?
+
+In the `m111survey` data:
+
+* **sleep** measure how many hours of sleep the student got the night before the survey;
+* **sex** give the sex of the student (male/female)
+
+We wonder who gets more sleep:  GC males or GC females.
+
+We define parameters as follows:
+
+* Let $\mu_1$ denote the mean hours of sleep of ALL GC females.
+* Let $\mu_2$ denote the mean hours of sleep of ALL GC males.
+
+We set up hypotheses as follows:
+
+* $H_0:  \mu_1 - \mu_2 = 0$
+* $H_a:  \mu_1 - \mu_2 \neq 0$
+
+### Question:  R-Code { .question }
+
+Here is the template for making a 95%-confidence interval for $\mu_1-\mu_2$ and for performing the test of hypothesis, from a data set:
+
+```{r eval = FALSE}
+ttestGC(
+  numerical_variable ~ group_variable,
+  data = your_data_set,
+  first = "value_for_first_population",
+  mu = 0
+)
+```
+
+Modify the code as needed to get your confidence interval and test.
+
+
+### Answer { .answer }
+
+```{r}
+ttestGC(
+  sleep ~ sex,
+  data = m111survey,
+  first = "female",
+  mu = 0
+)
+```
+
+### Question:  Confidence interval { .question }
+
+What are the lower and upper bounds of the confidence interval? Based on the interval, does it seem reasonable to believe that the two populations get the same amount of sleep, on average?  Why or why not?
+
+### Answer  { .answer }
+
+```
+95% Confidence Interval for mu1-mu2:
+
+          lower.bound         upper.bound          
+          -0.915971           0.598229 
+```
+
+Since 0 lies within the interval, it would not be unreasonable to believe that the two populations get the same amount of sleep, on average.
+
+###
+
+### Question:  Test Statistic  { .question }
+
+How many standard errors is your estimator above or below what the Null Hypothesis believes $\mu_1 - \mu_2$ to be?  (Hint:  the test statistic measures this.)  Based on this, would the results of the study seem unusual to someone who believes the Null Hypothesis?
+
+### Answer  { .answer }
+
+```
+Test Statistic:		t = -0.419
+```
+
+The difference in sample means is less than 2 standard errors below what the Null expects, so the results aren't considered unusual.
+
+###
+
+### Question:  P-Value  { .question }
+
+If the Null Hypothesis is correct, what is the probability of getting results at least as extreme as what we got in this study?
+
+### Answer  { .answer }
+
+```
+P-value:		P = 0.6766
+```
+
+###
+
+### Question:  Decision and Conclusion  { .question }
+
+Should we reject the Null Hypothesis?  Why or why not?  Also, write a simple conclusion.
+
+### Answer  { .answer }
+
+The P-value is bigger than 0.05, so don't reject the Null.  This study did not provide strong evidence that the two sexes get different amounts of sleep, on average.
+
+###
+
+## Ideal vs. Actual Height
+
+In the `m111survey` data:
+
+* **height** gives the actual height of the student;
+* **ideal_ht** gives the height he/she would ideally like to be.
+
+We wonder if there is any difference, on average, between how tall a GC student is and how tall he or she wants to be.
+
+We define our parameter as follows:
+
+>Let $\mu_d$ denote the mean difference in height (ideal minus actual) for ALL GC students.
+
+We set up hypotheses as follows:
+
+* $H_0:  \mu_d = 0$
+* $H_a:  \mu_d \neq 0$
+
+Notice that we are dealing here with paired data.
+
+### Question:  R-Code { .question }
+
+Here is the template for making a 95%-confidence interval for $\mu_d$ and for performing the test of hypothesis, from a data set with paired data:
+
+```{r eval = FALSE}
+ttestGC(
+  ~ one_variable - other_variable,
+  data = your_data_set,
+  mu = 0
+)
+```
+
+Modify the code as needed to get your confidence interval and test.
+
+
+### Answer { .answer }
+
+```{r}
+ttestGC(
+  ~ ideal_ht - height,
+  data = m111survey,
+  mu = 0
+)
+```
+
+### Question:  Confidence interval { .question }
+
+What are the lower and upper bounds of the confidence interval? Based on the interval, does it seem reasonable to believe that GC students don't want to be taller or shorter, on average?  Why or why not?
+
+### Answer  { .answer }
+
+```
+95% Confidence Interval for mu-d:
+
+          lower.bound         upper.bound          
+          1.175528            2.715776
+```
+
+Notice that 0 lies entirely below the confidence interval. It's not reasonable to believe that GC students don't want to be taller or shorter, on average; instead it seems that on average they would like to be taller.
+
+###
+
+### Question:  P-Value  { .question }
+
+If the Null Hypothesis is correct, what is the probability of getting results at least as extreme as what we got in this study?
+
+### Answer  { .answer }
+
+```
+P-value:		P = 3.652e-06
+```
+
+If the Null is right then there is only about a 3 in one million chance of getting results at least as extreme as what we got in this study.
+
+###
+
+### Question:  Decision and Conclusion  { .question }
+
+Should we reject the Null Hypothesis?  Why or why not?  Also, write a simple conclusion.
+
+### Answer  { .answer }
+
+Reject the Null, since the P=value is less than 0.05.  This study provided strong evidence that on average GC students would prefer to be taller.
+
+###
+
+## Who Wants to Increase Their Height the Most?
+
+In the `m111survey` data:
+
+* **diff.ideal.act.** gives the actual height of the student (note the . at the very end of the variable name!)
+* **sex** gives the sex of the student.
+
+We wonder who wants to increase their height the most:  GC males or GC females.
+
+We define parameters as follows:
+
+* Let $\mu_1$ denote the mean desired increase in height for ALL GC males.
+* Let $\mu_2$ denote the mean desired increase in height for ALL GC females.
+
+We set up hypotheses as follows:
+
+* $H_0:  \mu_1 - \mu_2 = 0$
+* $H_a:  \mu_1 - \mu_2 \neq 0$
+
+Notice that we are dealing here with two independent samples:  the sample of men and the sample of women.
+
+### Question:  R-Code { .question }
+
+Construct the R-Code for making a 95%-confidence interval for $\mu_1-\mu_2$ and for performing the test of hypothesis, from a data set with paired data, and insert your code in the Answer section below.
+
+
+### Answer { .answer }
+
+```{r}
+ttestGC(
+  diff.ideal.act. ~ sex,
+  data = m111survey,
+  mu = 0
+)
+```
+
+### Question:  Confidence interval { .question }
+
+What are the lower and upper bounds of the confidence interval? Based on the interval, who appears to want to increase their height the most, or are we not able to tell?
+
+### Answer  { .answer }
+
+```
+95% Confidence Interval for mu1-mu2:
+
+          lower.bound         upper.bound          
+          -3.106134           0.053570
+```
+
+We aren't quite able to tell, because 0 lies inside the confidence interval (barely).
+
+###
+
+### Question:  P-Value  { .question }
+
+If the Null Hypothesis is correct, what is the probability of getting results at least as extreme as what we got in this study?
+
+### Answer  { .answer }
+
+```
+P-value:		P = 0.05799
+```
+
+###
+
+### Question:  Decision and Conclusion  { .question }
+
+Should we reject the Null Hypothesis?  Why or why not?  Also, write a simple conclusion.
+
+### Answer  { .answer }
+
+Since the P-value is a bit bigger than 0.05, we won't reject the Null.  I'm suspicious that perhaps guys want to increase their height more than gals do, but I would need to collect more data in order to know for sure.
+
+###

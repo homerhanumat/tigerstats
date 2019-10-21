@@ -452,7 +452,26 @@ print.GCttest <- function(x,...)  {
     cat("Descriptive Results:\n\n")
     
     tab <- GCttest$SummTab
-    print(tab,row.names=FALSE)
+    ## use printf to prevent R Notebook from
+    ## showing the data fram ein a separate window
+    format1 <- paste0(
+      "%-", max(nchar(as.character(tab[, 1])), 5) + 4, "s%-10s%-10s%-10s"
+    )
+    format2 <- paste0(
+      "%-", max(nchar(as.character(tab[, 1])), 5) + 4, "s%-10.3f%-10.3f%-10d"
+    )
+    cat(sprintf(
+      format1, 
+      names(tab)[1], names(tab)[2], names(tab)[3], names(tab)[4]),
+      "\n")
+    cat(sprintf(
+      format2,
+      tab[1, 1], tab[1, 2], tab[1, 3], tab[1,4]), 
+      "\n")
+    cat(sprintf(
+      format2,
+      tab[2, 1], tab[2, 2], tab[2, 3], tab[2,4]), 
+      "\n")
     
     cat("\n")
     cat("\n")
