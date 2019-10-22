@@ -17,6 +17,28 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ```{r}
+ttestGC(mean = 105, sd = 3, n = 71)
+```
+
+
+```{r}
 ttestGC(fastest ~ sex, data = m111survey)
+```
+
+```{r}
+ttestGC(~ jiffrating - greatvaluerating, data = labels)
+```
+
+
+More:
+
+```{r}
+chisqtestGC(~ sex + seat, data = m111survey)
+```
+
+And more:
+
+```{r}
+proptestGC(~ sex + extra_life, data = m111survey)
 ```
 

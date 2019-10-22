@@ -453,25 +453,71 @@ print.GCttest <- function(x,...)  {
     
     tab <- GCttest$SummTab
     ## use printf to prevent R Notebook from
-    ## showing the data fram ein a separate window
-    format1 <- paste0(
-      "%-", max(nchar(as.character(tab[, 1])), 5) + 4, "s%-10s%-10s%-10s"
-    )
-    format2 <- paste0(
-      "%-", max(nchar(as.character(tab[, 1])), 5) + 4, "s%-10.3f%-10.3f%-10d"
-    )
-    cat(sprintf(
-      format1, 
-      names(tab)[1], names(tab)[2], names(tab)[3], names(tab)[4]),
-      "\n")
-    cat(sprintf(
-      format2,
-      tab[1, 1], tab[1, 2], tab[1, 3], tab[1,4]), 
-      "\n")
-    cat(sprintf(
-      format2,
-      tab[2, 1], tab[2, 2], tab[2, 3], tab[2,4]), 
-      "\n")
+    ## showing the data frame in a separate window
+    
+    if (nrow(tab) == 2) {
+      varChar <- max(
+        nchar(as.character(tab[1, 1])),
+        nchar(as.character(tab[2, 1])),
+        5
+      ) + 1
+      print(varChar)
+      format1 <- paste0(
+        "%-", varChar, "s%-10s%-10s%-10s"
+      )
+      format2 <- paste0(
+        "%-", varChar, "s%-10.3f%-10.3f%-10d"
+      )
+      cat(sprintf(
+        format1, 
+        names(tab)[1], names(tab)[2], names(tab)[3], names(tab)[4]),
+        "\n")
+      cat(sprintf(
+        format2,
+        tab[1, 1], tab[1, 2], tab[1, 3], tab[1,4]), 
+        "\n")
+      cat(sprintf(
+        format2,
+        tab[2, 1], tab[2, 2], tab[2, 3], tab[2,4]), 
+        "\n")
+    } else if (ncol(tab) == 4) {
+      varChar <- max(nchar(names(tab)[1]), nchar(as.character(tab[1,1])), 5) + 2
+      meanChar <- max(nchar(names(tab)[2]), 5) + 4
+      sdChar <- max(nchar(names(tab)[3]), 5) + 4
+      format1 <- paste0(
+        "%-", varChar, "s",
+        "%-", meanChar, "s",
+        "%-", sdChar, "s%-10s"
+      )
+      format2 <- paste0(
+        "%-", varChar, "s",
+        "%-", meanChar, ".3f",
+        "%-", sdChar, ".3f%-10d"
+      )
+      cat(sprintf(
+        format1, 
+        names(tab)[1], names(tab)[2], names(tab)[3], names(tab)[4]),
+        "\n")
+      cat(sprintf(
+        format2,
+        tab[1, 1], tab[1, 2], tab[1, 3], tab[1,4]), 
+        "\n")
+    } else {
+      format1 <- paste0(
+        "%-10s%-10s%-10s"
+      )
+      format2 <- paste0(
+        "%-10.3f%-10.3f%-10d"
+      )
+      cat(sprintf(
+        format1, 
+        names(tab)[1], names(tab)[2], names(tab)[3]),
+        "\n")
+      cat(sprintf(
+        format2,
+        tab[1, 1], tab[1, 2], tab[1, 3]),
+        "\n")
+    }
     
     cat("\n")
     cat("\n")
