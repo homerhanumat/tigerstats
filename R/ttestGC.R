@@ -461,7 +461,6 @@ print.GCttest <- function(x,...)  {
         nchar(as.character(tab[2, 1])),
         5
       ) + 1
-      print(varChar)
       format1 <- paste0(
         "%-", varChar, "s%-10s%-10s%-10s"
       )
