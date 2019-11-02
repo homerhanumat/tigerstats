@@ -14,4 +14,3 @@
 Hypothetical school, used for illustrative purposes
 }
 \keyword{datasets}
-

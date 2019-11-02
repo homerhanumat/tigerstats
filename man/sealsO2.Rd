@@ -17,4 +17,3 @@ The Journal of Experimental Biology 207: 973 to 982.  \url{http://jeb.biologists
 Results of an experiment conducted on ten Weddell seals.
 }
 \keyword{datasets}
-

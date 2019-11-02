@@ -40,4 +40,3 @@ pnormGC(c(68,71),region="outside",mean=70,sd=4)
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

@@ -20,4 +20,3 @@ MAT 111 at Georgetown College
 Results of a survey conducted by Georgetown College students on 47 Georgetown College upperclass students.
 }
 \keyword{datasets}
-

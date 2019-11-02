@@ -31,4 +31,3 @@ if (require(manipulate)) CIMean(~height,data=imagpop)
 \author{
 Rebekah Robinson \email{rebekah_robinson@georgetowncollege.edu}
 }
-

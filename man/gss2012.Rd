@@ -27,4 +27,3 @@ A selection of variables from the 2012 General Social Survey.  The variables are
 }
 }
 \keyword{datasets}
-

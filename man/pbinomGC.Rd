@@ -40,4 +40,3 @@ pbinomGC(6,region="above",size=10,prob=0.7)
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

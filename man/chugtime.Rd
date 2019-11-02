@@ -17,4 +17,3 @@ Utts and Heckard, Mind on Statistics, 4th Edition.
 College-aged males chugging a 12-ounce can of a certain beverage.
 }
 \keyword{datasets}
-

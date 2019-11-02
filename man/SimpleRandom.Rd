@@ -30,4 +30,3 @@ if (require(manipulate)) SimpleRandom()
 \author{
 Rebekah Robinson \email{rebekah_robinson@georgetowncollege.edu}
 }
-

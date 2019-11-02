@@ -22,4 +22,3 @@ Two football players at GC asked their team-mates to do as many pushups as
 they could in two minutes.
 }
 \keyword{datasets}
-

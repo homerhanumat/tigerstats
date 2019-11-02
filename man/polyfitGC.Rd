@@ -36,4 +36,3 @@ polyfitGC(mpg~wt,data=mtcars,degree=2,check=TRUE)
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

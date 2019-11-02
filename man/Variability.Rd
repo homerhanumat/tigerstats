@@ -25,4 +25,3 @@ if (require(manipulate)) Variability()
 \author{
 Rebekah Robinson \email{rebekah_robinson@georgetowncollege.edu}
 }
-

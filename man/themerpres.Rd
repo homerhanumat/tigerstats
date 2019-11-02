@@ -22,4 +22,3 @@ trellis.par.set(theme=themerpres())
 \code{\link{trellis.par.set}}, \code{\link{show.settings}}
 }
 \keyword{graphics}
-

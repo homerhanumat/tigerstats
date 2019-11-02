@@ -24,4 +24,3 @@ if (require(manipulate)) SimpleRandom()
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

@@ -16,4 +16,3 @@ For more on the Hanford station, see \url{http://www.hanford.gov/page.cfm/HMS}
 The weather station is located in Hanford, WA.  Note that this dataset is more complete than \code{\link{hanford1}}
 }
 \keyword{datasets}
-

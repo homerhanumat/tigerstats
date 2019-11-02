@@ -42,4 +42,3 @@ qnormGC(0.01,region="outside")
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

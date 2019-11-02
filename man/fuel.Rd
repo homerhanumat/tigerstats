@@ -18,4 +18,3 @@ done at a different speed, and the fuel efficiency was recorded for each
 drive.
 }
 \keyword{datasets}
-

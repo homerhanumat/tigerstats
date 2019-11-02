@@ -17,4 +17,3 @@ Uts and Heckard, Mind on Statistics, 4th Edition.
 Height and handspan of a few subjects.
 }
 \keyword{datasets}
-

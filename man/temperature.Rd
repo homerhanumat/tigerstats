@@ -20,4 +20,3 @@ Average temperatures for cities in the United States.
 }
 }
 \keyword{datasets}
-

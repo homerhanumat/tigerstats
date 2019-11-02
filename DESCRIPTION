@@ -36,4 +36,4 @@ LazyLoad: yes
 LazyData: true
 NeedsCompilation: no
 Packaged: 2015-12-16 23:47:17 UTC; homer
-RoxygenNote: 5.0.1
+RoxygenNote: 6.1.1

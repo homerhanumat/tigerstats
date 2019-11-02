@@ -731,7 +731,7 @@ NA
 #'       \item \strong{GPA}  What is your college GPA?
 #'       \item \strong{enough_Sleep}  Do you think you get enough sleep?
 #'       \item \strong{sex}  What sex are you?
-#'       \item \strong{diff.ideal.act} Your ideal height minus your actual height.
+#'       \item \strong{diff.ideal.act.} Your ideal height minus your actual height.
 #' }
 #' 
 #' @docType data

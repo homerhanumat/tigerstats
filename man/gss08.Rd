@@ -30,4 +30,3 @@ General Social Survey, 2008
 For more information see \code{gss02}
 }
 \keyword{datasets}
-

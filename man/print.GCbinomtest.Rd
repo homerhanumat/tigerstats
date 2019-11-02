@@ -21,4 +21,3 @@ Utility print function
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
 \keyword{internal}
-

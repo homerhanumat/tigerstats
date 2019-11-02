@@ -33,4 +33,3 @@ PITCHf/x data on Justin Verlander, winner of the 2011 Cy Young Award.  Covers hi
 2009 through 2012 seasons.
 }
 \keyword{datasets}
-

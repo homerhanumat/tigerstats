@@ -25,4 +25,3 @@ if (require(manipulate)) Type12Errors()
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

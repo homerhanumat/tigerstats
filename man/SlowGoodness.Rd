@@ -30,4 +30,3 @@ SlowGoodness(throws,p=rep(1/6,6))
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

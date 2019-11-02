@@ -17,4 +17,3 @@ Collected by MAT 111 students as a project.
 Alcohol policy violations on the Georgetown College campus over several years.
 }
 \keyword{datasets}
-

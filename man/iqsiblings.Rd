@@ -16,4 +16,3 @@ William Harris, Georgetown College
 IQs of pairs of siblings.
 }
 \keyword{datasets}
-

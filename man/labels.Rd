@@ -22,4 +22,3 @@ Unknown to the subjects, both jars contained Great Value peanut butter.
 Each subject rated the quality of the peanut butter on a scale of 1 to 10.
 }
 \keyword{datasets}
-

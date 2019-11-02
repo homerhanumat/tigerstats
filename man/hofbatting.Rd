@@ -45,4 +45,3 @@ Data on the 147 batters inducted into the Major LeagueBaseball Hall of Fame
 as of the year 2013.
 }
 \keyword{datasets}
-

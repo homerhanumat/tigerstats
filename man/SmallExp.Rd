@@ -12,4 +12,3 @@
 Subjects in a hypothetical experiment
 }
 \keyword{datasets}
-

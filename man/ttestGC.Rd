@@ -76,4 +76,3 @@ ttestGC(mean=c(50,55),sd=c(3,4),n=c(25,40),mu=0)
 Homer White \email{hwhite0@georgetowncollege.edu}
 for matched pairs.
 }
-

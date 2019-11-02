@@ -32,4 +32,3 @@ lmGC(fastest~GPA,data=m111survey,graph=TRUE)
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

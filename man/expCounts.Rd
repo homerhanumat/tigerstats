@@ -16,4 +16,3 @@ from a table of observed counts.
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

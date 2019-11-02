@@ -27,4 +27,3 @@ if(require(manipulate)) VaryCorrelation(n=500)
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

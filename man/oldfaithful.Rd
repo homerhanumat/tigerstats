@@ -16,4 +16,3 @@ Unknown
 Old faithful geyser at Yellowstone Park.
 }
 \keyword{datasets}
-

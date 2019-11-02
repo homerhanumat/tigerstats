@@ -15,4 +15,3 @@ MAT 111 at Georgetown College
 Students at GC observed their fellow students in the Cafe at lunch.
 }
 \keyword{datasets}
-

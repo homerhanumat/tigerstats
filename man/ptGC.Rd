@@ -35,4 +35,3 @@ ptGC(c(-2,2),region="outside",df=5)
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

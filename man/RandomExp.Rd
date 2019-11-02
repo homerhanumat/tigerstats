@@ -42,4 +42,3 @@ RandomExp(SmallExp,sizes=c(8,8),groups=letters[1:2],block=c("sex","athlete"))
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

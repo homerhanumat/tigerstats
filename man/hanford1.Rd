@@ -16,4 +16,3 @@ For more on the Hanford station, see \url{http://www.hanford.gov/page.cfm/HMS}
 The station is located in Hanford, WA.
 }
 \keyword{datasets}
-

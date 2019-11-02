@@ -50,7 +50,7 @@ term for this combination of offenses is two years; the maximum term is
 fifty years.  In the blank below, write a number from 2 to 50 as your
 recommended length of sentence for Tyrone Marcus Watson.  _______________
 
-[In the question above, name of defedant could vary: either William Shane
+[In the question above, name of defendant could vary: either William Shane
 Winchester or Tyrone Marcus Watson.  The name of the victim could also vary:
 either Betsy Brockenheimer or Latisha Dawes.]
 
@@ -79,4 +79,3 @@ I am (circle one) male female
 (Optional) My intended major is: _____________________
 }
 \keyword{datasets}
-

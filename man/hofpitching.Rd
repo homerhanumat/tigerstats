@@ -48,4 +48,3 @@ Data on the 70 pitchers inducted into the Major League Baseball Hall of Fame
 as of the year 2013.
 }
 \keyword{datasets}
-

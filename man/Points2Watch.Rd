@@ -25,4 +25,3 @@ if (require(manipulate)) Points2Watch()
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

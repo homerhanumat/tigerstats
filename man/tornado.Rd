@@ -17,4 +17,3 @@ Tornado damage in the U.S., by state.  Also includes Puerto Rico.
 }
 }
 \keyword{datasets}
-

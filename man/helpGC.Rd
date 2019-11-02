@@ -25,4 +25,3 @@ helpGC(lmGC)
 \author{
 Homer White (hwhite0@georgetowncollege.edu)
 }
-

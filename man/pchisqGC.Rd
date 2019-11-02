@@ -33,4 +33,3 @@ pchisqGC(6.8,df=3,region="above")
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

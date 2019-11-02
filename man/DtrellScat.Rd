@@ -27,4 +27,3 @@ if (require(manipulate)) DtrellScat(sat~salary|frac,data=sat)
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

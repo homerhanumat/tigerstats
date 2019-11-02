@@ -73,4 +73,3 @@ barchartGC(~sex+seat,data=m111survey,type="percent",flat=TRUE,ylab="Sex")
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

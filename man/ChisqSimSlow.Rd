@@ -40,4 +40,3 @@ ChisqSimSlow(~weather+crowd.behavior,data=ledgejump,effects="fixed")
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

@@ -19,4 +19,3 @@ were studied.  For each plot the researchers counted the number of cottonwood st
 clusters of beetle larvae found in the plot.
 }
 \keyword{datasets}
-

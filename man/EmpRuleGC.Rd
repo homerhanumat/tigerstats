@@ -31,4 +31,3 @@ if(require(manipulate)) EmpRuleGC(mean=70,sd=3,xlab="Height (inches)")
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

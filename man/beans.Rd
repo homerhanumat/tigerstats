@@ -24,4 +24,3 @@ the dominant hand.  Terminology: your dominant hand is the hand you use the
 most.
 }
 \keyword{datasets}
-

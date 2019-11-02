@@ -25,4 +25,3 @@ SAT scores by state.  The variables are as follows:
 }
 }
 \keyword{datasets}
-

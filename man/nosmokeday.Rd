@@ -18,4 +18,3 @@ Found in Whitlock and Schluter, The Analysis of Biological Data.
 Results of study conducted in Great Britain to see if nicotine withdrawal increases the risk of an accident.
 }
 \keyword{datasets}
-

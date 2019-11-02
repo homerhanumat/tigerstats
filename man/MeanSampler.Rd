@@ -35,4 +35,3 @@ if (require(manipulate)) MeanSampler(~income,data=imagpop)
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

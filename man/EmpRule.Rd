@@ -23,4 +23,3 @@ if (require(manipulate)) EmpRule()
 \author{
 Rebekah Robinson \email{rebekah_robinson@georgetowncollege.edu}
 }
-

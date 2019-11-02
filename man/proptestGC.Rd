@@ -73,4 +73,3 @@ proptestGC(~sex+seat,data=m111survey,success="2_middle",p=0.33,verbose=FALSE)
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

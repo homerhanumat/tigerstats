@@ -25,4 +25,3 @@ Utility function for ptGC, pnormGC, pchisqGC, possibly others
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
 \keyword{internal}
-

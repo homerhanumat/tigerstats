@@ -27,4 +27,3 @@ hog-hollering contests.  After blocking, subjects are randomly assigned to
 groups.
 }
 \keyword{datasets}
-

@@ -28,4 +28,3 @@ if (require(manipulate)) CIProp()
 \author{
 Rebekah Robinson \email{rebekah_robinson@georgetowncollege.edu}
 }
-

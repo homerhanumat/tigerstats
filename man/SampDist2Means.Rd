@@ -32,4 +32,3 @@ if (require(manipulate)) SampDist2Means(imagpop)
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

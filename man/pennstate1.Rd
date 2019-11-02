@@ -32,4 +32,3 @@ Uts and Heckard, Mind on Statistics, 4th Edition.
 A study of students at Penn State University.
 }
 \keyword{datasets}
-

@@ -18,4 +18,3 @@ package \code{vcd}.
 Results of a study on non-response to a mail survey.  Subjects were residents of Denmark.
 }
 \keyword{datasets}
-

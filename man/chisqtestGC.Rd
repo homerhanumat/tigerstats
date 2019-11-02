@@ -59,4 +59,3 @@ chisqtestGC(~sex+seat,data=m111survey,verbose=FALSE)
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

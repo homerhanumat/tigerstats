@@ -19,4 +19,3 @@ Results of a retrospective study, conducted in 1973,
 on 299 women who been surgically treated for ovarian cancer 10 years before.
 }
 \keyword{datasets}
-

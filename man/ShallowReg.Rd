@@ -32,4 +32,3 @@ if (require(manipulate)) ShallowReg()
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

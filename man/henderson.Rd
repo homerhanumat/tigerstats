@@ -31,4 +31,3 @@ unknown (possibly Albert: Teaching Statistics With Baseball)
 Various year-by-year statistics for the Major League player Ricky Henderson
 }
 \keyword{datasets}
-

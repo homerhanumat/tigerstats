@@ -27,4 +27,3 @@ popsamp(10,imagpop,replace=TRUE)  #Random sampling with replacement
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

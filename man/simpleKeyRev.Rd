@@ -22,4 +22,3 @@ lineheight = add.text$lineheight,
 utility function for barchartGC
 }
 \keyword{internal}
-

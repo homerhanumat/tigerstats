@@ -62,4 +62,3 @@ binomtestGC(x=40,n=100,p=0.45)
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

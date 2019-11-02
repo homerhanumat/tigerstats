@@ -31,4 +31,3 @@ predict(mpgModel,x=3.0,level=0.95)
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

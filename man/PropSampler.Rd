@@ -35,4 +35,3 @@ if (require(manipulate)) PropSampler(~cappun,data=imagpop)
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

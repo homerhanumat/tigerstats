@@ -2,8 +2,8 @@
 % Please edit documentation in R/tigerstats-package.R
 \docType{package}
 \name{tigerstats-package}
-\alias{tigerstats}
 \alias{tigerstats-package}
+\alias{tigerstats}
 \title{R Functions for Elementary Statistics}
 \description{
 tigerstats
@@ -11,11 +11,10 @@ tigerstats
 \details{
 Datasets and functions useful for teaching elementary statistics.
 }
-\author{
-Rebekah Robinson (\email{rebekahrobinson14@gmail.com}), Homer White (\email{hwhite0@georgetowncollege.edu})
-}
 \references{
 \url{http://statistics.georgetowncollege.edu}
 }
+\author{
+Rebekah Robinson (\email{rebekahrobinson14@gmail.com}), Homer White (\email{hwhite0@georgetowncollege.edu})
+}
 \keyword{package}
-

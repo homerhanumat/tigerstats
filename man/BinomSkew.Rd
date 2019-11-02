@@ -21,4 +21,3 @@ if (require(manipulate)) BinomSkew()
 \author{
 Homer White (hwhite0@georgetowncollege.edu)
 }
-

@@ -26,4 +26,3 @@ if (require(manipulate)) DtrellHist(~dist|speed,data=cars)
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

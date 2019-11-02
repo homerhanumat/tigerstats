@@ -21,4 +21,3 @@ between race of defendant, race of victim, and outcome of trial in a number of c
 cases in Florida in 1976-1977.
 }
 \keyword{datasets}
-

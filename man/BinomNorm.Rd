@@ -20,4 +20,3 @@ if (require(manipulate)) BinomNorm()
 \author{
 Homer White (hwhite0@georgetowncollege.edu)
 }
-

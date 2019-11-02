@@ -21,4 +21,3 @@ if (require(manipulate)) tExplore()
 \author{
 Homer White \email{hwhite0@georgetowncollege.edu}
 }
-

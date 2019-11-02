@@ -17,4 +17,3 @@ MAT 111 at Georgetown College
 Data collected by GC students.
 }
 \keyword{datasets}
-

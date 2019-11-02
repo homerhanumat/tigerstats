@@ -20,4 +20,3 @@ An imaginary population, used for instructional purposes.  The variables are as 
 }
 }
 \keyword{datasets}
-

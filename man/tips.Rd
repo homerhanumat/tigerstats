@@ -27,4 +27,3 @@ information about the customers who gave the tips.  The variables are as follows
 }
 }
 \keyword{datasets}
-

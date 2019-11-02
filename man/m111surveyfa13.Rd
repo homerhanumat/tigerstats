@@ -44,4 +44,3 @@ MAT 111 at Georgetown College
 Results of a survey given at beginning of semester, to all students in MAT 111.
 }
 \keyword{datasets}
-

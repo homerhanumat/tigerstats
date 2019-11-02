@@ -25,4 +25,3 @@ trellis.par.set(theme=theme.rpres())
 \code{\link{trellis.par.set}}, \code{\link{show.settings}}
 }
 \keyword{graphics}
-
