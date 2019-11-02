@@ -66,7 +66,7 @@ NA
 #' fifty years.  In the blank below, write a number from 2 to 50 as your
 #' recommended length of sentence for Tyrone Marcus Watson.  _______________
 #' 
-#' [In the question above, name of defedant could vary: either William Shane
+#' [In the question above, name of defendant could vary: either William Shane
 #' Winchester or Tyrone Marcus Watson.  The name of the victim could also vary:
 #' either Betsy Brockenheimer or Latisha Dawes.]
 #' 
@@ -717,18 +717,21 @@ NA
 #' @description Results of a survey of MAT 111 students at Georgetown College.
 #' 
 #' \itemize{
-#'       \item height.  How tall are you, in inches?
-#'       \item ideal_ht.  A numeric vector  How tall would you LIKE to be, in inches?
-#'       \item sleep.  How much sleep did you get last night?
-#'       \item fastest.  What is the highest speed at which you have ever driven a car?
-#'       \item weight_feel.  How do you feel about your weight?
-#'       \item love_first.  Do you believe in love at first sight?
-#'       \item extra_life.  Do you believe in extraterrestrial life?
-#'       \item seat.  When you have a choice, where do you prefer to sit in a classroom?
-#'       \item GPA.  What is your college GPA?
-#'       \item enough_Sleep.  Do you think you get enough sleep?
-#'       \item sex.  What sex are you?
-#'       \item diff.  Your ideal height minus your actual height.
+#'       \item \strong{height}  How tall are you, in inches?
+#'       \item \strong{ideal_ht}  A numeric vector  How tall would you 
+#'       LIKE to be, in inches?
+#'       \item \strong{sleep}  How much sleep did you get last night?
+#'       \item \strong{fastest}  What is the highest speed at which 
+#'       you have ever driven a car?
+#'       \item \strong{weight_feel}  How do you feel about your weight?
+#'       \item \strong{love_first}  Do you believe in love at first sight?
+#'       \item \strong{extra_life}  Do you believe in extraterrestrial life?
+#'       \item \strong{seat}  When you have a choice, where do you prefer 
+#'       to sit in a classroom?
+#'       \item \strong{GPA}  What is your college GPA?
+#'       \item \strong{enough_Sleep}  Do you think you get enough sleep?
+#'       \item \strong{sex}  What sex are you?
+#'       \item \strong{diff.ideal.act} Your ideal height minus your actual height.
 #' }
 #' 
 #' @docType data
