@@ -1,6 +1,13 @@
 \name{NEWS}
 \title{NEWS file for the tigerstats package}
 
+\section{Changes in version 0.3.1}{
+\itemize{
+\item Addition of functions \code{watch_statisticians} and
+\code{watch_statisticians_slow}.
+}
+}
+
 \section{Changes in version 0.3}{
 \itemize{
 \item Further information about the package is now available at 

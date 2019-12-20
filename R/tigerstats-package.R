@@ -59,6 +59,7 @@
 #' @importFrom stats resid
 #' @importFrom grDevices rgb
 #' @importFrom stats rmultinom
+#' @importFrom stats rbinom
 #' @importFrom stats rnorm
 #' @importFrom graphics rug
 #' @importFrom stats runif
