@@ -31,8 +31,8 @@ CIProp=function(){
   tally=c(0,0)
   results=matrix(0,2,2,dimnames=list(c("Count","Proportion"),c("Covers","Misses")))
   manipulate(
-    n=slider(1,500,initial=50,label="Number of Trials"),
-    p=slider(0,1,initial=0.5,step=0.01,label="Value of p"),
+    n = picker(50, 200, 1000, label="Sample Size"),
+    p=slider(0.05,0.95,initial=0.5,step=0.05,label="Value of p"),
     conf.level=slider(60,99,initial=95,label="Confidence Level"),
     sim.reps=picker("One at a time","20 at a time", "100 at a time",label="Number of Repititions"),  
 {
@@ -78,6 +78,7 @@ CIProp=function(){
         results[2,]=round(c((tally[1]/sum(tally)),(tally[2]/sum(tally))),4)
       }
       print(results)
+      cat("\n")
     }
     beginning=FALSE
   } 
@@ -120,6 +121,7 @@ CIProp=function(){
       results[2,]=round(c((tally[1]/sum(tally)),(tally[2]/sum(tally))),4)
     }
     print(results)
+    cat("\n")
   }
   if(sim.reps=="100 at a time"){
     n.reps=100
@@ -160,6 +162,7 @@ CIProp=function(){
       results[2,]=round(c((tally[1]/sum(tally)),(tally[2]/sum(tally))),4)
     }
     print(results)
+    cat("\n")
   }
 })
 }
