@@ -45,13 +45,17 @@ watch_statisticians <- function(n, p, interval_number = 50, level = 0.95) {
                         size = 1) +
     ggplot2::geom_hline(ggplot2::aes(yintercept = p), 
                                  lty = 2, color = "blue") +
-    ggplot2::coord_flip() +
-    ggplot2::labs(x = "interval number", y = NULL,
+    ggplot2::labs(x = "intervals", y = NULL,
          title = title, subtitle = subtitle) +
-    ggplot2::theme(legend.position = "none") +
+    ggplot2::theme(legend.position = "none",
+                   axis.text.y=element_blank(),
+                   axis.ticks.y=element_blank(),
+                   panel.grid.major.y = element_blank(),
+                   panel.grid.minor.y = element_blank()) +
     ggplot2::scale_color_manual(values = c("gray70", "red"))+
     ggplot2::ylim(c(0, 1)) +
-    ggplot2::xlim(c(0, interval_number))
+    ggplot2::xlim(c(0, interval_number)) +
+    ggplot2::coord_flip()
 }
 
 #' @title Multiple Confidence Interval for a Proportion, One at a Time
@@ -119,13 +123,17 @@ watch_statisticians_slow <- function(n, p,
       ggplot2::geom_hline(
         ggplot2::aes(yintercept = p), 
         lty = 2, color = "blue") +
-      ggplot2::coord_flip() +
-      ggplot2::labs(x = "interval number", y = NULL,
-           title = title, subtitle = subtitle) +
-      ggplot2::theme(legend.position = "none") +
-      ggplot2::scale_color_manual(values = c("gray70", "red")) +
+      ggplot2::labs(x = "intervals", y = NULL,
+                    title = title, subtitle = subtitle) +
+      ggplot2::theme(legend.position = "none",
+                     axis.text.y=element_blank(),
+                     axis.ticks.y=element_blank(),
+                     panel.grid.major.y = element_blank(),
+                     panel.grid.minor.y = element_blank()) +
+      ggplot2::scale_color_manual(values = c("gray70", "red"))+
       ggplot2::ylim(c(0, 1)) +
-      ggplot2::xlim(c(0, interval_number))
+      ggplot2::xlim(c(0, interval_number)) +
+      ggplot2::coord_flip()
     print(plot_so_far)
     checking <- readline(
       "Take another sample? (Enter to continue, q to quit)  "
