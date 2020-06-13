@@ -68,4 +68,6 @@
 #' @importFrom utils vignette
 #' @importFrom stats xtabs
 #' @importFrom stats cor median quantile sd t.test var
+#' @importFrom rlang "!!" enquo
+#' @importFrom rlang .data
 NULL

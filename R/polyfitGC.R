@@ -278,7 +278,10 @@ print.polyGC <-function(x,...)  {
     p1 <- ggplot2::ggplot(df,ggplot2::aes_string(x=expname,y=respname))+
       ggplot2::ggtitle(title)+
       ggplot2::geom_point()+
-      ggplot2::geom_point(data=predfr,ggplot2::aes_string(x=expname,y=respname),col="blue",size=1)+
+      ggplot2::geom_point(data=predfr,
+                          ggplot2::aes_string(x=expname,
+                                       y=respname),
+                          col="blue",size=1)+
       ggplot2::xlab(expname)+ggplot2::ylab(respname)
     
     suppressWarnings(print(p1))
@@ -297,7 +300,9 @@ print.polyGC <-function(x,...)  {
       ggplot2::ggtitle(title)+
       ggplot2::geom_point()+
       ggplot2::stat_smooth(method=method,color="red",size=1,se=TRUE)+
-      ggplot2::geom_point(data=predfr,ggplot2::aes_string(x=expname,y=respname),col="blue",size=1)+
+      ggplot2::geom_point(data=predfr,
+                          ggplot2::aes_string(x=expname,y=respname),
+                          col="blue",size=1)+
       ggplot2::xlab(expname)+ggplot2::ylab(respname)
     
     

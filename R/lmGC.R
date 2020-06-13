@@ -144,7 +144,11 @@ predict.GClm <-function(object,x,level=NULL,...)  {
   
   if (!is.null(level)) {
     
-    prediction2 <- suppressWarnings(predict(model,newdata=newdf,interval="prediction",level=level))
+    prediction2 <- suppressWarnings(
+      predict(model,newdata=newdf,
+              interval="prediction",
+              level=level)
+      )
     lower <- prediction2[2]
     upper <- prediction2[3]
     cat(paste0(100*level,"%-prediction interval:\n"))
@@ -219,7 +223,8 @@ print.GClm <-function(x,...)  {
     title <- paste0("Checking the Model Fit\n(Model is blue; ",method,
                     " curve is red;\n95%-confidence band for curve included)")
     
-    p1 <- ggplot2::ggplot(df, ggplot2::aes_string(x=expname,y=respname))+
+    p1 <- ggplot2::ggplot(df, 
+                          ggplot2::aes(x=as.symbol(expname),y=as.symbol(respname)))+
       ggplot2::ggtitle(title)+
       ggplot2::geom_point()+
       ggplot2::stat_smooth(method = "lm", size = 1,se=FALSE)+
