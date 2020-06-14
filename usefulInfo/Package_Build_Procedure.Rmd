@@ -1,5 +1,7 @@
 # Building the Package
 
+**Note** (2020-06-14):  quite outdated now.
+
 This is pretty easy now with `roxygen2`.  If you change any documentation, run
 
 ```{r eval=FALSE}

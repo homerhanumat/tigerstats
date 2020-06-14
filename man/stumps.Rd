@@ -4,11 +4,13 @@
 \name{stumps}
 \alias{stumps}
 \title{Larvae on Stumps}
-\format{A data frame with 23 observations on the following 2 variables.
+\format{
+A data frame with 23 observations on the following 2 variables.
 \describe{
 \item{stumps}{number of stumps in the plot}
 \item{larvae}{number of larvae clusters in the plot}
-}}
+}
+}
 \source{
 Basic Practice of Statistics, by Moore and McCabe.
 }

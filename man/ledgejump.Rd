@@ -4,7 +4,9 @@
 \name{ledgejump}
 \alias{ledgejump}
 \title{Crowd Behavior at Ledge-Jumping Incidents}
-\format{A data frame with 21 rows and 2 variables}
+\format{
+A data frame with 21 rows and 2 variables
+}
 \source{
 "The baiting crowd in episodes of threatened suicide",
 \emph{Journal of Personality and Social Psychology}, 41, 703-709.  See also dataset 59 in

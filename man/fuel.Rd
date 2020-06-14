@@ -4,11 +4,13 @@
 \name{fuel}
 \alias{fuel}
 \title{Speed and Fuel Efficiency (British Ford Escort)}
-\format{A data frame with 15 observations on the following 2 variables.
+\format{
+A data frame with 15 observations on the following 2 variables.
 \describe{
 \item{speed}{in kilometers per hour.}
 \item{efficiency}{fuel efficiency, measured in liters of fuel required to travel 100 kilometers. }
-}}
+}
+}
 \source{
 The Basic Practice of Statistics, by Moore and McCabe.
 }

@@ -4,7 +4,9 @@
 \name{imagpop}
 \alias{imagpop}
 \title{An Imaginary Population}
-\format{A data frame with 10000 rows and 8 variables}
+\format{
+A data frame with 10000 rows and 8 variables
+}
 \description{
 An imaginary population, used for instructional purposes.  The variables are as follows:
 

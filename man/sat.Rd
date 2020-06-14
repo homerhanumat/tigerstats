@@ -4,11 +4,12 @@
 \name{sat}
 \alias{sat}
 \title{SAT Scores}
-\format{A data frame with 50 rows and 8 variables}
+\format{
+A data frame with 50 rows and 8 variables
+}
 \source{
 Deborah Lynn Guber, "Getting what you pay for: the debate over equity 
 in public school expenditures" (1999), \emph{Journal of Statistics Education} 7(2).
-\url{http://www.amstat.org/publications/jse/secure/v7n2/datasets.guber.cfm}.
 }
 \description{
 SAT scores by state.  The variables are as follows:

@@ -4,7 +4,8 @@
 \name{gss02}
 \alias{gss02}
 \title{General Social Survey, 2002}
-\format{A data frame with 2765 observations on the following 13 variables.
+\format{
+A data frame with 2765 observations on the following 13 variables.
 \describe{
 \item{sex}{a factor with levels \code{Female}
 \code{Male}}
@@ -33,7 +34,8 @@ gunlaws.}
 \item{age}{age of the subject}
 \item{chldidel}{the ideal number of children the subject would like to have.}
 \item{emailtime}{estimated number of hours per week subject spends using email.}
-}}
+}
+}
 \source{
 National Opinion Research Center:  \url{http://www3.norc.org/gss+website/}.  
 Found in Uts and Heckard: Mind on Statistics, 4th Edition.

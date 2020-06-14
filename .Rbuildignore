@@ -1,10 +1,8 @@
-sandbox
-.gitignore
-.git
-Package_Build_Procedure.Rmd
 ^.*\.Rproj$
 ^\.Rproj\.user$
-cran-comments.md
-cranfix.R
-usefulInfo
-.Rprofile
+^usefulInfo$
+^.Rprofile$
+^cran-comments\.md$
+^sandbox$
+^\.git$
+^\.gitignore$

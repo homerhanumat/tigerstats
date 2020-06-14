@@ -4,7 +4,8 @@
 \name{m111surveyfa12}
 \alias{m111surveyfa12}
 \title{MAT 111 Survey, Fall 2012}
-\format{A data frame with 89 observations on the following 14 variables.
+\format{
+A data frame with 89 observations on the following 14 variables.
 \describe{
 \item{height}{Your height in inches.}
 \item{ideal_ht}{How tall you would LIKE to be, in
@@ -36,7 +37,8 @@ given.}
 \item{canada}{"The population of country
 XXX is YYY million.  About what is the population of Canada, in millions?"  XXX was either the U.S. or Australia.}
 \item{diff.ih.ah.}{Your ideal height minus your actual height.}
-}}
+}
+}
 \source{
 MAT 111 at Georgetown College
 }

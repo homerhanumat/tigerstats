@@ -12,9 +12,9 @@ tigerstats
 Datasets and functions useful for teaching elementary statistics.
 }
 \references{
-\url{http://statistics.georgetowncollege.edu}
+\url{https://homerhanumat.github.io/tigerstats}
 }
 \author{
-Rebekah Robinson (\email{rebekahrobinson14@gmail.com}), Homer White (\email{hwhite0@georgetowncollege.edu})
+Rebekah Robinson (\email{rebekahmusselwhite23@gmail.com}), Homer White (\email{hwhite0@georgetowncollege.edu})
 }
 \keyword{package}

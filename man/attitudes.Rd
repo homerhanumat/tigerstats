@@ -4,7 +4,8 @@
 \name{attitudes}
 \alias{attitudes}
 \title{Attitudes Experiment 2001}
-\format{A data frame with 268 observations on the following 8 variables.
+\format{
+A data frame with 268 observations on the following 8 variables.
 \describe{ 
 \item{def.race}{Suggested race of the defendant in the survey form.}
 \item{vic.race}{Suggested race of the victim in the survey form.}
@@ -17,7 +18,8 @@ ticket).}
 \item{sex}{a factor with level Sex of the survey participant.}
 \item{major}{possible values: \code{humanities} \code{math.sci} \code{pre.prof}
 \code{social.sci} Type of major the subject intends.}
-}}
+}
+}
 \source{
 Georgetown College
 }

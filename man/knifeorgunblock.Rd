@@ -4,14 +4,16 @@
 \name{knifeorgunblock}
 \alias{knifeorgunblock}
 \title{Knife or Gun?}
-\format{A data frame with 20 observations on the following 3 variables.
+\format{
+A data frame with 20 observations on the following 3 variables.
 \describe{
 \item{hoghollerer}{a factor with levels \code{no}
 \code{yes} whether or not the subject competes in hog-hollerin' contests}
 \item{means}{a factor with levels \code{gun}
 \code{knife} means by which subject is slain}
 \item{volume}{volume of expiring subject's cries.}
-}}
+}
+}
 \source{
 A morbid imagination.
 }

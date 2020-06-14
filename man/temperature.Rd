@@ -4,7 +4,9 @@
 \name{temperature}
 \alias{temperature}
 \title{Temperature in U.S. Cities}
-\format{A data frame with 20 observations on 5 variables.}
+\format{
+A data frame with 20 observations on 5 variables.
+}
 \source{
 Mind on Statistics, 4th edition, Uts and Heckard.
 }

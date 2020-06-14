@@ -4,7 +4,8 @@
 \name{verlander}
 \alias{verlander}
 \title{Justin Verlander}
-\format{A data frame with 15307 observations on the following 12 variables.  Each observation
+\format{
+A data frame with 15307 observations on the following 12 variables.  Each observation
 is a single pitch.
 \describe{ \item{season}{The year of play}
 \item{gamedate}{Date of the game in which the pitch was thrown}
@@ -23,7 +24,8 @@ movement. Measured at 40 feet from home plate.}
 home plate, as compared to a theoretical pitch thrown at the same speed with no spin-induced 
 movement. Measured at 40 feet from home plate.}
 \item{batter_hand}{A factor with two values: L (left) and R (right).}
- }}
+ }
+}
 \source{
 Marchi and Albert:  Analyziing Baseball Data with R, CRC Press 2014.  For
 more on the PITCHf/x system, see \url{http://en.wikipedia.org/wiki/PITCHf/x}.

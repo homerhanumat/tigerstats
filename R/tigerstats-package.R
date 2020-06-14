@@ -7,9 +7,9 @@
 #' @aliases tigerstats tigerstats-package
 #' @docType package
 #' @title R Functions for Elementary Statistics
-#' @author Rebekah Robinson (\email{rebekahrobinson14@gmail.com}), Homer White (\email{hwhite0@@georgetowncollege.edu})
+#' @author Rebekah Robinson (\email{rebekahmusselwhite23@gmail.com}), Homer White (\email{hwhite0@georgetowncollege.edu})
 #' @references
-#' \url{http://statistics.georgetowncollege.edu}
+#' \url{https://homerhanumat.github.io/tigerstats}
 #'
 #' @keywords package
 #' @import mosaicData abd
@@ -68,6 +68,5 @@
 #' @importFrom utils vignette
 #' @importFrom stats xtabs
 #' @importFrom stats cor median quantile sd t.test var
-#' @importFrom rlang "!!" enquo
 #' @importFrom rlang .data
 NULL

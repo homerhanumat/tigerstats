@@ -4,7 +4,8 @@
 \name{hofpitching}
 \alias{hofpitching}
 \title{Hall of Fame Pitchers}
-\format{A data frame with 147 observations on the following 32 variables.
+\format{
+A data frame with 147 observations on the following 32 variables.
 \describe{ \item{Name}{Player name}
 \item{Rk}{Unknown}
 \item{Inducted}{Year inducted into Hall of Fame}
@@ -39,7 +40,8 @@ Integration, (1941-1959), Expansion (1960-1975), Free Agency (1976-1992), Long B
 \item{BK}{Balks}
 \item{WP}{Wild Pitches}
 \item{BF}{Total batters faced}
- }}
+ }
+}
 \source{
 Modified from Marchi and Albert:  Analyziing Baseball Data with R, CRC Press 2014.
 }

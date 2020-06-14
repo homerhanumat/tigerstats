@@ -4,11 +4,13 @@
 \name{galton}
 \alias{galton}
 \title{Galton's Father-Son Data}
-\format{A data frame with 1078 observations on the following 2 variables.
+\format{
+A data frame with 1078 observations on the following 2 variables.
 \describe{
 \item{fheight}{Height of the father, in inches.}
 \item{sheight}{Height of the son, in inches.}
-}}
+}
+}
 \description{
 Data on father-son pairs.  Collected in 1885 by Francis Galton.
 }

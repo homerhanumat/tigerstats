@@ -4,13 +4,15 @@
 \name{beans}
 \alias{beans}
 \title{Beans}
-\format{A data frame with 15 observations on the following 3 variables.
+\format{
+A data frame with 15 observations on the following 3 variables.
 \describe{ \item{Dom}{Number of beans placed into
 cup with the dominant hand.}
 \item{NonDom}{Number
 of beans placed with the nondominant hand.}
 \item{Diff}{Difference in number of beans placed (dominant hand minus nondominant
-hand).} }}
+hand).} }
+}
 \source{
 Uts and Heckard, Mind on Statistics, 4th Edition.
 }

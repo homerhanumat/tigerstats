@@ -4,7 +4,8 @@
 \name{cabrera}
 \alias{cabrera}
 \title{Miguel Cabrera}
-\format{A data frame with 6265 observations on the following 12 variables.  Each observation
+\format{
+A data frame with 6265 observations on the following 12 variables.  Each observation
 is a pitch to Cabrera.
 \describe{ \item{season}{The year of play}
 \item{gamedate}{Date of the game in which the pitch was thrown}
@@ -18,7 +19,8 @@ is a pitch to Cabrera.
 \item{hitx}{x-coordinate of landing point of ball (if it was hit).  Relative to park.}
 \item{hity}{y-coordinate of landing point of ball (if it was hit).  Relative to park.}
 \item{hit_outcome}{Outcome when ball was hit.  Factor with levels E (error), H (hit), O (batter out).}
-}}
+}
+}
 \source{
 Marchi and Albert:  Analyziing Baseball Data with R, CRC Press 2014.  For
 more on the PITCHf/x system, see \url{http://en.wikipedia.org/wiki/PITCHf/x}.

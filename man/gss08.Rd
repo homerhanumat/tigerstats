@@ -4,7 +4,8 @@
 \name{gss08}
 \alias{gss08}
 \title{General Social Survey, 2008}
-\format{A data frame with 2023 observations on the following 12 variables.
+\format{
+A data frame with 2023 observations on the following 12 variables.
 \describe{ \item{sex}{a factor with levels \code{Female}
 \code{Male}} \item{race}{a factor with levels \code{AfrAm}
 \code{Other} \code{White}} \item{degree}{a factor with levels
@@ -18,7 +19,8 @@ numeric vector} \item{marijuan}{a factor with levels \code{Legal}
 \code{NotLegal}} \item{owngun}{a factor with levels \code{No}
 \code{Yes}} \item{gunlaw}{a factor with levels \code{Favor}
 \code{Oppose}} \item{age}{a numeric vector}
-\item{chldidel}{a numeric vector} }}
+\item{chldidel}{a numeric vector} }
+}
 \source{
 National Opinion Research Center:  \url{http://www3.norc.org/gss+website/}.  
 Found in Uts and Heckard: Mind on Statistics, 4th Edition.

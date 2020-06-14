@@ -4,7 +4,9 @@
 \name{m111survey}
 \alias{m111survey}
 \title{MAT 111 Survey}
-\format{A data frame with 71 rows and 12 variables}
+\format{
+A data frame with 71 rows and 12 variables
+}
 \source{
 Georgetown College, MAT 111.
 }

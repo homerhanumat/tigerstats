@@ -4,7 +4,9 @@
 \name{tornado}
 \alias{tornado}
 \title{Tornado Damage}
-\format{A data frame with 51 observations on 2 variables.}
+\format{
+A data frame with 51 observations on 2 variables.
+}
 \source{
 Moore and McCabe, The Basic Practice of Statistics.
 }

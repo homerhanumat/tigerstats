@@ -1,23 +1,16 @@
-## Test environments and results
+## Test environments
 
-* local Linux install (Debian 8.6 Jesse), R-release 3.3.2
-    * R CMD check results:  0 errors | 0 warnings | 0 notes
-* r-hub builder Debian Linux, R-patched, GCC
-    * R CMD check results:  0 errors | 0 warnings | 0 notes
-* r-hub builder Debian Linux, R-devel, GCC
-    * R CMD check results:  0 errors | 0 warnings | 0 notes
-* local OS X install (macOS Sierra 10.12.2), R-release 3.3.2
-    * R CMD check results:  0 errors | 0 warnings | 0 notes
-* win-builder, R-devel (2016-12-15 r71798)
-    * R CMD check results:  0 errors | 0 warnings | 0 notes
-* win-builder, R-release 3.3.2
-    * R CMD check results:  0 errors | 0 warnings | 0 notes
+* local installation
+    * R version: R 4.0.1 (2020-06-06)
+    * platform: x86_64-apple-darwin17.0 (64-bit)
 
-## Summary of Results
+## R CMD check results
 
-There were no ERRORs, no WARNINGs and no NOTEs (other than to CRAN maintainers)
+0 errors | 0 warnings | 0 notes
 
 
-## Downstream dependencies
+## Downstream Dependencies
+
+This is an updated release.
 
 There are currently no downstream dependencies for this package.

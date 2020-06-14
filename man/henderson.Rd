@@ -4,7 +4,8 @@
 \name{henderson}
 \alias{henderson}
 \title{Ricky Henderson's Career Stats}
-\format{A data frame with 23 observations on the following 18 variables.
+\format{
+A data frame with 23 observations on the following 18 variables.
 \describe{ \item{Season}{season}
 \item{TM}{team played for}
 \item{G}{number of games played in}
@@ -23,7 +24,8 @@
 \item{OBP}{on-base percentage}
 \item{SLG}{slugging rate}
 \item{OPS}{on-base plus slugging}
- }}
+ }
+}
 \source{
 unknown (possibly Albert: Teaching Statistics With Baseball)
 }

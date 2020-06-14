@@ -4,7 +4,9 @@
 \name{gss2012}
 \alias{gss2012}
 \title{General Social Survey, 2012}
-\format{A data frame with 1976 rows and 12 variables}
+\format{
+A data frame with 1976 rows and 12 variables
+}
 \source{
 \url{http://www3.norc.org/gss+website/}.
 }

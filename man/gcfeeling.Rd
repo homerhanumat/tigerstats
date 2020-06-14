@@ -4,7 +4,8 @@
 \name{gcfeeling}
 \alias{gcfeeling}
 \title{Feelings About Georgetown College}
-\format{A data frame with 47 observations on the following 6 variables.
+\format{
+A data frame with 47 observations on the following 6 variables.
 \describe{
 \item{rating.fresh}{how happy the subjects remembers being as a first-year student, on a scale of 1 to 10.}
 \item{rating.js}{how happy the subjects feels now, on a scale of 1 to 10.}
@@ -12,7 +13,8 @@
 \item{athlete}{whether or not the subject is a varsity athlete}
 \item{rating.diff}{upper-level happiness rating minus remembered first-year rating}
 \item{happier}{whether or not subject feels happier now than as a first-year student}
-}}
+}
+}
 \source{
 MAT 111 at Georgetown College
 }

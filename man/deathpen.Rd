@@ -4,13 +4,15 @@
 \name{deathpen}
 \alias{deathpen}
 \title{The Death Penalty and Race}
-\format{A data frame with 326 rows and 3 variables
+\format{
+A data frame with 326 rows and 3 variables
 
 \describe{
   \item{defrace}{Race of the defendant in the capital case}  
   \item{vicrace}{Race of the victim}
   \item{death}{Whether or not the defendant in the case received the death penalty}
-}}
+}
+}
 \source{
 Michael J. Radelet:  "Racial Characteristics and 
 the Imposition of the Death Penalty", \emph{American Sociological Review}, 46 (1981).

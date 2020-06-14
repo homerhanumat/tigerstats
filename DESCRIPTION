@@ -3,7 +3,7 @@ Type: Package
 Title: R Functions for Elementary Statistics
 Version: 0.3.2
 Date: 2020-06-13
-Author: Rebekah Robinson <rebekahrobinson14@gmail.com> and Homer
+Author: Rebekah Robinson <rebekahmusselwhite23@gmail.com> and Homer
     White <hwhite0@georgetowncollege.edu>
 Maintainer: Homer White <hwhite0@georgetowncollege.edu>
 Description: A collection of data sets and functions that are useful in the
@@ -38,4 +38,4 @@ LazyData: true
 Encoding: UTF-8
 NeedsCompilation: no
 Packaged: 2015-12-16 23:47:17 UTC; homer
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0

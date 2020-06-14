@@ -4,7 +4,8 @@
 \name{m111surveyfa13}
 \alias{m111surveyfa13}
 \title{MAT 111 Survey, Fall 2013}
-\format{A data frame with 85 observations on the following 14 variables.
+\format{
+A data frame with 85 observations on the following 14 variables.
 \describe{
 \item{height}{Your height in inches.}
 \item{ideal_ht}{How tall you would LIKE to be, in
@@ -36,7 +37,8 @@ leadup information to the question.  The "anchor" variable records which version
 given.  If "a", the population of Australia was given.  If "b", the U.S. population was given.}
 \item{pop_Canada}{"The population of country
 XXX is YYY million.  About what is the population of Canada, in millions?"  XXX was either the U.S. or Australia.}
-}}
+}
+}
 \source{
 MAT 111 at Georgetown College
 }

@@ -4,11 +4,13 @@
 \name{oldfaithful}
 \alias{oldfaithful}
 \title{Old Faithful}
-\format{A data frame with 299 observations on the following 2 variables.
+\format{
+A data frame with 299 observations on the following 2 variables.
 \describe{
 \item{Duration}{duration of eruption, in minutes}
 \item{TimeNext}{time until the next eruption, in minutes}
-}}
+}
+}
 \source{
 Unknown
 }

@@ -4,11 +4,13 @@
 \name{hanford2}
 \alias{hanford2}
 \title{Hanford Weather Station, 1945-2010}
-\format{A data frame with 66 observations on the following 2 variables.
+\format{
+A data frame with 66 observations on the following 2 variables.
 \describe{
 \item{year}{calendar year}
 \item{temp}{average high temperature for that year.}
-}}
+}
+}
 \source{
 For more on the Hanford station, see \url{http://www.hanford.gov/page.cfm/HMS}
 }
