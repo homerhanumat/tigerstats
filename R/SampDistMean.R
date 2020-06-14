@@ -10,7 +10,7 @@
 #' @return Graphical and numerical output.
 #' @export
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
-#' @note  Uses \code{manipulate} in RStudio.
+#' @note  Uses \code{manipulate} in R Studio.
 #' @examples
 #' \dontrun{
 #' data(imagpop)

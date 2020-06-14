@@ -1,19 +1,24 @@
 #' @title Regression Line Too Shallow?
 
-#' @description The regession line is not as steep as the SD Line (line through point of averages, with slope = sd(y)/sd(x)).  The difference
-#' is especially noticeable when the scatterplot is the result of a sample from a bivariate normal distribution.  This app explains
-#' why we use the regression line to predict y from x, even though the SD line appears to be a better linear summary of the
-#' scatterplot.  Can be used as a starting-point for a discussion of "regression to the mean."
+#' @description The regression line is not as steep as the SD Line (line 
+#' through point of averages, with slope = sd(y)/sd(x)).  The difference
+#' is especially noticeable when the scatter plot is the result of a sample 
+#' from a bivariate normal distribution.  This app explains
+#' why we use the regression line to predict y from x, even though the 
+#' SD line appears to be a better linear summary of the
+#' scatter plot.  Can be used as a starting-point for a discussion of 
+#' "regression to the mean."
 #' 
 #' @rdname ShallowReg
 #' @usage ShallowReg(n=900,rho=0.5)
-#' @param n Number of points in the scatterplot.
-#' @param rho Target correlation for the scatterplot.  Points are selected from a standardized bivariate normal distribtuion, with
+#' @param n Number of points in the scatter plot.
+#' @param rho Target correlation for the scatter plot.  Points are selected from 
+#' a standardized bivariate normal distribution, with
 #' correlation rho.  
 #' @return Graphical output.
 #' @export
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
-#' @note Uses \code{manipulate}, available only in RStudio, and \code{mvrnorm} from package \code{MASS}.
+#' @note Uses \code{manipulate}, available only in R Studio, and \code{mvrnorm} from package \code{MASS}.
 #' @examples
 #' \dontrun{
 #' if (require(manipulate)) ShallowReg()

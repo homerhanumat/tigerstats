@@ -11,7 +11,7 @@ qnormGC(area,region="below",mean=0,sd=1,graph=FALSE)
 
 \item{region}{A character string.  Default is "below".  Other possible values are "between" 
 (when known area is symmetric around the mean two numbers),
-"below", "above", and "outside" (when knonw area is outside a region symmetric around the mean)}
+"below", "above", and "outside" (when known area is outside a region symmetric around the mean)}
 
 \item{mean}{Mean of the distribution}
 
@@ -23,7 +23,7 @@ qnormGC(area,region="below",mean=0,sd=1,graph=FALSE)
 Numerical value of the percentile, and a vector when there are two bounds.
 }
 \description{
-When you know a certain area under a normal denisity durve, this function returns
+When you know a certain area under a normal density curve, this function returns
 the x-axis values of the boundary of that area.
 }
 \examples{

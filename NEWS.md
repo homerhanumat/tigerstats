@@ -8,7 +8,7 @@ New instructional helpers:
 * `random_normal_factory()`
 
 
-## Bugfixes
+## Bug fixes
 
 Console output for `ttestGC()` and similar functions now shows correctly in
 R Markdown notebooks.
@@ -46,7 +46,7 @@ Addition of vignette "Teaching with Tigerstats."
 ## Major changes
 
 * Addition of `qnormGC()`
-* Addition of check argument to `lmGC()`.  Diagnostics are no longer done with the diag argument; instead one calls the `plot()` function.
+* Addition of check argument to `lmGC()`.  Diagnostics are no longer done with the `diag` argument; instead one calls the `plot()` function.
 * Addition of `polyfitGC()`
 * Addition of `henderson` data frame; the `seals` data frame has been re-named to `sealsO2` to avoid name conflict with `seals` in the ggplot2 package.
 * Addition of function `helpGC()`, a convenience function to view package vignettes in the R Studio Viewer pane.

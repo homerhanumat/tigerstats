@@ -8,7 +8,7 @@
 A data frame with 62 observations on the following 4 variables.
 \describe{ \item{height}{height of the survey participant, in inches}
 \item{GPA}{grade-point average}
-\item{enough_Sleep}{Does the particpant feel that he/she gets enough sleep?}
+\item{enough_Sleep}{Does the participant feel that he/she gets enough sleep?}
 \item{sex}{sex of the survey participant}
 }
 }

@@ -38,7 +38,7 @@ gunlaws.}
 }
 \source{
 National Opinion Research Center:  \url{http://www3.norc.org/gss+website/}.  
-Found in Uts and Heckard: Mind on Statistics, 4th Edition.
+Found in Uts and Heckard: Mind on Statistics, Fourth Edition.
 }
 \description{
 The General Social Survey (GSS) is a nationwide poll that has been conducted

@@ -12,12 +12,12 @@
 #' fixed effects (see below for explanation), x should be the
 #' variable that is considered the predictor variable.
 #' @param data A data frame from which x and y are drawn.
-#' @param effects When effects="fixed", the resampling is performed under
-#' the conditon that the row sums in the resampled two-way table (with x
-#' for rows) are the same as the row sums in the twoway table based on the
+#' @param effects When effects="fixed", the re-sampling is performed under
+#' the condition that the row sums in the re-sampled two-way table (with x
+#' for rows) are the same as the row sums in the two-way table based on the
 #' original data.  When effects="random", then both row and column sums
-#' in the resampled table may vary: only the sum of the counts is
-#' constant.  (Note:  in the resampling procedure for chisq.test
+#' in the re-sampled table may vary: only the sum of the counts is
+#' constant.  (Note:  in the re-sampling procedure for chisq.test
 #' in the stats package of R, both row and column sums are
 #' required to equal the corresponding sums for the original data.)
 #' @return Graphical and numerical output

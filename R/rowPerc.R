@@ -1,6 +1,6 @@
 #' @title Row Percents
 
-#' @description Computes row percentages for a given twoway table.
+#' @description Computes row percentages for a given two-way table.
 #' 
 #' @rdname rowPerc
 #' @usage rowPerc(tab)

@@ -17,7 +17,7 @@ An app to illustrate the effectiveness of the correlation coefficient as a measu
 of the strength of a linear relationship.
 }
 \note{
-Uses \code{manipulate} in RStudio, and \code{mvrnorm} from package \code{MASS}.
+Uses \code{manipulate} in R Studio, and \code{mvrnorm} from package \code{MASS}.
 }
 \examples{
 \dontrun{

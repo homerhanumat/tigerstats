@@ -27,7 +27,7 @@ movement. Measured at 40 feet from home plate.}
  }
 }
 \source{
-Marchi and Albert:  Analyziing Baseball Data with R, CRC Press 2014.  For
+Marchi and Albert:  analyzing Baseball Data with R, CRC Press 2014.  For
 more on the PITCHf/x system, see \url{http://en.wikipedia.org/wiki/PITCHf/x}.
 }
 \description{

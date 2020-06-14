@@ -13,7 +13,7 @@ A data frame with 167 observations on the following 3 variables.
 }
 }
 \source{
-Uts and Heckard, Mind on Statistics, 4th Edition.
+Uts and Heckard, Mind on Statistics, Fourth Edition.
 }
 \description{
 Height and handspan of a few subjects.

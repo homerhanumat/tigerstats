@@ -10,7 +10,7 @@ A data frame with 10 observations on the following 4 variables.
 year.} 
 \item{enrollment}{Full-time equivalent enrollment.}
 \item{writeups}{Number of write-ups for alcohol violations.}
-\item{writeups.per.100}{Number of writeups per 100 students.} }
+\item{writeups.per.100}{Number of write-ups per 100 students.} }
 }
 \source{
 Collected by MAT 111 students as a project.

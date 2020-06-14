@@ -1,6 +1,6 @@
 #' @title Graphical Calculator for Normal Curve Percentiles
 
-#' @description When you know a certain area under a normal denisity durve, this function returns
+#' @description When you know a certain area under a normal density curve, this function returns
 #' the x-axis values of the boundary of that area.
 #' 
 #' @rdname qnormGC
@@ -8,7 +8,7 @@
 #' @param area The known percentile
 #' @param region A character string.  Default is "below".  Other possible values are "between" 
 #' (when known area is symmetric around the mean two numbers),
-#' "below", "above", and "outside" (when knonw area is outside a region symmetric around the mean)
+#' "below", "above", and "outside" (when known area is outside a region symmetric around the mean)
 #' @param mean Mean of the distribution
 #' @param sd  Standard deviation of the distribution 
 #' @param graph Will produce graph of the area

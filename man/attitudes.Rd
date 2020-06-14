@@ -11,7 +11,7 @@ A data frame with 268 observations on the following 8 variables.
 \item{vic.race}{Suggested race of the victim in the survey form.}
 \item{conc.situation}{Scenario described in the
 in the "rock concert" question on the survey form.}
-\item{sentence}{Sentence, in years, reccommended for the defendant.}
+\item{sentence}{Sentence, in years, recommended for the defendant.}
 \item{conc.decision}{Whether or not the subject chose to buy a ticket (or buy another
 ticket).}
 \item{year}{Class rank of the subject.}
@@ -36,7 +36,7 @@ Crime: You are on a jury for a manslaughter case in Lewistown, PA.  The
 defendant has been found guilty, and in Pennsylvania it is part of the job
 of the jury to recommend a sentence to the judge.  The facts of the case are
 as follows.  The defendant, Tyrone Marcus Watson, a 35-year old native of
-Lewistown, was driving under the influence of alchohol on the evening of
+Lewistown, was driving under the influence of alcohol on the evening of
 Tuesday July 17, 2001.  At approximately 11:00 PM Watson drove through a red
 light, striking a pedestrian, Betsy Brockenheimer, a 20-year old resident of
 Lewistown.  Brockenheimer was taken unconscious to the hospital and died of

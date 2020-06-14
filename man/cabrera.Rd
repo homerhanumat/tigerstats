@@ -15,14 +15,14 @@ is a pitch to Cabrera.
 \item{speed}{speed of pitch (in mph).  (When crossing plate?)}
 \item{px}{x-coordinate of pitch (in feet, measured from center of plate)}
 \item{pz}{vertical coordinate of pitch (in feet above plate)}
-\item{swung}{Whether or not cabrera swung at the ball.  Factor with levels "no", "yes".}
+\item{swung}{Whether or not Cabrera swung at the ball.  Factor with levels "no", "yes".}
 \item{hitx}{x-coordinate of landing point of ball (if it was hit).  Relative to park.}
 \item{hity}{y-coordinate of landing point of ball (if it was hit).  Relative to park.}
 \item{hit_outcome}{Outcome when ball was hit.  Factor with levels E (error), H (hit), O (batter out).}
 }
 }
 \source{
-Marchi and Albert:  Analyziing Baseball Data with R, CRC Press 2014.  For
+Marchi and Albert:  analyzing Baseball Data with R, CRC Press 2014.  For
 more on the PITCHf/x system, see \url{http://en.wikipedia.org/wiki/PITCHf/x}.
 }
 \description{

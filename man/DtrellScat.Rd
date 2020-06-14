@@ -16,8 +16,8 @@ should be from the data frame \code{data}.  \code{c} May be a factor or numerica
 Graphical and numerical output.
 }
 \description{
-An app to facilitate exploration of the relationship between two numerical variables, conditonal upon
-the values of a third variable.
+An app to facilitate exploration of the relationship between two numerical 
+variables, conditional upon the values of a third variable.
 }
 \examples{
 \dontrun{

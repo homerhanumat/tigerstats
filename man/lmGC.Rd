@@ -12,7 +12,7 @@ lmGC(form,data=parent.frame(),graph=FALSE,check=FALSE)
 \item{data}{dataframe supplying y and x above.  If one or more of the variables is not in data, then
 they will be searched for in the parent environment.}
 
-\item{graph}{Produce scatterplot with fitted ploynomial, together with prediction standard error bands}
+\item{graph}{Produce scatterplot with fitted polynomial, together with prediction standard error bands}
 
 \item{check}{Asks to produce a lowess or gam curve with approximate 95%-confidence band.  If the
 fitted line wanders outside the band, then perhaps a linear fit is not appropriate.}

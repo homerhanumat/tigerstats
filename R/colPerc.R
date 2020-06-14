@@ -1,6 +1,6 @@
 #' @title Column Percents
 
-#' @description Computes column percentages for a given twoway table.
+#' @description Computes column percentages for a given two-way table.
 #' 
 #' @rdname colPerc
 #' @usage colPerc(tab)

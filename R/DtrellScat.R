@@ -1,7 +1,7 @@
 #' @title Dynamic Trellising (Scatterplot)
 
-#' @description An app to facilitate exploration of the relationship between two numerical variables, conditonal upon
-#' the values of a third variable.
+#' @description An app to facilitate exploration of the relationship between two numerical 
+#' variables, conditional upon the values of a third variable.
 #' 
 #' @rdname DtrellScat
 #' @usage DtrellScat(form,data)

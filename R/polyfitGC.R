@@ -9,7 +9,7 @@
 #' @param data dataframe supplying y and x above.  If one or more of the variables is not in data, then
 #' they will be searched for in the parent environment.
 #' @param degree desired degree of polynomial (for degree 1 use lmgC)
-#' @param graph Produce scatterplot with fitted ploynomial.
+#' @param graph Produce scatterplot with fitted polynomial.
 #' @param check Asks to produce a lowess or gam curve with approximate 95%-confidence band.  If the
 #' fitted line wanders outside the band, then perhaps a linear fit is not appropriate.
 #' @return A list of class "polyGC".  Elements that may be queried include
@@ -149,7 +149,7 @@ predict.polyGC <-function(object,x,level=NULL,...)  {
 #' \S3method{plot}{polyGC}(x,...)
 #' @param x An object of class polyGC
 #' @param \ldots ignored
-#' @return two diagmostic plots
+#' @return two diagnostic plots
 #' @export
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
 #' @examples

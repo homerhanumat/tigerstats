@@ -14,7 +14,7 @@ An app to explore the idea of influence.  Note how the influence of the blue poi
 points in the central cloud increases, and also wanes as the correlation of the central cloud increases.
 }
 \note{
-Requires package \code{manipulate}, available only in RStudio.
+Requires package \code{manipulate}, available only in R Studio.
 Uses \code{mvrnorm} from package \code{MASS}.
 }
 \examples{

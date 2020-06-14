@@ -1,9 +1,9 @@
-#' @title Easy Barcharts
+#' @title Easy Bar Charts
 
 #' @description Wrapper for \code{\link{barchart}} in package \code{lattice}.  Creates a 
-#' barchart from raw data using formula-data syntax similar to that of \code{\link{xtabs}},
+#' bar chart from raw data using formula-data syntax similar to that of \code{\link{xtabs}},
 #' or from a table.  Defaults to a "standard"
-#' barchart in which the bars are vertical and unstacked.  Supports percentage barcharts.
+#' bar chart in which the bars are vertical and un-stacked.  Supports percentage bar charts.
 #' 
 #' @rdname barchartGC
 #' @usage barchartGC(x,data=parent.frame(),type="frequency",flat=FALSE,auto.key=TRUE,
@@ -13,33 +13,33 @@
 #' @param data Usually a data frame that supplies the variables in \code{x}.  Variables not in the data
 #' argument are searched for in the parent environment.
 #' @param type Possible values are "frequency" and "percent".
-#' @param flat If set to TRUE, will produce barchart that resembles the layout of \code{xtabs}
+#' @param flat If set to TRUE, will produce bar chart that resembles the layout of \code{xtabs}
 #' @param auto.key Provides a simple key
-#' @param horizontal Determines orientation of the bars (overrriden by flat)
-#' @param stack Determines whether bars for tallies are stacked on eac other or placed
-#' next to one another (overrriden by flat)
+#' @param horizontal Determines orientation of the bars (overridden by flat)
+#' @param stack Determines whether bars for tallies are stacked on each other or placed
+#' next to one another (overriden by flat)
 #' @param ... other arguments passed to \code{barchart}:  these include main, sub, and
 #' xlab, which are likely to be familiar to students from other \code{lattice} graphical
 #' functions.  An error is possible if other arguments
 #' pertaining to legends are passed (hopefully anyone interested in such will have moved on
 #' to \code{barchart}).
-#' @return A trellis object describing the barchart.
+#' @return A trellis object describing the bar chart.
 #' @export
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
 #' @examples
-#' #barchart of counts for one factor variable:
+#' #bar chart of counts for one factor variable:
 #' barchartGC(~sex,data=m111survey)
 #' 
-#' #barchart with percentages and title:
+#' #bar chart with percentages and title:
 #' barchartGC(~sex,data=m111survey,
 #'    type="percent",
 #'    main="Distribution of Sex")
 #' 
-#' #barchart of counts, to study the relationship between
+#' #bar chart of counts, to study the relationship between
 #' #two factor variables:
 #' barchartGC(~sex+seat,data=m111survey)
 #' 
-#' #percentage barchart, two factor variables:
+#' #percentage bar chart, two factor variables:
 #' barchartGC(~sex+seat,data=m111survey,type="percent")
 #' 
 #' #From tabulated data:
@@ -50,10 +50,10 @@
 #' dieTosses <- c(one=8,two=18,three=11,four=7,five=9,six=7)
 #' barchartGC(dieTosses,main="60 Rolls of a Die")
 #' 
-#' # a "flat" barchart, pictorial version of xtabs() 
+#' # a "flat" bar chart, pictorial version of xtabs() 
 #' barchartGC(~sex+seat,data=m111survey,flat=TRUE,ylab="Sex")
 #' 
-#' # a "flat" barchart, pictorial version of xtabs() 
+#' # a "flat" bar chart, pictorial version of xtabs() 
 #' barchartGC(~sex+seat,data=m111survey,type="percent",flat=TRUE,ylab="Sex")
 barchartGC <-
   function(x,data=parent.frame(),
@@ -77,7 +77,7 @@ barchartGC <-
       type <- "percent"
     }
     
-    # handle arugments when user wants a barchart that looks like xtabs()
+    # handle arugments when user wants a bar chart that looks like xtabs()
     if (flat==TRUE) {
       stack <- TRUE
       horizontal <- TRUE

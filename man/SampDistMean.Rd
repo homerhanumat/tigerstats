@@ -20,7 +20,7 @@ Graphical and numerical output.
 An app to explore the Central Limit Theorem.
 }
 \note{
-Uses \code{manipulate} in RStudio.
+Uses \code{manipulate} in R Studio.
 }
 \examples{
 \dontrun{

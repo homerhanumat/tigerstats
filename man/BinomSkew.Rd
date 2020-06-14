@@ -10,8 +10,9 @@ BinomSkew()
 no value.  Graphical side-effects only.
 }
 \description{
-An app to investigate how skewness in a binomial distribtution vanishes
-when np is large enough.  Sample size is set at n = 50, but the user can vary p with a slider.
+An app to investigate how skew-ness in a binomial distribution vanishes
+when np is large enough.  Sample size is set at n = 50, but the user can vary p with a 
+slider.
 }
 \examples{
 \dontrun{

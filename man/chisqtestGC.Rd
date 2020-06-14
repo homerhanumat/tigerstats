@@ -11,7 +11,7 @@ chisqtestGC(x, data = parent.frame(), p = NULL, graph = FALSE,
 \item{x}{Could be a formula.  If so, either ~var (for goodness of fit) or ~var1+var2 (for test for association).
 Otherwise either a table, matrix or vector of summary data.}
 
-\item{data}{dataframe supplying variables for formula x.  If variables in x ar enot found in the data,
+\item{data}{dataframe supplying variables for formula x.  If variables in x are not found in the data,
 then they will be searched for in the parent environment.}
 
 \item{p}{For goodness of fit, a vector of probabilities.  This will be automatically scaled so as to sum
@@ -21,7 +21,7 @@ to 1.  Negative elements result in an error message.}
 
 \item{simulate.p.value}{If FALSE, use a chi-square distribution to estimate the P-value.  Other possible
 values are "random" and "fixed" and TRUE.  Random effects are suitable for resampling when the data are a random
-sample from a poulation.  Fixed effects assume that the values of the explanatory variable (row variable for table,
+sample from a population.  Fixed effects assume that the values of the explanatory variable (row variable for table,
 var1 in formula ~var1+var2) remain fixed in resampling, and values of response variable are random with null
 distribution estimated from the data.  When set to TRUE, we implement an equivalent to R's routine.  
 In our view procedure is

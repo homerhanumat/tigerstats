@@ -18,7 +18,7 @@ An app to investigate how many times a confidence interval for one population pr
  it misses.
 }
 \note{
-Uses manipulate from RStudio
+Uses manipulate from R Studio
 }
 \examples{
 \dontrun{

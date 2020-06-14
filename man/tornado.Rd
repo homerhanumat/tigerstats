@@ -15,7 +15,7 @@ Tornado damage in the U.S., by state.  Also includes Puerto Rico.
 
 \itemize{ 
 \item{\code{state}} {the state}
-\item{\code{damage}} {mean annual damage from tornados, over a five-year period, in millions of dollars}
+\item{\code{damage}} {mean annual damage from tornadoes, over a five-year period, in millions of dollars}
 }
 }
 \keyword{datasets}

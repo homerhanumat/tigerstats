@@ -11,7 +11,7 @@
 #' @return Graphical and numerical output.
 #' @export
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
-#' @note  Uses \code{manipulate} in RStudio.  Also requires package \code{lattice}.
+#' @note  Uses \code{manipulate} in R Studio.  Also requires package \code{lattice}.
 #' @examples
 #' \dontrun{
 #' data(imagpop)

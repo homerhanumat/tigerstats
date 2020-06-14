@@ -8,7 +8,7 @@
 #' @return Graphical output.
 #' @export
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
-#' @note Requires package \code{manipulate}, available only in RStudio.
+#' @note Requires package \code{manipulate}, available only in R Studio.
 #' Uses \code{mvrnorm} from package \code{MASS}.
 #' @examples
 #' \dontrun{

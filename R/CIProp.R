@@ -12,7 +12,7 @@
 #' @return Graphical and numerical output
 #' @export
 #' @author Rebekah Robinson \email{rebekah_robinson@@georgetowncollege.edu}
-#' @note Uses manipulate from RStudio
+#' @note Uses manipulate from R Studio
 #' @examples
 #' \dontrun{
 #' if (require(manipulate)) CIProp()

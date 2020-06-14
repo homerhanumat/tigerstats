@@ -2,7 +2,7 @@
 % Please edit documentation in R/barchartGC.R
 \name{barchartGC}
 \alias{barchartGC}
-\title{Easy Barcharts}
+\title{Easy Bar Charts}
 \usage{
 barchartGC(x,data=parent.frame(),type="frequency",flat=FALSE,auto.key=TRUE,
                        horizontal=FALSE,stack=FALSE,...)
@@ -16,14 +16,14 @@ argument are searched for in the parent environment.}
 
 \item{type}{Possible values are "frequency" and "percent".}
 
-\item{flat}{If set to TRUE, will produce barchart that resembles the layout of \code{xtabs}}
+\item{flat}{If set to TRUE, will produce bar chart that resembles the layout of \code{xtabs}}
 
 \item{auto.key}{Provides a simple key}
 
-\item{horizontal}{Determines orientation of the bars (overrriden by flat)}
+\item{horizontal}{Determines orientation of the bars (overridden by flat)}
 
-\item{stack}{Determines whether bars for tallies are stacked on eac other or placed
-next to one another (overrriden by flat)}
+\item{stack}{Determines whether bars for tallies are stacked on each other or placed
+next to one another (overriden by flat)}
 
 \item{...}{other arguments passed to \code{barchart}:  these include main, sub, and
 xlab, which are likely to be familiar to students from other \code{lattice} graphical
@@ -32,28 +32,28 @@ pertaining to legends are passed (hopefully anyone interested in such will have 
 to \code{barchart}).}
 }
 \value{
-A trellis object describing the barchart.
+A trellis object describing the bar chart.
 }
 \description{
 Wrapper for \code{\link{barchart}} in package \code{lattice}.  Creates a 
-barchart from raw data using formula-data syntax similar to that of \code{\link{xtabs}},
+bar chart from raw data using formula-data syntax similar to that of \code{\link{xtabs}},
 or from a table.  Defaults to a "standard"
-barchart in which the bars are vertical and unstacked.  Supports percentage barcharts.
+bar chart in which the bars are vertical and un-stacked.  Supports percentage bar charts.
 }
 \examples{
-#barchart of counts for one factor variable:
+#bar chart of counts for one factor variable:
 barchartGC(~sex,data=m111survey)
 
-#barchart with percentages and title:
+#bar chart with percentages and title:
 barchartGC(~sex,data=m111survey,
    type="percent",
    main="Distribution of Sex")
 
-#barchart of counts, to study the relationship between
+#bar chart of counts, to study the relationship between
 #two factor variables:
 barchartGC(~sex+seat,data=m111survey)
 
-#percentage barchart, two factor variables:
+#percentage bar chart, two factor variables:
 barchartGC(~sex+seat,data=m111survey,type="percent")
 
 #From tabulated data:
@@ -64,10 +64,10 @@ barchartGC(sexseat,type="percent",main="Sex and Seating Preference")
 dieTosses <- c(one=8,two=18,three=11,four=7,five=9,six=7)
 barchartGC(dieTosses,main="60 Rolls of a Die")
 
-# a "flat" barchart, pictorial version of xtabs() 
+# a "flat" bar chart, pictorial version of xtabs() 
 barchartGC(~sex+seat,data=m111survey,flat=TRUE,ylab="Sex")
 
-# a "flat" barchart, pictorial version of xtabs() 
+# a "flat" bar chart, pictorial version of xtabs() 
 barchartGC(~sex+seat,data=m111survey,type="percent",flat=TRUE,ylab="Sex")
 }
 \author{

@@ -23,7 +23,7 @@ numeric vector} \item{marijuan}{a factor with levels \code{Legal}
 }
 \source{
 National Opinion Research Center:  \url{http://www3.norc.org/gss+website/}.  
-Found in Uts and Heckard: Mind on Statistics, 4th Edition.
+Found in Uts and Heckard: Mind on Statistics, Fourth Edition.
 }
 \description{
 General Social Survey, 2008

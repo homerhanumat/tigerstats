@@ -12,7 +12,7 @@
 \item{\ldots}{ignored}
 }
 \value{
-two diagmostic plots
+two diagnostic plots
 }
 \description{
 Used by generic plot function

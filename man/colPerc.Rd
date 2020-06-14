@@ -15,7 +15,7 @@ An object of class \code{table}, giving column percentages
 for the input table.
 }
 \description{
-Computes column percentages for a given twoway table.
+Computes column percentages for a given two-way table.
 }
 \examples{
 MyTable <- xtabs(~weather+crowd.behavior,data=ledgejump)

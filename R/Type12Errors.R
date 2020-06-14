@@ -2,7 +2,7 @@
 
 #' @description An app to explore the concepts of Type I and Type II errors, and the concept of
 #' power.  We take samples from a population that is imagined to be normal, and perform the t-procedures
-#' for one mean.  The Null Hypotheis is H0:  mu=170.  A slider allows us to vary the true mean mu.
+#' for one mean.  The Null Hypothesis is H0:  mu=170.  A slider allows us to vary the true mean mu.
 #' 
 #' @rdname Type12Errors
 #' @usage Type12Errors() 

@@ -4,7 +4,8 @@
 #' 
 #' @rdname ptGC
 #' @usage ptGC(bound,region="between",df=1,graph=FALSE)
-#' @param bound A numerical vector of length 1 or 2, indicating boundary(ies) of shaded region on horizontal axis
+#' @param bound A numerical vector of length 1 or 2, indicating the boundary 
+#' (respectively, boundaries) of shaded region on horizontal axis
 #' @param region A character string.  Possible values are "between" (when boundary consists of two numbers),
 #' "below", "above", and "outside" (again when boundary consists of two numbers)
 #' @param df degrees of freedom of the distribution

@@ -10,7 +10,7 @@ A data frame with 21 rows and 2 variables
 \source{
 "The baiting crowd in episodes of threatened suicide",
 \emph{Journal of Personality and Social Psychology}, 41, 703-709.  See also dataset 59 in
-\emph{A Handbook of Small Datasets} by Hand et. al.  See also \url{http://www.ncbi.nlm.nih.gov/pubmed/7288565}.
+\emph{A Handbook of Small Datasets} by Hand et al.  See also \url{http://www.ncbi.nlm.nih.gov/pubmed/7288565}.
 }
 \description{
 A dataset recreated from summary data describing the relationship between weather and crowd behavior during 21 recorded  

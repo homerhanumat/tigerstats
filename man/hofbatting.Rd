@@ -29,7 +29,7 @@ Integration, (1941-1959), Expansion (1960-1975), Free Agency (1976-1992), Long B
 \item{HR}{Home runs}
 \item{HR.Rate}{Number of home runs divided by number of times at bat}
 \item{RBI}{Runs batted in}
-\item{SB}{Number of succesful stolen base attempts}
+\item{SB}{Number of successful stolen base attempts}
 \item{CS}{Number of times thrown out while attempting to steal a base}
 \item{BB}{Base on Balls (number of times "walked")}
 \item{SO}{Number of times struck out}
@@ -40,7 +40,7 @@ Integration, (1941-1959), Expansion (1960-1975), Free Agency (1976-1992), Long B
  }
 }
 \source{
-Modified from Marchi and Albert:  Analyziing Baseball Data with R, CRC Press 2014.
+Modified from Marchi and Albert:  analyzing Baseball Data with R, CRC Press 2014.
 }
 \description{
 Data on the 147 batters inducted into the Major LeagueBaseball Hall of Fame

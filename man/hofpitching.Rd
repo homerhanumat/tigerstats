@@ -43,7 +43,7 @@ Integration, (1941-1959), Expansion (1960-1975), Free Agency (1976-1992), Long B
  }
 }
 \source{
-Modified from Marchi and Albert:  Analyziing Baseball Data with R, CRC Press 2014.
+Modified from Marchi and Albert:  analyzing Baseball Data with R, CRC Press 2014.
 }
 \description{
 Data on the 70 pitchers inducted into the Major League Baseball Hall of Fame

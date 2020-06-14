@@ -1,4 +1,4 @@
-#' @title SkewR
+#' @title Skewness and Box Plots
 
 #' @description An app to illustrate the effect of skewness on the shape of a boxplot.
 #' 

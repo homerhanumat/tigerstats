@@ -28,7 +28,7 @@ which letter was presented first on the form.}
 }
 }
 \source{
-Uts and Heckard, Mind on Statistics, 4th Edition.
+Uts and Heckard, Mind on Statistics, Fourth Edition.
 }
 \description{
 A study of students at Penn State University.

@@ -11,7 +11,7 @@
 #' @return Returns no value.  Used for the plotting side-effects.
 #' @export
 #' @author Homer White \email{hwhite0@@georgetowncollege.edu}
-#' @note  Uses \code{manipulate} in RStudio
+#' @note  Uses \code{manipulate} in R Studio
 #' @examples
 #' \dontrun{
 #' if(require(manipulate)) EmpRuleGC(mean=70,sd=3,xlab="Height (inches)")

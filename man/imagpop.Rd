@@ -17,7 +17,7 @@ An imaginary population, used for instructional purposes.  The variables are as 
   \item cappun.  Opinion about the death penalty (favor, oppose).
   \item height.  Height in inches.
   \item idealheight.  The height you would like to be, in inches.
-  \item diff.  Idealheight - actual height.
+  \item diff.  ideal height - actual height.
   \item kkardashtemp.  Your feelings about Kim Kardashian on a 0-100 scale  (0=very cold, 100=very warm).
 }
 }

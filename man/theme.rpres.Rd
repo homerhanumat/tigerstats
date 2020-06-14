@@ -12,7 +12,7 @@ Returns a list to be supplied as the \code{theme} to the \code{lattice} function
 }
 \description{
 Modifies the current theme for use with lattice graphics in R Presentation dicuments. Increases size of title,
- axis lables and axis numbers, thickens sone lines, etc.
+ axis lables and axis numbers, thickens some lines, etc.
 }
 \note{
 Deprecated in favor of \code{themerpres()}.  May not appear in future versions.

@@ -1,7 +1,7 @@
 #' Lattice Theme or R Presentations
 #' 
 #' Modifies the current theme for use with lattice graphics in R Presentation dicuments. Increases size of title,
-#'  axis lables and axis numbers, thickens sone lines, etc.
+#'  axis lables and axis numbers, thickens some lines, etc.
 #'
 #'@usage theme.rpres()
 #' 

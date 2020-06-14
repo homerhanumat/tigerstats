@@ -10,7 +10,7 @@
 #' year.} 
 #' \item{enrollment}{Full-time equivalent enrollment.}
 #' \item{writeups}{Number of write-ups for alcohol violations.}
-#' \item{writeups.per.100}{Number of writeups per 100 students.} }
+#' \item{writeups.per.100}{Number of write-ups per 100 students.} }
 #' @source Collected by MAT 111 students as a project.
 #' @keywords datasets
 #' 
@@ -32,7 +32,7 @@ NA
 #' \item{vic.race}{Suggested race of the victim in the survey form.}
 #' \item{conc.situation}{Scenario described in the
 #' in the "rock concert" question on the survey form.}
-#' \item{sentence}{Sentence, in years, reccommended for the defendant.}
+#' \item{sentence}{Sentence, in years, recommended for the defendant.}
 #' \item{conc.decision}{Whether or not the subject chose to buy a ticket (or buy another
 #' ticket).}
 #' \item{year}{Class rank of the subject.}
@@ -50,7 +50,7 @@ NA
 #' defendant has been found guilty, and in Pennsylvania it is part of the job
 #' of the jury to recommend a sentence to the judge.  The facts of the case are
 #' as follows.  The defendant, Tyrone Marcus Watson, a 35-year old native of
-#' Lewistown, was driving under the influence of alchohol on the evening of
+#' Lewistown, was driving under the influence of alcohol on the evening of
 #' Tuesday July 17, 2001.  At approximately 11:00 PM Watson drove through a red
 #' light, striking a pedestrian, Betsy Brockenheimer, a 20-year old resident of
 #' Lewistown.  Brockenheimer was taken unconscious to the hospital and died of
@@ -107,7 +107,7 @@ NA
 #' Experiment performed at UC-Davis; fifteen students participated.  Each
 #' student was asked to place as many beans into a cup as he/she could, in 15
 #' seconds.  Each student performed this task once with the dominant hand, and
-#' once with the nondominat hand, but the order of performance was randomized.
+#' once with the non-dominant hand, but the order of performance was randomized.
 #' The purpose of the study was to see whether manual dexterity was better for
 #' the dominant hand.  Terminology: your dominant hand is the hand you use the
 #' most.
@@ -119,10 +119,10 @@ NA
 #' \describe{ \item{Dom}{Number of beans placed into
 #' cup with the dominant hand.}
 #' \item{NonDom}{Number
-#' of beans placed with the nondominant hand.}
-#' \item{Diff}{Difference in number of beans placed (dominant hand minus nondominant
+#' of beans placed with the non-dominant hand.}
+#' \item{Diff}{Difference in number of beans placed (dominant hand minus non-dominant
 #' hand).} }
-#' @source Uts and Heckard, Mind on Statistics, 4th Edition.
+#' @source Uts and Heckard, Mind on Statistics, Fourth Edition.
 #' @keywords datasets
 
 
@@ -146,12 +146,12 @@ NA
 #' \item{speed}{speed of pitch (in mph).  (When crossing plate?)}
 #' \item{px}{x-coordinate of pitch (in feet, measured from center of plate)}
 #' \item{pz}{vertical coordinate of pitch (in feet above plate)}
-#' \item{swung}{Whether or not cabrera swung at the ball.  Factor with levels "no", "yes".}
+#' \item{swung}{Whether or not Cabrera swung at the ball.  Factor with levels "no", "yes".}
 #' \item{hitx}{x-coordinate of landing point of ball (if it was hit).  Relative to park.}
 #' \item{hity}{y-coordinate of landing point of ball (if it was hit).  Relative to park.}
 #' \item{hit_outcome}{Outcome when ball was hit.  Factor with levels E (error), H (hit), O (batter out).}
 #' }
-#' @source Marchi and Albert:  Analyziing Baseball Data with R, CRC Press 2014.  For
+#' @source Marchi and Albert:  analyzing Baseball Data with R, CRC Press 2014.  For
 #' more on the PITCHf/x system, see \url{http://en.wikipedia.org/wiki/PITCHf/x}.
 #' 
 #' @keywords datasets
@@ -173,7 +173,7 @@ NA
 #' \item{ChugTime}{How long (in seconds) the subject requires to drink the
 #' beverage.}
 #' }
-#' @source Utts and Heckard, Mind on Statistics, 4th Edition.
+#' @source Utts and Heckard, Mind on Statistics, Fourth Edition.
 #' @keywords datasets
 #' 
 
@@ -271,7 +271,7 @@ NA
 #' @format A data frame with 62 observations on the following 4 variables.
 #' \describe{ \item{height}{height of the survey participant, in inches}
 #' \item{GPA}{grade-point average}
-#' \item{enough_Sleep}{Does the particpant feel that he/she gets enough sleep?}
+#' \item{enough_Sleep}{Does the participant feel that he/she gets enough sleep?}
 #' \item{sex}{sex of the survey participant}
 #' }
 #' @source MAT 111 at Georgetown College
@@ -319,7 +319,7 @@ NA
 #' \item{emailtime}{estimated number of hours per week subject spends using email.}
 #' }
 #' @source National Opinion Research Center:  \url{http://www3.norc.org/gss+website/}.  
-#' Found in Uts and Heckard: Mind on Statistics, 4th Edition.
+#' Found in Uts and Heckard: Mind on Statistics, Fourth Edition.
 #' @keywords datasets
 
 
@@ -348,7 +348,7 @@ NA
 #' \item{chldidel}{a numeric vector} }
 #' @references For more information see \code{gss02}
 #' @source National Opinion Research Center:  \url{http://www3.norc.org/gss+website/}.  
-#' Found in Uts and Heckard: Mind on Statistics, 4th Edition.
+#' Found in Uts and Heckard: Mind on Statistics, Fourth Edition.
 #' @keywords datasets
 
 NA
@@ -414,13 +414,13 @@ NA
 #' \item{Height}{height of subject, in inches.}
 #' \item{HandSpan}{handspan of subject, in centimeters.}
 #' }
-#' @source Uts and Heckard, Mind on Statistics, 4th Edition.
+#' @source Uts and Heckard, Mind on Statistics, Fourth Edition.
 #' @keywords datasets
 
 
 NA
 
-#' Handford Weather Station, 1984-2010
+#' Hanford Weather Station, 1984-2010
 #' 
 #' The station is located in Hanford, WA.
 #'
@@ -524,7 +524,7 @@ NA
 #' \item{HR}{Home runs}
 #' \item{HR.Rate}{Number of home runs divided by number of times at bat}
 #' \item{RBI}{Runs batted in}
-#' \item{SB}{Number of succesful stolen base attempts}
+#' \item{SB}{Number of successful stolen base attempts}
 #' \item{CS}{Number of times thrown out while attempting to steal a base}
 #' \item{BB}{Base on Balls (number of times "walked")}
 #' \item{SO}{Number of times struck out}
@@ -533,7 +533,7 @@ NA
 #' \item{SLG}{Slugging average}
 #' \item{OPS}{OBP plus SLG}
 #'  }
-#' @source Modified from Marchi and Albert:  Analyziing Baseball Data with R, CRC Press 2014.
+#' @source Modified from Marchi and Albert:  analyzing Baseball Data with R, CRC Press 2014.
 #' @keywords datasets
 
 
@@ -584,7 +584,7 @@ NA
 #' \item{WP}{Wild Pitches}
 #' \item{BF}{Total batters faced}
 #'  }
-#' @source Modified from Marchi and Albert:  Analyziing Baseball Data with R, CRC Press 2014.
+#' @source Modified from Marchi and Albert:  analyzing Baseball Data with R, CRC Press 2014.
 #' @keywords datasets
 
 
@@ -602,7 +602,7 @@ NA
 #'   \item cappun.  Opinion about the death penalty (favor, oppose).
 #'   \item height.  Height in inches.
 #'   \item idealheight.  The height you would like to be, in inches.
-#'   \item diff.  Idealheight - actual height.
+#'   \item diff.  ideal height - actual height.
 #'   \item kkardashtemp.  Your feelings about Kim Kardashian on a 0-100 scale  (0=very cold, 100=very warm).
 #' }
 #' 
@@ -652,7 +652,7 @@ NA
 #' @format A data frame with 20 observations on the following 3 variables.
 #' \describe{
 #' \item{hoghollerer}{a factor with levels \code{no}
-#' \code{yes} whether or not the subject competes in hog-hollerin' contests}
+#' \code{yes} whether or not the subject competes in hog-hollering contests}
 #' \item{means}{a factor with levels \code{gun}
 #' \code{knife} means by which subject is slain}
 #' \item{volume}{volume of expiring subject's cries.}
@@ -704,7 +704,7 @@ NA
 #' @keywords datasets
 #' @source "The baiting crowd in episodes of threatened suicide",
 #' \emph{Journal of Personality and Social Psychology}, 41, 703-709.  See also dataset 59 in
-#' \emph{A Handbook of Small Datasets} by Hand et. al.  See also \url{http://www.ncbi.nlm.nih.gov/pubmed/7288565}.
+#' \emph{A Handbook of Small Datasets} by Hand et al.  See also \url{http://www.ncbi.nlm.nih.gov/pubmed/7288565}.
 #' @format A data frame with 21 rows and 2 variables
 #' @name ledgejump
 
@@ -887,12 +887,14 @@ NA
 #' @name nonresponse
 #' @docType data
 #' @format A data frame with 4229 observations on the following 3 variables.
-#' \describe{ \item{residence}{where the subject resides:  either in Copenhagen, a city outside of Copenhagen, or 
+#' \describe{ \item{residence}{where the subject resides:  either in Copenhagen, 
+#' a city outside of Copenhagen, or 
 #' in the countryside} 
 #' \item{gender}{sex of the subject}
-#' \item{response}{Whether or not eh subject responded to the mail survey}}
+#' \item{response}{Whether or not the subject responded to the mail survey}}
 #' @source Rebuilt from a contingency table in E. B. Andersen (1991), 
-#' The Statistical Analysis of Categorical Data. 2nd edition. Springer-Verlag, Berlin.  Table found in
+#' The Statistical Analysis of Categorical Data, Second Edition. Springer-Verlag, 
+#' Berlin.  Table found in
 #' package \code{vcd}.
 #' @keywords datasets
 
@@ -913,7 +915,7 @@ NA
 #' National No Smoke Day in the United Kingdom} 
 #' \item{Injuries.on.NSD}{number of injury accidents on  
 #' National No Smoke Day in the United Kingdom}}
-#' @source J. Knwles, "Nicotine withdrawal and road accidents", Science, 400, 128, (8 July 1999).
+#' @source J. Knowles, "Nicotine withdrawal and road accidents", Science, 400, 128, (8 July 1999).
 #' Found in Whitlock and Schluter, The Analysis of Biological Data.
 #' @keywords datasets
 
@@ -990,16 +992,16 @@ NA
 #' subject varied from one survey form to another.  This variable indicates
 #' which letter was presented first on the form.}
 #' }
-#' @source Uts and Heckard, Mind on Statistics, 4th Edition.
+#' @source Uts and Heckard, Mind on Statistics, Fourth Edition.
 #' @keywords datasets
 
 
 NA
 
 
-#' Pushups by Football Players at Georgetown College
+#' Push-ups by Football Players at Georgetown College
 #' 
-#' Two football players at GC asked their team-mates to do as many pushups as
+#' Two football players at GC asked their team-mates to do as many push-ups as
 #' they could in two minutes.
 #' 
 #' 
@@ -1009,7 +1011,7 @@ NA
 #' \describe{
 #' \item{weight}{weight of subject in
 #' pounds.}
-#' \item{pushups}{number of pushups
+#' \item{pushups}{number of push-ups
 #' completed.}
 #' \item{position}{a factor with levels \code{LINE}
 #' \code{SKILL}: type of position played by the subject.  Line positions
@@ -1073,7 +1075,7 @@ NA
 NA
 
 
-#' Weddell Seal Oxygen Consumptions
+#' Weddell Seal Oxygen Consumption
 #' 
 #' Results of an experiment conducted on ten Weddell seals.
 #' 
@@ -1145,7 +1147,7 @@ NA
 #' 
 #' @docType data
 #' @keywords datasets
-#' @source Mind on Statistics, 4th edition, Uts and Heckard.
+#' @source Mind on Statistics, Fourth Edition, Uts and Heckard.
 #' @format A data frame with 20 observations on 5 variables.
 #' @name temperature
 
@@ -1187,7 +1189,7 @@ NA
 #'
 #' \itemize{ 
 #' \item{\code{state}} {the state}
-#' \item{\code{damage}} {mean annual damage from tornados, over a five-year period, in millions of dollars}
+#' \item{\code{damage}} {mean annual damage from tornadoes, over a five-year period, in millions of dollars}
 #' }
 #' 
 #' @docType data
@@ -1223,7 +1225,7 @@ NA
 #' 
 #' @docType data
 #' @keywords datasets
-#' @source Mind on Statistics, 4th edition, Uts and Heckard.
+#' @source Mind on Statistics, Fourth Edition, Uts and Heckard.
 #' @format A data frame with 173 observations on 12 variables..
 #' @name ucdavis1
 
@@ -1259,7 +1261,7 @@ NA
 #' movement. Measured at 40 feet from home plate.}
 #' \item{batter_hand}{A factor with two values: L (left) and R (right).}
 #'  }
-#' @source Marchi and Albert:  Analyziing Baseball Data with R, CRC Press 2014.  For
+#' @source Marchi and Albert:  analyzing Baseball Data with R, CRC Press 2014.  For
 #' more on the PITCHf/x system, see \url{http://en.wikipedia.org/wiki/PITCHf/x}.
 #' 
 #' @keywords datasets
@@ -1284,7 +1286,7 @@ NA
 #' 
 #' @docType data
 #' @keywords datasets
-#' @source Mind on Statistics, 4th Edition, by Uts and Heckard.
+#' @source Mind on Statistics, Fourth Edition, by Uts and Heckard.
 #' @format A data frame with 3042 observations on 7 variables.
 #' @name youthrisk03
 

@@ -14,7 +14,7 @@ they will be searched for in the parent environment.}
 
 \item{degree}{desired degree of polynomial (for degree 1 use lmgC)}
 
-\item{graph}{Produce scatterplot with fitted ploynomial.}
+\item{graph}{Produce scatterplot with fitted polynomial.}
 
 \item{check}{Asks to produce a lowess or gam curve with approximate 95%-confidence band.  If the
 fitted line wanders outside the band, then perhaps a linear fit is not appropriate.}

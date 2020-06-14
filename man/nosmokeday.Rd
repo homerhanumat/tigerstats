@@ -13,7 +13,7 @@ National No Smoke Day in the United Kingdom}
 National No Smoke Day in the United Kingdom}}
 }
 \source{
-J. Knwles, "Nicotine withdrawal and road accidents", Science, 400, 128, (8 July 1999).
+J. Knowles, "Nicotine withdrawal and road accidents", Science, 400, 128, (8 July 1999).
 Found in Whitlock and Schluter, The Analysis of Biological Data.
 }
 \description{

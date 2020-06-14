@@ -2,7 +2,7 @@
 % Please edit documentation in R/Skewer.R
 \name{Skewer}
 \alias{Skewer}
-\title{SkewR}
+\title{Skewness and Box Plots}
 \usage{
 Skewer()
 }

@@ -15,7 +15,7 @@ An object of class \code{table}, giving row percentages
 for the input table.
 }
 \description{
-Computes row percentages for a given twoway table.
+Computes row percentages for a given two-way table.
 }
 \examples{
 data(ledgejump)

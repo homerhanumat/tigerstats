@@ -21,7 +21,7 @@ An app to facilitate visual understanding of Empirical Rule approximations
 of probabilities, percentages.
 }
 \note{
-Uses \code{manipulate} in RStudio
+Uses \code{manipulate} in R Studio
 }
 \examples{
 \dontrun{

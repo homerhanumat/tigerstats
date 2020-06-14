@@ -3,7 +3,7 @@
 \docType{data}
 \name{hanford1}
 \alias{hanford1}
-\title{Handford Weather Station, 1984-2010}
+\title{Hanford Weather Station, 1984-2010}
 \format{
 A data frame with 27 observations on the following 2 variables.
 \describe{
