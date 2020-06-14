@@ -2,7 +2,7 @@ Package: tigerstats
 Type: Package
 Title: R Functions for Elementary Statistics
 Version: 0.3.2
-Date: 2020-06-13
+Date: 2020-06-14
 Author: Rebekah Robinson <rebekahmusselwhite23@gmail.com> and Homer
     White <hwhite0@georgetowncollege.edu>
 Maintainer: Homer White <hwhite0@georgetowncollege.edu>

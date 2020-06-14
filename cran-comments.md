@@ -9,7 +9,7 @@
 
 ### Via rhub
 
-`cran_summary()` (for checks performed 2020-06-14):
+Performed 2020-06-14:
 
 - R-hub windows-x86_64-devel (r-devel)
 - R-hub ubuntu-gcc-release (r-release)
