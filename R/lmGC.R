@@ -223,8 +223,8 @@ print.GClm <-function(x,...)  {
     title <- paste0("Checking the Model Fit\n(Model is blue; ",method,
                     " curve is red;\n95%-confidence band for curve included)")
     
-    p1 <- ggplot2::ggplot(df, 
-                          ggplot2::aes(x=as.symbol(expname),y=as.symbol(respname)))+
+    p1 <- 
+      ggplot2::ggplot(df, ggplot2::aes_string(x=expname,y=respname))+
       ggplot2::ggtitle(title)+
       ggplot2::geom_point()+
       ggplot2::stat_smooth(method = "lm", size = 1,se=FALSE)+
