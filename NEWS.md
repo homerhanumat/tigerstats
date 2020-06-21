@@ -1,5 +1,9 @@
 # tigerstats (development version)
 
+## Bug Fixes
+
+* `as.symbol()` experiment had crept into `lmGC(check = TRUE)`.
+
 # tigerstats 0.3.2
 
 ## Major changes
