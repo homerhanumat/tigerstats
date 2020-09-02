@@ -93,7 +93,8 @@ qnormGC <- function(area,region="below",mean=0,sd=1,graph=FALSE) {
       curve(dnorm(x,mean=mean,sd=sd),from=lower,to=upper,ylab="density",axes=FALSE,n=50,
             main=paste("Normal Curve, mean = ",round(mean,2),", SD = ",round(sd,2),"\n Percent Outside = ",
                        round(100*area,4),"%"))
-      UnderShade(low=quantLower,high=quantUpper,func=dnorm,mean=mean,sd=sd)
+      UnderShade(low=quantUpper,high=upper,func=dnorm,mean=mean,sd=sd)
+      UnderShade(low=lower,high=quantLower,func=dnorm,mean=mean,sd=sd)
       axis(2)
       places <- c(lower,round(quantLower,2),round(quantUpper,2),upper)
       axis(1,at=places,labels=c("",as.character(places[2:3]),""))

@@ -3,6 +3,7 @@
 ## Bug Fixes
 
 * `as.symbol()` experiment had crept into `lmGC(check = TRUE)`.
+* `qnormGC()` with `region = "outside"` and `graph = TRUE` now shades the tails instead of the area between.
 
 # tigerstats 0.3.2
 
