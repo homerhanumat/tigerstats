@@ -4,14 +4,18 @@
 #' formula-data input or a summary table.  Simulation is optional.
 #' 
 #' @rdname chisqtestGC
-#' @usage chisqtestGC(x, data = parent.frame(), p = NULL, graph = FALSE,
-#'              simulate.p.value = FALSE, B = 2000, verbose = TRUE)
+#' @usage chisqtestGC(x, data = parent.frame(), p = NULL, correct = TRUE, 
+#'              graph = FALSE, simulate.p.value = FALSE, 
+#'              B = 2000, verbose = TRUE)
 #' @param x Could be a formula.  If so, either ~var (for goodness of fit) or ~var1+var2 (for test for association).
 #' Otherwise either a table, matrix or vector of summary data.
 #' @param data dataframe supplying variables for formula x.  If variables in x are not found in the data,
 #' then they will be searched for in the parent environment.
 #' @param p For goodness of fit, a vector of probabilities.  This will be automatically scaled so as to sum
 #' to 1.  Negative elements result in an error message.
+#' @param correct If set to TRUE then Yates' continuity correction is
+#' used to compute the test statistic for 2 by 2 tables in a test 
+#' for association.
 #' @param graph produce relevant graph for P-value (chi-square curve or histogram of simulation results).
 #' @param simulate.p.value If FALSE, use a chi-square distribution to estimate the P-value.  Other possible
 #' values are "random" and "fixed" and TRUE.  Random effects are suitable for resampling when the data are a random
@@ -43,7 +47,7 @@
 #' #For less ouptut, set argument verbose to FALSE:
 #' chisqtestGC(~sex+seat,data=m111survey,verbose=FALSE)
 chisqtestGC <- 
-  function (x,data=parent.frame(),p=NULL,graph=FALSE,simulate.p.value=FALSE,B=2000,verbose=TRUE) 
+  function (x,data=parent.frame(),p=NULL,correct=TRUE,graph=FALSE,simulate.p.value=FALSE,B=2000,verbose=TRUE) 
   {
     
 ###########################################################
@@ -199,7 +203,7 @@ chisqtestGC <-
       data2 <- data.frame(explanatory,response)
       names(data2) <- c(expname,respname)
       tab <- table(data2)
-      res <- suppressWarnings(chisq.test(tab))
+      res <- suppressWarnings(chisq.test(tab, correct = correct))
       
     } #end processing of association test
     
@@ -236,7 +240,7 @@ chisqtestGC <-
     
     if (length(dim(tab))==2) {
       type <- "association"
-      res <- suppressWarnings(chisq.test(tab))
+      res <- suppressWarnings(chisq.test(tab, correct = correct))
     }#end of association processing
     
   }#end processing for summary data

@@ -4,8 +4,9 @@
 \alias{chisqtestGC}
 \title{Chi-Square Test (GC version)}
 \usage{
-chisqtestGC(x, data = parent.frame(), p = NULL, graph = FALSE,
-             simulate.p.value = FALSE, B = 2000, verbose = TRUE)
+chisqtestGC(x, data = parent.frame(), p = NULL, correct = TRUE, 
+             graph = FALSE, simulate.p.value = FALSE, 
+             B = 2000, verbose = TRUE)
 }
 \arguments{
 \item{x}{Could be a formula.  If so, either ~var (for goodness of fit) or ~var1+var2 (for test for association).
@@ -16,6 +17,10 @@ then they will be searched for in the parent environment.}
 
 \item{p}{For goodness of fit, a vector of probabilities.  This will be automatically scaled so as to sum
 to 1.  Negative elements result in an error message.}
+
+\item{correct}{If set to TRUE then Yates' continuity correction is
+used to compute the test statistic for 2 by 2 tables in a test 
+for association.}
 
 \item{graph}{produce relevant graph for P-value (chi-square curve or histogram of simulation results).}
 

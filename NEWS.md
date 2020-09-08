@@ -5,6 +5,10 @@
 * `as.symbol()` experiment had crept into `lmGC(check = TRUE)`.
 * `qnormGC()` with `region = "outside"` and `graph = TRUE` now shades the tails instead of the area between.
 
+## Features
+
+* `chisqtestGC()` now includes a `correct` parameter to indicate whether or not to employ the Yates continuity correction  for 2 by 2 tables in a test of association.
+
 # tigerstats 0.3.2
 
 ## Major changes
