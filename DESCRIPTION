@@ -18,7 +18,7 @@ Description: A collection of data sets and functions that are useful in the
     dependencies.
 License: GPL (>=3)
 Depends:
-    R(>= 3.0),
+    R(>= 3.5.0),
     abd,
     mosaic,
     mosaicData
