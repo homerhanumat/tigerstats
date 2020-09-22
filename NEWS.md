@@ -4,6 +4,7 @@
 
 * `as.symbol()` experiment had crept into `lmGC(check = TRUE)`.
 * `qnormGC()` with `region = "outside"` and `graph = TRUE` now shades the tails instead of the area between.
+* `pbinomGC()` with `region = "between"` now gives correct probability when bounds are not whole numbers.
 
 ## Features
 

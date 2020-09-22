@@ -78,7 +78,8 @@ pbinomGC  <- function(bound,region="below",size=100,prob=0.5,graph=FALSE) {
   }
   
   if (between)  {
-    area <- pbinom(bound[2],size=size,prob=prob)-pbinom(bound[1]-1,size=size,prob=prob)
+    lower_bound <- ifelse(floor(bound[1]) == bound[1], bound[1] - 1, bound[1])
+    area <- pbinom(bound[2],size=size,prob=prob)-pbinom(lower_bound, size=size,prob=prob)
     if (graph) {
     upper <- ceiling(max(qbinom(.9999,size=size,prob=prob),bound+0.1*sd))
     lower <- floor(min(qbinom(0.0001,size=size,prob=prob),bound-0.1*sd))
@@ -96,7 +97,8 @@ pbinomGC  <- function(bound,region="below",size=100,prob=0.5,graph=FALSE) {
   }
   
   if (outside)  {
-    area <- pbinom(bound[2],size=size,prob=prob,lower.tail=FALSE)+pbinom(bound[1]-1,size=size,prob=prob)
+    lower_bound <- ifelse(floor(bound[1]) == bound[1], bound[1] - 1, bound[1])
+    area <- pbinom(bound[2],size=size,prob=prob,lower.tail=FALSE)+pbinom(lower_bound,size=size,prob=prob)
     if (graph) {
     upper <- ceiling(max(qbinom(.9999,size=size,prob=prob),bound+0.1*sd))
     lower <- floor(min(qbinom(0.0001,size=size,prob=prob),bound-0.1*sd))
