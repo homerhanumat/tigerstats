@@ -2,9 +2,7 @@
 % Please edit documentation in R/barchartGC.R
 \name{simpleKeyRev}
 \alias{simpleKeyRev}
-\title{Reversed Simple Key Function
-
-Utility function for barchartGC.}
+\title{Reversed Simple Key Function}
 \usage{
 simpleKeyRev(text, points = TRUE,
 rectangles = FALSE,

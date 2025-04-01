@@ -13,7 +13,7 @@ A data frame with 10 observations on the following 2 variables.
 }
 \source{
 Williams, T. M., L. A. Fuiman, M. Horning, and R. W. Davis. 2004. 
-The Journal of Experimental Biology 207: 973 to 982.  \url{http://jeb.biologists.org/content/207/6/973.full}
+The Journal of Experimental Biology 207: 973 to 982.
 }
 \description{
 Results of an experiment conducted on ten Weddell seals.

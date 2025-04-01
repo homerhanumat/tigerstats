@@ -8,7 +8,7 @@ theme.rpres()
 }
 \value{
 Returns a list to be supplied as the \code{theme} to the \code{lattice} function
-\code{\link{trellis.par.set}()}.
+\code{\link[lattice]{trellis.par.set}()}.
 }
 \description{
 Modifies the current theme for use with lattice graphics in R Presentation dicuments. Increases size of title,
@@ -22,6 +22,6 @@ trellis.par.set(theme=theme.rpres())
 
 }
 \seealso{
-\code{\link{trellis.par.set}}, \code{\link{show.settings}}
+\code{\link[lattice]{trellis.par.set}}, \code{\link[lattice]{show.settings}}
 }
 \keyword{graphics}

@@ -2,10 +2,8 @@
 
 ### Local
 
-* x86_64-apple-darwin17.0 (64-bit), MacOS Catalina 10.15.5
-    * R version: R 4.0.1 (2020-06-06)
-* x86_64-pc-linux-gnu (64-bit), Ubuntu 18.04.4
-    * R version: R 4.0.1 (2020-06-06)
+* aarch64-apple-darwin20, MacOS Sequoia 15.3.2
+    * R version: R 4.4.3 (2025-02-28)
 
 ### Via rhub
 

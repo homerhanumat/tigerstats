@@ -2,14 +2,14 @@
 #'
 #' Datasets and functions useful for teaching elementary statistics.
 #'
-#'
+"_PACKAGE"
 #' @name tigerstats-package
 #' @aliases tigerstats tigerstats-package
-#' @docType package
+#' 
 #' @title R Functions for Elementary Statistics
 #' @author Rebekah Robinson (\email{rebekahmusselwhite23@gmail.com}), Homer White (\email{hwhite0@georgetowncollege.edu})
 #' @references
-#' \url{https://homerhanumat.github.io/tigerstats}
+#' \url{https://homerhanumat.github.io/tigerstats/}
 #'
 #' @keywords package
 #' @import mosaicData abd

@@ -8,7 +8,7 @@
 A data frame with 1976 rows and 12 variables
 }
 \source{
-\url{http://www3.norc.org/gss+website/}.
+\url{https://gss.norc.org/}.
 }
 \description{
 A selection of variables from the 2012 General Social Survey.  The variables are as follows:

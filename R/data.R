@@ -152,7 +152,7 @@ NA
 #' \item{hit_outcome}{Outcome when ball was hit.  Factor with levels E (error), H (hit), O (batter out).}
 #' }
 #' @source Marchi and Albert:  analyzing Baseball Data with R, CRC Press 2014.  For
-#' more on the PITCHf/x system, see \url{http://en.wikipedia.org/wiki/PITCHf/x}.
+#' more on the PITCHf/x system, see \url{https://en.wikipedia.org/wiki/PITCHf/x}.
 #' 
 #' @keywords datasets
 
@@ -318,7 +318,7 @@ NA
 #' \item{chldidel}{the ideal number of children the subject would like to have.}
 #' \item{emailtime}{estimated number of hours per week subject spends using email.}
 #' }
-#' @source National Opinion Research Center:  \url{http://www3.norc.org/gss+website/}.  
+#' @source National Opinion Research Center:  \url{https://gss.norc.org/}.  
 #' Found in Uts and Heckard: Mind on Statistics, Fourth Edition.
 #' @keywords datasets
 
@@ -347,7 +347,7 @@ NA
 #' \code{Oppose}} \item{age}{a numeric vector}
 #' \item{chldidel}{a numeric vector} }
 #' @references For more information see \code{gss02}
-#' @source National Opinion Research Center:  \url{http://www3.norc.org/gss+website/}.  
+#' @source National Opinion Research Center:  \url{https://gss.norc.org/}.  
 #' Found in Uts and Heckard: Mind on Statistics, Fourth Edition.
 #' @keywords datasets
 
@@ -374,7 +374,7 @@ NA
 #' 
 #' @docType data
 #' @keywords datasets
-#' @source \url{http://www3.norc.org/gss+website/}.
+#' @source \url{https://gss.norc.org/}.
 #' @format A data frame with 1976 rows and 12 variables
 #' @name gss2012
 
@@ -432,7 +432,7 @@ NA
 #' \item{year}{calendar year}
 #' \item{temp}{average high temperature for that year.}
 #' }
-#' @source For more on the Hanford station, see \url{http://www.hanford.gov/page.cfm/HMS}
+#' @source For more on the Hanford station, see \url{https://www.hanford.gov/page.cfm/HMS}
 #' @keywords datasets
 
 
@@ -451,7 +451,7 @@ NA
 #' \item{year}{calendar year}
 #' \item{temp}{average high temperature for that year.}
 #' }
-#' @source For more on the Hanford station, see \url{http://www.hanford.gov/page.cfm/HMS}
+#' @source For more on the Hanford station, see \url{https://www.hanford.gov/page.cfm/HMS}
 #' @keywords datasets
 
 
@@ -704,7 +704,7 @@ NA
 #' @keywords datasets
 #' @source "The baiting crowd in episodes of threatened suicide",
 #' \emph{Journal of Personality and Social Psychology}, 41, 703-709.  See also dataset 59 in
-#' \emph{A Handbook of Small Datasets} by Hand et al.  See also \url{http://www.ncbi.nlm.nih.gov/pubmed/7288565}.
+#' \emph{A Handbook of Small Datasets} by Hand et al.  See also \doi{10.1037/0022-3514.41.4.703}.
 #' @format A data frame with 21 rows and 2 variables
 #' @name ledgejump
 
@@ -844,11 +844,11 @@ NA
 #' groups.  All subjects read an article; one group read in a silent environment, while the other three groups
 #' heard each three different genres of music.  Each subject took a reading comprehension test afterward.
 #' 
-#' \itemize{
-#' \item{\code{sex}} {a factor with levels \code{Female} \code{Male}}
-#' \item{\code{year}} {class rank of subject}
-#' \item{\code{type}} {type of music subject listened to while reading}
-#' \item{\code{score}} {number of questions correct on reading comprehension test}
+#' \describe{
+#' \item{sex}{a factor with levels \code{Female} \code{Male}}
+#' \item{year}{class rank of subject}
+#' \item{type}{type of music subject listened to while reading}
+#' \item{score}{number of questions correct on reading comprehension test}
 #' }
 #' 
 #' @docType data
@@ -1041,8 +1041,8 @@ NA
 #' \describe{ \item{salt}{amount of salt applied to the plot (in parts per million)}
 #' \item{biomass}{total biomass of plot at the end of the study period (units unknown)}
 #' \item{block}{field in which the plot was located} }
-#' @source The Course Notes of Carl Schwarz, Simon Fraser University:  
-#' \url{http://people.stat.sfu.ca/~cschwarz/CourseNotes/}
+#' @source The Course Notes of Carl Schwarz, Simon Fraser University 
+#' (URL no longer active). 
 #' @keywords datasets
 
 
@@ -1088,7 +1088,7 @@ NA
 #' \item{o2.feeding}{Oxygen consumption during recovery time after a dive during which
 #'  plankton was consumed, in ml of O2 per kilogram of weight}}
 #' @source Williams, T. M., L. A. Fuiman, M. Horning, and R. W. Davis. 2004. 
-#' The Journal of Experimental Biology 207: 973 to 982.  \url{http://jeb.biologists.org/content/207/6/973.full}
+#' The Journal of Experimental Biology 207: 973 to 982.
 #' @keywords datasets
 
 
@@ -1137,12 +1137,12 @@ NA
 #' 
 #' @description Average temperatures for cities in the United States.
 #' 
-#' \itemize{
-#' \item{\code{city}} {Name of the city}
-#' \item{\code{latitude}} {latitude of the city, in degrees north of the Equator}
-#' \item{\code{JanTemp}} {mean temperature of the city in January.}
-#' \item{\code{AprTemp}} {mean temperature of the city in April.}
-#' \item{\code{AugTemp}} {mean temperature of the city in August.}
+#' \describe{
+#' \item{city}{Name of the city}
+#' \item{latitude}{latitude of the city, in degrees north of the Equator}
+#' \item{JanTemp}{mean temperature of the city in January.}
+#' \item{AprTemp}{mean temperature of the city in April.}
+#' \item{AugTemp}{mean temperature of the city in August.}
 #' }
 #' 
 #' @docType data
@@ -1159,15 +1159,15 @@ NA
 #' @description A waiter recorded all tips earned during a 2.5 month period in early 1990, along with other
 #' information about the customers who gave the tips.  The variables are as follows:
 #' 
-#' \itemize{
-#'   \item {obs} {Observation number of event}
-#'   \item {totbill} {The total bill}
-#'   \item {tip} {Amount of the tip}
-#'   \item {sex} {Sex of tipper (F or M)}
-#'   \item {smoker} {Whether the tipper smokes: Yes or No}
-#'   \item {day} {Day of the week}
-#'   \item {time} {Whether the meal was during the Day or the Night}
-#'   \item {size} {Number of people in the dining party}
+#' \describe{
+#' \item{obs}{Observation number of event}
+#' \item{totbill}{The total bill}
+#' \item{tip}{Amount of the tip}
+#' \item{sex}{Sex of tipper (F or M)}
+#' \item{smoker}{Whether the tipper smokes: Yes or No}
+#' \item{day}{Day of the week}
+#' \item{time}{Whether the meal was during the Day or the Night}
+#' \item{size}{Number of people in the dining party}
 #' }
 #' 
 #' @docType data
@@ -1176,7 +1176,6 @@ NA
 #` Studies in Business Statistics, Richard D. Irwin Publishing, Homewood, IL.
 #' Found in Interactive and Dynamic Graphics for Data Analysis: 
 #' With Examples Using R and GGobi, Dianne Cook and Deborah F. Swayne.
-#' See also \url{http://www.ggobi.org/book/}.
 #' @format A data frame with 244 rows and 8 variables
 #' @name tips
 
@@ -1187,9 +1186,9 @@ NA
 #' 
 #' @description Tornado damage in the U.S., by state.  Also includes Puerto Rico.
 #'
-#' \itemize{ 
-#' \item{\code{state}} {the state}
-#' \item{\code{damage}} {mean annual damage from tornadoes, over a five-year period, in millions of dollars}
+#' \describe{ 
+#' \item{state}{the state}
+#' \item{damage}{mean annual damage from tornadoes, over a five-year period, in millions of dollars}
 #' }
 #' 
 #' @docType data
@@ -1206,7 +1205,7 @@ NA
 #' 
 #' @description Results of a survey of students at UC-Davis.
 #' 
-#' \itemize{
+#' \describe{
 #' \item{\code{Sex}}{ a factor with levels \code{Female} \code{Male}}
 #' \item{\code{TV}}{ Number of hours spent watching TV per week}
 #' \item{\code{computer}}{ number of hours spent on computer per week}
@@ -1262,7 +1261,7 @@ NA
 #' \item{batter_hand}{A factor with two values: L (left) and R (right).}
 #'  }
 #' @source Marchi and Albert:  analyzing Baseball Data with R, CRC Press 2014.  For
-#' more on the PITCHf/x system, see \url{http://en.wikipedia.org/wiki/PITCHf/x}.
+#' more on the PITCHf/x system, see \url{https://en.wikipedia.org/wiki/PITCHf/x}.
 #' 
 #' @keywords datasets
 

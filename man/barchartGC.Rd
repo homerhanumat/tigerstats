@@ -35,8 +35,8 @@ to \code{barchart}).}
 A trellis object describing the bar chart.
 }
 \description{
-Wrapper for \code{\link{barchart}} in package \code{lattice}.  Creates a 
-bar chart from raw data using formula-data syntax similar to that of \code{\link{xtabs}},
+Wrapper for \code{\link[lattice]{barchart}} in package \code{lattice}.  Creates a 
+bar chart from raw data using formula-data syntax similar to that of \code{\link[stats]{xtabs}},
 or from a table.  Defaults to a "standard"
 bar chart in which the bars are vertical and un-stacked.  Supports percentage bar charts.
 }

@@ -13,7 +13,7 @@ Mind on Statistics, Fourth Edition, Uts and Heckard.
 \description{
 Results of a survey of students at UC-Davis.
 
-\itemize{
+\describe{
 \item{\code{Sex}}{ a factor with levels \code{Female} \code{Male}}
 \item{\code{TV}}{ Number of hours spent watching TV per week}
 \item{\code{computer}}{ number of hours spent on computer per week}

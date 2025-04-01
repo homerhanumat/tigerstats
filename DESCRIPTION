@@ -1,11 +1,11 @@
 Package: tigerstats
 Type: Package
 Title: R Functions for Elementary Statistics
-Version: 0.3.2.9000
-Date: 2020-06-19
+Version: 0.3.2.9001
+Date: 2025-04-01
 Author: Rebekah Robinson <rebekahmusselwhite23@gmail.com> and Homer
-    White <hwhite0@georgetowncollege.edu>
-Maintainer: Homer White <hwhite0@georgetowncollege.edu>
+    White <homerhanumat@gmail.com>
+Maintainer: Homer White <homehanumat@gmail.com>
 Description: A collection of data sets and functions that are useful in the
     teaching of statistics at an elementary level to students who may have
     little or no previous experience with the command line.  The functions for
@@ -37,4 +37,6 @@ LazyLoad: yes
 LazyData: true
 Encoding: UTF-8
 NeedsCompilation: no
-RoxygenNote: 7.1.0
+RoxygenNote: 7.3.2
+URL: https://github.com/homerhanumat/tigerstats
+BugReports: https://github.com/homerhanumat/tigerstats/issues

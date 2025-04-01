@@ -6,10 +6,10 @@
 #'@usage theme.rpres()
 #' 
 #' @return Returns a list to be supplied as the \code{theme} to the \code{lattice} function
-#' \code{\link{trellis.par.set}()}.
+#' \code{\link[lattice]{trellis.par.set}()}.
 #'
 #'
-#' @seealso \code{\link{trellis.par.set}}, \code{\link{show.settings}} 
+#' @seealso \code{\link[lattice]{trellis.par.set}}, \code{\link[lattice]{show.settings}} 
 #' 
 #' @rdname theme.rpres
 #' @note Deprecated in favor of \code{themerpres()}.  May not appear in future versions.

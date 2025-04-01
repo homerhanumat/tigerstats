@@ -28,7 +28,7 @@ movement. Measured at 40 feet from home plate.}
 }
 \source{
 Marchi and Albert:  analyzing Baseball Data with R, CRC Press 2014.  For
-more on the PITCHf/x system, see \url{http://en.wikipedia.org/wiki/PITCHf/x}.
+more on the PITCHf/x system, see \url{https://en.wikipedia.org/wiki/PITCHf/x}.
 }
 \description{
 PITCHf/x data on Justin Verlander, winner of the 2011 Cy Young Award.  Covers his 

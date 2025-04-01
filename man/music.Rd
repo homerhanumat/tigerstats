@@ -15,11 +15,11 @@ An experiment performed by a student at Georgetown College.  Forty-four subjects
 groups.  All subjects read an article; one group read in a silent environment, while the other three groups
 heard each three different genres of music.  Each subject took a reading comprehension test afterward.
 
-\itemize{
-\item{\code{sex}} {a factor with levels \code{Female} \code{Male}}
-\item{\code{year}} {class rank of subject}
-\item{\code{type}} {type of music subject listened to while reading}
-\item{\code{score}} {number of questions correct on reading comprehension test}
+\describe{
+\item{sex}{a factor with levels \code{Female} \code{Male}}
+\item{year}{class rank of subject}
+\item{type}{type of music subject listened to while reading}
+\item{score}{number of questions correct on reading comprehension test}
 }
 }
 \keyword{datasets}

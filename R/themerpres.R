@@ -1,15 +1,15 @@
 #' Lattice Theme or R Presentations
 #' 
 #' Modifies the current theme for use with lattice graphics in R Presentation dicuments. Increases size of title,
-#'  axis lables and axis numbers, thickens some lines, etc.
+#'  axis labels and axis numbers, thickens some lines, etc.
 #'
 #'@usage themerpres()
 #' 
 #' @return Returns a list to be supplied as the \code{theme} to the \code{lattice} function
-#' \code{\link{trellis.par.set}()}.
+#' \code{\link[lattice]{trellis.par.set}()}.
 #'
 #'
-#' @seealso \code{\link{trellis.par.set}}, \code{\link{show.settings}} 
+#' @seealso \code{\link[lattice]{trellis.par.set}}, \code{\link[lattice]{show.settings}} 
 #' 
 #' @rdname themerpres
 #'

@@ -11,8 +11,8 @@ A data frame with 24 observations on the following 3 variables.
 \item{block}{field in which the plot was located} }
 }
 \source{
-The Course Notes of Carl Schwarz, Simon Fraser University:  
-\url{http://people.stat.sfu.ca/~cschwarz/CourseNotes/}
+The Course Notes of Carl Schwarz, Simon Fraser University 
+(URL no longer active).
 }
 \description{
 Result of an experiment conducted to investigate the effect of salinity level in soil 

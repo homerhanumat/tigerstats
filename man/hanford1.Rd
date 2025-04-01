@@ -12,7 +12,7 @@ A data frame with 27 observations on the following 2 variables.
 }
 }
 \source{
-For more on the Hanford station, see \url{http://www.hanford.gov/page.cfm/HMS}
+For more on the Hanford station, see \url{https://www.hanford.gov/page.cfm/HMS}
 }
 \description{
 The station is located in Hanford, WA.

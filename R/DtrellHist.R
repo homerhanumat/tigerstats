@@ -44,7 +44,7 @@ function(form,data)  {
   orig <- data[,as.character(prsd$rhs)]
   cond <- data[,as.character(prsd$condition)]
   
-  if (class(cond)=="numeric" || class(cond)=="integer")  {
+  if (inherits(cond, "numeric") || inherits(cond, "integer"))  {
     manipulate(
       level=slider(0,1,initial=0.1,label=paste(varnames[2]," Center")),
       band=slider(0.05,0.4,initial=0.10,step=0.01,label=paste(varnames[2]," Bandwidth")),
@@ -59,7 +59,7 @@ function(form,data)  {
     )
   }
   
-  if (class(cond)=="factor")  {
+  if (inherits(cond, "factor"))  {
     manipulate(
       lev=picker(as.list(levels(cond)),
                  label=paste("Level of ",varnames[2])),

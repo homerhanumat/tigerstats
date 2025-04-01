@@ -1,7 +1,7 @@
 #' @title Easy Bar Charts
 
-#' @description Wrapper for \code{\link{barchart}} in package \code{lattice}.  Creates a 
-#' bar chart from raw data using formula-data syntax similar to that of \code{\link{xtabs}},
+#' @description Wrapper for \code{\link[lattice]{barchart}} in package \code{lattice}.  Creates a 
+#' bar chart from raw data using formula-data syntax similar to that of \code{\link[stats]{xtabs}},
 #' or from a table.  Defaults to a "standard"
 #' bar chart in which the bars are vertical and un-stacked.  Supports percentage bar charts.
 #' 
@@ -369,8 +369,6 @@ barchartGC <-
   } #end barchartGC
 
 #' @title Reversed Simple Key Function
-#' 
-#' Utility function for barchartGC.
 #' 
 #' @rdname simpleKeyRev
 #' @description utility function for barchartGC

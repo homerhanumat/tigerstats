@@ -23,7 +23,7 @@ is a pitch to Cabrera.
 }
 \source{
 Marchi and Albert:  analyzing Baseball Data with R, CRC Press 2014.  For
-more on the PITCHf/x system, see \url{http://en.wikipedia.org/wiki/PITCHf/x}.
+more on the PITCHf/x system, see \url{https://en.wikipedia.org/wiki/PITCHf/x}.
 }
 \description{
 PITCHf/x data on nine-time All-Star Miguel Cabrera, who is thought to be one of the best

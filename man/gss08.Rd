@@ -22,7 +22,7 @@ numeric vector} \item{marijuan}{a factor with levels \code{Legal}
 \item{chldidel}{a numeric vector} }
 }
 \source{
-National Opinion Research Center:  \url{http://www3.norc.org/gss+website/}.  
+National Opinion Research Center:  \url{https://gss.norc.org/}.  
 Found in Uts and Heckard: Mind on Statistics, Fourth Edition.
 }
 \description{

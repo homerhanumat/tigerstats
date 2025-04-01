@@ -8,17 +8,17 @@ themerpres()
 }
 \value{
 Returns a list to be supplied as the \code{theme} to the \code{lattice} function
-\code{\link{trellis.par.set}()}.
+\code{\link[lattice]{trellis.par.set}()}.
 }
 \description{
 Modifies the current theme for use with lattice graphics in R Presentation dicuments. Increases size of title,
- axis lables and axis numbers, thickens some lines, etc.
+ axis labels and axis numbers, thickens some lines, etc.
 }
 \examples{
 trellis.par.set(theme=themerpres())
 
 }
 \seealso{
-\code{\link{trellis.par.set}}, \code{\link{show.settings}}
+\code{\link[lattice]{trellis.par.set}}, \code{\link[lattice]{show.settings}}
 }
 \keyword{graphics}

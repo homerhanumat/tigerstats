@@ -4,15 +4,20 @@
 \name{tigerstats-package}
 \alias{tigerstats-package}
 \alias{tigerstats}
-\title{R Functions for Elementary Statistics}
+\title{tigerstats}
 \description{
-tigerstats
-}
-\details{
 Datasets and functions useful for teaching elementary statistics.
 }
 \references{
-\url{https://homerhanumat.github.io/tigerstats}
+\url{https://homerhanumat.github.io/tigerstats/}
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/homerhanumat/tigerstats}
+  \item Report bugs at \url{https://github.com/homerhanumat/tigerstats/issues}
+}
+
 }
 \author{
 Rebekah Robinson (\email{rebekahmusselwhite23@gmail.com}), Homer White (\email{hwhite0@georgetowncollege.edu})

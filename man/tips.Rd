@@ -11,21 +11,20 @@ A data frame with 244 rows and 8 variables
 Bryant, P. G. and Smith, M. A.(1995), Practical Data Analysis: Case
 Found in Interactive and Dynamic Graphics for Data Analysis: 
 With Examples Using R and GGobi, Dianne Cook and Deborah F. Swayne.
-See also \url{http://www.ggobi.org/book/}.
 }
 \description{
 A waiter recorded all tips earned during a 2.5 month period in early 1990, along with other
 information about the customers who gave the tips.  The variables are as follows:
 
-\itemize{
-  \item {obs} {Observation number of event}
-  \item {totbill} {The total bill}
-  \item {tip} {Amount of the tip}
-  \item {sex} {Sex of tipper (F or M)}
-  \item {smoker} {Whether the tipper smokes: Yes or No}
-  \item {day} {Day of the week}
-  \item {time} {Whether the meal was during the Day or the Night}
-  \item {size} {Number of people in the dining party}
+\describe{
+\item{obs}{Observation number of event}
+\item{totbill}{The total bill}
+\item{tip}{Amount of the tip}
+\item{sex}{Sex of tipper (F or M)}
+\item{smoker}{Whether the tipper smokes: Yes or No}
+\item{day}{Day of the week}
+\item{time}{Whether the meal was during the Day or the Night}
+\item{size}{Number of people in the dining party}
 }
 }
 \keyword{datasets}
