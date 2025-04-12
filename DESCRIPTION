@@ -19,7 +19,7 @@ Description: A collection of data sets and functions that are useful in the
 License: GPL (>=3)
 Depends:
     R(>= 3.5.0),
-    abd,
+    abdData,
     mosaic,
     mosaicData
 Imports:
@@ -33,6 +33,7 @@ Suggests:
     knitr,
     shiny,
     shinyjs
+Remotes: github::Middleton-Lab/abdData
 LazyLoad: yes
 LazyData: true
 Encoding: UTF-8

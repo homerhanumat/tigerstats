@@ -12,7 +12,7 @@
 #' \url{https://homerhanumat.github.io/tigerstats/}
 #'
 #' @keywords package
-#' @import mosaicData abd
+#' @import mosaicData abdData
 #' @importFrom mosaic favstats
 #' @importFrom manipulate button checkbox picker slider manipulate
 #' @importFrom MASS mvrnorm
